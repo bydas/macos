@@ -23,7 +23,7 @@
 
 <div class="newsletter center py-4 color-{{ section.settings.color_scheme }} {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %} newsletter-inner-shadow">
   <div class="gradient container section-{{ section.id }}-padding w-100 px-0 py-4 bg-transparent">
-    <div class="row justify-content-between align-items-center w-100">
+    <div class="row justify-content-between align-items-center w-100 px-5 px-lg-0">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
