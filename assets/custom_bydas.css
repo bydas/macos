@@ -438,8 +438,8 @@ h1 {
 
 @media all and (max-width: 577px) {
   
-  .section-product-categories .flickity-prev-next-button.next,
-  .section-product-categories .flickity-prev-next-button.previous {
+  .flickity-prev-next-button.next,
+  .flickity-prev-next-button.previous {
     display: none;
   }
   
