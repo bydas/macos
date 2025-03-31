@@ -439,7 +439,7 @@ h1 {
 @media all and (max-width: 577px) {
 
   .section-product-categories {
-    padding: 3rem 0 0 !important;
+    padding: 3rem 5% 0 !important;
   }
   
   .flickity-prev-next-button.next,
