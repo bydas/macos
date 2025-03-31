@@ -438,6 +438,11 @@ h1 {
 
 @media all and (max-width: 577px) {
 
+  .advantage-link {
+    width: 18rem;
+    height: 18rem;
+  }
+
   .section-product-categories {
     padding: 3rem 3rem 0 !important;
   }
