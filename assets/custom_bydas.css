@@ -33,7 +33,7 @@ h1 {
 .margin-left-custom {
   margin-left: 10rem;
   text-decoration: none !important;
-  font-size: 1.6rem;
+  font-size: 2rem;
 }
 
 .slider-component-full-width .slider--desktop .slider__slide:first-child{
