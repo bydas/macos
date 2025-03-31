@@ -437,6 +437,10 @@ h1 {
 }
 
 @media all and (max-width: 577px) {
+
+  .section-product-categories {
+    padding: 3rem 0 0;
+  }
   
   .flickity-prev-next-button.next,
   .flickity-prev-next-button.previous {
