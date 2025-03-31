@@ -589,7 +589,7 @@
           <div class="product-card-buttons-wrapper z-3 w-100 d-flex flex-column justify-content-center align-items-start gap-5">
             
             <!-- START QUANTITY -->
-            <div class="price-per-item__container w-75 justify-content-center mt-4 mt-md-0">
+            <div class="price-per-item__container w-dm-75 w-100 justify-content-center mt-4 mt-md-0">
               <quantity-input class="quantity w-100" data-url="{{ card_product.url }}" data-section="{{ section.id }}">
                 <button class="quantity__button" name="minus" type="button">
                   <span class="visually-hidden">
@@ -712,7 +712,7 @@
             <!-- END QUANTITY -->
           
             <!-- START BUY BUTTON -->
-            <div class="w-75">
+            <div class="w-sm-75 w-100">
             
               {%- if card_product != blank -%}
                 {%- liquid
