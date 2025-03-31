@@ -443,9 +443,13 @@ h1 {
     height: 15rem;
   }
 
-  .section-product-categories,
-  .section-featured-new-products {
+  .section-product-categories, {
     padding: 3rem 3rem 0 !important;
+  }
+
+  .section-featured-new-products{
+    padding-left: 3rem:
+    padding-right: 3rem;
   }
   
   .flickity-prev-next-button.next,
