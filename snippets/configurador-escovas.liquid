@@ -428,7 +428,7 @@
         category.find('.checkbox-wiper-blade:checked').each(function() {
           const productCard = $(this).closest('.product-card');
           const productData = JSON.parse(productCard.attr('data-product'));
-          const variantId = productData.variants.edges[0].node.id;
+          const variantId = productData.variants.edges[0].node.id.split('/').pop(); // Extract numeric ID
           selectedProducts.push({
             id: variantId,
             quantity: 1
@@ -447,7 +447,7 @@
         category.find('.checkbox-wiper-blade:checked').each(function() {
           const productCard = $(this).closest('.product-card');
           const productData = JSON.parse(productCard.attr('data-product'));
-          const variantId = productData.variants.edges[0].node.id;
+          const variantId = productData.variants.edges[0].node.id.split('/').pop(); // Extract numeric ID
           selectedProducts.push({
             id: variantId,
             quantity: 1
@@ -462,19 +462,13 @@
       // Function to add items to cart
       async function addToCart(items) {
         try {
-          // Convert items to the format expected by Shopify's cart API
-          const cartItems = items.map(item => ({
-            id: item.id,
-            quantity: item.quantity
-          }));
-
           const response = await fetch('/cart/add.js', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              items: cartItems
+              items: items
             })
           });
 
