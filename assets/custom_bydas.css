@@ -300,7 +300,7 @@ h1 {
   width: 30%;
 }
 .newsletter-title {
-  width: max-content;
+  width: auto;
 }
 .newsletter-form__field-wrapper, 
 .newsletter__wrapper .newsletter-form__field-wrapper, 
