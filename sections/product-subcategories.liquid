@@ -1,3 +1,17 @@
+{% liquid
+  assign parent_collection = collection
+  assign child_collections = ""
+
+  for collection in collections
+    if collection.metafields.custom.parent.value.handle == parent_collection.handle
+    # custom.parent is the literal collection metafield's handle, not an object or array
+      assign child_collections = child_collections | append: collection.handle | append: ","
+    endif
+  endfor
+
+  assign child_handles = child_collections | split: "," | uniq
+%}
+
 {%- style -%}
   .section-product-categories {
     padding: 1% 10% 0;
@@ -17,24 +31,6 @@
   }
 {%- endstyle -%}
 
-
-{% liquid
-  assign parent_collection = collection
-  assign child_collections = ""
-
-  for collection in collections
-    if collection.metafields.custom.parent.value.handle == parent_collection.handle
-    # custom.parent is the literal collection metafield's handle, not an object or array
-      assign child_collections = child_collections | append: collection.handle | append: ","
-    endif
-  endfor
-
-  assign child_handles = child_collections | split: "," | uniq
-%}
-<div>
-      {{ child_handles.size }}
-  
-</div>
 {% if child_handles.size > 0 %}
   
   <section class="container">
