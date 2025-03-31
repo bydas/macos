@@ -1,0 +1,74 @@
+<section class="container py-5">
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 px-lg-0 px-5 pb-3">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 px-lg-0 px-5 d-flex flex-wrap flex-lg-nowrap justify-content-lg-between justify-content-center gap-5">
+      {% for block in section.blocks %}
+        {% if block.settings.image != blank %}
+          <a href="{{ pages[block.settings.page].url }}" class="advantage-link">
+            <div class="advantage_card d-flex flex-column justify-content-center align-items-center">
+              <div class="advantage_image d-flex justify-content-center align-items-center">
+                <img src="{{ block.settings.image | image_url }}" height="" width="" alt="Advantage">
+              </div>
+
+              {% if block.settings.label != blank %}
+                <div class="advantage_label">
+                  <p class="text-center">{{ block.settings.label }}</p>
+                </div>
+              {% endif %}
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Advantages",
+  "class": "section-advantages",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Block",
+      "type": "block_advantage",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advantages"
+    }
+  ]
+}
+{% endschema %}
