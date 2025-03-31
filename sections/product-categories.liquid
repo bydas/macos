@@ -19,7 +19,7 @@
 
 <section class="container-fluid container-sm">
   <div class="row mb-4">
-    <div class="col-12 pb-3 d-flex justify-content-between">
+    <div class="col-12 p-0 pb-3 d-flex justify-content-between">
 
       {% if section.settings.title != blank %}
         <h2>{{ section.settings.title }}</h2>
@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 p-0">
 
       <div id="categories-carousel" class="position-relative">
         {% for category in section.settings.categories %}
