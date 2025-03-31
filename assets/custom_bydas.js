@@ -16,7 +16,7 @@ $('#highlights-slideshow').flickity({
   cellAlign: 'left',
   contain: true,
   pageDots: true,
-  draggable: false,
+  draggable: true,
   resize: true,
   adaptiveHeight: false,
   wrapAround: true
