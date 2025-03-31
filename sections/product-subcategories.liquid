@@ -29,7 +29,7 @@
     endif
   endfor
 
-  assign child_handles = child_collections | split: "," | uniq | reject: blank
+  assign child_handles = child_collections | split: "," | uniq
 %}
 
 {% if child_handles.size > 0 %}
