@@ -280,8 +280,8 @@ h1 {
   background-color: rgb(230, 230, 230);
   border-radius: 25px;
 }
-.newsletter-submit-button span {
-  width: auto;  
+.newsletter-submit-button * {
+  min-width: auto !important;  
 }
 .newsletter-submit-button {
   position: static;
