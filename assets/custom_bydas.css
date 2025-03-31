@@ -104,6 +104,7 @@ h1 {
 /* section featured collection new products */
 .section-featured-new-products {
   background-color: rgb(240, 240, 240);
+  padding: 3rem 10% 0;
 }
 .collection__title.title-wrapper--self-padded-tablet-down {
   padding: 0 !important;
