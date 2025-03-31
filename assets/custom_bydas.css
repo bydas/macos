@@ -434,8 +434,8 @@ h1 {
     left: -6rem;
   }
 
-  .price-per-item__container,
-  .buy-button_container {
+  #new-products_buttons-wrapper .price-per-item__container,
+  #new-products_buttons-wrapper .buy-button_container {
     width: 100% !important;
   }
   
