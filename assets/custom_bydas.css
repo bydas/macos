@@ -466,6 +466,10 @@ h1 {
   .title {
     padding-left: 2rem;
   }
+
+  .card-title-custom {
+    font-size: 2rem
+  }
   
 }
 
