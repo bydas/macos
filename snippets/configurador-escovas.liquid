@@ -461,55 +461,32 @@
 
       // Function to add items to cart
       async function addToCart(items) {
-        const mutation = `
-          mutation createCart($input: CartInput!) {
-            cartCreate(input: $input) {
-              cart {
-                id
-                checkoutUrl
-                lines(first: 10) {
-                  edges {
-                    node {
-                      id
-                      quantity
-                    }
-                  }
-                }
-              }
-              userErrors {
-                field
-                message
-              }
-            }
-          }
-        `;
-
         try {
-          const response = await fetch(`${ENDPOINT}/api/2024-01/graphql.json`, {
-            method: "POST",
+          // Convert items to the format expected by Shopify's cart API
+          const cartItems = items.map(item => ({
+            id: item.id,
+            quantity: item.quantity
+          }));
+
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
             headers: {
-              "Content-Type": "application/json",
-              "X-Shopify-Storefront-Access-Token": ACCESS_TOKEN
+              'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              query: mutation,
-              variables: {
-                input: {
-                  lines: items
-                }
-              }
+              items: cartItems
             })
           });
 
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
           const data = await response.json();
           
-          if (data.data.cartCreate.userErrors.length > 0) {
-            console.error("Error adding to cart:", data.data.cartCreate.userErrors);
-            alert("Erro ao adicionar ao carrinho. Por favor, tente novamente.");
-          } else {
-            // Redirect to checkout or show success message
-            window.location.href = data.data.cartCreate.cart.checkoutUrl;
-          }
+          // Redirect to cart page
+          window.location.href = '/cart';
+          
         } catch (error) {
           console.error("Error:", error);
           alert("Erro ao adicionar ao carrinho. Por favor, tente novamente.");
