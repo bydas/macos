@@ -56,7 +56,7 @@ flickityMarquee();
 
 // pause on hover
 $carousel.on('mouseenter', function() {
-  isPaused = true; // true / false to pause on hover
+  isPaused = false; // true / false to pause on hover
 });
 $carousel.on('mouseleave', function() {
   isPaused = false;
