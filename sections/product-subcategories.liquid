@@ -12,26 +12,26 @@
   assign child_handles = child_collections | split: "," | uniq
 %}
 
-{%- style -%}
-  .section-product-categories {
-    padding: 1% 10% 0;
-    min-height: 200px;
-    
-    {% if section.settings.background_image != blank %}
-      
-      background-image: url('{{ section.settings.background_image | image_url }}');
-      background-size: cover;
-      background-position: center;
-      
-    {% else %}
-      
-      background-color: rgb(230, 230, 230);
-      
-    {% endif %}
-  }
-{%- endstyle -%}
-
 {% if child_handles.size > 0 %}
+
+  {%- style -%}
+    .section-product-categories {
+      padding: 1% 10% 0;
+      min-height: 200px;
+      
+      {% if section.settings.background_image != blank %}
+        
+        background-image: url('{{ section.settings.background_image | image_url }}');
+        background-size: cover;
+        background-position: center;
+        
+      {% else %}
+        
+        background-color: rgb(230, 230, 230);
+        
+      {% endif %}
+    }
+  {%- endstyle -%}
   
   <section class="container">
     <div class="row">
