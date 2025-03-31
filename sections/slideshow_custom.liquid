@@ -20,14 +20,14 @@
       </div>
     </div>
     
-    <div class="col-12 col-lg-6 highlights-images d-flex flex-column gap-2 p-0 h-100">
+    <div class="col-12 col-lg-6 highlights-images d-flex flex-column p-0 h-100">
       
       {% if section.settings.top-image != blank %}
-        <img src="{{ section.settings.top-image | image_url }}" width="100%" height="" alt="MACOS">
+        <img src="{{ section.settings.top-image | image_url }}" width="100%" height="40%" alt="MACOS">
       {% endif %}
     
       {% if section.settings.bottom-image != blank %}
-        <img src="{{ section.settings.bottom-image | image_url }}" width="100%" height="" alt="MACOS">
+        <img src="{{ section.settings.bottom-image | image_url }}" width="100%" height="60%" alt="MACOS">
       {% endif %}
       
     </div>
