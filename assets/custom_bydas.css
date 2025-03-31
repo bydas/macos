@@ -199,7 +199,7 @@ h1 {
 }
 .product-card-buttons-wrapper button[type="submit"]:hover{
   text-decoration: underline;
-  color: white;
+  color: white !important;
 }
 .product-card-buttons-wrapper button[type="submit"]::after {
   content: none;
