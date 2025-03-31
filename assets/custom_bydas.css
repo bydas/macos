@@ -433,6 +433,11 @@ h1 {
   .section-product-categories .flickity-prev-next-button.previous {
     left: -6rem;
   }
+
+  .price-per-item__container,
+  .buy-button_container {
+    width: 100% !important;
+  }
   
 }
 
@@ -450,11 +455,6 @@ h1 {
   .flickity-prev-next-button.next,
   .flickity-prev-next-button.previous {
     display: none;
-  }
-
-  .price-per-item__container,
-  .buy-button_container {
-    width: 100% !important;
   }
   
 }
