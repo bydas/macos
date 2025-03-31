@@ -1,0 +1,1 @@
+{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"custom_liquid_aGERfG":{"type":"custom-liquid","settings":{"custom_liquid":"{% render 'configurador-escovas' %}","color_scheme":"scheme-2","padding_top":40,"padding_bottom":52}}},"order":["main","custom_liquid_aGERfG"]}

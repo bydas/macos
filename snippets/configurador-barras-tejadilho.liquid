@@ -1,0 +1,519 @@
+<div class="container">
+ <div class="row">
+   <div class="col-12">
+        <h1 class="custom-cruz-padding page-title">Configurador de Barras de Tejadilho</h1>
+      <div class="col-12">
+        <hr>
+        <div class="products-search-layout">
+          <div>
+            <label for="cars">Escolha uma marca:</label>
+            <select name="brands" id="brands"></select>
+          </div>
+          <div style="margin-top: 24px">
+            <label for="models">Escolha um modelo:</label>
+            <select name="models" id="models"></select>
+          </div>
+          <div style="margin-top: 24px">
+            <label for="vehicles">Escolha uma viatura:</label>
+            <select name="vehicles" id="vehicles"></select>
+          </div>
+        </div>
+        <div id="product-list-container">
+          <div id="products-list-2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="components"></div>
+</div>
+
+
+
+<script>
+  const apiBaseURL = "https://api.cruzber.com/guidepc"
+  const apiKey = "e993740b761f5b7728afa8fde400910a"
+  const apiEUR = "/ESP"
+
+  const apiBrands = "/brands/"
+  const apiModels = "/models/"
+
+  
+  const onImageError = (element) => {
+    element.src = 'https://jumpseller.s3.eu-west-1.amazonaws.com/store/warrior/assets/ImageError.jpeg?1709728441'
+  }
+
+  $( document ).ready(function() {
+    // "https://api.cruzber.com/guidepc/brands/e993740b761f5b7728afa8fde400910a/EUR"
+    $.get( apiBaseURL + apiBrands + apiKey + apiEUR , function( data ) {
+      $('#brands').append($('<option>', { 
+        value: -1,
+        text : "Selecione uma marca",
+      }));
+      data.map((item) => {
+        $('#brands').append($('<option>', { 
+          value: item.IdBrand,
+          text : item.Brand 
+        }));
+      })
+    })
+
+    $( "#brands" ).on( "change", function() {
+      const model = $( "#brands" ).val()
+
+      $("#products-list-2 .product-item").remove()
+      $("#product-list-container").css("display", "none");
+
+      //   "https://api.cruzber.com/guidepc/models/e993740b761f5b7728afa8fde400910a/" + model + "/EUR"
+      $.get(apiBaseURL + apiModels + apiKey + "/" + model + apiEUR, function( data ) {
+
+        $('#models').find('option').remove().end()
+        $('#vehicles').find('option').remove().end()
+
+        $('#models').append($('<option>', { value: -1, text : "Selecione um modelo" }));
+        data.map((item) => {
+          $('#models').append($('<option>', { 
+            value: item.Model,
+            text : item.Model 
+          }));
+        })
+      })
+    });
+
+    $( "#models" ).on( "change", function() {
+      const brandSelected = $( "#brands" ).val()
+      const modelSelected = $( "#models" ).val()
+
+      $("#products-list-2 .product-item").remove()
+      $("#product-list-container").css("display", "none");
+
+      $.get(
+        apiBaseURL + "/bodies/" + apiKey + "/" 
+        + brandSelected + "/" + modelSelected + apiEUR,
+
+        function( data ) {
+
+        $('#vehicles').find('option').remove().end()
+
+        $('#vehicles').append($('<option>', { value: -1, text : "Selecione uma viatura" }));
+        data.map((item) => {
+          $('#vehicles').append($('<option>', { 
+            value: item.IdVeh,
+            text : item.Body 
+          }));
+        })
+      })
+    })
+
+    const getProductImage = async (categories) => {
+      return new Promise(async (resolve, reject) => {
+          data.map(async (item, count) => {
+
+            if(!categories[item.NombreSolucion]){
+              categories[item.NombreSolucion] = []
+            }
+
+            const images = await $.get("https://api.cruzber.com/pc/images/" + apiKey + "/" + item.SKU);
+
+            let image = item.OptionImage
+            if(images && images[0]){
+              image = images[0].Image
+            }
+
+          
+  
+            item.image = image;
+            categories[String(item.NombreSolucion)].push(item);
+
+          })
+        })
+    }
+
+    const getInstructions = (values) => {
+      return new Promise((resolve, reject) => {
+        values.map(async (value, index) => {
+          const urlGetInstructions = "https://api.cruzber.com/pc/instructions/" + apiKey + "/" + value.SKU
+          const instruction = await $.get(urlGetInstructions);
+          value.instruction = instruction.Instruction
+
+          if(index === values.length - 1){
+            resolve(value)
+          }
+        })
+      })
+    }
+
+    let categories = {}
+
+    $( "#vehicles" ).on( "change", function() {
+      
+      const vehicleSelcted = $( "#vehicles" ).val()
+
+
+      $.get(apiBaseURL + "/solutions/" + apiKey + "/" + vehicleSelcted + apiEUR, async function( data ) {
+        const vehiclesList = $("#products-list-2")
+        vehiclesList.empty()
+
+        $("#products-list-2 .product-item").remove()
+
+        if(data.length > 0) {
+          $("#product-list-container").css("display", "block");
+        } else {
+          $("#product-list-container").css("display", "none");
+        }
+
+        categories = {}
+
+        data.map(async (item, count) => {
+          if(!categories[item.NombreSolucion]){
+            categories[item.NombreSolucion] = []
+          }
+          categories[String(item.NombreSolucion)].push(item);
+        })
+
+        let i = 0;
+        for (var key in categories) {
+          const values = categories[String(key)];
+
+          i++;
+
+          let image = values[0].OptionImage
+         /* try {
+            const images = await $.get("https://api.cruzber.com/pc/images/e993740b761f5b7728afa8fde400910a/" + values[0].SKU);
+
+            if(images && images[1]){
+              image = images[1].Image
+            } else if(images && images[0]){
+              image = images[0].Image
+            }
+          } catch(e) { }
+          */
+
+
+          let items = `<table><tr>
+            <th class="table-cell" style="width: 46px;"></th>
+            <th class="table-cell" style="width: calc(100% - 200px);">Componentes</th>
+            <th class="table-cell" style="width: 70px;">Ref.</th>
+            <th class="table-cell" style="width: 40px;">Opc.</th>
+            <th class="table-cell" style="width: 40px; text-align: center"><i class="linear-icon icon-0333-bag2"></i></th>
+          </tr>`;
+          
+          const instructions = await getInstructions(values)
+
+          let index = key.toLowerCase()
+          index = index.replace(/\s/g, '')
+
+
+          let locksImage = await $.get("https://api.cruzber.com/pc/images/e993740b761f5b7728afa8fde400910a/932-014");
+
+          console.log("values", values)
+
+
+          values.map(async (v, index) => {
+
+
+            items += `
+              <tr>
+                <td class="table-cell" style="position: relative">
+                  <img class="main-product-image" src="${v.SKU === "932-014" ? locksImage[0].Image : v.ProductImage}" width="40" height="40" onerror="onImageError(this)"/>
+                  <img class="hover-product-image" src="${v.SKU === "932-014" ? locksImage[0].Image : v.ProductImage}" width="40" height="40" onerror="onImageError(this)"/>
+                </td>
+                <td class="table-cell">
+                  ${v.Description}
+                  ${v.instruction ? (
+                    `(ver <a class='product-instructions-link' href='${v.instruction}' target='_blank'>
+                      pdf</a>)`
+                  ) : ''}
+                </td>
+                <td class="table-cell"><a target="_blank" class='product-item' href='/${v.SKU}\'>${v.SKU}</a></td>
+                <td class="table-cell" style="text-align:center">
+                ${
+                  v.Optional === "-1" ? 'Sim' : 'Não'
+                }
+                </td>
+                <td class="table-cell" style="text-align:center">
+                  <input type="checkbox" id="checkbox-${i}-${index}-${v.SKU}" ${v.Optional === "-1" ? '' : 'checked'} />
+                </td>
+              </tr>`
+          })
+          items += "</table>"
+
+          const elem = `
+            <div class="category">
+              <div class="category-title">${key}</div>
+              <div class="category-items">
+                <img src="${image}" class="category-items-image" />
+                <div class="category-acessories">
+                  ${items}
+                </div>
+              </div>
+              <div class="add-to-cart-container">
+                <button 
+                  class="btn btn-block primary adc adc-custom" 
+                  id="category-${index}" 
+                  data-key="${key}"
+                  data-index="${i}"
+                >
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </div>
+          `;
+
+
+          vehiclesList.append(elem);
+
+          setTimeout(() => {
+            const btn = document.getElementById(`category-${index}`)
+            btn.addEventListener("click", async function(e) {
+              
+              let skus = []
+              let alreadyHasProductAdded = false
+
+              window.scrollTo({
+                top: 0,
+                left: 0,
+                behaviour: 'smooth'
+              })
+
+              const categoryIndex = Number(e.target.dataset.index)
+
+              categories[e.target.dataset.key].map(async (product, index) => {
+
+                const checkbox = $(`#checkbox-${categoryIndex}-${index}-${product.SKU}`)
+
+                const checkboxValue = checkbox.is(":checked")
+
+                skus.push("https://www.macos.pt/" + product.SKU)
+
+                if(checkboxValue) {
+                  try {
+                    const productPage = await $.get("https://www.macos.pt/" + product.SKU);
+                    var regex = /<span[^>]*id="product-id-hammer"[^>]*>(\d+)<\/span>/;
+                    var match = productPage.match(regex);
+                    var id = match ? match[1] : null;
+
+                    Jumpseller.addProductToCart(id, 1, null, {
+                      callback: function(data, status) {
+                        if(!alreadyHasProductAdded){
+
+                          toastr.options = {
+                            closeButton: true,
+                            debug: false,
+                            newestOnTop: false,
+                            progressBar: true,
+                            positionClass: 'toast-top-right',
+                            preventDuplicates: false,
+                            onclick: null,
+                            showDuration: '500',
+                            hideDuration: '1000',
+                            timeOut: '5000',
+                            extendedTimeOut: '1000',
+                            showEasing: 'swing',
+                            hideEasing: 'linear',
+                            showMethod: 'fadeIn',
+                            hideMethod: 'fadeOut',
+                          };
+                          const message = `Foram adicionados produtos ao carrinho`;
+                          toastr.success(message);
+                        }
+                        alreadyHasProductAdded = true
+
+                        // Update cart qty counter in header
+                        $('.cart-size').text(data.products_count);
+
+                      },
+                    });
+                  } catch(e) { }
+                }
+                
+              })
+
+
+            }, false);
+
+          }, 500)
+
+
+        }
+
+      })
+    })
+  });
+
+</script>
+
+<style>
+  #product-list-container {
+    margin-top: 34px;
+    max-width: 745px;
+    margin: auto;
+    padding: 12px;
+    padding-bottom: 32px !important;
+  }
+  .title {
+    font-weight: 600;
+  }
+
+  .subtitle {
+    color: #4A4A4A;
+    font-weight: 400;
+    margin: 12px;
+  }
+
+  .sku {
+    color: #B0B0B0;
+    font-weight: 300;
+  }
+
+  .products-search-layout {
+    max-width: 745px;
+    margin: 0 auto 50px auto;
+    padding: 12px;
+    padding-bottom: 1vh;
+    padding-top: 2.5vh;
+  }
+
+  #products-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    #products-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  #products-list .vehicle-item {
+    width: 100%;
+    margin-top: 24px;
+    padding: 12px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #products-list .vehicle-item img{
+    width: 100%;
+    object-fit: cover;
+  }
+
+  #products-list-2 .category{
+    background: white;
+    border: 1px solid #d1d1d1;
+    padding: 15px;
+    margin-bottom: 12px;
+  }
+
+  #products-list-2 .category .category-items{
+    display: flex;
+  }
+
+
+  #products-list-2 .category .add-to-cart-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  #products-list-2 .category .add-to-cart-container .adc-custom{
+    width: 190px;
+    font-size: 13px;
+  }
+
+
+
+  #products-list-2 .category .category-title{
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 16px;
+    color: #333!important;
+  }
+
+  #products-list-2 .category .category-items .category-items-image{
+    width: 20%;
+    margin-right: 20px;
+    object-fit: contain;
+  }
+
+  #products-list-2 .category .category-items .category-acessories{
+    width: 80%;
+  }
+
+  #products-list-2 .category .category-items .category-acessories table{
+    width: 100%;
+  }
+
+  #products-list-2 .category .category-items .category-acessories tr{
+    border-bottom: 1px solid black;
+    padding: 10px;
+    height: 36px;
+  }
+
+  #products-list-2 .category .category-items .category-acessories td a{
+    color: #ff9800 !important;
+    text-decoration: underline !important;
+  }
+
+  @media only screen and (max-width: 600px) {
+    
+    #products-list-2 .category .category-items{
+      flex-direction: column;
+    }
+
+    #products-list-2 .category .category-items .category-items-image{
+      width: 100%;
+      margin-right: 0;
+    }
+
+    #products-list-2 .category .category-items .category-acessories{
+      width: 100%;
+    }
+
+    #product-list-container{
+      margin: 0;
+      padding: 0;
+    }
+
+    .products-search-layout{
+      padding: 0;
+    }
+  }
+
+.main-product-image:hover + .hover-product-image{
+  opacity: 1;
+  z-index: 9999;
+}
+
+.hover-product-image{
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 260px;
+  transform: translate(-130px, -130px);
+  box-shadow: 0 0 24px -10px #e2e2e2;
+  transition: all 250ms ease-in-out;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 600px) {
+  .hover-product-image {
+    transform: translate(0, -130px);
+  }
+
+  .table-cell{
+    font-size: 12px;
+  }
+}
+
+.hover-product-image:hover{
+  opacity: 1;
+  z-index: 9999;
+}
+
+
+
+</style>

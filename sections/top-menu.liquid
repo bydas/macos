@@ -1,0 +1,90 @@
+{%- style -%}
+  .section-top-menu div {
+    background-color: {{ section.settings.background-color }}; 
+    text-align: {{ section.settings.align }}; 
+    padding: {{ section.settings.padding-section }}px;
+  }
+
+  .section-top-menu a {
+    color:{{ section.settings.color }}; 
+    padding: 0 {{ section.settings.padding-links }}px;
+    font-size: {{ section.settings.font-size }}px;
+  }
+{%- endstyle -%}
+
+<div>
+  
+  {% for item in section.settings.menu.links %}
+    <a href="{{ item.url }}" class="{% if request.path == item.url %}active{% endif %}">{{ item.title }}</a>
+  {% endfor %}
+  
+</div>
+
+{% schema %}
+  {
+    "name": "Top Menu",
+    "class":"section-top-menu",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "t:sections.header.settings.menu.label"
+      },
+      {
+        "type": "color",
+        "id": "background-color",
+        "label": "Background color",
+        "default": "#292929"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "select",
+        "id": "align",
+        "label": "Text alignment",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "range",
+        "id": "padding-section",
+        "label": "Inner padding",
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "default": 7
+      },
+      {
+        "type": "range",
+        "id": "padding-links",
+        "label": "Menu spacing",
+        "min": 10,
+        "max": 30,
+        "step": 1,
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "font-size",
+        "label": "Font size",
+        "min": 10,
+        "max": 20,
+        "step": 1,
+        "default": 16
+      }
+    ],
+    "presets": [
+      {
+        "name": "Top Menu"
+      }
+    ]
+  }
+{% endschema %}

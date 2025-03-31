@@ -1,0 +1,49 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center p-0">
+      <div id="main-carousel">
+
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank %}
+              
+              <div class="carousel-cell">
+                
+                <a href="{{ block.settings.url | default: '#' }}">
+                  <img src="{{ block.settings.image | image_url }}" width="" height="" alt="Brand" class="brand-image">
+                </a>
+                
+              </div>
+              
+            {% endif %}
+          {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Logo Brands",
+    "settings": [],
+    "blocks": [
+      {
+        "name": "Block Image",
+        "type": "block_image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

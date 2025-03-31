@@ -1,0 +1,94 @@
+{%- style -%}
+  .section-product-categories {
+    padding: 1% 10% 0;
+    min-height: 200px;
+    
+    {% if section.settings.background_image != blank %}
+      
+      background-image: url('{{ section.settings.background_image | image_url }}');
+      background-size: cover;
+      background-position: center;
+      
+    {% else %}
+      
+      background-color: rgb(230, 230, 230);
+      
+    {% endif %}
+  }
+{%- endstyle -%}
+
+
+{% liquid
+  assign parent_collection = collection
+  assign child_collections = ""
+
+  for collection in collections
+    if collection.metafields.custom.parent.value.handle == parent_collection.handle
+    # custom.parent is the literal collection metafield's handle, not and object or array
+      assign child_collections = child_collections | append: collection.handle | append: ","
+    endif
+  endfor
+
+  assign child_handles = child_collections | split: "," | uniq
+%}
+
+{% if child_handles.size > 0 %}
+  
+  <section class="container">
+    <div class="row">
+      <div class="col-12 pt-5">
+  
+        <div id="categories-carousel" class="categories-carousel position-relative">
+          
+          {% for handle in child_handles %}
+            {% assign subcollection = collections[handle] %}
+
+            {% if subcollection != blank %}
+              <div class="category-card me-5 carousel-cell">
+                
+                <a href="{{ subcollection.url }}">
+                  <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">
+                    
+                    {% if subcollection.image != blank %}
+                      <img src="{{ subcollection.image | image_url }}" width="" height="" alt="Category">
+                    {% else %}
+                      <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="" height="" alt="Category">
+                    {% endif %}
+                  
+                  </div>
+                </a>
+                
+                <div class="category-title text-center mt-2">
+                  <a href="{{ subcollection.url }}">{{ subcollection.title }}</a>
+                </div>
+              
+              </div>
+            {% endif %}
+            
+          {% endfor %}
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Subcategories",
+    "class": "section-product-categories",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Subcategories"
+      }
+    ]
+  }
+{% endschema %}

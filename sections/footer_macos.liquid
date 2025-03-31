@@ -1,0 +1,141 @@
+<section class="container">
+  <div class="row">
+    <div class="col-4">
+
+      {% for block in section.blocks %}
+
+        {% if block.settings.title != blank %}
+          <h2 class="">{{ block.settings.title }}</h2>
+        {% endif %}
+
+        <div class="d-flex justify-content-start align-items-center">
+          {% if block.settings.address_icon %}
+            <img src="{{ block.settings.address_icon | image_url }}" width="" height="">
+          {% endif %}
+          {% if block.settings.address != blank %}
+            {% assign formated_address = block.settings.address | replace: " ", "+" | strip_newlines | strip_html %} {% comment %} replacing blank spaces with "+" to fit the url sintaxe;  {% endcomment %}
+            <a href="https://www.google.com/maps/search/{{ formated_address }}" target="_blank">{{ block.settings.address }}</a>
+          {% endif %}
+        </div>
+
+        <div class="d-flex justify-content-start align-items-center">
+          {% if block.settings.phone_icon %}
+            <img src="{{ block.settings.phone_icon | image_url }}" width="" height="">
+          {% endif %}
+          {% if block.settings.phone != blank %}
+            <div class="d-flex flex-column">
+              <a href="tel:{{ block.settings.phone }}">
+                <p class="{%  if block.settings.phone_label != blank %}mb-0{% endif %}">{{ block.settings.phone }}</p>
+              </a>
+              <p class="fs-5">{{ block.settings.phone_label }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="d-flex justify-content-start align-items-center">
+          {% if block.settings.email_icon %}
+            <img src="{{ block.settings.email_icon | image_url }}" width="" height="">
+          {% endif %}
+          {% if block.settings.email != blank %}
+            <a href="mailto:{{ block.settings.email }}">
+              <p>{{ block.settings.email }}</p>
+            </a>
+          {% endif %}
+        </div>
+
+        <div class="d-flex justify-content-start align-items-center">
+          {% if block.settings.others_icon %}
+            <img src="{{ block.settings.others_icon | image_url }}" width="" height="">
+          {% endif %}
+          {% if block.settings.others != blank %}
+            <a href="{{ pages[block.settings.page].url }}">
+              <p>{{ block.settings.others }}</p>
+            </a>
+          {% endif %}
+        </div>
+        
+      {% endfor %}
+      
+    </div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-4"></div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Footer Macos",
+    "class": "section-footer-macos",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "title",
+        "name": "Contacts",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "image_picker",
+            "id": "address_icon",
+            "label": "Address - Icon"
+          },
+          {
+            "type": "richtext",
+            "id": "address",
+            "label": "Address"
+          },
+          {
+            "type": "image_picker",
+            "id": "phone_icon",
+            "label": "Phone - Icon"
+          },
+          {
+            "type": "text",
+            "id": "phone",
+            "label": "Phone number",
+          },
+          {
+            "type": "text",
+            "id": "phone_label",
+            "label": "Phone number label"
+          },
+          {
+            "type": "image_picker",
+            "id": "email_icon",
+            "label": "Email- Icon"
+          },
+          {
+            "type": "text",
+            "id": "email",
+            "label": "Email"
+          },
+          {
+            "type": "image_picker",
+            "id": "others_icon",
+            "label": "Others - Icon"
+          },
+          {
+            "type": "text",
+            "id": "others",
+            "label": "Others"
+          },
+          {
+            "type": "page",
+            "id": "page",
+            "label": "Others - Page"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Footer Macos"
+      }
+    ]
+  }
+{% endschema %}

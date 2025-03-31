@@ -1,0 +1,105 @@
+{%- style -%}
+  .section-product-categories {
+    padding: 1% 10% 0;
+    min-height: 200px;
+    
+    {% if section.settings.background_image != blank %}
+      
+      background-image: url('{{ section.settings.background_image | image_url }}');
+      background-size: cover;
+      background-position: center;
+      
+    {% else %}
+      
+      background-color: rgb(230, 230, 230);
+      
+    {% endif %}
+  }
+{%- endstyle -%}
+
+<section class="container">
+  <div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between">
+
+      {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="section-product-categories-description d-none d-md-inline">{{ section.settings.description }}</div>
+      {% endif %}
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+      <div id="categories-carousel" class="position-relative">
+        {% for category in section.settings.categories %}
+          
+          <div class="category-card me-5 carousel-cell">
+            
+            <a href="{{ category.url }}">
+              <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">
+                
+                {% if category.image != blank %}
+                  <img src="{{ category.image | image_url }}" width="" height="" alt="Category">
+                {% else %}
+                  <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="" height="" alt="Category">
+                {% endif %}
+              
+              </div>
+            </a>
+            
+            <div class="category-title text-center mt-2">
+              <a href="{{ category.url }}">{{ category.title }}</a>
+            </div>
+          
+          </div>
+          
+        {% endfor %}
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Product Categories",
+    "class": "section-product-categories",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Products"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "collection_list",
+        "id": "categories",
+        "label": "Categories"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Categories"
+      }
+    ]
+  }
+{% endschema %}
