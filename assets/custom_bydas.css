@@ -383,6 +383,12 @@ h1 {
     width: 21rem;
     height: 21rem;
   }
+  .section-product-categories .flickity-prev-next-button.next {
+    right: -7rem;
+  }
+  .section-product-categories .flickity-prev-next-button.previous {
+    left: -7rem;
+  }
   
 }
 
