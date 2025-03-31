@@ -420,6 +420,101 @@
 
       $("#product-list-container").css("display", "block");
 
+      // Add to cart functionality
+      $("#category-classic").on("click", function() {
+        const category = $(this).closest('.category');
+        const selectedProducts = [];
+        
+        category.find('.checkbox-wiper-blade:checked').each(function() {
+          const productCard = $(this).closest('.product-card');
+          const productData = JSON.parse(productCard.attr('data-product'));
+          const variantId = productData.variants.edges[0].node.id;
+          selectedProducts.push({
+            id: variantId,
+            quantity: 1
+          });
+        });
+
+        if (selectedProducts.length > 0) {
+          addToCart(selectedProducts);
+        }
+      });
+
+      $("#category-flat").on("click", function() {
+        const category = $(this).closest('.category');
+        const selectedProducts = [];
+        
+        category.find('.checkbox-wiper-blade:checked').each(function() {
+          const productCard = $(this).closest('.product-card');
+          const productData = JSON.parse(productCard.attr('data-product'));
+          const variantId = productData.variants.edges[0].node.id;
+          selectedProducts.push({
+            id: variantId,
+            quantity: 1
+          });
+        });
+
+        if (selectedProducts.length > 0) {
+          addToCart(selectedProducts);
+        }
+      });
+
+      // Function to add items to cart
+      async function addToCart(items) {
+        const mutation = `
+          mutation createCart($input: CartInput!) {
+            cartCreate(input: $input) {
+              cart {
+                id
+                checkoutUrl
+                lines(first: 10) {
+                  edges {
+                    node {
+                      id
+                      quantity
+                    }
+                  }
+                }
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+
+        try {
+          const response = await fetch(`${ENDPOINT}/api/2024-01/graphql.json`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Storefront-Access-Token": ACCESS_TOKEN
+            },
+            body: JSON.stringify({
+              query: mutation,
+              variables: {
+                input: {
+                  lines: items
+                }
+              }
+            })
+          });
+
+          const data = await response.json();
+          
+          if (data.data.cartCreate.userErrors.length > 0) {
+            console.error("Error adding to cart:", data.data.cartCreate.userErrors);
+            alert("Erro ao adicionar ao carrinho. Por favor, tente novamente.");
+          } else {
+            // Redirect to checkout or show success message
+            window.location.href = data.data.cartCreate.cart.checkoutUrl;
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Erro ao adicionar ao carrinho. Por favor, tente novamente.");
+        }
+      }
     })
 
   });
