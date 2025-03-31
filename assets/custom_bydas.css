@@ -239,7 +239,6 @@ h1 {
   transition: box-shadow 0.2s;
 }
 .advantage_card:hover {
-  outline: 1px solid rgb(100, 100, 100);
   box-shadow: 0 1.5rem 2rem -2rem black;
   transition-duration: 0.3s;
 }
