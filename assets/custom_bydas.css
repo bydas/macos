@@ -29,12 +29,6 @@ h1 {
   font-weight: 400;
 }
 
-/* header */
-.margin-left-custom {
-  margin-left: 12rem;
-  text-decoration: none !important;
-  font-size: 2rem;
-}
 
 .slider-component-full-width .slider--desktop .slider__slide:first-child{
   margin-left:0 !important
