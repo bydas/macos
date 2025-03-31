@@ -434,10 +434,10 @@ h1 {
     top: 30%;
   }
   .section-product-categories .flickity-prev-next-button.next {
-    right: -5rem;
+    right: -5.5rem;
   }
   .section-product-categories .flickity-prev-next-button.previous {
-    left: -5rem;
+    left: -5.5rem;
   }
 
   #new-products_buttons-wrapper .price-per-item__container,
