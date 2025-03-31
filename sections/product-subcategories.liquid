@@ -29,10 +29,17 @@
     endif
   endfor
 
-  assign child_handles = child_collections | split: "," | uniq | reject: blank
+  assign child_handles = child_collections | split: "," | uniq
 %}
-
+<div>
+      {{ child_handles.size }}
+  
+</div>
 {% if child_handles.size > 0 %}
+
+    <div>
+      {{ child_collections }}<br>
+    </div>
   
   <section class="container">
     <div class="row">
