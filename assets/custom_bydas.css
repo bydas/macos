@@ -32,7 +32,7 @@ h1 {
 /* header */
 .margin-left-custom {
   margin-left: 10rem;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 1.6rem;
 }
 
