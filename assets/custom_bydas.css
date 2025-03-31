@@ -443,7 +443,8 @@ h1 {
     height: 15rem;
   }
 
-  .section-product-categories {
+  .section-product-categories,
+  .section-featured-new-products {
     padding: 3rem 3rem 0 !important;
   }
   
