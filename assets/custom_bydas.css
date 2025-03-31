@@ -433,6 +433,12 @@ h1 {
   .section-product-categories .flickity-prev-next-button {
     top: 30%;
   }
+  .section-product-categories .flickity-prev-next-button.next {
+    right: -5rem;
+  }
+  .section-product-categories .flickity-prev-next-button.previous {
+    left: -5rem;
+  }
 
   #new-products_buttons-wrapper .price-per-item__container,
   #new-products_buttons-wrapper .buy-button_container {
