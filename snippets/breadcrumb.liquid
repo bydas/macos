@@ -15,9 +15,10 @@
     <a href="{{ father_category.url }}">{{ father_category.title }}</a>
     <span>/</span>
   {% endif %}
-  
-  <span>{{ current_category.title }}</span>
-  
+
+  {% if father_collection != blank %}
+    <span>{{ current_category.title }}</span>
+  {% endif %}
 </nav>
   
 <nav class="container mb-3">
