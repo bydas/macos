@@ -4,7 +4,7 @@
   {% liquid
     assign collection_list = "" | split: ""
     assign current_collection = collection
-    assign parent_collection = collection.metafields.custom.value.value
+    assign parent_collection = current_collection.metafields.custom.parent.value
 
     for i in (1..5)
       assign collection_list = collection_list | push: current_collection
@@ -19,7 +19,6 @@
       endif
   
     endfor
-    
   %}
 </nav>
   
