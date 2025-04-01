@@ -19,7 +19,9 @@
   {% endif %}
 
 </nav>
+
 <br>
+
 <nav class="container mb-3 fs-4">
   {% assign parent_collection = collection.metafields.custom.parent.value %}
   
@@ -27,8 +29,4 @@
     <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
   {% endif %}
 </nav>
-
-{% comment %}
-
-{% endcomment %}
   
