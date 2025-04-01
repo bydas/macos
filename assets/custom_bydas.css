@@ -13,9 +13,11 @@ a {
 a:hover, .active {
   color: #FF9800 !important;
 }
-
 .full-unstyled-link {
   color: rgb(255, 160, 0); /* orange */
+}
+.go_back-link {
+  color: black;
 }
 
 h1 {
