@@ -1,0 +1,50 @@
+<nav class="breadcrumb-nav container" aria-label="Navegação">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Início</a>
+    </li>
+    
+    {% comment %} Vamos construir o breadcrumb recursivamente {% endcomment %}
+    {% assign breadcrumb_items = '' | split: '' %}
+    {% assign current_collection = collection %}
+    
+    {% comment %} Primeiro, recolhemos todas as coleções pai até à raiz {% endcomment %}
+    {% for i in (1..10) %}
+      {% if current_collection %}
+        {% assign breadcrumb_items = breadcrumb_items | push: current_collection %}
+        {% assign current_collection = current_collection.metafields.custom.parent.value %}
+        {% if current_collection == blank %}
+          {% break %}
+        {% endif %}
+      {% else %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    {% comment %} Invertemos a ordem para mostrar da raiz até à atual {% endcomment %}
+    {% assign breadcrumb_items = breadcrumb_items | reverse %}
+    
+    {% comment %} Renderizamos os items do breadcrumb {% endcomment %}
+    {% for item in breadcrumb_items %}
+      <li class="breadcrumb-item{% if forloop.last %} active{% endif %}">
+        {% if forloop.last %}
+          <span>{{ item.title }}</span>
+        {% else %}
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
+  
+  <nav class="container mb-3">
+    {% assign parent_collection = collection.metafields.custom.parent.value %}
+    
+    {% if parent_collection %}
+      <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
+    {% endif %}
+  </nav>
+
+
+
+  
