@@ -2,12 +2,12 @@
   <a href="/">Início</a>
 
   {% liquid
-    assign collection_list = ""
+    assign collection_list = "" | split: ""
     assign current_collection = collection
     assign parent_collection = collection.metafields.custom.value.value
 
     for i in (1..5)
-      assign collection_list = collection_list | append: current_collection
+      assign collection_list = collection_list | push: current_collection
     endfor
     
   %}
