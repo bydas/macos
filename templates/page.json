@@ -21,8 +21,8 @@
       "settings": {
         "blog": "news",
         "post_limit": 4,
-        "heading": "Notícias",
-        "heading_size": "h1",
+        "heading": "",
+        "heading_size": "h2",
         "columns_desktop": 3,
         "show_view_all": true,
         "show_image": true,
