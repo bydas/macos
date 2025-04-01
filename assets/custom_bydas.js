@@ -18,14 +18,16 @@ $(document).ready(function () {
     var totalWidth = 0;
 
     $cells.each(function () {
-      totalWidth += $(this).outerWidth(true);
+      totalWidth += $(this).outerWidth(true); // inclui margin
     });
 
     var visibleWidth = $carousel.width();
     var buttonsNeeded = totalWidth > visibleWidth;
 
-    var $prevBtn = $carousel.find('.flickity-prev-next-button.previous');
-    var $nextBtn = $carousel.find('.flickity-prev-next-button.next');
+    // Aceder ao wrapper Flickity e encontrar os botões
+    var $wrapper = $carousel.closest('.flickity-enabled');
+    var $prevBtn = $wrapper.find('.flickity-prev-next-button.previous');
+    var $nextBtn = $wrapper.find('.flickity-prev-next-button.next');
 
     if (buttonsNeeded) {
       $prevBtn.show();
@@ -36,10 +38,9 @@ $(document).ready(function () {
     }
   }
 
-  // Atualiza quando estiver pronto e quando redimensionares a janela
+  // Espera o carrossel estar pronto
   $carousel.on('ready.flickity', updateNavButtons);
   $(window).on('resize', function () {
-    // Pequeno atraso para garantir redimensionamento completo
     setTimeout(updateNavButtons, 100);
   });
 });
