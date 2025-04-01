@@ -38,6 +38,20 @@
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
+
+    <nav class="breadcrumb mb-4">
+      <a href="/" class="breadcrumb-link">Home</a>
+    
+      {% assign parent = collection.metafields.custom.parent.value %}
+      {% if parent %}
+        &nbsp;>&nbsp;
+        <a href="{{ parent.url }}" class="breadcrumb-link">{{ parent.title }}</a>
+      {% endif %}
+    
+      &nbsp;>&nbsp;
+      <span class="breadcrumb-current">{{ collection.title }}</span>
+    </nav>
+    
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
