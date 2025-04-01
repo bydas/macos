@@ -1,4 +1,5 @@
 <nav class="breadcrumb-nav container">
+  
   {% liquid
     assign current_category = collection
     assign father_category = current_category.metafields.custom.parent.value
@@ -17,13 +18,13 @@
   
 </nav>
   
-  <nav class="container mb-3">
-    {% assign parent_collection = collection.metafields.custom.parent.value %}
-    
-    {% if parent_collection %}
-      <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
-    {% endif %}
-  </nav>
+<nav class="container mb-3">
+  {% assign parent_collection = collection.metafields.custom.parent.value %}
+  
+  {% if parent_collection %}
+    <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
+  {% endif %}
+</nav>
 
 
 {% comment %}
