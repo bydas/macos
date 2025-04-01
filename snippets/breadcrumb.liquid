@@ -1,33 +1,19 @@
-{% assign collection_list = "" | split: "" %}
-{% assign current_collection = collection %}
-
-{% for i in (1..5) %}
-  
-  {% assign collection_list = collection_list | push: current_collection %}
-  {% assign parent_collection = current_collection.metafields.custom.parent.value %}
-
-  {% if parent_collection != blank %}
-    {% assign current_collection = parent_collection %}
-
-  {% else %}
-    {% break %}
-    
-  {% endif %}
-  
-{% endfor %}
-
-
-
 <nav class="breadcrumb-nav container">
-  <a href="/">Início</a>
+  {% liquid
+    assign current_category = collection
+    assign father_category = current_category.metafields.custom.parent.value
+    assign grandfather_category = father_category.metafields.custom.parent.value
+  %}
 
-  {{ collection_list.size }}
+  <a>{{ current_category.title }}</a>
 
-  {% for collection in collection_list %}
+  {% if father_category != blank %}
+    <a href="{{ father_category.url }}">{{ father_category.title }}</a>
+  {% endif %}
 
-    <a href="{{ collection.url }}">{{ collection.title }}</a>
-    
-  {% endfor %}
+  {% if grandfather_category != blank %}
+    <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
+  {% endif %}
   
 </nav>
   
@@ -41,22 +27,6 @@
 
 
 {% comment %}
-  {% liquid
-  assign collection_list = "" | split: ""
-  assign current_collection = collection
 
-  for i in (1..5)
-    assign collection_list = collection_list | push: current_collection
-    assign parent_collection = current_collection.metafields.custom.parent.value 
-
-    if parent_collection != blank 
-      assign current_collection = parent_collection
-
-    else 
-      break
-
-    endif
-  endfor
-%}
 {% endcomment %}
   
