@@ -1,11 +1,47 @@
 /* ----- Flickity Carousel - CATEGORIES ----- */
-$('#categories-carousel').flickity({
-  groupCells: false,
-  cellAlign: 'left',
-  contain: true,
-  freeScroll: false,
-  pageDots: false,
-  draggable: true
+$(document).ready(function () {
+  var $carousel = $('#categories-carousel');
+
+  $carousel.flickity({
+    groupCells: false,
+    cellAlign: 'left',
+    contain: true,
+    freeScroll: false,
+    pageDots: false,
+    draggable: true
+  });
+
+  var flkty = $carousel.data('flickity');
+
+  function updateNavButtons() {
+    var $cells = $carousel.find('.carousel-cell');
+    var totalWidth = 0;
+
+    $cells.each(function () {
+      totalWidth += $(this).outerWidth(true);
+    });
+
+    var visibleWidth = $carousel.width();
+    var buttonsNeeded = totalWidth > visibleWidth;
+
+    var $prevBtn = $carousel.find('.flickity-prev-next-button.previous');
+    var $nextBtn = $carousel.find('.flickity-prev-next-button.next');
+
+    if (buttonsNeeded) {
+      $prevBtn.show();
+      $nextBtn.show();
+    } else {
+      $prevBtn.hide();
+      $nextBtn.hide();
+    }
+  }
+
+  // Atualiza quando estiver pronto e quando redimensionares a janela
+  $carousel.on('ready.flickity', updateNavButtons);
+  $(window).on('resize', function () {
+    // Pequeno atraso para garantir redimensionamento completo
+    setTimeout(updateNavButtons, 100);
+  });
 });
 
 
