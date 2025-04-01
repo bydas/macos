@@ -464,7 +464,7 @@ h1 {
   
   .flickity-prev-next-button.next,
   .flickity-prev-next-button.previous {
-    display: none;
+    display: none !important;
   }
 
   .title {
