@@ -1,3 +1,6 @@
+{% if collection.metafields.custom.parent.value != blank %}
+  
+
 <nav class="breadcrumb-nav container fs-4">
   
   {% liquid
@@ -29,4 +32,6 @@
     <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
   {% endif %}
 </nav>
-  
+
+
+{% endif %}
