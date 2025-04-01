@@ -1,6 +1,6 @@
 <section class="container-fluid w-100">
   <div class="row justify-content-center align-items-center w-100">
-    <div class="col-12 col-lg-6 h-100 p-0">
+    <div class="col-12 col-lg-6 h-100 w-100 p-0">
       <div id="highlights-slideshow" class="">
         
         {% for slide in section.blocks %}
@@ -20,7 +20,7 @@
       </div>
     </div>
     
-    <div class="col-12 col-lg-6 highlights-images d-flex flex-column gap-1 p-0 h-100">
+    <div class="col-12 col-lg-6 highlights-images d-flex flex-column gap-1 p-0 w-100 h-100">
       
       {% if section.settings.top-image != blank %}
         <img src="{{ section.settings.top-image | image_url }}" width="100%" height="" alt="MACOS">
