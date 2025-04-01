@@ -1,23 +1,30 @@
+{% liquid
+  assign collection_list = "" | split: ""
+  assign current_collection = collection
+
+  for i in (1..5)
+    assign collection_list = collection_list | push: current_collection
+    assign parent_collection = current_collection.metafields.custom.parent.value 
+
+    if parent_collection != blank 
+      assign current_collection = parent_collection
+
+    else 
+      break
+
+    endif
+  endfor
+%}
+
 <nav class="breadcrumb-nav container">
   <a href="/">Início</a>
 
-  {% liquid
-    assign collection_list = "" | split: ""
-    assign current_collection = collection
+  {% for collection in collection_list %}
 
-    for i in (1..5)
-      assign collection_list = collection_list | push: current_collection
-      assign parent_collection = current_collection.metafields.custom.parent.value 
-
-      if parent_collection != blank 
-        assign current_collection = parent_collection
+    <a href="{{ collection.url }}">{{ collection.title }}</a>
+    
+  {% endfor %}
   
-      else 
-        break
-  
-      endif
-    endfor
-  %}
 </nav>
   
   <nav class="container mb-3">
