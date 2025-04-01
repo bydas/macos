@@ -1,37 +1,35 @@
 {% if collection.metafields.custom.parent.value != blank %}
-  
 
-<nav class="breadcrumb-nav container fs-4">
-  
-  {% liquid
-    assign current_category = collection
-    assign father_category = current_category.metafields.custom.parent.value
-    assign grandfather_category = father_category.metafields.custom.parent.value
-  %}
-
-  {% if grandfather_category != blank %}
-    <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
-    <span class="mx-2">/</span>
-  {% endif %}
-
-  {% if father_category != blank %}
-    <a href="{{ father_category.url }}">{{ father_category.title }}</a>
-    <span class="mx-2">/</span>
-    <span>{{ current_category.title }}</span>
+  <nav class="breadcrumb-nav container fs-4">
     
-  {% endif %}
-
-</nav>
-
-<br>
-
-<nav class="container mb-3 fs-4">
-  {% assign parent_collection = collection.metafields.custom.parent.value %}
+    {% liquid
+      assign current_category = collection
+      assign father_category = current_category.metafields.custom.parent.value
+      assign grandfather_category = father_category.metafields.custom.parent.value
+    %}
   
-  {% if parent_collection != blank %}
-    <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
-  {% endif %}
-</nav>
-
+    {% if grandfather_category != blank %}
+      <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
+      <span class="mx-2">/</span>
+    {% endif %}
+  
+    {% if father_category != blank %}
+      <a href="{{ father_category.url }}">{{ father_category.title }}</a>
+      <span class="mx-2">/</span>
+      <span>{{ current_category.title }}</span>
+      
+    {% endif %}
+  
+  </nav>
+  
+  <br>
+  
+  <nav class="container mb-3 fs-4">
+    {% assign parent_collection = collection.metafields.custom.parent.value %}
+    
+    {% if parent_collection != blank %}
+      <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
+    {% endif %}
+  </nav>
 
 {% endif %}
