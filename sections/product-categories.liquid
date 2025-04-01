@@ -1,6 +1,6 @@
 {%- style -%}
   .section-product-categories {
-    padding: 1% 10% 0;
+    padding: 3rem 10% 0;
     min-height: 200px;
     
     {% if section.settings.background_image != blank %}
@@ -17,9 +17,9 @@
   }
 {%- endstyle -%}
 
-<section class="container">
+<section class="container-fluid container-sm">
   <div class="row mb-4">
-    <div class="col-12 d-flex justify-content-between">
+    <div class="col-12 p-0 pb-3 d-flex justify-content-between">
 
       {% if section.settings.title != blank %}
         <h2>{{ section.settings.title }}</h2>
@@ -32,12 +32,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 p-0">
 
       <div id="categories-carousel" class="position-relative">
         {% for category in section.settings.categories %}
           
-          <div class="category-card me-5 carousel-cell">
+          <div class="category-card me-md-5 me-sm-4 me-3 carousel-cell">
             
             <a href="{{ category.url }}">
               <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">

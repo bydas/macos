@@ -13,9 +13,11 @@ a {
 a:hover, .active {
   color: #FF9800 !important;
 }
-
 .full-unstyled-link {
   color: rgb(255, 160, 0); /* orange */
+}
+.go_back-link {
+  color: rgb(60, 60, 60);
 }
 
 h1 {
@@ -42,6 +44,7 @@ h1 {
   font-weight: 700;
   font-stretch: condensed;
   letter-spacing: 0.1rem;
+  min-width: auto;
 }
 
 /* flickity buttons */
@@ -115,7 +118,7 @@ h1 {
   border-top: 3px solid rgb(220, 220, 220)
 }
 .section-featured-collection .collection__title {
-  padding:0 !important
+  padding: 0 !important
 }
 
 
@@ -198,6 +201,7 @@ h1 {
 }
 .product-card-buttons-wrapper button[type="submit"]:hover{
   text-decoration: underline;
+  color: white !important;
 }
 .product-card-buttons-wrapper button[type="submit"]::after {
   content: none;
@@ -239,7 +243,7 @@ h1 {
   transition: box-shadow 0.2s;
 }
 .advantage_card:hover {
-  outline: 1px solid rgb(100, 100, 100);
+  outline: 1px solid rgb(135, 135, 135);
   box-shadow: 0 1.5rem 2rem -2rem black;
   transition-duration: 0.3s;
 }
@@ -300,7 +304,7 @@ h1 {
   width: 30%;
 }
 .newsletter-title {
-  width: max-content;
+  width: auto;
 }
 .newsletter-form__field-wrapper, 
 .newsletter__wrapper .newsletter-form__field-wrapper, 
@@ -351,7 +355,6 @@ h1 {
   .section-product-categories .category-card {
     width: 140px;
     height: 230px;
-    margin-right: 4rem;
   }
   .category-image {
     height: 140px;
@@ -398,7 +401,6 @@ h1 {
   .section-product-categories .category-card {
     width: 110px;
     height: 200px;
-    margin-right: 3rem;
   }
   
   .category-image {
@@ -426,19 +428,45 @@ h1 {
     top: 30%;
   }
   .section-product-categories .flickity-prev-next-button.next {
-    right: -6rem;
+    right: -5.5rem;
   }
   .section-product-categories .flickity-prev-next-button.previous {
-    left: -6rem;
+    left: -5.5rem;
+  }
+
+  #new-products_buttons-wrapper .price-per-item__container,
+  #new-products_buttons-wrapper .buy-button_container {
+    width: 100% !important;
+  }
+
+  .card-title-custom {
+    font-size: 1.3rem;
   }
   
 }
 
 @media all and (max-width: 577px) {
+
+  .advantage-link {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .section-product-categories, {
+    padding: 3rem 3rem 0 !important;
+  }
   
-  .section-product-categories .flickity-prev-next-button.next,
-  .section-product-categories .flickity-prev-next-button.previous {
-    display: none;
+  .flickity-prev-next-button.next,
+  .flickity-prev-next-button.previous {
+    display: none !important;
+  }
+
+  .title {
+    padding-left: 2rem;
+  }
+
+  .collection-hero__title {
+    font-size: 2.3rem;
   }
   
 }

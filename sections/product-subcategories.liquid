@@ -1,23 +1,3 @@
-{%- style -%}
-  .section-product-categories {
-    padding: 1% 10% 0;
-    min-height: 200px;
-    
-    {% if section.settings.background_image != blank %}
-      
-      background-image: url('{{ section.settings.background_image | image_url }}');
-      background-size: cover;
-      background-position: center;
-      
-    {% else %}
-      
-      background-color: rgb(230, 230, 230);
-      
-    {% endif %}
-  }
-{%- endstyle -%}
-
-
 {% liquid
   assign parent_collection = collection
   assign child_collections = ""
@@ -31,15 +11,27 @@
 
   assign child_handles = child_collections | split: "," | uniq
 %}
-<div>
-      {{ child_handles.size }}
-  
-</div>
+
 {% if child_handles.size > 0 %}
 
-    <div>
-      {{ child_collections }}<br>
-    </div>
+  {%- style -%}
+    .section-product-categories {
+      padding: 1% 10% 0;
+      min-height: 200px;
+      
+      {% if section.settings.background_image != blank %}
+        
+        background-image: url('{{ section.settings.background_image | image_url }}');
+        background-size: cover;
+        background-position: center;
+        
+      {% else %}
+        
+        background-color: rgb(230, 230, 230);
+        
+      {% endif %}
+    }
+  {%- endstyle -%}
   
   <section class="container">
     <div class="row">
@@ -51,7 +43,7 @@
             {% assign subcollection = collections[handle] %}
 
             {% if subcollection != blank %}
-              <div class="category-card me-5 carousel-cell">
+              <div class="category-card me-md-5 me-sm-4 me-3 carousel-cell">
                 
                 <a href="{{ subcollection.url }}">
                   <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">

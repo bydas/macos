@@ -1,0 +1,254 @@
+[
+  {
+    "IdBrand": "2",
+    "Brand": "Alfa Romeo"
+  },
+  {
+    "IdBrand": "38",
+    "Brand": "Aro"
+  },
+  {
+    "IdBrand": "3",
+    "Brand": "Audi"
+  },
+  {
+    "IdBrand": "4",
+    "Brand": "BMW"
+  },
+  {
+    "IdBrand": "43",
+    "Brand": "Chevrolet"
+  },
+  {
+    "IdBrand": "33",
+    "Brand": "Chrysler"
+  },
+  {
+    "IdBrand": "5",
+    "Brand": "Citroën"
+  },
+  {
+    "IdBrand": "65",
+    "Brand": "Cupra"
+  },
+  {
+    "IdBrand": "44",
+    "Brand": "Dacia"
+  },
+  {
+    "IdBrand": "6",
+    "Brand": "Daewoo"
+  },
+  {
+    "IdBrand": "7",
+    "Brand": "Daihatsu"
+  },
+  {
+    "IdBrand": "67",
+    "Brand": "DFSK"
+  },
+  {
+    "IdBrand": "74",
+    "Brand": "EVO"
+  },
+  {
+    "IdBrand": "31",
+    "Brand": "Fiat"
+  },
+  {
+    "IdBrand": "8",
+    "Brand": "Ford"
+  },
+  {
+    "IdBrand": "34",
+    "Brand": "Galloper"
+  },
+  {
+    "IdBrand": "9",
+    "Brand": "Honda"
+  },
+  {
+    "IdBrand": "10",
+    "Brand": "Hyundai"
+  },
+  {
+    "IdBrand": "11",
+    "Brand": "Infiniti"
+  },
+  {
+    "IdBrand": "37",
+    "Brand": "Innocenti"
+  },
+  {
+    "IdBrand": "40",
+    "Brand": "Isuzu"
+  },
+  {
+    "IdBrand": "41",
+    "Brand": "Iveco"
+  },
+  {
+    "IdBrand": "81",
+    "Brand": "Jaecoo"
+  },
+  {
+    "IdBrand": "53",
+    "Brand": "Jaguar"
+  },
+  {
+    "IdBrand": "30",
+    "Brand": "Jeep"
+  },
+  {
+    "IdBrand": "75",
+    "Brand": "KGM"
+  },
+  {
+    "IdBrand": "1",
+    "Brand": "Kia"
+  },
+  {
+    "IdBrand": "12",
+    "Brand": "Lada"
+  },
+  {
+    "IdBrand": "13",
+    "Brand": "Lancia"
+  },
+  {
+    "IdBrand": "32",
+    "Brand": "Land Rover"
+  },
+  {
+    "IdBrand": "48",
+    "Brand": "LDV"
+  },
+  {
+    "IdBrand": "49",
+    "Brand": "Lexus"
+  },
+  {
+    "IdBrand": "47",
+    "Brand": "Mahindra"
+  },
+  {
+    "IdBrand": "63",
+    "Brand": "MAN"
+  },
+  {
+    "IdBrand": "66",
+    "Brand": "Maxus"
+  },
+  {
+    "IdBrand": "14",
+    "Brand": "Mazda"
+  },
+  {
+    "IdBrand": "15",
+    "Brand": "Mercedes"
+  },
+  {
+    "IdBrand": "45",
+    "Brand": "MG"
+  },
+  {
+    "IdBrand": "52",
+    "Brand": "Mini"
+  },
+  {
+    "IdBrand": "16",
+    "Brand": "Mitsubishi"
+  },
+  {
+    "IdBrand": "17",
+    "Brand": "Nissan"
+  },
+  {
+    "IdBrand": "82",
+    "Brand": "Omoda"
+  },
+  {
+    "IdBrand": "18",
+    "Brand": "Opel / Vauxhall"
+  },
+  {
+    "IdBrand": "42",
+    "Brand": "Pegaso"
+  },
+  {
+    "IdBrand": "19",
+    "Brand": "Peugeot"
+  },
+  {
+    "IdBrand": "51",
+    "Brand": "Porsche"
+  },
+  {
+    "IdBrand": "20",
+    "Brand": "Renault"
+  },
+  {
+    "IdBrand": "21",
+    "Brand": "Rover"
+  },
+  {
+    "IdBrand": "22",
+    "Brand": "Saab"
+  },
+  {
+    "IdBrand": "39",
+    "Brand": "Santana"
+  },
+  {
+    "IdBrand": "23",
+    "Brand": "Seat"
+  },
+  {
+    "IdBrand": "24",
+    "Brand": "Skoda"
+  },
+  {
+    "IdBrand": "62",
+    "Brand": "Smart"
+  },
+  {
+    "IdBrand": "35",
+    "Brand": "Ssangyong"
+  },
+  {
+    "IdBrand": "50",
+    "Brand": "Subaru"
+  },
+  {
+    "IdBrand": "25",
+    "Brand": "Suzuki"
+  },
+  {
+    "IdBrand": "68",
+    "Brand": "SWM"
+  },
+  {
+    "IdBrand": "26",
+    "Brand": "Talbot"
+  },
+  {
+    "IdBrand": "36",
+    "Brand": "Tata"
+  },
+  {
+    "IdBrand": "57",
+    "Brand": "Tesla"
+  },
+  {
+    "IdBrand": "27",
+    "Brand": "Toyota"
+  },
+  {
+    "IdBrand": "28",
+    "Brand": "Volkswagen"
+  },
+  {
+    "IdBrand": "29",
+    "Brand": "Volvo"
+  }
+]
