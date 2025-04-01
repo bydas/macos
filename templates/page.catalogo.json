@@ -15,9 +15,14 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "catalog_fExfNz": {
+      "type": "catalog",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "catalog_fExfNz"
   ]
 }
