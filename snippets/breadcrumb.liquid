@@ -5,15 +5,15 @@
     assign grandfather_category = father_category.metafields.custom.parent.value
   %}
 
-  <a>{{ current_category.title }}</a>
+  {% if grandfather_category != blank %}
+    <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
+  {% endif %}
 
   {% if father_category != blank %}
     <a href="{{ father_category.url }}">{{ father_category.title }}</a>
   {% endif %}
-
-  {% if grandfather_category != blank %}
-    <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
-  {% endif %}
+  
+  <a>{{ current_category.title }}</a>
   
 </nav>
   
