@@ -17,7 +17,7 @@ a:hover, .active {
   color: rgb(255, 160, 0); /* orange */
 }
 .go_back-link {
-  color: black;
+  color: rgb(200, 200, 200);;
 }
 
 h1 {
