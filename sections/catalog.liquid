@@ -1,13 +1,36 @@
 <div class="container">
     <div class="row">
-        <div class="col-6">
-            <h3>Teste</h3>
-            <iframe src="https://designrr.page/?id=411296&token=2351182603&type=FP&h=5560" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
-        </div>
-        <div class="col-6">
-            <h3>Teste</h3>
-            <iframe src="https://designrr.page/?id=366776&token=1129655975&type=FP&h=3380" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
-        </div>
+
+        {% for block in section.blocks %}
+
+            {% if block.settings.title != blank %}
+                <h3>{{ block.title }}</h3>
+            {% endif %}
+
+            {% if block.settings.catalog_url != blank %}
+                <div class="col-6">
+                    <iframe src="{{ block.catalog_url }}" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
+                </div>
+            {% endif %}
+
+            
+
+        {% endfor %}
+
+        {% comment %}
+            <div class="col-6">
+                <h3>Teste</h3>
+                <iframe src="https://designrr.page/?id=366776&token=1129655975&type=FP&h=3380" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
+            </div> 
+
+            <div class="col-6">
+                <iframe src="https://designrr.page/?id=411296&token=2351182603&type=FP&h=5560" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
+            </div>
+        {% endcomment %}
+
+        
+
+        
     </div>
     
 </div>
@@ -18,7 +41,24 @@
     "name": "Catalog",
     "class": "section-catalog",
     "settings": [],
-    "blocks": [],
+    "blocks": [
+        {
+            "name": "Catalog",
+            "type": "catalog",
+            "settings": [
+                {
+                    "type": "inline_richtext",
+                    "id": "title",
+                    "label": "Catalog title"
+                },
+                {
+                    "type": "text",
+                    "id": "catalog_url",
+                    "label": "Catalog url"
+                }
+            ]
+        }
+    ],
     "presets": [
         {
             "name": "Catalog"
