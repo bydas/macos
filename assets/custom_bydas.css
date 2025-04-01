@@ -442,6 +442,10 @@ h1 {
   #new-products_buttons-wrapper .buy-button_container {
     width: 100% !important;
   }
+
+  .card-title-custom {
+    font-size: 1.3rem;
+  }
   
 }
 
@@ -465,9 +469,7 @@ h1 {
     padding-left: 2rem;
   }
 
-  .card-title-custom {
-    font-size: 1.3rem;
-  }
+
   
 }
 
