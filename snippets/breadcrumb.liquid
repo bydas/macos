@@ -21,6 +21,8 @@
 <nav class="breadcrumb-nav container">
   <a href="/">Início</a>
 
+  {{ collection_list~.list }}
+
   {% for collection in collection_list %}
 
     <a href="{{ collection.url }}">{{ collection.title }}</a>
