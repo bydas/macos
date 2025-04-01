@@ -39,7 +39,7 @@
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
 
-    <nav class="breadcrumb mb-4">
+    <nav class="container breadcrumb mb-4">
       {% assign parent_collection = collection.metafields.custom.parent.value %}
       
       {% if parent_collection %}
