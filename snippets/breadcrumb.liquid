@@ -8,6 +8,16 @@
 
     for i in (1..5)
       assign collection_list = collection_list | push: current_collection
+
+      if parent_collection != blank 
+
+        assign current_collection = parent_collection
+  
+      else 
+        break
+  
+      endif
+  
     endfor
     
   %}
