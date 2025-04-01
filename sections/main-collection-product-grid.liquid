@@ -40,10 +40,10 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
 
     <nav class="breadcrumb mb-4">
-      {% assign parent = collection.metafields.custom.parent.value %}
+      {% assign parent_collection = collection.metafields.custom.parent.value %}
       
-      {% if parent %}
-        <a href="{{ parent.url }}" class="breadcrumb-link">← Voltar a {{ parent.title }}</a>
+      {% if parent_collection %}
+        <a href="{{ parent_collection.url }}" class="breadcrumb-link">← Voltar a {{ parent_collection.title }}</a>
       {% endif %}
     </nav>
     
