@@ -1,20 +1,22 @@
-{% liquid
-  assign collection_list = "" | split: ""
-  assign current_collection = collection
+{% assign collection_list = "" | split: "" %}
+{% assign current_collection = collection %}
 
-  for i in (1..5)
-    assign collection_list = collection_list | push: current_collection
-    assign parent_collection = current_collection.metafields.custom.parent.value 
+{% for i in (1..5) %}
+  
+  {% assign collection_list = collection_list | push: current_collection %}
+  {% assign parent_collection = current_collection.metafields.custom.parent.value %}
 
-    if parent_collection != blank 
-      assign current_collection = parent_collection
+  {% if parent_collection != blank %}
+    {% assign current_collection = parent_collection %}
 
-    else 
-      break
+  {% else %}
+    {% break %}
+    
+  {% endif %}
+  
+{% endfor %}
 
-    endif
-  endfor
-%}
+
 
 <nav class="breadcrumb-nav container">
   <a href="/">Início</a>
@@ -36,5 +38,23 @@
   </nav>
 
 
+{% comment %}
+  {% liquid
+  assign collection_list = "" | split: ""
+  assign current_collection = collection
 
+  for i in (1..5)
+    assign collection_list = collection_list | push: current_collection
+    assign parent_collection = current_collection.metafields.custom.parent.value 
+
+    if parent_collection != blank 
+      assign current_collection = parent_collection
+
+    else 
+      break
+
+    endif
+  endfor
+%}
+{% endcomment %}
   
