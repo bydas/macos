@@ -14,20 +14,16 @@ $(document).ready(function () {
   var flkty = $carousel.data('flickity');
 
   function updateNavButtons() {
-    var $cells = $carousel.find('.carousel-cell');
-    var totalWidth = 0;
-
-    $cells.each(function () {
-      totalWidth += $(this).outerWidth(true); // inclui margin
-    });
-
-    var visibleWidth = $carousel.width();
+    // Utilizamos as propriedades do Flickity para determinar as larguras
+    var totalWidth = flkty.slideableWidth;
+    var visibleWidth = flkty.size.innerWidth;
     var buttonsNeeded = totalWidth > visibleWidth;
 
-    // Aceder ao wrapper Flickity e encontrar os botões
-    var $wrapper = $carousel.closest('.flickity-enabled');
-    var $prevBtn = $wrapper.find('.flickity-prev-next-button.previous');
-    var $nextBtn = $wrapper.find('.flickity-prev-next-button.next');
+    // Os botões de navegação são inseridos no wrapper do Flickity,
+    // pelo que procuramos no elemento que contém a classe .flickity-enabled.
+    var $carouselWrapper = $carousel.closest('.flickity-enabled');
+    var $prevBtn = $carouselWrapper.find('.flickity-prev-next-button.previous');
+    var $nextBtn = $carouselWrapper.find('.flickity-prev-next-button.next');
 
     if (buttonsNeeded) {
       $prevBtn.show();
@@ -38,8 +34,13 @@ $(document).ready(function () {
     }
   }
 
-  // Espera o carrossel estar pronto
-  $carousel.on('ready.flickity', updateNavButtons);
+  // Disparamos a função quando o Flickity estiver pronto ou quando se settle (estabiliza)
+  $carousel.on('ready.flickity settle.flickity', updateNavButtons);
+
+  // Chamada imediata após inicialização
+  updateNavButtons();
+
+  // Recalcular ao redimensionar a janela
   $(window).on('resize', function () {
     setTimeout(updateNavButtons, 100);
   });
