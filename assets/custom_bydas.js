@@ -26,25 +26,27 @@ $(document).ready(function () {
       $prevBtn.show();
       $nextBtn.show();
 
+      // If there's overflow, align items to the left
       if (flkty.options.cellAlign !== 'left') {
         flkty.options.cellAlign = 'left';
-        flkty.resize();
+        flkty.resize(); // Force Flickity to recalculate layout
       }
     } else {
       $prevBtn.hide();
       $nextBtn.hide();
 
+      // If there's no overflow, center the items
       if (flkty.options.cellAlign !== 'center') {
         flkty.options.cellAlign = 'center';
-        flkty.resize();
+        flkty.resize(); // Recalculate layout with centered alignment
       }
     }
   }
 
-  // Atualiza quando o Flickity está pronto e após cada movimento
+  // Run the function when Flickity is ready and after each scroll settles
   $carousel.on('ready.flickity settle.flickity', updateNavButtons);
 
-  // Chamada inicial e também no redimensionar da janela
+  // Initial run and also on window resize
   updateNavButtons();
   $(window).on('resize', function () {
     setTimeout(updateNavButtons, 100);
