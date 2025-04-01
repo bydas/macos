@@ -471,7 +471,9 @@ h1 {
     padding-left: 2rem;
   }
 
-
+  .collection-hero__title {
+    font-size: 2rem;
+  }
   
 }
 
