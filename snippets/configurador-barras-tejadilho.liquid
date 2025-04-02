@@ -1,178 +1,36 @@
-<div class="container ">
-  <header class="page__header page__header--centered row">
-    <h1 class="page__title heading h1 col-12">{{ page.title }}</h1>
+<div class="container" id="configurador">
+  <header class="page__header page__header--centered">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
   </header>
 
   <div class="page__content rte">
     {{ page.content }}
-    <div class="form__input-row row mt-5" id="form_input_stuff">
+           <div class="form__input-row">
+             <div class="form__input-wrapper">
 
-      <div class="form__input-wrapper col-4">
-        <div class="select-wrapper select-wrapper--primary">
-          <select name="marca" id="marcadocarro" class="configurador-input" data-default="" required="" onChange="brandChanged(event)"><option value="">Marca do Veículo</option></select>
-        </div>
-      </div>
+               <div class="select-wrapper select-wrapper--primary">
+                 <select name="marca" id="marcadocarro" data-default="" required="" onChange="brandChanged(event)">
+                   <option value="">Marca do Veículo</option>
+                 </select>
+               </div>
+             </div>
 
-      <div class="form__input-wrapper col-4" style="display: block;">
-        <div class="select-wrapper select-wrapper--primary">
-          <select name="modelo" id="modelodocarro" class="configurador-input" data-default="" onChange="modelChanged(event)"><option value=""> Modelo do Veículo</option></select>
-        </div>
-      </div>
-      
-      <div class="form__input-wrapper col-4" style="display: block;">
-        <div class="select-wrapper select-wrapper--primary">
-          <select name="ano" id="anodocarro" class="configurador-input" data-default="" onChange="yearChanged(event)"><option value=""> Ano do Veículo</option></select>
-        </div>
-      </div>
+             <div class="form__input-wrapper" style="display: block;">
 
-      <div class="shipping-estimator__results rte" style="display: none;"></div>
-    </div>           
-    
-    <div hidden id="optionClassic">
-      <div class="card" id="btoptions">
-        <div class="card__header" id="op1">
-          <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Classic</h2>
-        </div>
-        <div id="opt1" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0101">
-          <div class="btoptiont">
-            <table style="width: 512px;" class="tabbt">
-                <thead>
-                <tr valign="top">
-                  <th style="width: 325px;"><b>Lado do Condutor</b></th>
-                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td label="Acessórios">nome0</td>
-                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a></p></td>
-                </tr>
-                <tr>
-                  <td style="padding-top: 10px">Inclui o adaptador UFGC0 para aplicação<br> <img src="UFGI0"></td>
-                  <td></td>
-                </tr>
-                </tbody>
-              </table>
-          </div>
-          <div class="btoptionprice">
-            <div class="btbox2">
-              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231230€</span></p>
-              <div style="text-align: center;">
-                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(0)">Adicionar ao carrinho1</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      
+               <div class="select-wrapper select-wrapper--primary">
+                 <select name="modelo" id="modelodocarro" data-default="" onChange="onModelChange(event)">
+                   <option value="">Modelo do Veículo</option>
+                 </select>
+               </div>
+             </div>
+             <div class="shipping-estimator__results rte" style="display: none;"></div>
+           </div>
+    		
+    		<div id="optionsToChoseFrom">
 
-        <div id="opt2" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0102">
-          <div class="btoptiont">
-            <table style="width: 512px;" class="tabbt">
-                <thead>
-                <tr valign="top">
-                  <th style="width: 325px;"><b>Lado do Passageiro</b></th>
-                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="padding-top: 10px">
-                  <td label="Acessórios">nome1</td>
-                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1">skuskusku1</a></p></td>
-                </tr>
-                <tr>
-                  <td>Inclui o adaptador UFGC1 para aplicação<br> <img src="UFGI1"></td>
-                  <td></td>
-                </tr>
-                </tbody>
-              </table>
-          </div>
-          <div class="btoptionprice">
-            <div class="btbox2">
-              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231231€</span></p>
-              <div style="text-align: center;">
-                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(1)">Adicionar ao carrinho2</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-      
-    <div hidden id="optionFlat">
-      <div class="card" id="btoptions">
-        <div class="card__header" id="op2">
-          <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Flat</h2>
-        </div>
-        <div id="opt3" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0101">
-          <div class="btoptiont">
-            <table style="width: 512px;" class="tabbt">
-                <thead>
-                <tr valign="top">
-                  <th style="width: 325px;"><b>Lado do Condutor</b></th>
-                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="padding-top: 10px">
-                  <td label="Acessórios">nome0</td>
-                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a></p></td>
-                </tr>
-                <tr>
-                  <td>Inclui o adaptador UFGC0 para aplicação<br> <img src="UFGI0"></td>
-                  <td></td>
-                </tr>
-                </tbody>
-              </table>
-          </div>
-          <div class="btoptionprice">
-            <div class="btbox2">
-              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231230€</span></p>
-              <div style="text-align: center;">
-                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(2)">Adicionar ao carrinho1</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-
-        <div id="opt4" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0102">
-          <div class="btoptiont">
-            <table style="width: 512px;" class="tabbt">
-                <thead>
-                <tr valign="top">
-                  <th style="width: 325px;"><b>Lado do Passageiro</b></th>
-                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="padding-top: 10px">
-                  <td label="Acessórios">nome1</td>
-                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1">skuskusku1</a></p></td>
-                </tr>
-                <tr>
-                  <td>Inclui o adaptador UFGC1 para aplicação<br> <img src="UFGI1"></td>
-                  <td></td>
-                </tr>
-                </tbody>
-              </table>
-          </div>
-          <div class="btoptionprice">
-            <div class="btbox2">
-              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231231€</span></p>
-              <div style="text-align: center;">
-                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(3)">Adicionar ao carrinho2</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div> 
-   </div>
-</div>
+    		</div>
+         </div>
+       </div>
 
 
 <script>
@@ -180,270 +38,309 @@
   var cars
   var selectedBrand
   var selectedModel
-  var selectedYear
-  var initialClassic
-  var initialFlat
-
-  var brandToId
-  var idToBrand
-
-  var modelToId
-  var idToModel
-
-  var yearToId
-  var idToYear
-
-  var opts
-  var adapt
-  doMagic()
+  var priceObj = []
+  // brand
   function brandChanged(event) {
+    const parent = document.getElementById('optionsToChoseFrom')
+    removeChildren(parent)
     const model = document.getElementById('modelodocarro')
     while (model.length > 1) {
         model.remove(1)
     }
-    const year = document.getElementById('anodocarro')
-    while (year.length > 1) {
-      year.remove(1)
-    }
-    modelToId = {}
-    idToModel = {}
+    const url = new URLSearchParams(document.location.search)
     if (cars !== undefined) {
       const sel = cars[event.target.value]
       selectedBrand = event.target.value
-      const url = new URLSearchParams(document.location.search)
+
+      for (let i = 0; i < sel.length; i++) {
+        const car = sel[i]
+        const opt = document.createElement('option')
+
+  		// Add index to option_elem
+  		opt.value = i
+  
+  		// Add element HTML
+  		opt.textContent = car[1]
+        if (car[2].trim()) {
+          opt.textContent += ' - ' + car[2]
+        }
+        if (car[3].trim()) {
+          opt.textContent += ' - ' + car[3]
+        }
+        if (i === Number(url.get('model')) && loading) {
+          opt.selected = true
+        }
+        
+  
+  		// Append option_elem to select_elem
+  		model.appendChild(opt);
+      }
+    }
+    //console.log(event.target.value)
+  }
+  // model handler
+  async function onModelChange(event) {
+    const parent = document.getElementById('optionsToChoseFrom')
+    removeChildren(parent)
+    const options = getOptions(cars[selectedBrand][event.target.value])
+    selectedModel = event.target.value
+    const opts = []
+    for (let i = 0; i < options.length; i++) {
+      const tttmmmppp = []
+      //let opts = ''
+      for (let j = 0; j < options[i].length; j++) {
+        tttmmmppp.push({ item: new Promise((resolve,reject) => {
+          let request = new XMLHttpRequest()
+          request.open('GET', '/products/' + options[i][j].item.split("|")[0] + '.js', false)
+          request.send(null)
+          if (request.status === 200) {
+			resolve(JSON.parse(request.responseText))
+          } else {
+            reject(request.status)
+          }
+        }), optional: options[i][j].optional === true,
+                        img: options[i][j] === true, name: options[i][j].name, isKit: options[i][j].isKit === true })
+      }
+      opts.push(tttmmmppp)
+    }
+    const baseProductLine = '<tr><td label="Acessórios">${name}</td><td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options%5Bprefix%5D=last&options%5Bunavailable_products%5D=last&q=${sku}">${sku}</a></p></td><td label="Preço"><p style="text-align:right">${price} €</p></td></tr>'
+    let result = parent.innerHTML
+    priceObj = []
+    let resultingOptions = [] // { html: str, cost: int }
+    for (let i = 0; i < options.length; i++) {
+      let tableResu = ''
+      priceObj.push({ noAlarm: 0, alarm: 0, selectedAlarm: false, inStock: true, items: [], optional: [] })
+      let img = undefined
+      let name = undefined
+      for (let j = 0; j < options[i].length; j++) {
+        const t = await opts[i][j].item
+        if (!t.available) {
+          priceObj[priceObj.length - 1].inStock = false
+        }
+        const variant = t.variants.find(v => v.sku === options[i][j].item.split("|")[1])
+        if (variant !== undefined) {
+          let tm = baseProductLine
+          	.replace("${sku}", options[i][j].item.split("|")[1])
+          	.replace("${sku}", options[i][j].item.split("|")[1])
+          	.replace("${price}", (parseInt(variant.price) / 100).toFixed(2))
+          if (opts[i][j].optional === true) {
+            priceObj[i].alarm += parseInt(variant.price)
+            priceObj[priceObj.length - 1].optional.push(variant.id)
+          } else {
+            priceObj[i].alarm += parseInt(variant.price)
+            priceObj[i].noAlarm += parseInt(variant.price)
+            priceObj[priceObj.length - 1].items.push(variant.id)
+          }
+          if (img === undefined && options[i][j].img === true) {
+            img = t.featured_image
+          }
+          if (opts[i][j].name && name === undefined) {
+            name = opts[i][j].name
+          }
+          if (opts[i][j].isKit === true) {
+            if (cars[selectedBrand][selectedModel][4]) {
+              tm = tm.replace("${name}", t.title + ' (ver <a href="' + cars[selectedBrand][selectedModel][4] + '">pdf</a>)')
+            } else {
+              tm = tm.replace("${name}", t.title)
+            }
+          } else {
+            tm = tm.replace("${name}", t.title)
+          }
+          tableResu += tm
+        } else {
+          tableResu += '<p> network error</p>'
+        }
+      }
+      // all individual products done
+      let endResult = `<div class="card" id="\${result_i}">
+                  <div class="card__header">
+                    <h2 class="card__title heading h3" style="margin-bottom: 0px;">Descrição</h2>
+                  </div>
+                  
+                  <div class="card__section btoption row justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+                    <img class="col-12 col-md-3 btoptioni" src="${img}">
+                    <div class="btoptiont col-12 col-md-6">
+                      <table width="420" cellpadding="0" cellspacing="0" class="tabbt">
+                         <thead>
+                          <tr valign="top">
+                            <th style="width: 240px;"><b>Acessórios</b></th>
+                            <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                            <th style="width: 85px; text-align: center;"><b>Preço</b></th>
+                          </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="btoptionprice col-12 col-md-3">
+                      <div \${antiroubo0010} class="btbox1">
+                        <p>Total com anti-roubo: <span class="text--strong"> \${TOTALWITHANTITHIEF}€</span></p>
+                        <input type="checkbox" value="check" onclick=""> Adicionar Anti-Roubo
+                      </div> 
+                      <p></p>
+                      <div class="btbox2">
+                        <p style="margin-top:20px;"><span class="text--strong">Total:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;" id="opt"> \${TOTALWITHOPTIONS}€</span></p>
+                        <div style="text-align: center;">
+                          <button type="submit" disabled class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;">Adicionar ao carrinho</button>
+                        </div>
+                        <!--<p class="bt_discount"><span class="text--strong"> 10% </span> de desconto no carrinho </p>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>`
+      priceObj[i].alarm = (parseInt(priceObj[i].alarm) / 100)
+      priceObj[i].noAlarm = (parseInt(priceObj[i].noAlarm) / 100)
+      endResult = endResult.replace("${antiroubo0010}", (priceObj[i].alarm === priceObj[i].noAlarm ? 'hidden' : ""))
+        .replace("${result_i}", "result_" + i)
+      	.replace("${TOTALWITHANTITHIEF}", priceObj[i].alarm.toFixed(2))
+      	.replace("${TOTALWITHOPTIONS}", priceObj[i].noAlarm.toFixed(2))
+      	.replace("${img}", img ? img : '')
+      	.replace("<tbody></tbody>", tableResu)
+      	.replace("Descrição", "Opção " + (i + 1) + ' - ' + name)
+      	.replace('onclick=""', 'onClick="onAlarmChange(' + i + ')(this)" ')
+      	.replace('id="opt"', 'id="opt' + i + '"')
       
-      Object.keys(sel).forEach((car, index) => {
-        const opt = document.createElement('option')
-
-          // Add index to option_elem
-          opt.value = car
-  
-          // Add element HTML
-          opt.textContent = car
-        if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
-          opt.selected = true
+      if (priceObj[priceObj.length - 1].inStock) {
+        endResult = endResult.replace('disabled', 'onClick="onBuyPressed(' + i + ')(event)" data-action="add-to-cart"')
+      } else {
+        endResult = endResult.replace('Adicionar ao carrinho', 'Esgotado')
+      }
+      resultingOptions.push({html: endResult, i: "result_" + i })
+       //result += endResult
+    }
+     parent.innerHTML = resultingOptions//.sort((a,b) => a.cost - b.cost)
+        .reduce((prev, curr) => prev + curr.html, '');
+  }
+  const onAlarmChange = (optionNumber) => (event) => {
+    if (priceObj[optionNumber]) {
+      if (priceObj[optionNumber].selectedAlarm !== event.checked) {
+        const parent = document.getElementById("opt" + optionNumber)
+        if (priceObj[optionNumber].selectedAlarm) {
+          parent.innerText = priceObj[optionNumber].noAlarm.toFixed(2) + '€'
+        } else {
+          parent.innerText = priceObj[optionNumber].alarm.toFixed(2) + '€'
         }
-        modelToId[car] = index
-        idToModel[index] = car
-        
-          // Append option_elem to select_elem
-          model.appendChild(opt);
-      })
+        priceObj[optionNumber].selectedAlarm = !priceObj[optionNumber].selectedAlarm
+      }
     }
-    document.getElementById('optionClassic').outerHTML = initialClassic
-    document.getElementById('optionFlat').outerHTML = initialFlat
   }
-  function modelChanged(event) {
-    const year = document.getElementById('anodocarro')
-    while (year.length > 1) {
-      year.remove(1)
-    }
-    if (cars !== undefined) {
-      selectedModel = event.target.value
-      const sel = cars[selectedBrand][event.target.value]
-      const url = new URLSearchParams(document.location.search)
-      yearToId = {}
-      idToYear = {}
-
-      Object.keys(sel).forEach((car, index) => {
-        const opt = document.createElement('option')
-
-          // Add index to option_elem
-          opt.value = car
-  
-          // Add element HTML
-          opt.textContent = car
-        
-        if (index === Number(url.get('year')) && url.get('year') !== null && loading) {
-          opt.selected = true
-        }
-        yearToId[car] = index
-        idToYear[index] = car
-        
-          // Append option_elem to select_elem
-          year.appendChild(opt);
-      })
-    }
-    document.getElementById('optionClassic').outerHTML = initialClassic
-    document.getElementById('optionFlat').outerHTML = initialFlat
+  const onBuyPressed = (optionNumber) => () => {
+        httpGet('/cart.js', _onBuyPressed(optionNumber))
   }
-  async function yearChanged(event) {
-    selectedYear = event.target.value
-    const car = cars[selectedBrand][selectedModel][selectedYear]
-    const requests = { whatIs: [], p: [], image: [] }
-
-    if (car[3] || car[4]) {
-      if (car[3]) {
-        requests.whatIs.push(["classic", "primary"])
-        requests.p.push(getProduct(car[3]))
-        requests.image.push(car[5])
-      } else {
-        requests.p.push(Promise.resolve())
-        requests.image.push(car[5])
-      }
-      if (car[4]) {
-        requests.whatIs.push(["classic", "secundary"])
-        requests.p.push(getProduct(car[4]))
-        requests.image.push(car[5])
-      } else {
-        requests.p.push(Promise.resolve())
-        requests.image.push(car[5])
-      }
-    }
-    
-    if (car[6] || car[7]) {
-      if (car[6]) {
-        requests.whatIs.push(["flat", "primary"])
-        requests.p.push(getProduct(car[6]))
-        requests.image.push(car[8])
-      } else {
-        requests.p.push(Promise.resolve())
-        requests.image.push(car[8])
-      }
-      if (car[7]) {
-        requests.whatIs.push(["flat", "secundary"])
-        requests.p.push(getProduct(car[7]))
-        requests.image.push(car[8])
-      } else {
-        requests.p.push(Promise.resolve())
-        requests.image.push(car[8])
-      }
-    }
-    
-    const ans = await Promise.all(requests.p)
-    
-    // what to do next: get all responses and fill up the 2 option groups
-    let classicPage = initialClassic
-    let flatPage = initialFlat
-    opts = []
-    // handle classic page
-    if (ans[0] !== undefined) {
-      const vari = ans[0].variants
-      classicPage = classicPage.replace('img0101', ans[0].featured_image)
-          .replace('nome0', ans[0].title)
-          .replace(/skuskusku0/g, vari[0].sku)
-          .replace('price1231230', (Number(ans[0].price) / 100).toFixed(2))
-          .replace('UFGC0', requests.image[0])
-          .replace('UFGI0', adapt[requests.image[0]])
-      if (!ans[0].available) {
-        classicPage = classicPage.replace('Adicionar ao carrinho1', 'esgotado')
-      } else {
-        classicPage = classicPage.replace('Adicionar ao carrinho1', 'Adicionar ao carrinho')
-      }
-      opts[0] = vari[0].id
-    } else {
-      classicPage = classicPage.replace('id="opt1"', 'hidden')
-    }
-    if (ans[1] !== undefined) {
-      const vari = ans[1].variants
-      classicPage = classicPage.replace('img0102', ans[1].featured_image)
-          .replace('nome1', ans[1].title)
-          .replace(/skuskusku1/g, vari[0].sku)
-          .replace('price1231231', (Number(ans[1].price) / 100).toFixed(2))
-          .replace('UFGC1', requests.image[1])
-        .replace('UFGI1', adapt[requests.image[1]])
-      if (!ans[1].available) {
-        classicPage = classicPage.replace('Adicionar ao carrinho2', 'esgotado')
-      } else {
-        classicPage = classicPage.replace('Adicionar ao carrinho2', 'Adicionar ao carrinho')
-      }
-      opts[1] = vari[0].id
-    } else {
-      classicPage = classicPage.replace('id="opt2"', 'hidden')
-    }
-    if (ans[0] !== undefined || ans[1] !== undefined) {
-      classicPage = classicPage.replace('hidden=""', '')
-    }
-    document.getElementById('optionClassic').outerHTML = classicPage
-    
-    if (ans[2] !== undefined) {
-      const vari = ans[2].variants[0]
-      flatPage = flatPage.replace('img0101', ans[2].featured_image)
-          .replace('nome0', ans[2].title)
-          .replace(/skuskusku0/g, vari.sku)
-          .replace('price1231230', (Number(ans[2].price) / 100).toFixed(2))
-          .replace('UFGC0', requests.image[2])
-          .replace('UFGI0', adapt[requests.image[2]])
-      if (!ans[2].available) {
-        flatPage = flatPage.replace('Adicionar ao carrinho1', 'esgotado')
-      } else {
-        flatPage = flatPage.replace('Adicionar ao carrinho1', 'Adicionar ao carrinho')
-      }
-      opts[2] = vari.id
-    } else {
-      flatPage = flatPage.replace('id="opt3"', 'hidden')
-    }
-    if (ans[3] !== undefined) {
-      const vari = ans[3].variants[0]
-      flatPage = flatPage.replace('img0102', ans[3].featured_image)
-          .replace('nome1', ans[3].title)
-          .replace(/skuskusku1/g, vari.sku)
-          .replace('price1231231', (Number(ans[3].price) / 100).toFixed(2))
-          .replace('UFGC1', requests.image[3])
-          .replace('UFGI1', adapt[requests.image[3]])
-      if (!ans[3].available) {
-        flatPage = flatPage.replace('Adicionar ao carrinho2', 'esgotado')
-      } else {
-        flatPage = flatPage.replace('Adicionar ao carrinho2', 'Adicionar ao carrinho')
-      }
-      opts[3] = vari.id
-    } else {
-      flatPage = flatPage.replace('id="opt4"', 'hidden')
-    }
-    if (ans[2] !== undefined || ans[3] !== undefined) {
-      flatPage = flatPage.replace('hidden=""', '')
-    }
-    document.getElementById('optionFlat').outerHTML = flatPage
-    const item0Price = ans[0] ? Number(ans[0].price) : 0
-    const item1Price = ans[1] ? Number(ans[1].price) : 0
-
-    const item2Price = ans[2] ? Number(ans[2].price) : 0
-    const item3Price = ans[3] ? Number(ans[3].price) : 0
-
-    setFirstChild(item0Price + item1Price <= item2Price + item3Price)
-
-    setFirstChildEach('op1', item0Price <= item1Price ? 'opt1' : 'opt2')
-    setFirstChildEach('op2', item2Price <= item3Price ? 'opt3' : 'opt4')
-  }
-  function getProduct(sku) {
-    return new Promise((resolve, reject) => {
-      let request = new XMLHttpRequest()
-      request.open('GET', '/products/' + sku.split("|")[0] + '.js', false)
-      request.send(null)
-      if (request.status === 200) {
-        const ans = JSON.parse(request.responseText)
-        ans.vari = ans.variants.find(v => v.sku === sku.split("|")[1])
-        resolve(ans)
-      } else {
-        reject(request.status)
+  const _onBuyPressed = (optionNumber) => function(test) {
+    const t = JSON.parse(this.responseText)
+    const old = (t && t.items && t.items.length > 0 && t.note) || ''
+    const requestToSend = priceObj[optionNumber].items.map( i => {
+      return {
+        id: i,
+        quantity: 1,
+        properties: {
+          'carro': cars[selectedBrand][selectedModel][1] + ' - ' + cars[selectedBrand][selectedModel][2] + ' - ' + cars[selectedBrand][selectedModel][3]
+        },
       }
     })
-  }
-  function handleBuy(id) {
-    console.log(id)
-    const requestEntrie = [{
-      id: opts[id],
-      quantity: 1
-    }]
-
+    if (priceObj[optionNumber].selectedAlarm) {
+      priceObj[optionNumber].optional.forEach( i => {
+        requestToSend.push({
+          id: i,
+          quantity: 1
+        })
+      })
+    }
+    let txt = ''
+    if (old != '') {
+        txt += old + ' :::: '
+    }
+    txt += selectedBrand + ':' + cars[selectedBrand][selectedModel][1]
+    if (cars[selectedBrand][selectedModel][2].trim()) {
+      txt += ' - ' + cars[selectedBrand][selectedModel][2]
+    }
+    if (cars[selectedBrand][selectedModel][3].trim()) {
+      txt += ' - ' + cars[selectedBrand][selectedModel][3]
+    }
     const request = new XMLHttpRequest()
     request.open('POST', '/cart/add.js') // , false
     request.setRequestHeader("Content-Type", "application/json")
     request.addEventListener("load", reqListener)
-    request.send(JSON.stringify({ items: requestEntrie }))
+    request.send(JSON.stringify({ items: requestToSend, note: txt }))
+
   }
-  function reqListener(env) {
+  function reqListener(evt) {
     if (this.status !== 200) {
       alert("artigo esgotado")
     } else {
-      const a = window.location.href.split('?')[0] + '?brand=' + brandToId[selectedBrand] + '&model=' + modelToId[selectedModel] + '&year=' + yearToId[selectedYear]
+      const a = window.location.href.split('?')[0] + '?brand=' + selectedBrand + '&model=' + selectedModel
       window.location.href = a
+  	}
+  }
+    
+  function removeChildren(parent) {
+    let divves = 0
+    const toRemmovvee = []
+    for (let i = 0; i < parent.childNodes.length; i++) {
+      if (parent.childNodes[i].nodeName !== '#text') {
+        divves += 1
       }
+      if (divves > 0) {
+        toRemmovvee.push(parent.childNodes[i])
+      }
+    }
+    toRemmovvee.forEach(child => parent.removeChild(child))
   }
-  function doMagic() {
-    httpGet("{{ 'limpaAdapter.csv' | asset_url }}", handleDataAdapter)
-    httpGet("{{ 'outputLimpa.csv' | asset_url }}", handleData)
+  function getOptions(car) {
+    car = car.map(s => s.trim())
+    const resu = []
+    if (car[15] || car[16] || car[17]) { //transversais!
+      if (car[15]) {
+        resu.push([{item: car[15], img: true, name: 'Barras transversais de alumínio' }])
+      }
+      if (car[16]) {
+        resu.push([{item: car[16], img: true, name: 'Barras transversais de alumínio' }])
+      }
+      if (car[17]) {
+        resu.push([{item: car[17], img: true, name: 'Barras transversais de Aço' }])
+      }
+    } else {
+      const translate = {
+        8: "Barras o-plus de alumínio",
+        9: "Barras o-plus de aço",
+        10:"Barras airo de alumínio",
+        11:"Barras airo de alumínio com fixação",
+        12:"Barras optima de aço"
+      }
+      for (let i = 8; i < 13 && i < car.length; i++) {
+        if (!car[i]) continue
+        
+        const option = []
+        option.push({ item: car[i], img: true, name: translate[i] })
+        if (i === 12) {
+          // optima
+          if (car[13]) {
+            option.push({ item: car[13] })
+          }
+        }
+        if (car[7]) {
+          option.push({ item: car[7], isKit: true })
+        }
+        if (car[14]) {
+          option.push({ item: car[14], optional: true })
+        }
+        resu.push(option)
+      }
+    }
+    const finalOrder = {
+      "Barras optima de aço": 1,
+      "Barras o-plus de aço": 2,
+      "Barras o-plus de alumínio": 3,
+      "Barras airo de alumínio": 4,
+      "Barras airo de alumínio com fixação": 5,
+
+      "Barras transversais de Aço": 12,
+      "Barras transversais de alumínio": 13,
+    };
+    resu.sort((a,b) => finalOrder[a[0].name] - finalOrder[b[0].name]);
+    return resu
   }
+  // dropdown fetch and populator
   async function httpGet(URL, handler) {
     var xmlHttp = new XMLHttpRequest()
     xmlHttp.addEventListener("load", handler)
@@ -451,88 +348,55 @@
     
     xmlHttp.send( null )
   }
+  function doMagic() {
+    httpGet("{{ 'barras_tejadilho.csv' | asset_url }}", handleData)
+  }
   function handleData() {
-    const r = this.responseText.split('\n').map(line => line.split(',').map(value => value.trim()))
+    const r = this.responseText.split('\n').map(line => line.split(','))
     const ccars = {}
     for (let i = 1; i < r.length; i++) {
       const carr = r[i]
       if (carr[0] === '') continue
       if (ccars[carr[0]] === undefined) {
-        ccars[carr[0]] = {}
+        ccars[carr[0]] = []
       }
-      if (ccars[carr[0]][carr[1]] === undefined) {
-        ccars[carr[0]][carr[1]] = {}
-      }
-      if (ccars[carr[0]][carr[1]][carr[2]] === undefined) {
-        ccars[carr[0]][carr[1]][carr[2]] = carr
-      }
+      ccars[carr[0]].push(carr)
     }
     cars = ccars
     const select_elem = document.getElementById('marcadocarro')
     const url = new URLSearchParams(document.location.search)
-    brandToId = {}
-    idToBrand = {}
     
-    Object.keys(cars).forEach((element, index) => {
-          const option_elem = document.createElement('option')
+	Object.keys(cars).forEach((element, index) => {
+      	const elem = cars[element]
+  		const option_elem = document.createElement('option')
 
-          // Add index to option_elem
-          option_elem.value = element
+  		// Add index to option_elem
+  		option_elem.value = elem[0][0]
   
-          // Add element HTML
-          option_elem.textContent = element
+  		// Add element HTML
+  		option_elem.textContent = elem[0][0]
         
-        if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
+        if (url.get('brand') === elem[0][0] && loading) {
           option_elem.selected = true
         }
-        brandToId[element] = index
-        idToBrand[index] = element
   
-          // Append option_elem to select_elem
-          select_elem.appendChild(option_elem)
-    })
+  		// Append option_elem to select_elem
+  		select_elem.appendChild(option_elem)
+        
+        
+	})
     
-    initialClassic = document.getElementById('optionClassic').outerHTML
-    initialFlat = document.getElementById('optionFlat').outerHTML
-
     if (url.get('brand')) {
-      brandChanged({ target: { value: idToBrand[url.get('brand')] } })
-      modelChanged({ target: { value: idToModel[url.get('model')] } })
-      yearChanged({ target: { value: idToYear[url.get('year')] } })
+      brandChanged({ target: { value: url.get('brand') } })
+      onModelChange({ target: { value: url.get('model') } })
     }
     loading = false
   }
-  function handleDataAdapter() {
-    const r = this.responseText.split('\n').map(line => line.split(',').map(value => value.trim()))
-    const translator = {}
-    for (let i = 1; i < r.length; i++) {
-      const adapter = r[i]
-      if (adapter[0] === '') continue
-      translator[adapter[0]] = adapter[1]
-    }
-    adapt = translator
-  }
-  function setFirstChild(classicTop = true) {
-    const topElement = classicTop
-      ? document.getElementById("optionClassic")
-      : document.getElementById("optionFlat");
-
-    const parent = topElement.parentNode;
-    parent.insertBefore(topElement, parent.firstChild);
-
-    const a = document.getElementById("form_input_stuff")
-    const parent2 = a.parentNode
-    parent2.insertBefore(a, parent2.firstChild);
-  }
-  function setFirstChildEach(first, second) {
-    const topElement = document.getElementById(second);
-
-    const parent = topElement.parentNode;
-    parent.insertBefore(topElement, parent.firstChild);
-
-    const a = document.getElementById(first)
-    const parent2 = a.parentNode
-    parent2.insertBefore(a, parent2.firstChild);
-  }
+  function setFirstChild(childId) {
+    const element = document.getElementById(childId);
   
+    const parent = element.parentNode;
+    parent.insertBefore(element, parent.firstChild);
+  }
+  doMagic()
 </script>
