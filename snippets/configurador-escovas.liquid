@@ -90,7 +90,7 @@
         </div>
 
         <div id="opt2" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0102">
+          <img class="btoptioni" src="">
           <div class="btoptiont">
             <table style="width: 512px;" class="tabbt">
               <thead>
@@ -115,7 +115,7 @@
                 <tr>
                   <td>
                     Inclui o adaptador UFGC1 para aplicação<br>
-                    <img src="UFGI1">
+                    <img src="">
                   </td>
                   <td></td>
                 </tr>
@@ -209,7 +209,7 @@
         </div>
 
         <div id="opt4" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0102">
+          <img class="btoptioni" src="">
           <div class="btoptiont">
             <table style="width: 512px;" class="tabbt">
               <thead>
@@ -234,7 +234,7 @@
                 <tr>
                   <td>
                     Inclui o adaptador UFGC1 para aplicação<br>
-                    <img src="UFGI1">
+                    <img src="">
                   </td>
                   <td></td>
                 </tr>
@@ -431,12 +431,12 @@
     if (ans[1] !== undefined) {
       const vari = ans[1].variants;
       classicPage = classicPage
-        .replace('img0102', ans[1].featured_image)
+        .replace('', ans[1].featured_image)
         .replace('nome1', ans[1].title)
         .replace(/skuskusku1/g, vari[0].sku)
         .replace('price1231231', (Number(ans[1].price) / 100).toFixed(2))
         .replace('UFGC1', requests.image[1])
-        .replace('UFGI1', adapt[requests.image[1]]);
+        .replace('', adapt[requests.image[1]]);
       if (!ans[1].available) {
         classicPage = classicPage.replace('Adicionar ao carrinho2', 'esgotado');
       } else {
@@ -472,12 +472,12 @@
     if (ans[3] !== undefined) {
       const vari = ans[3].variants[0];
       flatPage = flatPage
-        .replace('img0102', ans[3].featured_image)
+        .replace('', ans[3].featured_image)
         .replace('nome1', ans[3].title)
         .replace(/skuskusku1/g, vari.sku)
         .replace('price1231231', (Number(ans[3].price) / 100).toFixed(2))
         .replace('UFGC1', requests.image[3])
-        .replace('UFGI1', adapt[requests.image[3]]);
+        .replace('', adapt[requests.image[3]]);
       if (!ans[3].available) {
         flatPage = flatPage.replace('Adicionar ao carrinho2', 'esgotado');
       } else {
