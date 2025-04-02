@@ -1,38 +1,32 @@
+{% liquid
+    if section.settings.full-width == false
+        assign catalog_width = 6
+        assign catalog_height = 700
+    else
+        assign catalog_width = 12
+        assign catalog_height = 700
+    endif
+%}
+
 <div class="container">
     <div class="row">
 
         {% for block in section.blocks %}
 
-            {% if block.settings.title != blank %}
-                <h3>{{ block.settings.title }}</h3>
-            {% endif %}
-
             {% if block.settings.catalog_url != blank %}
-                <div class="col-6">
-                    <iframe src="{{ block.settings.catalog_url }}" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
+                <div class="col-12 col-lg-{{catalog_width}} {% unless block == section.blocks.last %} mb-lg-5 mb-4 {% endunless %}">
+
+                    {% if block.settings.title != blank %}
+                        <h3 class="mb-md-4 mb-3 text-{{block.settings.title_alignment_mobile}} text-lg-{{ block.settings.title_alignment_desktop }}">{{ block.settings.title }}</h3>
+                    {% endif %}
+
+                    <iframe src="{{ block.settings.catalog_url }}" height="{{catalog_height}}" width="100%" allow="fullscreen" frameborder="0"></iframe>
                 </div>
             {% endif %}
 
-            
-
         {% endfor %}
 
-        {% comment %}
-            <div class="col-6">
-                <h3>Teste</h3>
-                <iframe src="https://designrr.page/?id=366776&token=1129655975&type=FP&h=3380" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
-            </div> 
-
-            <div class="col-6">
-                <iframe src="https://designrr.page/?id=411296&token=2351182603&type=FP&h=5560" height="600" width="100%" allow="fullscreen" frameborder="0"></iframe>
-            </div>
-        {% endcomment %}
-
-        
-
-        
     </div>
-    
 </div>
 
 
@@ -40,7 +34,14 @@
 {
     "name": "Catalog",
     "class": "section-catalog",
-    "settings": [],
+    "settings": [
+        {
+            "type": "checkbox",
+            "id" : "full-width",
+            "label": "Full-width catalog",
+            "default": false
+        }
+    ],
     "blocks": [
         {
             "name": "Catalog",
@@ -50,6 +51,44 @@
                     "type": "inline_richtext",
                     "id": "title",
                     "label": "Catalog title"
+                },
+                {
+                    "type": "select",
+                    "id": "title_alignment_desktop",
+                    "label": "Title alignment desktop",
+                    "options": [
+                        {
+                            "label": "Left",
+                            "value": "start"
+                        },
+                        {
+                            "label": "Center",
+                            "value": "center"
+                        },
+                        {
+                            "label": "Right",
+                            "value": "end"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "title_alignment_mobile",
+                    "label": "Title alignment mobile",
+                    "options": [
+                        {
+                            "label": "Left",
+                            "value": "start"
+                        },
+                        {
+                            "label": "Center",
+                            "value": "center"
+                        },
+                        {
+                            "label": "Right",
+                            "value": "right"
+                        }
+                    ]
                 },
                 {
                     "type": "text",
