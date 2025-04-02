@@ -413,12 +413,12 @@
     if (ans[0] !== undefined) {
       const vari = ans[0].variants;
       classicPage = classicPage
-        .replace('img0101', ans[0].featured_image)
+        .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
         .replace('nome0', ans[0].title)
         .replace(/skuskusku0/g, vari[0].sku)
         .replace('price1231230', (Number(ans[0].price) / 100).toFixed(2))
         .replace('UFGC0', requests.image[0])
-        .replace('UFGI0', adapt[requests.image[0]]);
+        .replace('UFGI0', adapt[requests.image[0]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[0].available) {
         classicPage = classicPage.replace('Adicionar ao carrinho1', 'esgotado');
       } else {
@@ -431,12 +431,12 @@
     if (ans[1] !== undefined) {
       const vari = ans[1].variants;
       classicPage = classicPage
-        .replace('img0102', ans[1].featured_image)
+        .replace('img0102', ans[1].featured_image ? ans[1].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
         .replace('nome1', ans[1].title)
         .replace(/skuskusku1/g, vari[0].sku)
         .replace('price1231231', (Number(ans[1].price) / 100).toFixed(2))
         .replace('UFGC1', requests.image[1])
-        .replace('UFGI1', adapt[requests.image[1]]);
+        .replace('UFGI1', adapt[requests.image[1]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[1].available) {
         classicPage = classicPage.replace('Adicionar ao carrinho2', 'esgotado');
       } else {
@@ -454,12 +454,12 @@
     if (ans[2] !== undefined) {
       const vari = ans[2].variants[0];
       flatPage = flatPage
-        .replace('img0101', ans[2].featured_image)
+        .replace('img0101', ans[2].featured_image ? ans[2].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
         .replace('nome0', ans[2].title)
         .replace(/skuskusku0/g, vari.sku)
         .replace('price1231230', (Number(ans[2].price) / 100).toFixed(2))
         .replace('UFGC0', requests.image[2])
-        .replace('UFGI0', adapt[requests.image[2]]);
+        .replace('UFGI0', adapt[requests.image[2]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[2].available) {
         flatPage = flatPage.replace('Adicionar ao carrinho1', 'esgotado');
       } else {
@@ -472,12 +472,12 @@
     if (ans[3] !== undefined) {
       const vari = ans[3].variants[0];
       flatPage = flatPage
-        .replace('img0102', ans[3].featured_image)
+        .replace('img0102', ans[3].featured_image ? ans[3].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
         .replace('nome1', ans[3].title)
         .replace(/skuskusku1/g, vari.sku)
         .replace('price1231231', (Number(ans[3].price) / 100).toFixed(2))
         .replace('UFGC1', requests.image[3])
-        .replace('UFGI1', adapt[requests.image[3]]);
+        .replace('UFGI1', adapt[requests.image[3]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[3].available) {
         flatPage = flatPage.replace('Adicionar ao carrinho2', 'esgotado');
       } else {
