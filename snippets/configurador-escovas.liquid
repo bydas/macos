@@ -45,7 +45,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td label="Acessórios">nome0</td>
+                  <td label="Acessórios"></td>
                   <td label="Referência">
                     <p style="text-align:center">
                       <a
@@ -58,8 +58,8 @@
                 </tr>
                 <tr>
                   <td style="padding-top: 10px">
-                    Inclui o adaptador UFGC0 para aplicação<br>
-                    <img src="UFGI0">
+                    Inclui o adaptador  para aplicação<br>
+                    <img src="">
                   </td>
                   <td></td>
                 </tr>
@@ -153,7 +153,7 @@
           <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Flat</h2>
         </div>
         <div id="opt3" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-          <img class="btoptioni" src="img0101">
+          <img class="btoptioni" src="">
           <div class="btoptiont">
             <table style="width: 512px;" class="tabbt">
               <thead>
@@ -164,7 +164,7 @@
               </thead>
               <tbody>
                 <tr style="padding-top: 10px">
-                  <td label="Acessórios">nome0</td>
+                  <td label="Acessórios"></td>
                   <td label="Referência">
                     <p style="text-align:center">
                       <a
@@ -177,8 +177,8 @@
                 </tr>
                 <tr>
                   <td>
-                    Inclui o adaptador UFGC0 para aplicação<br>
-                    <img src="UFGI0">
+                    Inclui o adaptador  para aplicação<br>
+                    <img src="">
                   </td>
                   <td></td>
                 </tr>
@@ -413,12 +413,12 @@
     if (ans[0] !== undefined) {
       const vari = ans[0].variants;
       classicPage = classicPage
-        .replace('img0101', ans[0].featured_image)
-        .replace('nome0', ans[0].title)
+        .replace('', ans[0].featured_image)
+        .replace('', ans[0].title)
         .replace(/skuskusku0/g, vari[0].sku)
         .replace('price1231230', (Number(ans[0].price) / 100).toFixed(2))
-        .replace('UFGC0', requests.image[0])
-        .replace('UFGI0', adapt[requests.image[0]]);
+        .replace('', requests.image[0])
+        .replace('', adapt[requests.image[0]]);
       if (!ans[0].available) {
         classicPage = classicPage.replace('Adicionar ao carrinho1', 'esgotado');
       } else {
@@ -454,12 +454,12 @@
     if (ans[2] !== undefined) {
       const vari = ans[2].variants[0];
       flatPage = flatPage
-        .replace('img0101', ans[2].featured_image)
-        .replace('nome0', ans[2].title)
+        .replace('', ans[2].featured_image)
+        .replace('', ans[2].title)
         .replace(/skuskusku0/g, vari.sku)
         .replace('price1231230', (Number(ans[2].price) / 100).toFixed(2))
-        .replace('UFGC0', requests.image[2])
-        .replace('UFGI0', adapt[requests.image[2]]);
+        .replace('', requests.image[2])
+        .replace('', adapt[requests.image[2]]);
       if (!ans[2].available) {
         flatPage = flatPage.replace('Adicionar ao carrinho1', 'esgotado');
       } else {
