@@ -1,519 +1,406 @@
-<div class="container">
- <div class="row">
-   <div class="col-12">
-        <h1 class="custom-cruz-padding page-title">Configurador de Barras de Tejadilho</h1>
-      <div class="col-12">
-        <hr>
-        <div class="products-search-layout">
-          <div>
-            <label for="cars">Escolha uma marca:</label>
-            <select name="brands" id="brands"></select>
-          </div>
-          <div style="margin-top: 24px">
-            <label for="models">Escolha um modelo:</label>
-            <select name="models" id="models"></select>
-          </div>
-          <div style="margin-top: 24px">
-            <label for="vehicles">Escolha uma viatura:</label>
-            <select name="vehicles" id="vehicles"></select>
-          </div>
-        </div>
-        <div id="product-list-container">
-          <div id="products-list-2">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container" id="configurador">
+  <header class="page__header page__header--centered">
+    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  </header>
 
-  <div id="components"></div>
-</div>
+  <div class="page__content rte">
+    {{ page.content }}
+           <div class="form__input-row">
+             <div class="form__input-wrapper">
 
+               <div class="select-wrapper select-wrapper--primary"><svg focusable="false" class="icon icon--arrow-bottom" viewBox="0 0 12 8" role="presentation">
+                 <path stroke="currentColor" stroke-width="2" d="M10 2L6 6 2 2" fill="none" stroke-linecap="square"></path>
+                 </svg>
+                 <select name="marca" id="marcadocarro" data-default="" required="" onChange="brandChanged(event)">
+                   <option value="">Marca do Veículo</option>
+                 </select>
+               </div>
+             </div>
+
+             <div class="form__input-wrapper" style="display: block;">
+
+               <div class="select-wrapper select-wrapper--primary"><svg focusable="false" class="icon icon--arrow-bottom" viewBox="0 0 12 8" role="presentation">
+                 <path stroke="currentColor" stroke-width="2" d="M10 2L6 6 2 2" fill="none" stroke-linecap="square"></path>
+                 </svg>
+                 <select name="modelo" id="modelodocarro" data-default="" onChange="onModelChange(event)">
+                   <option value="">Modelo do Veículo</option>
+                 </select>
+               </div>
+             </div>
+             <div class="shipping-estimator__results rte" style="display: none;"></div>
+           </div>
+    		
+    		<div id="optionsToChoseFrom">
+
+    		</div>
+         </div>
+       </div>
 
 
 <script>
-  const apiBaseURL = "https://api.cruzber.com/guidepc"
-  const apiKey = "e993740b761f5b7728afa8fde400910a"
-  const apiEUR = "/ESP"
+  var loading = true
+  var cars
+  var selectedBrand
+  var selectedModel
+  var priceObj = []
+  // brand
+  function brandChanged(event) {
+    const parent = document.getElementById('optionsToChoseFrom')
+    removeChildren(parent)
+    const model = document.getElementById('modelodocarro')
+    while (model.length > 1) {
+        model.remove(1)
+    }
+    const url = new URLSearchParams(document.location.search)
+    if (cars !== undefined) {
+      const sel = cars[event.target.value]
+      selectedBrand = event.target.value
 
-  const apiBrands = "/brands/"
-  const apiModels = "/models/"
+      for (let i = 0; i < sel.length; i++) {
+        const car = sel[i]
+        const opt = document.createElement('option')
 
+  		// Add index to option_elem
+  		opt.value = i
   
-  const onImageError = (element) => {
-    element.src = 'https://jumpseller.s3.eu-west-1.amazonaws.com/store/warrior/assets/ImageError.jpeg?1709728441'
+  		// Add element HTML
+  		opt.textContent = car[1]
+        if (car[2].trim()) {
+          opt.textContent += ' - ' + car[2]
+        }
+        if (car[3].trim()) {
+          opt.textContent += ' - ' + car[3]
+        }
+        if (i === Number(url.get('model')) && loading) {
+          opt.selected = true
+        }
+        
+  
+  		// Append option_elem to select_elem
+  		model.appendChild(opt);
+      }
+    }
+    //console.log(event.target.value)
   }
-
-  $( document ).ready(function() {
-    // "https://api.cruzber.com/guidepc/brands/e993740b761f5b7728afa8fde400910a/EUR"
-    $.get( apiBaseURL + apiBrands + apiKey + apiEUR , function( data ) {
-      $('#brands').append($('<option>', { 
-        value: -1,
-        text : "Selecione uma marca",
-      }));
-      data.map((item) => {
-        $('#brands').append($('<option>', { 
-          value: item.IdBrand,
-          text : item.Brand 
-        }));
-      })
-    })
-
-    $( "#brands" ).on( "change", function() {
-      const model = $( "#brands" ).val()
-
-      $("#products-list-2 .product-item").remove()
-      $("#product-list-container").css("display", "none");
-
-      //   "https://api.cruzber.com/guidepc/models/e993740b761f5b7728afa8fde400910a/" + model + "/EUR"
-      $.get(apiBaseURL + apiModels + apiKey + "/" + model + apiEUR, function( data ) {
-
-        $('#models').find('option').remove().end()
-        $('#vehicles').find('option').remove().end()
-
-        $('#models').append($('<option>', { value: -1, text : "Selecione um modelo" }));
-        data.map((item) => {
-          $('#models').append($('<option>', { 
-            value: item.Model,
-            text : item.Model 
-          }));
-        })
-      })
-    });
-
-    $( "#models" ).on( "change", function() {
-      const brandSelected = $( "#brands" ).val()
-      const modelSelected = $( "#models" ).val()
-
-      $("#products-list-2 .product-item").remove()
-      $("#product-list-container").css("display", "none");
-
-      $.get(
-        apiBaseURL + "/bodies/" + apiKey + "/" 
-        + brandSelected + "/" + modelSelected + apiEUR,
-
-        function( data ) {
-
-        $('#vehicles').find('option').remove().end()
-
-        $('#vehicles').append($('<option>', { value: -1, text : "Selecione uma viatura" }));
-        data.map((item) => {
-          $('#vehicles').append($('<option>', { 
-            value: item.IdVeh,
-            text : item.Body 
-          }));
-        })
-      })
-    })
-
-    const getProductImage = async (categories) => {
-      return new Promise(async (resolve, reject) => {
-          data.map(async (item, count) => {
-
-            if(!categories[item.NombreSolucion]){
-              categories[item.NombreSolucion] = []
-            }
-
-            const images = await $.get("https://api.cruzber.com/pc/images/" + apiKey + "/" + item.SKU);
-
-            let image = item.OptionImage
-            if(images && images[0]){
-              image = images[0].Image
-            }
-
-          
-  
-            item.image = image;
-            categories[String(item.NombreSolucion)].push(item);
-
-          })
-        })
-    }
-
-    const getInstructions = (values) => {
-      return new Promise((resolve, reject) => {
-        values.map(async (value, index) => {
-          const urlGetInstructions = "https://api.cruzber.com/pc/instructions/" + apiKey + "/" + value.SKU
-          const instruction = await $.get(urlGetInstructions);
-          value.instruction = instruction.Instruction
-
-          if(index === values.length - 1){
-            resolve(value)
+  // model handler
+  async function onModelChange(event) {
+    const parent = document.getElementById('optionsToChoseFrom')
+    removeChildren(parent)
+    const options = getOptions(cars[selectedBrand][event.target.value])
+    selectedModel = event.target.value
+    const opts = []
+    for (let i = 0; i < options.length; i++) {
+      const tttmmmppp = []
+      //let opts = ''
+      for (let j = 0; j < options[i].length; j++) {
+        tttmmmppp.push({ item: new Promise((resolve,reject) => {
+          let request = new XMLHttpRequest()
+          request.open('GET', '/products/' + options[i][j].item.split("|")[0] + '.js', false)
+          request.send(null)
+          if (request.status === 200) {
+			resolve(JSON.parse(request.responseText))
+          } else {
+            reject(request.status)
           }
-        })
-      })
+        }), optional: options[i][j].optional === true,
+                        img: options[i][j] === true, name: options[i][j].name, isKit: options[i][j].isKit === true })
+      }
+      opts.push(tttmmmppp)
     }
-
-    let categories = {}
-
-    $( "#vehicles" ).on( "change", function() {
-      
-      const vehicleSelcted = $( "#vehicles" ).val()
-
-
-      $.get(apiBaseURL + "/solutions/" + apiKey + "/" + vehicleSelcted + apiEUR, async function( data ) {
-        const vehiclesList = $("#products-list-2")
-        vehiclesList.empty()
-
-        $("#products-list-2 .product-item").remove()
-
-        if(data.length > 0) {
-          $("#product-list-container").css("display", "block");
+    const baseProductLine = '<tr><td label="Acessórios">${name}</td><td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options%5Bprefix%5D=last&options%5Bunavailable_products%5D=last&q=${sku}">${sku}</a></p></td><td label="Preço"><p style="text-align:right">${price} €</p></td></tr>'
+    let result = parent.innerHTML
+    priceObj = []
+    let resultingOptions = [] // { html: str, cost: int }
+    for (let i = 0; i < options.length; i++) {
+      let tableResu = ''
+      priceObj.push({ noAlarm: 0, alarm: 0, selectedAlarm: false, inStock: true, items: [], optional: [] })
+      let img = undefined
+      let name = undefined
+      for (let j = 0; j < options[i].length; j++) {
+        const t = await opts[i][j].item
+        if (!t.available) {
+          priceObj[priceObj.length - 1].inStock = false
+        }
+        const variant = t.variants.find(v => v.sku === options[i][j].item.split("|")[1])
+        if (variant !== undefined) {
+          let tm = baseProductLine
+          	.replace("${sku}", options[i][j].item.split("|")[1])
+          	.replace("${sku}", options[i][j].item.split("|")[1])
+          	.replace("${price}", (parseInt(variant.price) / 100).toFixed(2))
+          if (opts[i][j].optional === true) {
+            priceObj[i].alarm += parseInt(variant.price)
+            priceObj[priceObj.length - 1].optional.push(variant.id)
+          } else {
+            priceObj[i].alarm += parseInt(variant.price)
+            priceObj[i].noAlarm += parseInt(variant.price)
+            priceObj[priceObj.length - 1].items.push(variant.id)
+          }
+          if (img === undefined && options[i][j].img === true) {
+            img = t.featured_image
+          }
+          if (opts[i][j].name && name === undefined) {
+            name = opts[i][j].name
+          }
+          if (opts[i][j].isKit === true) {
+            if (cars[selectedBrand][selectedModel][4]) {
+              tm = tm.replace("${name}", t.title + ' (ver <a href="' + cars[selectedBrand][selectedModel][4] + '">pdf</a>)')
+            } else {
+              tm = tm.replace("${name}", t.title)
+            }
+          } else {
+            tm = tm.replace("${name}", t.title)
+          }
+          tableResu += tm
         } else {
-          $("#product-list-container").css("display", "none");
+          tableResu += '<p> network error</p>'
         }
-
-        categories = {}
-
-        data.map(async (item, count) => {
-          if(!categories[item.NombreSolucion]){
-            categories[item.NombreSolucion] = []
-          }
-          categories[String(item.NombreSolucion)].push(item);
-        })
-
-        let i = 0;
-        for (var key in categories) {
-          const values = categories[String(key)];
-
-          i++;
-
-          let image = values[0].OptionImage
-         /* try {
-            const images = await $.get("https://api.cruzber.com/pc/images/e993740b761f5b7728afa8fde400910a/" + values[0].SKU);
-
-            if(images && images[1]){
-              image = images[1].Image
-            } else if(images && images[0]){
-              image = images[0].Image
-            }
-          } catch(e) { }
-          */
-
-
-          let items = `<table><tr>
-            <th class="table-cell" style="width: 46px;"></th>
-            <th class="table-cell" style="width: calc(100% - 200px);">Componentes</th>
-            <th class="table-cell" style="width: 70px;">Ref.</th>
-            <th class="table-cell" style="width: 40px;">Opc.</th>
-            <th class="table-cell" style="width: 40px; text-align: center"><i class="linear-icon icon-0333-bag2"></i></th>
-          </tr>`;
-          
-          const instructions = await getInstructions(values)
-
-          let index = key.toLowerCase()
-          index = index.replace(/\s/g, '')
-
-
-          let locksImage = await $.get("https://api.cruzber.com/pc/images/e993740b761f5b7728afa8fde400910a/932-014");
-
-          console.log("values", values)
-
-
-          values.map(async (v, index) => {
-
-
-            items += `
-              <tr>
-                <td class="table-cell" style="position: relative">
-                  <img class="main-product-image" src="${v.SKU === "932-014" ? locksImage[0].Image : v.ProductImage}" width="40" height="40" onerror="onImageError(this)"/>
-                  <img class="hover-product-image" src="${v.SKU === "932-014" ? locksImage[0].Image : v.ProductImage}" width="40" height="40" onerror="onImageError(this)"/>
-                </td>
-                <td class="table-cell">
-                  ${v.Description}
-                  ${v.instruction ? (
-                    `(ver <a class='product-instructions-link' href='${v.instruction}' target='_blank'>
-                      pdf</a>)`
-                  ) : ''}
-                </td>
-                <td class="table-cell"><a target="_blank" class='product-item' href='/${v.SKU}\'>${v.SKU}</a></td>
-                <td class="table-cell" style="text-align:center">
-                ${
-                  v.Optional === "-1" ? 'Sim' : 'Não'
-                }
-                </td>
-                <td class="table-cell" style="text-align:center">
-                  <input type="checkbox" id="checkbox-${i}-${index}-${v.SKU}" ${v.Optional === "-1" ? '' : 'checked'} />
-                </td>
-              </tr>`
-          })
-          items += "</table>"
-
-          const elem = `
-            <div class="category">
-              <div class="category-title">${key}</div>
-              <div class="category-items">
-                <img src="${image}" class="category-items-image" />
-                <div class="category-acessories">
-                  ${items}
-                </div>
-              </div>
-              <div class="add-to-cart-container">
-                <button 
-                  class="btn btn-block primary adc adc-custom" 
-                  id="category-${index}" 
-                  data-key="${key}"
-                  data-index="${i}"
-                >
-                  Adicionar ao carrinho
-                </button>
-              </div>
-            </div>
-          `;
-
-
-          vehiclesList.append(elem);
-
-          setTimeout(() => {
-            const btn = document.getElementById(`category-${index}`)
-            btn.addEventListener("click", async function(e) {
-              
-              let skus = []
-              let alreadyHasProductAdded = false
-
-              window.scrollTo({
-                top: 0,
-                left: 0,
-                behaviour: 'smooth'
-              })
-
-              const categoryIndex = Number(e.target.dataset.index)
-
-              categories[e.target.dataset.key].map(async (product, index) => {
-
-                const checkbox = $(`#checkbox-${categoryIndex}-${index}-${product.SKU}`)
-
-                const checkboxValue = checkbox.is(":checked")
-
-                skus.push("https://www.macos.pt/" + product.SKU)
-
-                if(checkboxValue) {
-                  try {
-                    const productPage = await $.get("https://www.macos.pt/" + product.SKU);
-                    var regex = /<span[^>]*id="product-id-hammer"[^>]*>(\d+)<\/span>/;
-                    var match = productPage.match(regex);
-                    var id = match ? match[1] : null;
-
-                    Jumpseller.addProductToCart(id, 1, null, {
-                      callback: function(data, status) {
-                        if(!alreadyHasProductAdded){
-
-                          toastr.options = {
-                            closeButton: true,
-                            debug: false,
-                            newestOnTop: false,
-                            progressBar: true,
-                            positionClass: 'toast-top-right',
-                            preventDuplicates: false,
-                            onclick: null,
-                            showDuration: '500',
-                            hideDuration: '1000',
-                            timeOut: '5000',
-                            extendedTimeOut: '1000',
-                            showEasing: 'swing',
-                            hideEasing: 'linear',
-                            showMethod: 'fadeIn',
-                            hideMethod: 'fadeOut',
-                          };
-                          const message = `Foram adicionados produtos ao carrinho`;
-                          toastr.success(message);
-                        }
-                        alreadyHasProductAdded = true
-
-                        // Update cart qty counter in header
-                        $('.cart-size').text(data.products_count);
-
-                      },
-                    });
-                  } catch(e) { }
-                }
-                
-              })
-
-
-            }, false);
-
-          }, 500)
-
-
+      }
+      // all individual products done
+      let endResult = `<div class="card" id="\${result_i}">
+                  <div class="card__header">
+                    <h2 class="card__title heading h3" style="margin-bottom: 0px;">Descrição</h2>
+                  </div>
+                  
+                  <div class="card__section btoption row justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+                    <img class="col-12 col-md-3 btoptioni" src="${img}">
+                    <div class="btoptiont col-12 col-md-6">
+                      <table width="420" cellpadding="0" cellspacing="0" class="tabbt">
+                         <thead>
+                          <tr valign="top">
+                            <th style="width: 240px;"><b>Acessórios</b></th>
+                            <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                            <th style="width: 85px; text-align: center;"><b>Preço</b></th>
+                          </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="btoptionprice col-12 col-md-3">
+                      <div \${antiroubo0010} class="btbox1">
+                        <p>Total com anti-roubo: <span class="text--strong"> \${TOTALWITHANTITHIEF}€</span></p>
+                        <input type="checkbox" value="check" onclick=""> Adicionar Anti-Roubo
+                      </div> 
+                      <p></p>
+                      <div class="btbox2">
+                        <p style="margin-top:20px;"><span class="text--strong">Total:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;" id="opt"> \${TOTALWITHOPTIONS}€</span></p>
+                        <div style="text-align: center;">
+                          <button type="submit" disabled class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;">Adicionar ao carrinho</button>
+                        </div>
+                        <!--<p class="bt_discount"><span class="text--strong"> 10% </span> de desconto no carrinho </p>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>`
+      priceObj[i].alarm = (parseInt(priceObj[i].alarm) / 100)
+      priceObj[i].noAlarm = (parseInt(priceObj[i].noAlarm) / 100)
+      endResult = endResult.replace("${antiroubo0010}", (priceObj[i].alarm === priceObj[i].noAlarm ? 'hidden' : ""))
+        .replace("${result_i}", "result_" + i)
+      	.replace("${TOTALWITHANTITHIEF}", priceObj[i].alarm.toFixed(2))
+      	.replace("${TOTALWITHOPTIONS}", priceObj[i].noAlarm.toFixed(2))
+      	.replace("${img}", img ? img : '')
+      	.replace("<tbody></tbody>", tableResu)
+      	.replace("Descrição", "Opção " + (i + 1) + ' - ' + name)
+      	.replace('onclick=""', 'onClick="onAlarmChange(' + i + ')(this)" ')
+      	.replace('id="opt"', 'id="opt' + i + '"')
+      
+      if (priceObj[priceObj.length - 1].inStock) {
+        endResult = endResult.replace('disabled', 'onClick="onBuyPressed(' + i + ')(event)" data-action="add-to-cart"')
+      } else {
+        endResult = endResult.replace('Adicionar ao carrinho', 'Esgotado')
+      }
+      resultingOptions.push({html: endResult, i: "result_" + i })
+       //result += endResult
+    }
+     parent.innerHTML = resultingOptions//.sort((a,b) => a.cost - b.cost)
+        .reduce((prev, curr) => prev + curr.html, '');
+  }
+  const onAlarmChange = (optionNumber) => (event) => {
+    if (priceObj[optionNumber]) {
+      if (priceObj[optionNumber].selectedAlarm !== event.checked) {
+        const parent = document.getElementById("opt" + optionNumber)
+        if (priceObj[optionNumber].selectedAlarm) {
+          parent.innerText = priceObj[optionNumber].noAlarm.toFixed(2) + '€'
+        } else {
+          parent.innerText = priceObj[optionNumber].alarm.toFixed(2) + '€'
         }
-
-      })
+        priceObj[optionNumber].selectedAlarm = !priceObj[optionNumber].selectedAlarm
+      }
+    }
+  }
+  const onBuyPressed = (optionNumber) => () => {
+        httpGet('/cart.js', _onBuyPressed(optionNumber))
+  }
+  const _onBuyPressed = (optionNumber) => function(test) {
+    const t = JSON.parse(this.responseText)
+    const old = (t && t.items && t.items.length > 0 && t.note) || ''
+    const requestToSend = priceObj[optionNumber].items.map( i => {
+      return {
+        id: i,
+        quantity: 1,
+        properties: {
+          'carro': cars[selectedBrand][selectedModel][1] + ' - ' + cars[selectedBrand][selectedModel][2] + ' - ' + cars[selectedBrand][selectedModel][3]
+        },
+      }
     })
-  });
-
-</script>
-
-<style>
-  #product-list-container {
-    margin-top: 34px;
-    max-width: 745px;
-    margin: auto;
-    padding: 12px;
-    padding-bottom: 32px !important;
-  }
-  .title {
-    font-weight: 600;
-  }
-
-  .subtitle {
-    color: #4A4A4A;
-    font-weight: 400;
-    margin: 12px;
-  }
-
-  .sku {
-    color: #B0B0B0;
-    font-weight: 300;
-  }
-
-  .products-search-layout {
-    max-width: 745px;
-    margin: 0 auto 50px auto;
-    padding: 12px;
-    padding-bottom: 1vh;
-    padding-top: 2.5vh;
-  }
-
-  #products-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-  }
-
-  @media only screen and (max-width: 600px) {
-    #products-list {
-      grid-template-columns: 1fr;
+    if (priceObj[optionNumber].selectedAlarm) {
+      priceObj[optionNumber].optional.forEach( i => {
+        requestToSend.push({
+          id: i,
+          quantity: 1
+        })
+      })
     }
+    let txt = ''
+    if (old != '') {
+        txt += old + ' :::: '
+    }
+    txt += selectedBrand + ':' + cars[selectedBrand][selectedModel][1]
+    if (cars[selectedBrand][selectedModel][2].trim()) {
+      txt += ' - ' + cars[selectedBrand][selectedModel][2]
+    }
+    if (cars[selectedBrand][selectedModel][3].trim()) {
+      txt += ' - ' + cars[selectedBrand][selectedModel][3]
+    }
+    const request = new XMLHttpRequest()
+    request.open('POST', '/cart/add.js') // , false
+    request.setRequestHeader("Content-Type", "application/json")
+    request.addEventListener("load", reqListener)
+    request.send(JSON.stringify({ items: requestToSend, note: txt }))
+
   }
-
-  #products-list .vehicle-item {
-    width: 100%;
-    margin-top: 24px;
-    padding: 12px;
-    text-align: center;
-    overflow: hidden;
+  function reqListener(evt) {
+    if (this.status !== 200) {
+      alert("artigo esgotado")
+    } else {
+      const a = window.location.href.split('?')[0] + '?brand=' + selectedBrand + '&model=' + selectedModel
+      window.location.href = a
+  	}
   }
-
-  #products-list .vehicle-item img{
-    width: 100%;
-    object-fit: cover;
-  }
-
-  #products-list-2 .category{
-    background: white;
-    border: 1px solid #d1d1d1;
-    padding: 15px;
-    margin-bottom: 12px;
-  }
-
-  #products-list-2 .category .category-items{
-    display: flex;
-  }
-
-
-  #products-list-2 .category .add-to-cart-container{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
-  #products-list-2 .category .add-to-cart-container .adc-custom{
-    width: 190px;
-    font-size: 13px;
-  }
-
-
-
-  #products-list-2 .category .category-title{
-    font-size: 20px;
-    font-weight: bold;
-    padding-bottom: 16px;
-    color: #333!important;
-  }
-
-  #products-list-2 .category .category-items .category-items-image{
-    width: 20%;
-    margin-right: 20px;
-    object-fit: contain;
-  }
-
-  #products-list-2 .category .category-items .category-acessories{
-    width: 80%;
-  }
-
-  #products-list-2 .category .category-items .category-acessories table{
-    width: 100%;
-  }
-
-  #products-list-2 .category .category-items .category-acessories tr{
-    border-bottom: 1px solid black;
-    padding: 10px;
-    height: 36px;
-  }
-
-  #products-list-2 .category .category-items .category-acessories td a{
-    color: #ff9800 !important;
-    text-decoration: underline !important;
-  }
-
-  @media only screen and (max-width: 600px) {
     
-    #products-list-2 .category .category-items{
-      flex-direction: column;
+  function removeChildren(parent) {
+    let divves = 0
+    const toRemmovvee = []
+    for (let i = 0; i < parent.childNodes.length; i++) {
+      if (parent.childNodes[i].nodeName !== '#text') {
+        divves += 1
+      }
+      if (divves > 0) {
+        toRemmovvee.push(parent.childNodes[i])
+      }
     }
-
-    #products-list-2 .category .category-items .category-items-image{
-      width: 100%;
-      margin-right: 0;
-    }
-
-    #products-list-2 .category .category-items .category-acessories{
-      width: 100%;
-    }
-
-    #product-list-container{
-      margin: 0;
-      padding: 0;
-    }
-
-    .products-search-layout{
-      padding: 0;
-    }
+    toRemmovvee.forEach(child => parent.removeChild(child))
   }
+  function getOptions(car) {
+    car = car.map(s => s.trim())
+    const resu = []
+    if (car[15] || car[16] || car[17]) { //transversais!
+      if (car[15]) {
+        resu.push([{item: car[15], img: true, name: 'Barras transversais de alumínio' }])
+      }
+      if (car[16]) {
+        resu.push([{item: car[16], img: true, name: 'Barras transversais de alumínio' }])
+      }
+      if (car[17]) {
+        resu.push([{item: car[17], img: true, name: 'Barras transversais de Aço' }])
+      }
+    } else {
+      const translate = {
+        8: "Barras o-plus de alumínio",
+        9: "Barras o-plus de aço",
+        10:"Barras airo de alumínio",
+        11:"Barras airo de alumínio com fixação",
+        12:"Barras optima de aço"
+      }
+      for (let i = 8; i < 13 && i < car.length; i++) {
+        if (!car[i]) continue
+        
+        const option = []
+        option.push({ item: car[i], img: true, name: translate[i] })
+        if (i === 12) {
+          // optima
+          if (car[13]) {
+            option.push({ item: car[13] })
+          }
+        }
+        if (car[7]) {
+          option.push({ item: car[7], isKit: true })
+        }
+        if (car[14]) {
+          option.push({ item: car[14], optional: true })
+        }
+        resu.push(option)
+      }
+    }
+    const finalOrder = {
+      "Barras optima de aço": 1,
+      "Barras o-plus de aço": 2,
+      "Barras o-plus de alumínio": 3,
+      "Barras airo de alumínio": 4,
+      "Barras airo de alumínio com fixação": 5,
 
-.main-product-image:hover + .hover-product-image{
-  opacity: 1;
-  z-index: 9999;
-}
-
-.hover-product-image{
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 260px;
-  height: 260px;
-  transform: translate(-130px, -130px);
-  box-shadow: 0 0 24px -10px #e2e2e2;
-  transition: all 250ms ease-in-out;
-  z-index: -1;
-}
-
-@media only screen and (max-width: 600px) {
-  .hover-product-image {
-    transform: translate(0, -130px);
+      "Barras transversais de Aço": 12,
+      "Barras transversais de alumínio": 13,
+    };
+    resu.sort((a,b) => finalOrder[a[0].name] - finalOrder[b[0].name]);
+    return resu
   }
-
-  .table-cell{
-    font-size: 12px;
+  // dropdown fetch and populator
+  async function httpGet(URL, handler) {
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener("load", handler)
+    xmlHttp.open( "GET", URL)
+    
+    xmlHttp.send( null )
   }
-}
+  function doMagic() {
+    httpGet("{{ 'barras_tejadilho.csv' | asset_url }}", handleData)
+  }
+  function handleData() {
+    const r = this.responseText.split('\n').map(line => line.split(','))
+    const ccars = {}
+    for (let i = 1; i < r.length; i++) {
+      const carr = r[i]
+      if (carr[0] === '') continue
+      if (ccars[carr[0]] === undefined) {
+        ccars[carr[0]] = []
+      }
+      ccars[carr[0]].push(carr)
+    }
+    cars = ccars
+    const select_elem = document.getElementById('marcadocarro')
+    const url = new URLSearchParams(document.location.search)
+    
+	Object.keys(cars).forEach((element, index) => {
+      	const elem = cars[element]
+  		const option_elem = document.createElement('option')
 
-.hover-product-image:hover{
-  opacity: 1;
-  z-index: 9999;
-}
-
-
-
-</style>
+  		// Add index to option_elem
+  		option_elem.value = elem[0][0]
+  
+  		// Add element HTML
+  		option_elem.textContent = elem[0][0]
+        
+        if (url.get('brand') === elem[0][0] && loading) {
+          option_elem.selected = true
+        }
+  
+  		// Append option_elem to select_elem
+  		select_elem.appendChild(option_elem)
+        
+        
+	})
+    
+    if (url.get('brand')) {
+      brandChanged({ target: { value: url.get('brand') } })
+      onModelChange({ target: { value: url.get('model') } })
+    }
+    loading = false
+  }
+  function setFirstChild(childId) {
+    const element = document.getElementById(childId);
+  
+    const parent = element.parentNode;
+    parent.insertBefore(element, parent.firstChild);
+  }
+  doMagic()
+</script>
