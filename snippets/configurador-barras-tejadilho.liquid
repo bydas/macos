@@ -1,402 +1,410 @@
 <div class="container" id="configurador">
-  <header class="page__header page__header--centered">
-    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  <header class="page__header page__header--centered row">
+    <h1 class="page__title heading h1 col-12">{{ page.title }}</h1>
   </header>
 
   <div class="page__content rte">
     {{ page.content }}
-           <div class="form__input-row">
-             <div class="form__input-wrapper">
+    <div class="form__input-row row mt-5 mb-4">
+      <div class="form__input-wrapper col-6">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="marca" id="marcadocarro" class="configurador-input" data-default="" required="" onChange="brandChanged(event)">
+            <option value="">Marca do Veículo</option>
+          </select>
+        </div>
+      </div>
 
-               <div class="select-wrapper select-wrapper--primary">
-                 <select name="marca" id="marcadocarro" data-default="" required="" onChange="brandChanged(event)">
-                   <option value="">Marca do Veículo</option>
-                 </select>
-               </div>
-             </div>
+      <div class="form__input-wrapper col-6" style="display: block;">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="modelo" id="modelodocarro" class="configurador-input" data-default="" onChange="onModelChange(event)">
+            <option value="">Modelo do Veículo</option>
+          </select>
+        </div>
+      </div>
+      <div class="shipping-estimator__results rte" style="display: none;"></div>
+    </div>
 
-             <div class="form__input-wrapper" style="display: block;">
-
-               <div class="select-wrapper select-wrapper--primary">
-                 <select name="modelo" id="modelodocarro" data-default="" onChange="onModelChange(event)">
-                   <option value="">Modelo do Veículo</option>
-                 </select>
-               </div>
-             </div>
-             <div class="shipping-estimator__results rte" style="display: none;"></div>
-           </div>
-    		
-    		<div id="optionsToChoseFrom">
-
-    		</div>
-         </div>
-       </div>
-
+    <div id="optionsToChoseFrom"></div>
+  </div>
+</div>
 
 <script>
-  var loading = true
-  var cars
-  var selectedBrand
-  var selectedModel
-  var priceObj = []
+  var loading = true;
+  var cars;
+  var selectedBrand;
+  var selectedModel;
+  var priceObj = [];
   // brand
   function brandChanged(event) {
-    const parent = document.getElementById('optionsToChoseFrom')
-    removeChildren(parent)
-    const model = document.getElementById('modelodocarro')
+    const parent = document.getElementById('optionsToChoseFrom');
+    removeChildren(parent);
+    const model = document.getElementById('modelodocarro');
     while (model.length > 1) {
-        model.remove(1)
+      model.remove(1);
     }
-    const url = new URLSearchParams(document.location.search)
+    const url = new URLSearchParams(document.location.search);
     if (cars !== undefined) {
-      const sel = cars[event.target.value]
-      selectedBrand = event.target.value
+      const sel = cars[event.target.value];
+      selectedBrand = event.target.value;
 
       for (let i = 0; i < sel.length; i++) {
-        const car = sel[i]
-        const opt = document.createElement('option')
+        const car = sel[i];
+        const opt = document.createElement('option');
 
-  		// Add index to option_elem
-  		opt.value = i
-  
-  		// Add element HTML
-  		opt.textContent = car[1]
+        // Add index to option_elem
+        opt.value = i;
+
+        // Add element HTML
+        opt.textContent = car[1];
         if (car[2].trim()) {
-          opt.textContent += ' - ' + car[2]
+          opt.textContent += ' - ' + car[2];
         }
         if (car[3].trim()) {
-          opt.textContent += ' - ' + car[3]
+          opt.textContent += ' - ' + car[3];
         }
         if (i === Number(url.get('model')) && loading) {
-          opt.selected = true
+          opt.selected = true;
         }
-        
-  
-  		// Append option_elem to select_elem
-  		model.appendChild(opt);
+
+        // Append option_elem to select_elem
+        model.appendChild(opt);
       }
     }
     //console.log(event.target.value)
   }
   // model handler
   async function onModelChange(event) {
-    const parent = document.getElementById('optionsToChoseFrom')
-    removeChildren(parent)
-    const options = getOptions(cars[selectedBrand][event.target.value])
-    selectedModel = event.target.value
-    const opts = []
+    const parent = document.getElementById('optionsToChoseFrom');
+    removeChildren(parent);
+    const options = getOptions(cars[selectedBrand][event.target.value]);
+    selectedModel = event.target.value;
+    const opts = [];
     for (let i = 0; i < options.length; i++) {
-      const tttmmmppp = []
+      const tttmmmppp = [];
       //let opts = ''
       for (let j = 0; j < options[i].length; j++) {
-        tttmmmppp.push({ item: new Promise((resolve,reject) => {
-          let request = new XMLHttpRequest()
-          request.open('GET', '/products/' + options[i][j].item.split("|")[0] + '.js', false)
-          request.send(null)
-          if (request.status === 200) {
-			resolve(JSON.parse(request.responseText))
-          } else {
-            reject(request.status)
-          }
-        }), optional: options[i][j].optional === true,
-                        img: options[i][j] === true, name: options[i][j].name, isKit: options[i][j].isKit === true })
+        tttmmmppp.push({
+          item: new Promise((resolve, reject) => {
+            let request = new XMLHttpRequest();
+            request.open('GET', '/products/' + options[i][j].item.split('|')[0] + '.js', false);
+            request.send(null);
+            if (request.status === 200) {
+              resolve(JSON.parse(request.responseText));
+            } else {
+              reject(request.status);
+            }
+          }),
+          optional: options[i][j].optional === true,
+          img: options[i][j] === true,
+          name: options[i][j].name,
+          isKit: options[i][j].isKit === true,
+        });
       }
-      opts.push(tttmmmppp)
+      opts.push(tttmmmppp);
     }
-    const baseProductLine = '<tr><td label="Acessórios">${name}</td><td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options%5Bprefix%5D=last&options%5Bunavailable_products%5D=last&q=${sku}">${sku}</a></p></td><td label="Preço"><p style="text-align:right">${price} €</p></td></tr>'
-    let result = parent.innerHTML
-    priceObj = []
-    let resultingOptions = [] // { html: str, cost: int }
+    const baseProductLine =
+      '<tr><td label="Acessórios">${name}</td><td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options%5Bprefix%5D=last&options%5Bunavailable_products%5D=last&q=${sku}">${sku}</a></p></td><td label="Preço"><p style="text-align:right">${price} €</p></td></tr>';
+    let result = parent.innerHTML;
+    priceObj = [];
+    let resultingOptions = []; // { html: str, cost: int }
     for (let i = 0; i < options.length; i++) {
-      let tableResu = ''
-      priceObj.push({ noAlarm: 0, alarm: 0, selectedAlarm: false, inStock: true, items: [], optional: [] })
-      let img = undefined
-      let name = undefined
+      let tableResu = '';
+      priceObj.push({ noAlarm: 0, alarm: 0, selectedAlarm: false, inStock: true, items: [], optional: [] });
+      let img = undefined;
+      let name = undefined;
       for (let j = 0; j < options[i].length; j++) {
-        const t = await opts[i][j].item
+        const t = await opts[i][j].item;
         if (!t.available) {
-          priceObj[priceObj.length - 1].inStock = false
+          priceObj[priceObj.length - 1].inStock = false;
         }
-        const variant = t.variants.find(v => v.sku === options[i][j].item.split("|")[1])
+        const variant = t.variants.find((v) => v.sku === options[i][j].item.split('|')[1]);
         if (variant !== undefined) {
           let tm = baseProductLine
-          	.replace("${sku}", options[i][j].item.split("|")[1])
-          	.replace("${sku}", options[i][j].item.split("|")[1])
-          	.replace("${price}", (parseInt(variant.price) / 100).toFixed(2))
+            .replace('${sku}', options[i][j].item.split('|')[1])
+            .replace('${sku}', options[i][j].item.split('|')[1])
+            .replace('${price}', (parseInt(variant.price) / 100).toFixed(2));
           if (opts[i][j].optional === true) {
-            priceObj[i].alarm += parseInt(variant.price)
-            priceObj[priceObj.length - 1].optional.push(variant.id)
+            priceObj[i].alarm += parseInt(variant.price);
+            priceObj[priceObj.length - 1].optional.push(variant.id);
           } else {
-            priceObj[i].alarm += parseInt(variant.price)
-            priceObj[i].noAlarm += parseInt(variant.price)
-            priceObj[priceObj.length - 1].items.push(variant.id)
+            priceObj[i].alarm += parseInt(variant.price);
+            priceObj[i].noAlarm += parseInt(variant.price);
+            priceObj[priceObj.length - 1].items.push(variant.id);
           }
           if (img === undefined && options[i][j].img === true) {
-            img = t.featured_image
+            img = t.featured_image;
           }
           if (opts[i][j].name && name === undefined) {
-            name = opts[i][j].name
+            name = opts[i][j].name;
           }
           if (opts[i][j].isKit === true) {
             if (cars[selectedBrand][selectedModel][4]) {
-              tm = tm.replace("${name}", t.title + ' (ver <a href="' + cars[selectedBrand][selectedModel][4] + '">pdf</a>)')
+              tm = tm.replace(
+                '${name}',
+                t.title + ' (ver <a href="' + cars[selectedBrand][selectedModel][4] + '">pdf</a>)'
+              );
             } else {
-              tm = tm.replace("${name}", t.title)
+              tm = tm.replace('${name}', t.title);
             }
           } else {
-            tm = tm.replace("${name}", t.title)
+            tm = tm.replace('${name}', t.title);
           }
-          tableResu += tm
+          tableResu += tm;
         } else {
-          tableResu += '<p> network error</p>'
+          tableResu += '<p> network error</p>';
         }
       }
       // all individual products done
-      let endResult = `<div class="card" id="\${result_i}">
-                  <div class="card__header">
-                    <h2 class="card__title heading h3" style="margin-bottom: 0px;">Descrição</h2>
-                  </div>
-                  
-                  <div class="card__section btoption row justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-                    <img class="col-12 col-md-3 btoptioni" src="${img}">
-                    <div class="btoptiont col-12 col-md-6">
-                      <table width="420" cellpadding="0" cellspacing="0" class="tabbt">
-                         <thead>
-                          <tr valign="top">
-                            <th style="width: 240px;"><b>Acessórios</b></th>
-                            <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                            <th style="width: 85px; text-align: center;"><b>Preço</b></th>
-                          </tr>
-                          </thead>
-                          <tbody></tbody>
-                        </table>
-                    </div>
-                    <div class="btoptionprice col-12 col-md-3">
-                      <div \${antiroubo0010} class="btbox1">
-                        <p>Total com anti-roubo: <span class="text--strong"> \${TOTALWITHANTITHIEF}€</span></p>
-                        <input type="checkbox" value="check" onclick=""> Adicionar Anti-Roubo
-                      </div> 
-                      <p></p>
-                      <div class="btbox2">
-                        <p style="margin-top:20px;"><span class="text--strong">Total:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;" id="opt"> \${TOTALWITHOPTIONS}€</span></p>
-                        <div style="text-align: center;">
-                          <button type="submit" disabled class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;">Adicionar ao carrinho</button>
+      let endResult = `<div class="card card-configurador mb-4" id="\${result_i}">
+                        <div class="card_header">
+                          <h2 class="card_title">Descrição</h2>
                         </div>
-                        <!--<p class="bt_discount"><span class="text--strong"> 10% </span> de desconto no carrinho </p>-->
-                      </div>
-                    </div>
-                  </div>
-                </div>`
-      priceObj[i].alarm = (parseInt(priceObj[i].alarm) / 100)
-      priceObj[i].noAlarm = (parseInt(priceObj[i].noAlarm) / 100)
-      endResult = endResult.replace("${antiroubo0010}", (priceObj[i].alarm === priceObj[i].noAlarm ? 'hidden' : ""))
-        .replace("${result_i}", "result_" + i)
-      	.replace("${TOTALWITHANTITHIEF}", priceObj[i].alarm.toFixed(2))
-      	.replace("${TOTALWITHOPTIONS}", priceObj[i].noAlarm.toFixed(2))
-      	.replace("${img}", img ? img : '')
-      	.replace("<tbody></tbody>", tableResu)
-      	.replace("Descrição", "Opção " + (i + 1) + ' - ' + name)
-      	.replace('onclick=""', 'onClick="onAlarmChange(' + i + ')(this)" ')
-      	.replace('id="opt"', 'id="opt' + i + '"')
-      
+                        
+                        <div class="card_section btoption row justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+                          <img class="col-12 col-md-3 btoptioni" src="${img}">
+                          <div class="btoptiont col-12 col-md-6">
+                            <table width="420" cellpadding="0" cellspacing="0" class="tabbt">
+                              <thead>
+                                <tr valign="top">
+                                  <th style="width: 240px;"><b>Acessórios</b></th>
+                                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                                  <th style="width: 85px; text-align: center;"><b>Preço</b></th>
+                                </tr>
+                              </thead>
+                              <tbody></tbody>
+                            </table>
+                          </div>
+                          <div class="btoptionprice col-12 col-md-3">
+                            <div \${antiroubo0010} class="btbox1">
+                              <p>Total com anti-roubo: <span class="fw-bold"> \${TOTALWITHANTITHIEF}€</span></p>
+                              <input type="checkbox" value="check" onclick=""> Adicionar Anti-Roubo
+                            </div> 
+                            <p></p>
+                            <div class="btbox2">
+                              <p style="margin-top:20px;"><span class="fw-bold">Total:</span><span class="btprice fw-bold" style="color:#ff0000; float:right; font-size:20px;" id="opt"> \${TOTALWITHOPTIONS}€</span></p>
+                              <div style="text-align: center;">
+                                <button type="submit" disabled class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;">Adicionar ao carrinho</button>
+                              </div>
+                              <!--<p class="bt_discount"><span class="fw-bold"> 10% </span> de desconto no carrinho </p>-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>`;
+      priceObj[i].alarm = parseInt(priceObj[i].alarm) / 100;
+      priceObj[i].noAlarm = parseInt(priceObj[i].noAlarm) / 100;
+      endResult = endResult
+        .replace('${antiroubo0010}', priceObj[i].alarm === priceObj[i].noAlarm ? 'hidden' : '')
+        .replace('${result_i}', 'result_' + i)
+        .replace('${TOTALWITHANTITHIEF}', priceObj[i].alarm.toFixed(2))
+        .replace('${TOTALWITHOPTIONS}', priceObj[i].noAlarm.toFixed(2))
+        .replace('${img}', img ? img : '')
+        .replace('<tbody></tbody>', tableResu)
+        .replace('Descrição', 'Opção ' + (i + 1) + ' - ' + name)
+        .replace('onclick=""', 'onClick="onAlarmChange(' + i + ')(this)" ')
+        .replace('id="opt"', 'id="opt' + i + '"');
+
       if (priceObj[priceObj.length - 1].inStock) {
-        endResult = endResult.replace('disabled', 'onClick="onBuyPressed(' + i + ')(event)" data-action="add-to-cart"')
+        endResult = endResult.replace('disabled', 'onClick="onBuyPressed(' + i + ')(event)" data-action="add-to-cart"');
       } else {
-        endResult = endResult.replace('Adicionar ao carrinho', 'Esgotado')
+        endResult = endResult.replace('Adicionar ao carrinho', 'Esgotado');
       }
-      resultingOptions.push({html: endResult, i: "result_" + i })
-       //result += endResult
+      resultingOptions.push({ html: endResult, i: 'result_' + i });
+      //result += endResult
     }
-     parent.innerHTML = resultingOptions//.sort((a,b) => a.cost - b.cost)
-        .reduce((prev, curr) => prev + curr.html, '');
+    parent.innerHTML = resultingOptions //.sort((a,b) => a.cost - b.cost)
+      .reduce((prev, curr) => prev + curr.html, '');
   }
   const onAlarmChange = (optionNumber) => (event) => {
     if (priceObj[optionNumber]) {
       if (priceObj[optionNumber].selectedAlarm !== event.checked) {
-        const parent = document.getElementById("opt" + optionNumber)
+        const parent = document.getElementById('opt' + optionNumber);
         if (priceObj[optionNumber].selectedAlarm) {
-          parent.innerText = priceObj[optionNumber].noAlarm.toFixed(2) + '€'
+          parent.innerText = priceObj[optionNumber].noAlarm.toFixed(2) + '€';
         } else {
-          parent.innerText = priceObj[optionNumber].alarm.toFixed(2) + '€'
+          parent.innerText = priceObj[optionNumber].alarm.toFixed(2) + '€';
         }
-        priceObj[optionNumber].selectedAlarm = !priceObj[optionNumber].selectedAlarm
+        priceObj[optionNumber].selectedAlarm = !priceObj[optionNumber].selectedAlarm;
       }
     }
-  }
+  };
   const onBuyPressed = (optionNumber) => () => {
-        httpGet('/cart.js', _onBuyPressed(optionNumber))
-  }
-  const _onBuyPressed = (optionNumber) => function(test) {
-    const t = JSON.parse(this.responseText)
-    const old = (t && t.items && t.items.length > 0 && t.note) || ''
-    const requestToSend = priceObj[optionNumber].items.map( i => {
-      return {
-        id: i,
-        quantity: 1,
-        properties: {
-          'carro': cars[selectedBrand][selectedModel][1] + ' - ' + cars[selectedBrand][selectedModel][2] + ' - ' + cars[selectedBrand][selectedModel][3]
-        },
-      }
-    })
-    if (priceObj[optionNumber].selectedAlarm) {
-      priceObj[optionNumber].optional.forEach( i => {
-        requestToSend.push({
+    httpGet('/cart.js', _onBuyPressed(optionNumber));
+  };
+  const _onBuyPressed = (optionNumber) =>
+    function (test) {
+      const t = JSON.parse(this.responseText);
+      const old = (t && t.items && t.items.length > 0 && t.note) || '';
+      const requestToSend = priceObj[optionNumber].items.map((i) => {
+        return {
           id: i,
-          quantity: 1
-        })
-      })
-    }
-    let txt = ''
-    if (old != '') {
-        txt += old + ' :::: '
-    }
-    txt += selectedBrand + ':' + cars[selectedBrand][selectedModel][1]
-    if (cars[selectedBrand][selectedModel][2].trim()) {
-      txt += ' - ' + cars[selectedBrand][selectedModel][2]
-    }
-    if (cars[selectedBrand][selectedModel][3].trim()) {
-      txt += ' - ' + cars[selectedBrand][selectedModel][3]
-    }
-    const request = new XMLHttpRequest()
-    request.open('POST', '/cart/add.js') // , false
-    request.setRequestHeader("Content-Type", "application/json")
-    request.addEventListener("load", reqListener)
-    request.send(JSON.stringify({ items: requestToSend, note: txt }))
-
-  }
+          quantity: 1,
+          properties: {
+            carro:
+              cars[selectedBrand][selectedModel][1] +
+              ' - ' +
+              cars[selectedBrand][selectedModel][2] +
+              ' - ' +
+              cars[selectedBrand][selectedModel][3],
+          },
+        };
+      });
+      if (priceObj[optionNumber].selectedAlarm) {
+        priceObj[optionNumber].optional.forEach((i) => {
+          requestToSend.push({
+            id: i,
+            quantity: 1,
+          });
+        });
+      }
+      let txt = '';
+      if (old != '') {
+        txt += old + ' :::: ';
+      }
+      txt += selectedBrand + ':' + cars[selectedBrand][selectedModel][1];
+      if (cars[selectedBrand][selectedModel][2].trim()) {
+        txt += ' - ' + cars[selectedBrand][selectedModel][2];
+      }
+      if (cars[selectedBrand][selectedModel][3].trim()) {
+        txt += ' - ' + cars[selectedBrand][selectedModel][3];
+      }
+      const request = new XMLHttpRequest();
+      request.open('POST', '/cart/add.js'); // , false
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.addEventListener('load', reqListener);
+      request.send(JSON.stringify({ items: requestToSend, note: txt }));
+    };
   function reqListener(evt) {
     if (this.status !== 200) {
-      alert("artigo esgotado")
+      alert('artigo esgotado');
     } else {
-      const a = window.location.href.split('?')[0] + '?brand=' + selectedBrand + '&model=' + selectedModel
-      window.location.href = a
-  	}
+      const a = window.location.href.split('?')[0] + '?brand=' + selectedBrand + '&model=' + selectedModel;
+      window.location.href = a;
+    }
   }
-    
+
   function removeChildren(parent) {
-    let divves = 0
-    const toRemmovvee = []
+    let divves = 0;
+    const toRemmovvee = [];
     for (let i = 0; i < parent.childNodes.length; i++) {
       if (parent.childNodes[i].nodeName !== '#text') {
-        divves += 1
+        divves += 1;
       }
       if (divves > 0) {
-        toRemmovvee.push(parent.childNodes[i])
+        toRemmovvee.push(parent.childNodes[i]);
       }
     }
-    toRemmovvee.forEach(child => parent.removeChild(child))
+    toRemmovvee.forEach((child) => parent.removeChild(child));
   }
   function getOptions(car) {
-    car = car.map(s => s.trim())
-    const resu = []
-    if (car[15] || car[16] || car[17]) { //transversais!
+    car = car.map((s) => s.trim());
+    const resu = [];
+    if (car[15] || car[16] || car[17]) {
+      //transversais!
       if (car[15]) {
-        resu.push([{item: car[15], img: true, name: 'Barras transversais de alumínio' }])
+        resu.push([{ item: car[15], img: true, name: 'Barras transversais de alumínio' }]);
       }
       if (car[16]) {
-        resu.push([{item: car[16], img: true, name: 'Barras transversais de alumínio' }])
+        resu.push([{ item: car[16], img: true, name: 'Barras transversais de alumínio' }]);
       }
       if (car[17]) {
-        resu.push([{item: car[17], img: true, name: 'Barras transversais de Aço' }])
+        resu.push([{ item: car[17], img: true, name: 'Barras transversais de Aço' }]);
       }
     } else {
       const translate = {
-        8: "Barras o-plus de alumínio",
-        9: "Barras o-plus de aço",
-        10:"Barras airo de alumínio",
-        11:"Barras airo de alumínio com fixação",
-        12:"Barras optima de aço"
-      }
+        8: 'Barras o-plus de alumínio',
+        9: 'Barras o-plus de aço',
+        10: 'Barras airo de alumínio',
+        11: 'Barras airo de alumínio com fixação',
+        12: 'Barras optima de aço',
+      };
       for (let i = 8; i < 13 && i < car.length; i++) {
-        if (!car[i]) continue
-        
-        const option = []
-        option.push({ item: car[i], img: true, name: translate[i] })
+        if (!car[i]) continue;
+
+        const option = [];
+        option.push({ item: car[i], img: true, name: translate[i] });
         if (i === 12) {
           // optima
           if (car[13]) {
-            option.push({ item: car[13] })
+            option.push({ item: car[13] });
           }
         }
         if (car[7]) {
-          option.push({ item: car[7], isKit: true })
+          option.push({ item: car[7], isKit: true });
         }
         if (car[14]) {
-          option.push({ item: car[14], optional: true })
+          option.push({ item: car[14], optional: true });
         }
-        resu.push(option)
+        resu.push(option);
       }
     }
     const finalOrder = {
-      "Barras optima de aço": 1,
-      "Barras o-plus de aço": 2,
-      "Barras o-plus de alumínio": 3,
-      "Barras airo de alumínio": 4,
-      "Barras airo de alumínio com fixação": 5,
+      'Barras optima de aço': 1,
+      'Barras o-plus de aço': 2,
+      'Barras o-plus de alumínio': 3,
+      'Barras airo de alumínio': 4,
+      'Barras airo de alumínio com fixação': 5,
 
-      "Barras transversais de Aço": 12,
-      "Barras transversais de alumínio": 13,
+      'Barras transversais de Aço': 12,
+      'Barras transversais de alumínio': 13,
     };
-    resu.sort((a,b) => finalOrder[a[0].name] - finalOrder[b[0].name]);
-    return resu
+    resu.sort((a, b) => finalOrder[a[0].name] - finalOrder[b[0].name]);
+    return resu;
   }
   // dropdown fetch and populator
   async function httpGet(URL, handler) {
-    var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener("load", handler)
-    xmlHttp.open( "GET", URL)
-    
-    xmlHttp.send( null )
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.addEventListener('load', handler);
+    xmlHttp.open('GET', URL);
+
+    xmlHttp.send(null);
   }
   function doMagic() {
-    httpGet("{{ 'barras_tejadilho.csv' | asset_url }}", handleData)
+    httpGet("{{ 'barras_tejadilho.csv' | asset_url }}", handleData);
   }
   function handleData() {
-    const r = this.responseText.split('\n').map(line => line.split(','))
-    const ccars = {}
+    const r = this.responseText.split('\n').map((line) => line.split(','));
+    const ccars = {};
     for (let i = 1; i < r.length; i++) {
-      const carr = r[i]
-      if (carr[0] === '') continue
+      const carr = r[i];
+      if (carr[0] === '') continue;
       if (ccars[carr[0]] === undefined) {
-        ccars[carr[0]] = []
+        ccars[carr[0]] = [];
       }
-      ccars[carr[0]].push(carr)
+      ccars[carr[0]].push(carr);
     }
-    cars = ccars
-    const select_elem = document.getElementById('marcadocarro')
-    const url = new URLSearchParams(document.location.search)
-    
-	Object.keys(cars).forEach((element, index) => {
-      	const elem = cars[element]
-  		const option_elem = document.createElement('option')
+    cars = ccars;
+    const select_elem = document.getElementById('marcadocarro');
+    const url = new URLSearchParams(document.location.search);
 
-  		// Add index to option_elem
-  		option_elem.value = elem[0][0]
-  
-  		// Add element HTML
-  		option_elem.textContent = elem[0][0]
-        
-        if (url.get('brand') === elem[0][0] && loading) {
-          option_elem.selected = true
-        }
-  
-  		// Append option_elem to select_elem
-  		select_elem.appendChild(option_elem)
-        
-        
-	})
-    
+    Object.keys(cars).forEach((element, index) => {
+      const elem = cars[element];
+      const option_elem = document.createElement('option');
+
+      // Add index to option_elem
+      option_elem.value = elem[0][0];
+
+      // Add element HTML
+      option_elem.textContent = elem[0][0];
+
+      if (url.get('brand') === elem[0][0] && loading) {
+        option_elem.selected = true;
+      }
+
+      // Append option_elem to select_elem
+      select_elem.appendChild(option_elem);
+    });
+
     if (url.get('brand')) {
-      brandChanged({ target: { value: url.get('brand') } })
-      onModelChange({ target: { value: url.get('model') } })
+      brandChanged({ target: { value: url.get('brand') } });
+      onModelChange({ target: { value: url.get('model') } });
     }
-    loading = false
+    loading = false;
   }
   function setFirstChild(childId) {
     const element = document.getElementById(childId);
-  
+
     const parent = element.parentNode;
     parent.insertBefore(element, parent.firstChild);
   }
-  doMagic()
+  doMagic();
 </script>
