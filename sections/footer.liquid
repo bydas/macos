@@ -87,23 +87,9 @@
                       {{ block.settings.subtext }}
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                   {% when 'contacts' %}
+
+                    <!-- BEGIN CONTACTS FOOTER -->
 
                     <div class="footer-block__details-content">
                       <div class="footer-contacts-wrapper d-flex flex-column gap-3">
@@ -134,47 +120,47 @@
                           
                           <div class="d-flex align-items-center">
 
-                            <div>
+                            <div class="phone-icon">
                               <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/telefone.png?v=1742999578" width="40px" height="" alt="Telefone">
                             </div>
                             
                             <div class="phone-numbers-wrapper ps-3">
 
                               <div>
-                                <div class="d-flex flex-row flex-md-column flex-lg-row">
+                                <div class="d-flex flex-row flex-md-column flex-xl-row">
                                   {% if block.settings.phone_label_1 != blank %}
                                     <span>{{ block.settings.phone_label_1 }}&nbsp;</span>
                                   {% endif %}
 
                                   {% if block.settings.phone_number_1 != blank %}
-                                    {% assign formated_number_1 = block.settings.phone_number_1 | remove: " " %}
-                                    <a href="tel:{{ formated_number_1 }}"><span>{{block.settings.phone_number_1}}</span></a>
+                                    {% assign formatted_number_1 = block.settings.phone_number_1 | remove: " " %}
+                                    <a href="tel:{{ formatted_number_1 }}"><span>{{block.settings.phone_number_1}}</span></a>
                                   {% endif %}
                                 </div>
                               </div>
 
                               <div>
-                                <div class="d-flex flex-row flex-md-column flex-lg-row">
+                                <div class="d-flex flex-row flex-md-column flex-xl-row">
                                   {% if block.settings.phone_label_2 != blank %}
                                     <span>{{ block.settings.phone_label_2 }}&nbsp;</span>
                                   {% endif %}
 
                                   {% if block.settings.phone_number_2 != blank %}
-                                    {% assign formated_number_2 = block.settings.phone_number_2 | remove: " " %}
-                                    <a href="tel:{{ formated_number_2 }}"><span>{{block.settings.phone_number_2}}</span></a>
+                                    {% assign formatted_number_2 = block.settings.phone_number_2 | remove: " " %}
+                                    <a href="tel:{{ formatted_number_2 }}"><span>{{block.settings.phone_number_2}}</span></a>
                                   {% endif %}
                                 </div>
                               </div>
 
                               <div>
-                                <div class="d-flex flex-row flex-md-column flex-lg-row">
+                                <div class="d-flex flex-row flex-md-column flex-xl-row">
                                   {% if block.settings.phone_label_3 != blank %}
                                     <span>{{ block.settings.phone_label_3 }}&nbsp;</span>
                                   {% endif %}
 
                                   {% if block.settings.phone_number_3 != blank %}
-                                    {% assign formated_number_3 = block.settings.phone_number_3 | remove: " " %}
-                                    <a href="tel:{{ formated_number_3 }}"><span>{{block.settings.phone_number_3}}</span></a>
+                                    {% assign formatted_number_3 = block.settings.phone_number_3 | remove: " " %}
+                                    <a href="tel:{{ formatted_number_3 }}"><span>{{block.settings.phone_number_3}}</span></a>
                                   {% endif %}
                                 </div>
                               </div>
@@ -188,24 +174,8 @@
                       </div>
                     </div>
 
+                    <!-- END CONTACTS FOOTER -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
                       <ul class="footer-block__details-content list-unstyled">
@@ -278,12 +248,14 @@
             {%- endfor -%}
 
             <div class="footer-block grid__item">
-              
+
+              <!-- BEGIN SOCIAL ICONS -->
+
               {% if section.settings.custom-liquid-header != blank %}
                 <h2 class="footer-block__heading inline-richtext">{{ section.settings.custom-liquid-header }}</h2>
               {% endif %}
               
-              <div class="d-flex flex-wrap justify-content-start align-items-center social-media-icons-footer">
+              <div class="d-flex flex-wrap justify-content-start align-items-center gap-5">
                 
                 {% if settings.social_instagram_link != blank %}
                   <a href="{{ settings.social_instagram_link }}" target="_blank">
@@ -318,6 +290,9 @@
                 {% endif %}
                 
               </div>
+
+              <!-- END SOCIAL ICONS -->
+
             </div>
           </div>
         {%- endif -%}

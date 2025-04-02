@@ -320,9 +320,6 @@ h1 {
 }
 
 /* footer  */
-.social-media-icons-footer {
-  gap: 5rem;
-}
 .footer-contacts-wrapper {
   font-size: 1.4rem;
 }
@@ -339,11 +336,9 @@ h1 {
   padding-top: 0 !important;
 }
 
-
-/* section footer macos */
-.section-footer-macos a {
-  text-decoration: none;
-  color: unset;
+.phone-icon {
+  position: relative;
+  top: -1.3rem;
 }
 
 
