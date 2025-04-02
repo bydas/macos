@@ -1,176 +1,176 @@
 <div class="container ">
-  <header class="page__header page__header--centered">
-    <h1 class="page__title heading h1">{{ page.title }}</h1>
+  <header class="page__header page__header--centered row">
+    <h1 class="page__title heading h1 col-12">{{ page.title }}</h1>
   </header>
 
   <div class="page__content rte">
     {{ page.content }}
-           <div class="form__input-row" id="form_input_stuff">
-             <div class="form__input-wrapper">
+    <div class="form__input-row row mt-5" id="form_input_stuff">
 
-               <div class="select-wrapper select-wrapper--primary">
-                <select name="marca" id="marcadocarro" data-default="" required="" onChange="brandChanged(event)"><option value="">Marca do Veículo</option></select>
-               </div>
-             </div>
+      <div class="form__input-wrapper col-4">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="marca" id="marcadocarro" class="configurador-input" data-default="" required="" onChange="brandChanged(event)"><option value="">Marca do Veículo</option></select>
+        </div>
+      </div>
 
-             <div class="form__input-wrapper" style="display: block;">
+      <div class="form__input-wrapper col-4" style="display: block;">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="modelo" id="modelodocarro" class="configurador-input" data-default="" onChange="modelChanged(event)"><option value=""> Modelo do Veículo</option></select>
+        </div>
+      </div>
+      
+      <div class="form__input-wrapper col-4" style="display: block;">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="ano" id="anodocarro" class="configurador-input" data-default="" onChange="yearChanged(event)"><option value=""> Ano do Veículo</option></select>
+        </div>
+      </div>
 
-               <div class="select-wrapper select-wrapper--primary"><select name="modelo" id="modelodocarro" data-default="" onChange="modelChanged(event)"><option value=""> Modelo do Veículo</option></select>
-               </div>
-             </div>
-             
-            <div class="form__input-wrapper" style="display: block;">
-
-               <div class="select-wrapper select-wrapper--primary"><select name="ano" id="anodocarro" data-default="" onChange="yearChanged(event)"><option value=""> Ano do Veículo</option></select>
-               </div>
-             </div>
-
-             <div class="shipping-estimator__results rte" style="display: none;"></div>
-           </div>           
-            
-            <div hidden id="optionClassic">
-              <div class="card" id="btoptions">
-                <div class="card__header" id="op1">
-                  <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Classic</h2>
-                </div>
-                <div id="opt1" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-                  <img class="btoptioni" src="img0101">
-                  <div class="btoptiont">
-                    <table style="width: 512px;" class="tabbt">
-                       <thead>
-                        <tr valign="top">
-                          <th style="width: 325px;"><b>Lado do Condutor</b></th>
-                          <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td label="Acessórios">nome0</td>
-                          <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a></p></td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top: 10px">Inclui o adaptador UFGC0 para aplicação<br> <img src="UFGI0"></td>
-                          <td></td>
-                        </tr>
-                        </tbody>
-                      </table>
-                  </div>
-                  <div class="btoptionprice">
-                    <div class="btbox2">
-                      <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231230€</span></p>
-                      <div style="text-align: center;">
-                          <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(0)">Adicionar ao carrinho1</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-
-                <div id="opt2" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-                  <img class="btoptioni" src="img0102">
-                  <div class="btoptiont">
-                    <table style="width: 512px;" class="tabbt">
-                       <thead>
-                        <tr valign="top">
-                          <th style="width: 325px;"><b>Lado do Passageiro</b></th>
-                          <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr style="padding-top: 10px">
-                          <td label="Acessórios">nome1</td>
-                          <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1">skuskusku1</a></p></td>
-                        </tr>
-                        <tr>
-                          <td>Inclui o adaptador UFGC1 para aplicação<br> <img src="UFGI1"></td>
-                          <td></td>
-                        </tr>
-                        </tbody>
-                      </table>
-                  </div>
-                  <div class="btoptionprice">
-                    <div class="btbox2">
-                      <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231231€</span></p>
-                      <div style="text-align: center;">
-                          <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(1)">Adicionar ao carrinho2</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div class="shipping-estimator__results rte" style="display: none;"></div>
+    </div>           
+    
+    <div hidden id="optionClassic">
+      <div class="card" id="btoptions">
+        <div class="card__header" id="op1">
+          <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Classic</h2>
+        </div>
+        <div id="opt1" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+          <img class="btoptioni" src="img0101">
+          <div class="btoptiont">
+            <table style="width: 512px;" class="tabbt">
+                <thead>
+                <tr valign="top">
+                  <th style="width: 325px;"><b>Lado do Condutor</b></th>
+                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td label="Acessórios">nome0</td>
+                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a></p></td>
+                </tr>
+                <tr>
+                  <td style="padding-top: 10px">Inclui o adaptador UFGC0 para aplicação<br> <img src="UFGI0"></td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="btoptionprice">
+            <div class="btbox2">
+              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231230€</span></p>
+              <div style="text-align: center;">
+                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(0)">Adicionar ao carrinho1</button>
               </div>
-             </div>
-              
-            <div hidden id="optionFlat">
-              <div class="card" id="btoptions">
-                <div class="card__header" id="op2">
-                  <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Flat</h2>
-                </div>
-                <div id="opt3" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-                  <img class="btoptioni" src="img0101">
-                  <div class="btoptiont">
-                    <table style="width: 512px;" class="tabbt">
-                       <thead>
-                        <tr valign="top">
-                          <th style="width: 325px;"><b>Lado do Condutor</b></th>
-                          <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr style="padding-top: 10px">
-                          <td label="Acessórios">nome0</td>
-                          <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a></p></td>
-                        </tr>
-                        <tr>
-                          <td>Inclui o adaptador UFGC0 para aplicação<br> <img src="UFGI0"></td>
-                          <td></td>
-                        </tr>
-                        </tbody>
-                      </table>
-                  </div>
-                  <div class="btoptionprice">
-                    <div class="btbox2">
-                      <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231230€</span></p>
-                      <div style="text-align: center;">
-                          <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(2)">Adicionar ao carrinho1</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
+            </div>
+          </div>
+        </div>
+      
 
-                <div id="opt4" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-                  <img class="btoptioni" src="img0102">
-                  <div class="btoptiont">
-                    <table style="width: 512px;" class="tabbt">
-                       <thead>
-                        <tr valign="top">
-                          <th style="width: 325px;"><b>Lado do Passageiro</b></th>
-                          <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr style="padding-top: 10px">
-                          <td label="Acessórios">nome1</td>
-                          <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1">skuskusku1</a></p></td>
-                        </tr>
-                        <tr>
-                          <td>Inclui o adaptador UFGC1 para aplicação<br> <img src="UFGI1"></td>
-                          <td></td>
-                        </tr>
-                        </tbody>
-                      </table>
-                  </div>
-                  <div class="btoptionprice">
-                    <div class="btbox2">
-                      <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231231€</span></p>
-                      <div style="text-align: center;">
-                          <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(3)">Adicionar ao carrinho2</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div id="opt2" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+          <img class="btoptioni" src="img0102">
+          <div class="btoptiont">
+            <table style="width: 512px;" class="tabbt">
+                <thead>
+                <tr valign="top">
+                  <th style="width: 325px;"><b>Lado do Passageiro</b></th>
+                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="padding-top: 10px">
+                  <td label="Acessórios">nome1</td>
+                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1">skuskusku1</a></p></td>
+                </tr>
+                <tr>
+                  <td>Inclui o adaptador UFGC1 para aplicação<br> <img src="UFGI1"></td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="btoptionprice">
+            <div class="btbox2">
+              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231231€</span></p>
+              <div style="text-align: center;">
+                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(1)">Adicionar ao carrinho2</button>
               </div>
-             </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div hidden id="optionFlat">
+      <div class="card" id="btoptions">
+        <div class="card__header" id="op2">
+          <h2 class="card__title heading h3" style="margin-bottom: 0px;">Opção Escovas Flat</h2>
+        </div>
+        <div id="opt3" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+          <img class="btoptioni" src="img0101">
+          <div class="btoptiont">
+            <table style="width: 512px;" class="tabbt">
+                <thead>
+                <tr valign="top">
+                  <th style="width: 325px;"><b>Lado do Condutor</b></th>
+                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="padding-top: 10px">
+                  <td label="Acessórios">nome0</td>
+                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a></p></td>
+                </tr>
+                <tr>
+                  <td>Inclui o adaptador UFGC0 para aplicação<br> <img src="UFGI0"></td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="btoptionprice">
+            <div class="btbox2">
+              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231230€</span></p>
+              <div style="text-align: center;">
+                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(2)">Adicionar ao carrinho1</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+        <div id="opt4" class="card__section btoption justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+          <img class="btoptioni" src="img0102">
+          <div class="btoptiont">
+            <table style="width: 512px;" class="tabbt">
+                <thead>
+                <tr valign="top">
+                  <th style="width: 325px;"><b>Lado do Passageiro</b></th>
+                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="padding-top: 10px">
+                  <td label="Acessórios">nome1</td>
+                  <td label="Referência"><p style="text-align:center"><a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1">skuskusku1</a></p></td>
+                </tr>
+                <tr>
+                  <td>Inclui o adaptador UFGC1 para aplicação<br> <img src="UFGI1"></td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="btoptionprice">
+            <div class="btbox2">
+              <p style="margin-top:20px;"><span class="text--strong">Preço:</span><span class="btprice text--strong" style="color:#ff0000; float:right; font-size:20px;"> price1231231€</span></p>
+              <div style="text-align: center;">
+                  <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(3)">Adicionar ao carrinho2</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div> 
    </div>
 </div>
 

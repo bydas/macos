@@ -341,6 +341,46 @@ h1 {
   top: -1.3rem;
 }
 
+/* --- configuradores --- */
+
+/* input select */
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url('https://cdn.shopify.com/s/files/1/0914/4015/2907/files/icon-dropdown-16px.svg?v=1743600211');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.configurador-input {
+  width: 100%;
+  padding: .8rem 2.5rem .8rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.150);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.configurador-input:focus {
+  border: none;
+  outline: none;
+}
+
+/* configuradores - cards/results */
+.card {
+  
+}
+
+
+
+
 
 
 /* ######### MEDIA QUERIES ######### */
