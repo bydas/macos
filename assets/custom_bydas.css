@@ -379,17 +379,18 @@ h1 {
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 .card-configurador .card_title {
-  padding: 3rem 3rem 0;
-  font-weight: bold;
+  padding: 3rem 3rem;
+  font-family: 'Univers', sans-serif;
+  font-weight: 700;
   font-size: 2.5rem;
+}
+.card-configurador tbody {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
 }
 .card-configurador .card_section {
   padding: 2rem 2rem 3rem;
   font-size: 1.5rem;
-}
-.card-configurador .configurador-card-img {
-  width: 200px;
-  max-height: 200px;
 }
 .card-configurador table {
   width: 100%;
@@ -398,95 +399,54 @@ h1 {
 .card-configurador td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.150);
 }
+.card-configurador .configurador-pdf {
+  color: rgb(255, 120, 0);
+}
 .btoptionprice {
   display: block;
   float: left;
   width: 350px;
   padding: 18px 10px 10px 10px;
   margin: 0;
-  margin-left:20px;
+  margin-left: 2rem;
   max-height: 200px;
-  line-height: 20px;
-  font-size: 14px;
+  line-height: 2rem;
+  font-size: 1.4rem;
   max-width: 222.51px;
   align-self: start;
+}
+.btprice {
+  color: rgb(230, 107, 0); 
+  float: right; 
+  font-size: 2rem;
+}
+.button-configurador {
+  background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.button-configurador:hover, .card-configurador .configurador-pdf:hover {
+  text-decoration: underline;
+}
+.button-configurador::after {
+  content: none;
 }
 img.btoptioni {
   float: left;
   width: 200px;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   margin: 0;
+  border: none;
+  outline: none;
 }
-.rte table th,
-.rte table td {
-  padding: 3px 6px;
-}
-/*
 .rte table th,
 .rte table td {
   padding: 3px 6px;
 }
 
-.rte tbody tr {
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-.table,
-.rte table {
-  width: 100%;
-  text-align: left;
-  font-size: calc(var(--base-text-font-size) - (var(--default-text-font-size) - 14px));
-}
-.btoption {
-	display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-img.btoptioni {
-  float: left;
-  width: 200px;
-  padding: 10px 10px 10px 10px;
-  margin: 0;
-}
-table.btoptiont {
-	float: left;
-  width: 420px;
-  padding: 10px 10px 10px 10px;
-  margin: 0;
-  font-size: 13px;
-  max-height: 200px;
-}
-.btoptionprice {
-  display: block;
-  float: left;
-  width: 350px;
-  padding: 18px 10px 10px 10px;
-  margin: 0;
-  margin-left:20px;
-  max-height: 200px;
-  line-height: 20px;
-  font-size: 14px;
-  max-width: 222.51px;
-  align-self: start;
-}
-.bt_discount {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #ff0000;
-  margin-top: 10px;
-  padding-left: 2px;
-  padding-right: 2px;
-  text-align: center;  
-}
-@media screen and (min-width: 641px) and (max-width: 999px) {
-  .btoption {
-      display: flex
-;
-      flex-direction: column;
-      align-items: center;
-  }
-}
-*/
+
+
 /* ######### MEDIA QUERIES ######### */
 
 @media all and (max-width: 1401px) {
@@ -522,6 +482,12 @@ table.btoptiont {
   .advantage-link {
     width: 20rem;
     height: 20rem;
+  }
+
+  .btoptionprice {
+    margin-left: 0;
+    max-width: 100%;
+    align-self: center;
   }
   
 }
@@ -582,6 +548,10 @@ table.btoptiont {
   .card-title-custom {
     font-size: 1.3rem;
   }
+
+  .card-configurador table {
+    width: auto;
+  }
   
 }
 
@@ -607,6 +577,10 @@ table.btoptiont {
 
   .collection-hero__title {
     font-size: 2.3rem;
+  }
+
+  .brand-image {
+    height: 10rem;
   }
   
 }
