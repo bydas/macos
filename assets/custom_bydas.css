@@ -368,13 +368,14 @@ h1 {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  transition-duration: 75ms;
 }
 .configurador-input:focus {
   border: none;
   outline: none;
 }
 
-/* configuradores - cards/results */
+/* cards/results */
 .card-configurador {
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
@@ -384,16 +385,16 @@ h1 {
   font-weight: 700;
   font-size: 2.5rem;
 }
-.card-configurador tbody {
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-}
 .card-configurador .card_section {
   padding: 2rem 2rem 3rem;
   font-size: 1.5rem;
 }
 .card-configurador table {
   width: 100%;
+}
+.card-configurador tbody {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
 }
 .card-configurador th, 
 .card-configurador td {
@@ -404,15 +405,11 @@ h1 {
 }
 .btoptionprice {
   display: block;
-  float: left;
-  width: 350px;
   padding: 18px 10px 10px 10px;
   margin: 0;
-  margin-left: 2rem;
   max-height: 200px;
   line-height: 2rem;
   font-size: 1.4rem;
-  max-width: 222.51px;
   align-self: start;
 }
 .btprice {
@@ -426,7 +423,8 @@ h1 {
   outline: none;
   width: 100%;
 }
-.button-configurador:hover, .card-configurador .configurador-pdf:hover {
+.button-configurador:hover, 
+.card-configurador .configurador-pdf:hover {
   text-decoration: underline;
 }
 .button-configurador::after {
@@ -484,22 +482,41 @@ img.btoptioni {
     height: 20rem;
   }
 
+  .card-configurador .card_title {
+    padding: 3rem 3rem 0;
+    text-align: center;
+  }
+  img.btoptioni {
+    min-width: 40%;
+    max-width: 65%;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  .rte table th,
+  .rte table td {
+    padding: 3px 6px;
+  }
   .btoptionprice {
     margin-left: 0;
     max-width: 100%;
+    width: 90%;
     align-self: center;
+  }
+  .card-configurador table {
+    width: 90%;
+    justify-self: center;
   }
   
 }
 
 @media all and (max-width: 768px) {
 
-  .section-top-menu a{
+  .section-top-menu a {
     padding: 0 3px !important;
     font-size: 9px !important;
   }
   
-  .section-top-menu div{
+  .section-top-menu div {
     padding:0 !important
   }
   
@@ -549,10 +566,16 @@ img.btoptioni {
     font-size: 1.3rem;
   }
 
+  .btoptionprice,
   .card-configurador table {
-    width: auto;
+    width: 100%;
+    align-self: center;
   }
-  
+  img.btoptioni {
+    min-width: 60%;
+    margin-bottom: 1.5rem;
+  }
+
 }
 
 @media all and (max-width: 577px) {
@@ -577,6 +600,10 @@ img.btoptioni {
 
   .collection-hero__title {
     font-size: 2.3rem;
+  }
+
+  .card-configurador table {
+    width: auto;
   }
   
 }
