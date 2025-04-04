@@ -1,36 +1,168 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2>Nossas Moradas</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="col-12 col-lg-4">
-                <h3>MACOS SEDE</h3>
-                <div>geral@macos.pt</div>
-                <div>228 347 140<br>chamada p/ a rede fixa nacional</div>
-                <div>Rua de Silva Porto, Nº50, Porto</div>
-                <div>Segunda a Quinta: 8:30 às 12:30 e das 13:30 às 18:00 horas</div>
-                <div>Sexta-feira: 8:30 às 12:30 e das 13:30 às 17:00 horas</div>
-            </div>
-            <div class="col-12 col-lg-8">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4247.494339158996!2d-8.616690119725629!3d41.168742817775794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465ad4d4568ad%3A0xcdf19c43118910!2sMacos%20-%20Extras%20e%20Acess%C3%B3rios%20P%2F%20Autom%C3%B3veis%20Lda!5e0!3m2!1spt-PT!2spt!4v1743697309730!5m2!1spt-PT!2spt" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+{% style %}
+    #section-map-{{section.id}} {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+{% endstyle %}
+
+<div class="container page-contact px-3 px-md-0" id="section-map-{{ section.id }}">
+
+    {% if section.settings.section_heading != blank %}
+
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2>{{section.settings.section_heading}}</h2>
             </div>
         </div>
-        <div class="col-12"></div>
+
+    {% endif %}
+    
+    <div class="row justify-content-center align-items-center">
+
+        <div class="col-12 col-lg-4 pe-5">
+
+            {% if section.settings.contacts_heading != blank %}
+                <h3 class="mb-4">{{section.settings.contacts_heading}}</h3>
+            {% endif %}
+
+            {% if section.settings.email != blank %}
+                <div class="d-flex align-items-center mb-3">
+                    <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/contacts.png?v=1742999578" height="" width="40" alt="Contacts"></div>
+                    <div class="ms-3">
+                        <a href="mailto:{{- section.settings.email -}}" target="_blank">{{section.settings.email}}</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if section.settings.phone_number != blank %}
+                <div class="d-flex align-items-center mb-3">
+                    <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/telefone.png?v=1742999578" height="" width="40" alt="Phone"></div>
+                    <div class="ms-3 lh-1">
+                        <div>
+                            {% assign phone_number_formatted = section.settings.phone_number | remove: " " %}
+                            <a href="tel:{{- phone_number_formatted -}}" target="_blank">{{ section.settings.phone_number }}</a>
+                        </div>
+                        <small class="fs-6">(chamada p/ a rede fixa nacional)</small>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if section.settings.address != blank %}
+                <div class="d-flex align-items-center mb-3">
+                    <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" height="" width="40" alt="Location"></div>
+                    <div class="ms-3">
+                        {% assign address_formatted = section.settings.address | replace: " ", "+" | strip_html | strip_newlines %}
+                        <a href="https://www.google.com/maps/search/{{ address_formatted }}" target="_blank">{{ section.settings.address }}</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if section.settings.schedule_1 != blank %}
+                <div class="d-flex align-items-center mb-3">
+                    <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/horario.svg?v=1743756328" height="" width="40" alt="Schedule" class="opacity-75"></div>
+                    <div class="ms-3">{{ section.settings.schedule_1 }}</div>
+                </div>
+            {% endif %}
+
+            {% if section.settings.schedule_2 != blank %}
+                <div class="d-flex align-items-center mb-3">
+                    <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/horario.svg?v=1743756328" height="" width="40" alt="Schedule" class="opacity-75"></div>
+                    <div class="ms-3">{{ section.settings.schedule_2 }}</div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-12 col-lg-8">
+
+            {% if section.settings.map_iframe != blank %}
+                {{ section.settings.map_iframe }}
+            {% endif %}
+
+        </div>
     </div>
+    
 </div>
 
 
 {% schema %}
 {
-    "name": "Maps",
-    "settings": [],
+    "name": "Map",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Section"
+        },
+        {
+            "type": "inline_richtext",
+            "id": "section_heading",
+            "label": "Section heading"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "padding_top",
+            "min": 0,
+            "max": 80,
+            "step": 4,
+            "default": 20
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "padding_bottom",
+            "min": 0,
+            "max": 80,
+            "step": 4,
+            "default": 20
+        },
+        {
+            "type": "header",
+            "content": "Contact information"
+        },
+        {
+            "type": "inline_richtext",
+            "id": "contacts_heading",
+            "label": "'Contacts' heading"
+        },
+        {
+            "type": "text",
+            "id": "email",
+            "label": "Email"
+        },
+        {
+            "type": "text",
+            "id": "phone_number",
+            "label": "Phone Number"
+        },
+        {
+            "type": "inline_richtext",
+            "id": "address",
+            "label": "Address"
+        },
+        {
+            "type": "richtext",
+            "id": "schedule_1",
+            "label": "Schedule 1"
+        },
+        {
+            "type": "richtext",
+            "id": "schedule_2",
+            "label": "Schedule 2"
+        },
+        {
+            "type": "header",
+            "content": "Map"
+        },
+        {
+            "type": "liquid",
+            "id": "map_iframe",
+            "label": "Map iframe"
+        }
+    ],
     "blocks": [],
     "presets": [
         {
-            "name": "Maps"
+            "name": "Map"
         }
     ]
 }

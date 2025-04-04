@@ -323,7 +323,8 @@ h1 {
 .footer-contacts-wrapper {
   font-size: 1.4rem;
 }
-.footer-contacts-wrapper a {
+.footer-contacts-wrapper a,
+.page-contact a {
   color: inherit;
 }
 .footer-contacts-wrapper a:hover {
