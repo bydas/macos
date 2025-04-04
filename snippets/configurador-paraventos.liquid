@@ -63,7 +63,7 @@
           </div>
           <div class="btoptionprice col-12 col-lg-2">
             <div class="btbox2">
-              <p style="margin-top:20px;">
+              <p>
                 <span class="fw-bold">Preço:</span>
                 <span class="btprice fw-bold">price1231230€</span>
               </p>
@@ -175,16 +175,17 @@
   async function yearChanged(event) {
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
-    console.log('Final search:', car);
     
-    // Get the SKU from the car data (position 8 in the array)
-    const sku = car[8];
+    // Get the SKU from the car data (position 3 in the array)
+    const sku = car[3];
+    console.log('Looking up product with SKU:', sku);
     
     // GraphQL query to get product data
     const query = `{
-      products(query: "sku:${sku}", first: 1) {
+      products(first: 1, query: "sku:${sku}") {
         edges {
           node {
+            id
             title
             featuredImage {
               url
@@ -197,8 +198,9 @@
             variants(first: 1) {
               edges {
                 node {
-                  sku
                   id
+                  sku
+                  availableForSale
                 }
               }
             }
@@ -208,7 +210,7 @@
     }`;
 
     try {
-      const response = await fetch(ENDPOINT+'/api/2024-01/graphql.json', {
+      const response = await fetch('/api/2024-01/graphql.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -218,22 +220,28 @@
       });
 
       const result = await response.json();
-      const product = result.data.products.edges[0]?.node;
+      console.log('GraphQL Response:', result);
 
-      if (product) {
-        let paraventosPage = initialParaventos;
+      if (result.data.products.edges.length > 0) {
+        const product = result.data.products.edges[0].node;
         const variant = product.variants.edges[0].node;
         
+        let paraventosPage = initialParaventos;
         paraventosPage = paraventosPage
           .replace('img0101', product.featuredImage?.url || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
           .replace('nome0', product.title)
           .replace(/skuskusku0/g, variant.sku)
-          .replace('price1231230', (Number(product.priceRange.minVariantPrice.amount)).toFixed(2));
+          .replace('price1231230', (Number(product.priceRange.minVariantPrice.amount)).toFixed(2))
+          .replace('hidden=""', '');
+        
+        if (!variant.availableForSale) {
+          paraventosPage = paraventosPage.replace('BUY', 'esgotado');
+        }
         
         opts = [variant.id];
         document.getElementById('optionParaventos').outerHTML = paraventosPage;
       } else {
-        // Hide the product section if no product found
+        console.log('No product found for SKU:', sku);
         document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
       }
     } catch (error) {
@@ -248,7 +256,9 @@
       request.open('GET', '/products/' + sku + '.js', false);
       request.send(null);
       if (request.status === 200) {
-        resolve(JSON.parse(request.responseText));
+        const ans = JSON.parse(request.responseText);
+        ans.vari = ans.variants[0];
+        resolve(ans);
       } else {
         reject(request.status);
       }
@@ -279,7 +289,9 @@
 
   function handleData() {
     try {
-      const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+      const lines = this.responseText.split('\n');
+      // Skip empty lines and parse CSV
+      const r = lines.filter(line => line.trim()).map(line => line.split(',').map(value => value.trim()));
       
       const ccars = {};
       const uniqueBrands = new Set();
@@ -289,13 +301,19 @@
         const carr = r[i];
         if (carr.length < 4) continue; // Ensure we have enough columns
         
-        // Get the brand from the correct column (assuming it's column 1)
-        const brand = carr[1]; // Change this index to match your brand column
-        const model = carr[2]; // Change this index to match your model column
-        const year = carr[3];  // Change this index to match your year column
+        // Get data from the correct columns based on new CSV structure
+        // Image[0], Brand[1], Name[2], SKU[3], Price[4]
+        const brand = carr[1];
+        const fullTitle = carr[2];
+        const sku = carr[3];
         
         if (brand && brand !== '') {
           uniqueBrands.add(brand);
+          
+          // Split the full title by | to get model and year
+          const titleParts = fullTitle.split('|').map(part => part.trim());
+          const model = titleParts[0]; // First part is the model
+          const year = titleParts[1];  // Second part is the year range
           
           // Build the nested structure
           if (ccars[brand] === undefined) {
