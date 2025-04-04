@@ -99,7 +99,11 @@
 
   var opts;
 
+  // Initialize immediately and also on DOMContentLoaded
   doMagic();
+  document.addEventListener('DOMContentLoaded', function() {
+    doMagic();
+  });
 
   function brandChanged(event) {
     const model = document.getElementById('modelodocarro');
@@ -116,11 +120,20 @@
       const sel = cars[event.target.value];
       selectedBrand = event.target.value;
       const url = new URLSearchParams(document.location.search);
-
-      Object.keys(sel).forEach((car, index) => {
+      
+      // Get unique models for the selected brand
+      const uniqueModels = new Set(Object.keys(sel));
+      
+      // Populate model dropdown with unique models
+      Array.from(uniqueModels).sort().forEach((car, index) => {
         const opt = document.createElement('option');
-        opt.value = car;
-        opt.textContent = car;
+        opt.value = car; // Keep the original value for data purposes
+        
+        // Clean up the display text by removing quotes, parentheses and additional text
+        const displayText = car.replace(/^"|"$/g, '') // Remove starting and ending quotes
+                             .replace(/\s*\([^)]*\)\s*[A-Z]+$/, ''); // Remove parentheses and type
+        opt.textContent = displayText;
+        
         if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
           opt.selected = true;
         }
@@ -162,34 +175,71 @@
   async function yearChanged(event) {
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
-    const requests = { whatIs: [], p: [], image: [] };
-
-    if (car[3]) {
-      requests.whatIs.push(['paraventos', 'primary']);
-      requests.p.push(getProduct(car[3]));
-      requests.image.push(car[4]);
-    }
-
-    const ans = await Promise.all(requests.p);
-    let paraventosPage = initialParaventos;
-
-    if (ans[0] !== undefined) {
-      const vari = ans[0].variants;
-      paraventosPage = paraventosPage
-        .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
-        .replace('nome0', ans[0].title)
-        .replace(/skuskusku0/g, vari[0].sku)
-        .replace('price1231230', (Number(ans[0].price) / 100).toFixed(2));
-      
-      if (!ans[0].available) {
-        paraventosPage = paraventosPage.replace('BUY', 'esgotado');
+    console.log('Final search:', car);
+    
+    // Get the SKU from the car data (position 8 in the array)
+    const sku = car[8];
+    
+    // GraphQL query to get product data
+    const query = `{
+      products(query: "sku:${sku}", first: 1) {
+        edges {
+          node {
+            title
+            featuredImage {
+              url
+            }
+            priceRange {
+              minVariantPrice {
+                amount
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  sku
+                  id
+                }
+              }
+            }
+          }
+        }
       }
-      opts = [vari[0].id];
-    } else {
-      paraventosPage = paraventosPage.replace('id="opt1"', 'hidden');
-    }
+    }`;
 
-    document.getElementById('optionParaventos').outerHTML = paraventosPage;
+    try {
+      const response = await fetch(ENDPOINT+'/api/2024-01/graphql.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': ACCESS_TOKEN
+        },
+        body: JSON.stringify({ query })
+      });
+
+      const result = await response.json();
+      const product = result.data.products.edges[0]?.node;
+
+      if (product) {
+        let paraventosPage = initialParaventos;
+        const variant = product.variants.edges[0].node;
+        
+        paraventosPage = paraventosPage
+          .replace('img0101', product.featuredImage?.url || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+          .replace('nome0', product.title)
+          .replace(/skuskusku0/g, variant.sku)
+          .replace('price1231230', (Number(product.priceRange.minVariantPrice.amount)).toFixed(2));
+        
+        opts = [variant.id];
+        document.getElementById('optionParaventos').outerHTML = paraventosPage;
+      } else {
+        // Hide the product section if no product found
+        document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
+      }
+    } catch (error) {
+      console.error('Error fetching product:', error);
+      document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
+    }
   }
 
   function getProduct(sku) {
@@ -227,58 +277,99 @@
     }
   }
 
+  function handleData() {
+    try {
+      const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+      
+      const ccars = {};
+      const uniqueBrands = new Set();
+      
+      // First pass: collect unique brands and build the data structure
+      for (let i = 1; i < r.length; i++) {
+        const carr = r[i];
+        if (carr.length < 4) continue; // Ensure we have enough columns
+        
+        // Get the brand from the correct column (assuming it's column 1)
+        const brand = carr[1]; // Change this index to match your brand column
+        const model = carr[2]; // Change this index to match your model column
+        const year = carr[3];  // Change this index to match your year column
+        
+        if (brand && brand !== '') {
+          uniqueBrands.add(brand);
+          
+          // Build the nested structure
+          if (ccars[brand] === undefined) {
+            ccars[brand] = {};
+          }
+          if (ccars[brand][model] === undefined) {
+            ccars[brand][model] = {};
+          }
+          if (ccars[brand][model][year] === undefined) {
+            ccars[brand][model][year] = carr;
+          }
+        }
+      }
+      
+      cars = ccars;
+      
+      const select_elem = document.getElementById('marcadocarro');
+      if (!select_elem) {
+        return;
+      }
+      
+      const url = new URLSearchParams(document.location.search);
+      brandToId = {};
+      idToBrand = {};
+
+      // Clear existing options except the first one
+      while (select_elem.options.length > 1) {
+        select_elem.remove(1);
+      }
+
+      // Populate brand dropdown with unique brands
+      const brandsArray = Array.from(uniqueBrands).sort();
+      
+      brandsArray.forEach((brand, index) => {
+        const option_elem = document.createElement('option');
+        option_elem.value = brand;
+        option_elem.textContent = brand;
+        if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
+          option_elem.selected = true;
+        }
+        brandToId[brand] = index;
+        idToBrand[index] = brand;
+        select_elem.appendChild(option_elem);
+      });
+      
+      initialParaventos = document.getElementById('optionParaventos').outerHTML;
+
+      if (url.get('brand')) {
+        brandChanged({ target: { value: idToBrand[url.get('brand')] } });
+        modelChanged({ target: { value: idToModel[url.get('model')] } });
+        yearChanged({ target: { value: idToYear[url.get('year')] } });
+      }
+      loading = false;
+    } catch (error) {
+      console.error('Error in handleData:', error);
+    }
+  }
+
   function doMagic() {
-    httpGet("{{ 'config_chuventos.csv' | asset_url }}", handleData);
+    const csvUrl = "{{ 'config_chuventos.csv' | asset_url }}";
+    httpGet(csvUrl, handleData);
   }
 
   async function httpGet(URL, handler) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', handler);
-    xmlHttp.open('GET', URL);
-    xmlHttp.send(null);
-  }
-
-  function handleData() {
-    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
-    const ccars = {};
-    for (let i = 1; i < r.length; i++) {
-      const carr = r[i];
-      if (carr[0] === '') continue;
-      if (ccars[carr[0]] === undefined) {
-        ccars[carr[0]] = {};
-      }
-      if (ccars[carr[0]][carr[1]] === undefined) {
-        ccars[carr[0]][carr[1]] = {};
-      }
-      if (ccars[carr[0]][carr[1]][carr[2]] === undefined) {
-        ccars[carr[0]][carr[1]][carr[2]] = carr;
-      }
+    try {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.addEventListener('load', handler);
+      xmlHttp.addEventListener('error', function(e) {
+        console.error('Error fetching CSV:', e);
+      });
+      xmlHttp.open('GET', URL);
+      xmlHttp.send(null);
+    } catch (error) {
+      console.error('Error in httpGet:', error);
     }
-    cars = ccars;
-    const select_elem = document.getElementById('marcadocarro');
-    const url = new URLSearchParams(document.location.search);
-    brandToId = {};
-    idToBrand = {};
-
-    Object.keys(cars).forEach((element, index) => {
-      const option_elem = document.createElement('option');
-      option_elem.value = element;
-      option_elem.textContent = element;
-      if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
-        option_elem.selected = true;
-      }
-      brandToId[element] = index;
-      idToBrand[index] = element;
-      select_elem.appendChild(option_elem);
-    });
-
-    initialParaventos = document.getElementById('optionParaventos').outerHTML;
-
-    if (url.get('brand')) {
-      brandChanged({ target: { value: idToBrand[url.get('brand')] } });
-      modelChanged({ target: { value: idToModel[url.get('model')] } });
-      yearChanged({ target: { value: idToYear[url.get('year')] } });
-    }
-    loading = false;
   }
 </script>
