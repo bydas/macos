@@ -363,23 +363,85 @@ h1 {
 .configurador-input {
   width: 100%;
   padding: .8rem 2.5rem .8rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.150);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  color: rgba(0, 0, 0, 0.8);
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  transition-duration: 75ms;
 }
 .configurador-input:focus {
   border: none;
   outline: none;
 }
 
-/* configuradores - cards/results */
-.card {
-  
+/* cards/results */
+.card-configurador {
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
-
-
-
+.card-configurador .card_title {
+  padding: 3rem 3rem;
+  font-family: 'Univers', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+.card-configurador .card_section {
+  padding: 2rem 2rem 3rem;
+  font-size: 1.5rem;
+}
+.card-configurador table {
+  width: 100%;
+}
+.card-configurador tbody {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+}
+.card-configurador th, 
+.card-configurador td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.150);
+}
+.card-configurador .configurador-pdf {
+  color: rgb(255, 120, 0);
+}
+.btoptionprice {
+  display: block;
+  padding: 18px 10px 10px 10px;
+  margin: 0;
+  max-height: 200px;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  align-self: start;
+}
+.btprice {
+  color: rgb(230, 107, 0); 
+  float: right; 
+  font-size: 2rem;
+}
+.button-configurador {
+  background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.button-configurador:hover, 
+.card-configurador .configurador-pdf:hover {
+  text-decoration: underline;
+}
+.button-configurador::after {
+  content: none;
+}
+img.btoptioni {
+  float: left;
+  width: 200px;
+  padding: 10px;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+.rte table th,
+.rte table td {
+  padding: 3px 6px;
+}
 
 
 
@@ -419,17 +481,42 @@ h1 {
     width: 20rem;
     height: 20rem;
   }
+
+  .card-configurador .card_title {
+    padding: 3rem 3rem 0;
+    text-align: center;
+  }
+  img.btoptioni {
+    min-width: 40%;
+    max-width: 65%;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  .rte table th,
+  .rte table td {
+    padding: 3px 6px;
+  }
+  .btoptionprice {
+    margin-left: 0;
+    max-width: 100%;
+    width: 90%;
+    align-self: center;
+  }
+  .card-configurador table {
+    width: 90%;
+    justify-self: center;
+  }
   
 }
 
 @media all and (max-width: 768px) {
 
-  .section-top-menu a{
+  .section-top-menu a {
     padding: 0 3px !important;
     font-size: 9px !important;
   }
   
-  .section-top-menu div{
+  .section-top-menu div {
     padding:0 !important
   }
   
@@ -478,7 +565,17 @@ h1 {
   .card-title-custom {
     font-size: 1.3rem;
   }
-  
+
+  .btoptionprice,
+  .card-configurador table {
+    width: 100%;
+    align-self: center;
+  }
+  img.btoptioni {
+    min-width: 60%;
+    margin-bottom: 1.5rem;
+  }
+
 }
 
 @media all and (max-width: 577px) {
@@ -503,6 +600,10 @@ h1 {
 
   .collection-hero__title {
     font-size: 2.3rem;
+  }
+
+  .card-configurador table {
+    width: auto;
   }
   
 }
