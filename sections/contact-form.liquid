@@ -51,7 +51,7 @@
           </li>
         </ul>
       {%- endif -%}
-      <div class="contact__fields">
+      <div class="contact__fields contact-fields-custom">
         <div class="field">
           <input
             class="field__input"
@@ -99,7 +99,7 @@
           {%- endif -%}
         </div>
       </div>
-      <div class="field">
+      <div class="field contact-fields-custom">
         <input
           type="tel"
           id="ContactForm-phone"
@@ -112,7 +112,7 @@
         >
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
       </div>
-      <div class="field">
+      <div class="field contact-fields-custom">
         <textarea
           rows="10"
           id="ContactForm-body"
@@ -126,7 +126,7 @@
           {{- 'templates.contact.form.comment' | t -}}
         </label>
       </div>
-      <div class="contact__button">
+      <div class="contact__button" id="contact-submit-button">
         <button type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
         </button>
