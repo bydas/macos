@@ -126,5 +126,3 @@ $carousel.on('mouseleave', function() {
 
 
 
-
-
