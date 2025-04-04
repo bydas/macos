@@ -176,34 +176,70 @@
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     console.log('Final search:', car);
-    const requests = { whatIs: [], p: [], image: [] };
-
-    if (car[3]) {
-      requests.whatIs.push(['paraventos', 'primary']);
-      requests.p.push(getProduct(car[3]));
-      requests.image.push(car[4]);
-    }
-
-    const ans = await Promise.all(requests.p);
-    let paraventosPage = initialParaventos;
-
-    if (ans[0] !== undefined) {
-      const vari = ans[0].variants;
-      paraventosPage = paraventosPage
-        .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
-        .replace('nome0', ans[0].title)
-        .replace(/skuskusku0/g, vari[0].sku)
-        .replace('price1231230', (Number(ans[0].price) / 100).toFixed(2));
-      
-      if (!ans[0].available) {
-        paraventosPage = paraventosPage.replace('BUY', 'esgotado');
+    
+    // Get the SKU from the car data (position 8 in the array)
+    const sku = car[8];
+    
+    // GraphQL query to get product data
+    const query = `{
+      products(query: "sku:${sku}", first: 1) {
+        edges {
+          node {
+            title
+            featuredImage {
+              url
+            }
+            priceRange {
+              minVariantPrice {
+                amount
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  sku
+                  id
+                }
+              }
+            }
+          }
+        }
       }
-      opts = [vari[0].id];
-    } else {
-      paraventosPage = paraventosPage.replace('id="opt1"', 'hidden');
-    }
+    }`;
 
-    document.getElementById('optionParaventos').outerHTML = paraventosPage;
+    try {
+      const response = await fetch(ENDPOINT+'/api/2024-01/graphql.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': ACCESS_TOKEN
+        },
+        body: JSON.stringify({ query })
+      });
+
+      const result = await response.json();
+      const product = result.data.products.edges[0]?.node;
+
+      if (product) {
+        let paraventosPage = initialParaventos;
+        const variant = product.variants.edges[0].node;
+        
+        paraventosPage = paraventosPage
+          .replace('img0101', product.featuredImage?.url || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+          .replace('nome0', product.title)
+          .replace(/skuskusku0/g, variant.sku)
+          .replace('price1231230', (Number(product.priceRange.minVariantPrice.amount)).toFixed(2));
+        
+        opts = [variant.id];
+        document.getElementById('optionParaventos').outerHTML = paraventosPage;
+      } else {
+        // Hide the product section if no product found
+        document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
+      }
+    } catch (error) {
+      console.error('Error fetching product:', error);
+      document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
+    }
   }
 
   function getProduct(sku) {
