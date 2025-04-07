@@ -4,12 +4,6 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
-    .map-row {
-        background-color: rgb(240, 240, 240);
-        border-radius: 2.5rem;
-        padding-left: 25px;
-    }
-
 {% endstyle %}
 
 <div class="color-{{ section.settings.color_scheme }} w-100">
@@ -27,7 +21,7 @@
         
         <div class="row justify-content-center align-items-center map-row overflow-hidden">
 
-            <div class="col-12 col-lg-4 pe-5">
+            <div class="col-12 col-lg-4 px-sm-4 px-3 pt-4">
 
                 {% if section.settings.contacts_heading != blank %}
                     <h3 class="mb-4">{{section.settings.contacts_heading}}</h3>
@@ -80,7 +74,7 @@
                 {% endif %}
             </div>
 
-            <div class="col-12 col-lg-8 d-flex pe-0">
+            <div class="col-12 col-lg-8 d-flex p-0">
 
                 {% if section.settings.map_iframe != blank %}
                     {{ section.settings.map_iframe }}

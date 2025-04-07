@@ -341,7 +341,7 @@ h1 {
   top: -1.3rem;
 }
 
-/* page contacts */
+/* page contacts / map section */
 .contact-fields-custom .field::after, 
 .contact-fields-custom .field::before,
 .contact-fields-custom.field::after, 
@@ -364,6 +364,11 @@ h1 {
 .page-contact-info {
   line-height: 2.5rem;
   font-size: 1.55rem;
+}
+
+.map-row {
+  background-color: rgb(240, 240, 240);
+  border-radius: 2.5rem;
 }
 
 /* --- configuradores --- */
