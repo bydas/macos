@@ -238,7 +238,9 @@
           paraventosPage = paraventosPage.replace('BUY', 'esgotado');
         }
         
-        opts = [variant.id];
+        // Extract the numeric ID from the GID
+        const variantId = variant.id.split('/').pop();
+        opts = [variantId];
         document.getElementById('optionParaventos').outerHTML = paraventosPage;
       } else {
         console.log('No product found for SKU:', sku);
