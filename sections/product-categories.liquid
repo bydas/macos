@@ -51,8 +51,44 @@
               </div>
             </a>
             
-            <div class="category-title text-center mt-2">
+            <div class="category-title text-center mt-2 position-relative">
               <a href="{{ category.url }}">{{ category.title }}</a>
+
+              <div class="position-absolute">
+
+                {% liquid 
+                  assign child_collections = ""
+
+                  for collection in collections
+
+                    if collection.metafields.custom.parent.value.handle == category.metafields.custom.parent.value.handle
+
+                      assign child_collections = child_collections | append: ","
+                      
+                    endif
+
+                  endfor
+
+                  assign subcategories = child_collections | split: "," | uniq
+                %}
+
+                {% if subcategories.size > 0 %}
+                  
+                  <ul>
+
+                    {% for subcategorie in subcategories %}
+                      
+                      <li>{{subcategorie.title }}</li>
+
+                    {% endfor %}
+  
+                  </ul>
+
+                {% endif %}
+
+                
+              </div>
+
             </div>
           
           </div>
