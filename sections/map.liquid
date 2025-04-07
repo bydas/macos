@@ -24,12 +24,12 @@
             <div class="col-12 col-lg-4 px-sm-4 px-3 pt-4">
 
                 {% if section.settings.contacts_heading != blank %}
-                    <h3 class="mb-4">{{section.settings.contacts_heading}}</h3>
+                    <h3 class="mb-4 ms-2">{{section.settings.contacts_heading}}</h3>
                 {% endif %}
 
                 {% if section.settings.email != blank %}
                     <div class="d-flex align-items-center mb-3">
-                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/contacts.png?v=1742999578" height="" width="40" alt="Contacts"></div>
+                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/contacts.png?v=1742999578" height="" width="" class="section-map-icon" alt="Contacts"></div>
                         <div class="ms-3 page-contact-info">
                             <a href="mailto:{{- section.settings.email -}}" target="_blank">{{section.settings.email}}</a>
                         </div>
@@ -38,7 +38,7 @@
 
                 {% if section.settings.phone_number != blank %}
                     <div class="d-flex align-items-center mb-3">
-                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/telefone.png?v=1742999578" height="" width="40" alt="Phone"></div>
+                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/telefone.png?v=1742999578" height="" width="" class="section-map-icon" alt="Phone"></div>
                         <div class="ms-3 lh-1 page-contact-info">
                             <div>
                                 {% assign phone_number_formatted = section.settings.phone_number | remove: " " %}
@@ -51,7 +51,7 @@
 
                 {% if section.settings.address != blank %}
                     <div class="d-flex align-items-center mb-3">
-                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" height="" width="40" alt="Location"></div>
+                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" height="" width="" class="section-map-icon" alt="Location"></div>
                         <div class="ms-3 page-contact-info">
                             {% assign address_formatted = section.settings.address | replace: " ", "+" | strip_html | strip_newlines %}
                             <a href="https://www.google.com/maps/search/{{ address_formatted }}" target="_blank">{{ section.settings.address }}</a>
@@ -61,14 +61,14 @@
 
                 {% if section.settings.schedule_1 != blank %}
                     <div class="d-flex align-items-center mb-3">
-                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/horario.svg?v=1743756328" height="" width="40" alt="Schedule" class="opacity-75"></div>
+                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/horario.svg?v=1743756328" height="" width="" class="section-map-icon" alt="Schedule" class="opacity-75"></div>
                         <div class="ms-3 page-contact-info">{{ section.settings.schedule_1 }}</div>
                     </div>
                 {% endif %}
 
                 {% if section.settings.schedule_2 != blank %}
                     <div class="d-flex align-items-center mb-3">
-                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/horario.svg?v=1743756328" height="" width="40" alt="Schedule" class="opacity-75"></div>
+                        <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/horario.svg?v=1743756328" height="" width="" class="section-map-icon" alt="Schedule" class="opacity-75"></div>
                         <div class="ms-3 page-contact-info">{{ section.settings.schedule_2 }}</div>
                     </div>
                 {% endif %}
