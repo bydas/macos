@@ -85,134 +85,111 @@
       margin-top: 5px;
       display: none;
     }
+    
+    .reseller-form__success {
+      color: green;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
   </style>
 
   <div class="reseller-form__container">
     <h1 class="reseller-form__title">Formulário de Revendedor</h1>
     <p class="reseller-form__subtitle">Preencher dados abaixo</p>
   
-    <form id="resellerForm" class="reseller-form__form">
+    {% form 'create_customer' %}
+      {% if form.errors %}
+        <div class="reseller-form__error" style="display: block;">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+      
+      {% if form.posted_successfully? %}
+        <div class="reseller-form__success" style="display: block;">
+          Formulário enviado com sucesso!
+        </div>
+      {% endif %}
+      
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="firstName">*Nome</label>
-        <input type="text" class="reseller-form__input" id="firstName" placeholder="*Nome" required>
+        <label class="reseller-form__label sr-only" for="customer_first_name">*Nome</label>
+        <input type="text" class="reseller-form__input" id="customer_first_name" name="customer[first_name]" placeholder="*Nome" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="lastName">*Apelido</label>
-        <input type="text" class="reseller-form__input" id="lastName" placeholder="*Apelido" required>
+        <label class="reseller-form__label sr-only" for="customer_last_name">*Apelido</label>
+        <input type="text" class="reseller-form__input" id="customer_last_name" name="customer[last_name]" placeholder="*Apelido" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="company">*Empresa</label>
-        <input type="text" class="reseller-form__input" id="company" placeholder="*Empresa" required>
+        <label class="reseller-form__label sr-only" for="customer_company">*Empresa</label>
+        <input type="text" class="reseller-form__input" id="customer_company" name="customer[company]" placeholder="*Empresa" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="nif">*Número de Identificação Fiscal</label>
-        <input type="text" class="reseller-form__input" id="nif" placeholder="*Número de Identificação Fiscal" required>
+        <label class="reseller-form__label sr-only" for="customer_nif">*Número de Identificação Fiscal</label>
+        <input type="text" class="reseller-form__input" id="customer_nif" name="customer[nif]" placeholder="*Número de Identificação Fiscal" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="city">*Localidade</label>
-        <input type="text" class="reseller-form__input" id="city" placeholder="*Localidade" required>
+        <label class="reseller-form__label sr-only" for="customer_city">*Localidade</label>
+        <input type="text" class="reseller-form__input" id="customer_city" name="customer[city]" placeholder="*Localidade" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="email">*Email</label>
-        <input type="email" class="reseller-form__input" id="email" placeholder="*Email" required>
+        <label class="reseller-form__label sr-only" for="customer_email">*Email</label>
+        <input type="email" class="reseller-form__input" id="customer_email" name="customer[email]" placeholder="*Email" required>
+      </div>
+      
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label sr-only" for="customer_password">*Senha</label>
+        <input type="password" class="reseller-form__input" id="customer_password" name="customer[password]" placeholder="*Senha" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
         <label class="reseller-form__label">*Actividade da sua Empresa</label>
         <div class="reseller-form__checkbox-group">
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="reseller-form__checkbox" value="Centro Auto">
+            <input type="checkbox" name="customer[tags][]" value="actividade_centro_auto">
             Centro Auto
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="reseller-form__checkbox" value="Posto de Abastecimento">
+            <input type="checkbox" name="customer[tags][]" value="actividade_posto_de_abastecimento">
             Posto de Abastecimento
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="reseller-form__checkbox" value="Casa de Peças e Acessórios">
+            <input type="checkbox" name="customer[tags][]" value="actividade_casa_de_pecas_e_acessorios">
             Casa de Peças e Acessórios
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="reseller-form__checkbox" value="Centro de Lavagem">
+            <input type="checkbox" name="customer[tags][]" value="actividade_centro_de_lavagem">
             Centro de Lavagem
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="reseller-form__checkbox" value="Outros">
+            <input type="checkbox" name="customer[tags][]" value="actividade_outros">
             Outros
           </label>
         </div>
       </div>
-  
-      <button type="submit" class="reseller-form__submit" id="submitButton">Enviar</button>
-    </form>
+      
+      <input type="hidden" name="customer[note]" id="customer_note">
+      <input type="hidden" name="customer[addresses][0][country]" value="Portugal">
+      
+      <button type="submit" class="reseller-form__submit">Enviar</button>
+    {% endform %}
   </div>
   
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('resellerForm');
-      const submitButton = document.getElementById('submitButton');
-
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const company = document.getElementById('company').value;
-        const nif = document.getElementById('nif').value;
-        const city = document.getElementById('city').value;
-        const email = document.getElementById('email').value;
-        
-        // Get selected activities
-        const activities = [];
-        document.querySelectorAll('.reseller-form__checkbox:checked').forEach(checkbox => {
-          activities.push('actividade_' + checkbox.value.toLowerCase().replace(/\s+/g, '_'));
-        });
-
-        // Prepare customer data
-        const customerData = {
-          customer: {
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            tags: activities,
-            note: `NIF: ${nif}`,
-            addresses: [{
-              company: company,
-              city: city,
-              country: "Portugal"
-            }]
-          }
-        };
-
-        try {
-          // Send data to your Shopify app endpoint or webhook
-          const response = await fetch('/apps/your-app-endpoint/create-customer', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(customerData)
-          });
-
-          if (response.ok) {
-            // Disable form and show success message
-            submitButton.disabled = true;
-            form.reset();
-            alert('Formulário enviado com sucesso!');
-          } else {
-            throw new Error('Failed to submit form');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-          alert('Erro ao enviar formulário. Por favor, tente novamente.');
-        }
+      const form = document.querySelector('form[action="/account"]');
+      const nifInput = document.getElementById('customer_nif');
+      const noteInput = document.getElementById('customer_note');
+      const cityInput = document.getElementById('customer_city');
+      const companyInput = document.getElementById('customer_company');
+      
+      form.addEventListener('submit', function() {
+        // Combine NIF, city, and company into the note field
+        noteInput.value = `NIF: ${nifInput.value}, Cidade: ${cityInput.value}, Empresa: ${companyInput.value}`;
       });
     });
   </script>
