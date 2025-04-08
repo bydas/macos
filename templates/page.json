@@ -15,9 +15,14 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "reseller_form_kfkiQe": {
+      "type": "reseller-form",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "reseller_form_kfkiQe"
   ]
 }
