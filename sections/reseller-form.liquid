@@ -107,7 +107,8 @@
       
       {% if form.posted_successfully? %}
         <div class="reseller-form__success" style="display: block;">
-          Formulário enviado com sucesso!
+          <p>Formulário enviado com sucesso!</p>
+          <p>Receberá um email de confirmação nos próximos minutos. A sua conta será verificada em até 48 horas.</p>
         </div>
       {% endif %}
       
@@ -123,7 +124,7 @@
   
       <div class="reseller-form__input-wrapper">
         <label class="reseller-form__label sr-only" for="customer_company">*Empresa</label>
-        <input type="text" class="reseller-form__input" id="customer_company" name="customer[company]" placeholder="*Empresa" required>
+        <input type="text" class="reseller-form__input" id="customer_company" name="customer[addresses][0][company]" placeholder="*Empresa" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
@@ -133,7 +134,7 @@
   
       <div class="reseller-form__input-wrapper">
         <label class="reseller-form__label sr-only" for="customer_city">*Localidade</label>
-        <input type="text" class="reseller-form__input" id="customer_city" name="customer[city]" placeholder="*Localidade" required>
+        <input type="text" class="reseller-form__input" id="customer_city" name="customer[addresses][0][city]" placeholder="*Localidade" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
@@ -174,6 +175,7 @@
       
       <input type="hidden" name="customer[note]" id="customer_note">
       <input type="hidden" name="customer[addresses][0][country]" value="Portugal">
+      <input type="hidden" name="customer[tags][]" value="pending_approval">
       
       <button type="submit" class="reseller-form__submit">Enviar</button>
     {% endform %}
@@ -184,12 +186,10 @@
       const form = document.querySelector('form[action="/account"]');
       const nifInput = document.getElementById('customer_nif');
       const noteInput = document.getElementById('customer_note');
-      const cityInput = document.getElementById('customer_city');
-      const companyInput = document.getElementById('customer_company');
       
       form.addEventListener('submit', function() {
-        // Combine NIF, city, and company into the note field
-        noteInput.value = `NIF: ${nifInput.value}, Cidade: ${cityInput.value}, Empresa: ${companyInput.value}`;
+        // Only add NIF to customer notes
+        noteInput.value = `NIF: ${nifInput.value}`;
       });
     });
   </script>
