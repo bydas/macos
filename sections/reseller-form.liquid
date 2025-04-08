@@ -141,31 +141,41 @@
         <label class="reseller-form__label sr-only" for="ContactForm-email">*Email</label>
         <input type="email" class="reseller-form__input" id="ContactForm-email" name="contact[email]" placeholder="*Email" required>
       </div>
+      
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label sr-only" for="ContactForm-phone">*Telefone</label>
+        <input type="tel" class="reseller-form__input" id="ContactForm-phone" name="contact[phone]" placeholder="*Telefone" required>
+      </div>
   
       <div class="reseller-form__input-wrapper">
         <label class="reseller-form__label">*Actividade da sua Empresa</label>
         <div class="reseller-form__checkbox-group">
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[activities][]" value="Centro Auto">
+            <input type="checkbox" name="contact[body]" value="Centro Auto">
             Centro Auto
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[activities][]" value="Posto de Abastecimento">
+            <input type="checkbox" name="contact[body]" value="Posto de Abastecimento">
             Posto de Abastecimento
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[activities][]" value="Casa de Peças e Acessórios">
+            <input type="checkbox" name="contact[body]" value="Casa de Peças e Acessórios">
             Casa de Peças e Acessórios
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[activities][]" value="Centro de Lavagem">
+            <input type="checkbox" name="contact[body]" value="Centro de Lavagem">
             Centro de Lavagem
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[activities][]" value="Outros">
+            <input type="checkbox" name="contact[body]" value="Outros">
             Outros
           </label>
         </div>
+      </div>
+      
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label sr-only" for="ContactForm-message">Mensagem Adicional</label>
+        <textarea class="reseller-form__input" id="ContactForm-message" name="contact[body]" placeholder="Mensagem Adicional" rows="4"></textarea>
       </div>
       
       <input type="hidden" name="contact[form_type]" value="reseller_form">
@@ -173,6 +183,36 @@
       <button type="submit" class="reseller-form__submit">Enviar</button>
     {% endform %}
   </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('form[action="/contact"]');
+      const checkboxes = document.querySelectorAll('input[type="checkbox"][name="contact[body]"]');
+      const messageField = document.getElementById('ContactForm-message');
+      
+      form.addEventListener('submit', function() {
+        // Collect all selected activities
+        const selectedActivities = [];
+        checkboxes.forEach(checkbox => {
+          if (checkbox.checked) {
+            selectedActivities.push(checkbox.value);
+          }
+        });
+        
+        // Add selected activities to the message field
+        if (selectedActivities.length > 0) {
+          const currentMessage = messageField.value;
+          const activitiesText = "Actividades selecionadas: " + selectedActivities.join(", ");
+          
+          if (currentMessage) {
+            messageField.value = currentMessage + "\n\n" + activitiesText;
+          } else {
+            messageField.value = activitiesText;
+          }
+        }
+      });
+    });
+  </script>
 </div>
 
 {% schema %}
