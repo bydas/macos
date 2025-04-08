@@ -92,6 +92,13 @@
       margin-top: 20px;
       display: none;
     }
+    
+    .validation-error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
   </style>
 
   <div class="reseller-form__container">
@@ -130,6 +137,7 @@
       <div class="reseller-form__input-wrapper">
         <label class="reseller-form__label sr-only" for="ContactForm-nif">*Número de Identificação Fiscal</label>
         <input type="text" class="reseller-form__input" id="ContactForm-nif" name="contact[nif]" placeholder="*Número de Identificação Fiscal" required>
+        <div class="validation-error" id="nif-error">O NIF deve conter exatamente 9 dígitos numéricos sem espaços.</div>
       </div>
   
       <div class="reseller-form__input-wrapper">
@@ -166,12 +174,13 @@
             Outros
           </label>
         </div>
+        <div class="validation-error" id="checkbox-error">Por favor, selecione pelo menos uma actividade.</div>
       </div>
       
       <input type="hidden" name="contact[body]" id="activities-hidden">
       <input type="hidden" name="contact[form_type]" value="reseller_form">
       
-      <button type="submit" class="reseller-form__submit">Enviar</button>
+      <button type="submit" class="reseller-form__submit" id="submit-button">Enviar</button>
     {% endform %}
   </div>
   
@@ -180,6 +189,10 @@
       const form = document.querySelector('form[action="/contact"]');
       const checkboxes = document.querySelectorAll('.activity-checkbox');
       const hiddenField = document.getElementById('activities-hidden');
+      const nifInput = document.getElementById('ContactForm-nif');
+      const nifError = document.getElementById('nif-error');
+      const checkboxError = document.getElementById('checkbox-error');
+      const submitButton = document.getElementById('submit-button');
       
       // Update hidden field when checkboxes change
       function updateHiddenField() {
@@ -192,8 +205,38 @@
         
         if (selectedActivities.length > 0) {
           hiddenField.value = "Actividades: " + selectedActivities.join(", ");
+          checkboxError.style.display = 'none';
         } else {
           hiddenField.value = "";
+          checkboxError.style.display = 'block';
+        }
+        
+        validateForm();
+      }
+      
+      // Validate NIF field
+      function validateNIF() {
+        const nifValue = nifInput.value.trim();
+        const nifRegex = /^\d{9}$/;
+        
+        if (nifRegex.test(nifValue)) {
+          nifError.style.display = 'none';
+          return true;
+        } else {
+          nifError.style.display = 'block';
+          return false;
+        }
+      }
+      
+      // Validate form
+      function validateForm() {
+        const isNIFValid = validateNIF();
+        const isCheckboxValid = hiddenField.value !== "";
+        
+        if (isNIFValid && isCheckboxValid) {
+          submitButton.disabled = false;
+        } else {
+          submitButton.disabled = true;
         }
       }
       
@@ -202,10 +245,31 @@
         checkbox.addEventListener('change', updateHiddenField);
       });
       
-      // Update on form submit to ensure all selections are included
-      form.addEventListener('submit', function() {
-        updateHiddenField();
+      // Add event listener to NIF input
+      nifInput.addEventListener('input', function() {
+        // Remove any non-digit characters
+        this.value = this.value.replace(/\D/g, '');
+        
+        // Limit to 9 digits
+        if (this.value.length > 9) {
+          this.value = this.value.slice(0, 9);
+        }
+        
+        validateForm();
       });
+      
+      // Update on form submit to ensure all selections are included
+      form.addEventListener('submit', function(e) {
+        updateHiddenField();
+        
+        if (!validateNIF() || hiddenField.value === "") {
+          e.preventDefault();
+          return false;
+        }
+      });
+      
+      // Initial validation
+      validateForm();
     });
   </script>
 </div>
