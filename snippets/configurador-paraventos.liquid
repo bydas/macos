@@ -178,7 +178,6 @@
     
     // Get the handle from the CSV data (assuming it's in car[5])
     const handle = car[5];
-    console.log('Looking up product with handle:', handle);
     
     const query = `{
       product(handle: "${handle}") {
@@ -210,8 +209,6 @@
       }
     }`;
 
-    console.log('Query:', query);
-
     try {
       const response = await fetch('https://macos-auto.myshopify.com/api/2024-01/graphql.json', {
         method: 'POST',
@@ -223,7 +220,6 @@
       });
 
       const result = await response.json();
-      console.log('GraphQL Response:', result);
 
       if (result.data.product) {
         const product = result.data.product;
@@ -245,7 +241,6 @@
         opts = [variantId];
         document.getElementById('optionParaventos').outerHTML = paraventosPage;
       } else {
-        console.log('No product found for handle:', handle);
         document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
       }
     } catch (error) {
