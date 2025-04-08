@@ -176,37 +176,34 @@
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     
-    const sku = car[3];
-    console.log('Looking up product with SKU:', sku);
+    // Get the handle from the CSV data (assuming it's in car[5])
+    const handle = car[5];
+    console.log('Looking up product with handle:', handle);
     
     const query = `{
-      products(first: 1, query: "sku:${sku}") {
-        edges {
-          node {
-            id
-            title
-            handle
-            availableForSale
-            tags
-            productType
-            featuredImage {
-              url
-              altText
-            }
-            variants(first: 1) {
-              edges {
-                node {
-                  id
-                  sku
-                  priceV2 {
-                    amount
-                  }
-                  compareAtPriceV2 {
-                    amount
-                  }
-                  availableForSale
-                }
+      product(handle: "${handle}") {
+        id
+        title
+        handle
+        availableForSale
+        tags
+        productType
+        featuredImage {
+          url
+          altText
+        }
+        variants(first: 1) {
+          edges {
+            node {
+              id
+              sku
+              priceV2 {
+                amount
               }
+              compareAtPriceV2 {
+                amount
+              }
+              availableForSale
             }
           }
         }
@@ -228,8 +225,8 @@
       const result = await response.json();
       console.log('GraphQL Response:', result);
 
-      if (result.data.products.edges.length > 0) {
-        const product = result.data.products.edges[0].node;
+      if (result.data.product) {
+        const product = result.data.product;
         const variant = product.variants.edges[0].node;
         
         let paraventosPage = initialParaventos;
@@ -248,7 +245,7 @@
         opts = [variantId];
         document.getElementById('optionParaventos').outerHTML = paraventosPage;
       } else {
-        console.log('No product found for SKU:', sku);
+        console.log('No product found for handle:', handle);
         document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
       }
     } catch (error) {
