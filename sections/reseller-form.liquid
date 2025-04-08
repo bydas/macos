@@ -1,0 +1,250 @@
+<div class="reseller-form">
+  <style>
+    .reseller-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .reseller-form__title {
+      color: #FF6600;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    
+    .reseller-form__subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .reseller-form__input-wrapper {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .reseller-form__label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .reseller-form__required {
+      color: #FF6600;
+      margin-right: 5px;
+    }
+    
+    .reseller-form__input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    .reseller-form__input:focus {
+      outline: none;
+      border-color: #FF6600;
+    }
+    
+    .reseller-form__checkbox-group {
+      margin-top: 5px;
+    }
+    
+    .reseller-form__checkbox-label {
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    
+    .reseller-form__checkbox {
+      margin-right: 10px;
+    }
+    
+    .reseller-form__submit {
+      background-color: #FF6600;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .reseller-form__submit:hover {
+      background-color: #e65c00;
+    }
+    
+    .reseller-form__submit:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .reseller-form__error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+
+  <div class="reseller-form__container">
+    <h1 class="reseller-form__title">Formulário de Revendedor</h1>
+    <p class="reseller-form__subtitle">Preencher dados abaixo</p>
+
+    <form id="resellerForm" class="reseller-form__form">
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Nome
+        </label>
+        <input type="text" class="reseller-form__input" id="firstName" required>
+      </div>
+
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Apelido
+        </label>
+        <input type="text" class="reseller-form__input" id="lastName" required>
+      </div>
+
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Empresa
+        </label>
+        <input type="text" class="reseller-form__input" id="company" required>
+      </div>
+
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Número de Identificação Fiscal
+        </label>
+        <input type="text" class="reseller-form__input" id="nif" required>
+      </div>
+
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Localidade
+        </label>
+        <input type="text" class="reseller-form__input" id="city" required>
+      </div>
+
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Email
+        </label>
+        <input type="email" class="reseller-form__input" id="email" required>
+      </div>
+
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label">
+          <span class="reseller-form__required">*</span>Actividade da sua Empresa
+        </label>
+        <div class="reseller-form__checkbox-group">
+          <label class="reseller-form__checkbox-label">
+            <input type="checkbox" class="reseller-form__checkbox" value="Centro Auto">
+            Centro Auto
+          </label>
+          <label class="reseller-form__checkbox-label">
+            <input type="checkbox" class="reseller-form__checkbox" value="Posto de Abastecimento">
+            Posto de Abastecimento
+          </label>
+          <label class="reseller-form__checkbox-label">
+            <input type="checkbox" class="reseller-form__checkbox" value="Casa de Peças e Acessórios">
+            Casa de Peças e Acessórios
+          </label>
+          <label class="reseller-form__checkbox-label">
+            <input type="checkbox" class="reseller-form__checkbox" value="Centro de Lavagem">
+            Centro de Lavagem
+          </label>
+          <label class="reseller-form__checkbox-label">
+            <input type="checkbox" class="reseller-form__checkbox" value="Outros">
+            Outros
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="reseller-form__submit" id="submitButton">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('resellerForm');
+      const submitButton = document.getElementById('submitButton');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const company = document.getElementById('company').value;
+        const nif = document.getElementById('nif').value;
+        const city = document.getElementById('city').value;
+        const email = document.getElementById('email').value;
+        
+        // Get selected activities
+        const activities = [];
+        document.querySelectorAll('.reseller-form__checkbox:checked').forEach(checkbox => {
+          activities.push('actividade_' + checkbox.value.toLowerCase().replace(/\s+/g, '_'));
+        });
+
+        // Prepare customer data
+        const customerData = {
+          customer: {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            tags: activities,
+            note: `NIF: ${nif}`,
+            addresses: [{
+              company: company,
+              city: city,
+              country: "Portugal"
+            }]
+          }
+        };
+
+        try {
+          // Send data to your Shopify app endpoint or webhook
+          const response = await fetch('/apps/your-app-endpoint/create-customer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(customerData)
+          });
+
+          if (response.ok) {
+            // Disable form and show success message
+            submitButton.disabled = true;
+            form.reset();
+            alert('Formulário enviado com sucesso!');
+          } else {
+            throw new Error('Failed to submit form');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Erro ao enviar formulário. Por favor, tente novamente.');
+        }
+      });
+    });
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Reseller Form",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Reseller Form",
+      "category": "Forms"
+    }
+  ]
+}
+{% endschema %}
