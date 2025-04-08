@@ -176,30 +176,34 @@
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     
-    // Get the SKU from the car data (position 3 in the array)
     const sku = car[3];
     console.log('Looking up product with SKU:', sku);
     
-    // GraphQL query to get product data
     const query = `{
       products(first: 1, query: "sku:${sku}") {
         edges {
           node {
             id
             title
+            handle
+            availableForSale
+            tags
+            productType
             featuredImage {
               url
-            }
-            priceRange {
-              minVariantPrice {
-                amount
-              }
+              altText
             }
             variants(first: 1) {
               edges {
                 node {
                   id
                   sku
+                  priceV2 {
+                    amount
+                  }
+                  compareAtPriceV2 {
+                    amount
+                  }
                   availableForSale
                 }
               }
@@ -208,6 +212,8 @@
         }
       }
     }`;
+
+    console.log('Query:', query);
 
     try {
       const response = await fetch('https://macos-auto.myshopify.com/api/2024-01/graphql.json', {
@@ -231,14 +237,13 @@
           .replace('img0101', product.featuredImage?.url || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
           .replace('nome0', product.title)
           .replace(/skuskusku0/g, variant.sku)
-          .replace('price1231230', (Number(product.priceRange.minVariantPrice.amount)).toFixed(2))
+          .replace('price1231230', (Number(variant.priceV2.amount)).toFixed(2))
           .replace('hidden=""', '');
         
         if (!variant.availableForSale) {
           paraventosPage = paraventosPage.replace('BUY', 'esgotado');
         }
         
-        // Extract the numeric ID from the GID
         const variantId = variant.id.split('/').pop();
         opts = [variantId];
         document.getElementById('optionParaventos').outerHTML = paraventosPage;
