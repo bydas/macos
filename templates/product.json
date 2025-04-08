@@ -23,8 +23,15 @@
           "type": "title",
           "settings": {}
         },
+        "sku_gAmD9y": {
+          "type": "sku",
+          "settings": {
+            "text_style": "body"
+          }
+        },
         "price": {
           "type": "price",
+          "disabled": true,
           "settings": {}
         },
         "variant_picker": {
@@ -60,6 +67,7 @@
       "block_order": [
         "vendor",
         "title",
+        "sku_gAmD9y",
         "price",
         "variant_picker",
         "quantity_selector",
