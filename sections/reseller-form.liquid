@@ -95,54 +95,40 @@
   <div class="reseller-form__container">
     <h1 class="reseller-form__title">Formulário de Revendedor</h1>
     <p class="reseller-form__subtitle">Preencher dados abaixo</p>
-
+  
     <form id="resellerForm" class="reseller-form__form">
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Nome
-        </label>
-        <input type="text" class="reseller-form__input" id="firstName" required>
+        <label class="reseller-form__label sr-only" for="firstName">*Nome</label>
+        <input type="text" class="reseller-form__input" id="firstName" placeholder="*Nome" required>
       </div>
-
+  
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Apelido
-        </label>
-        <input type="text" class="reseller-form__input" id="lastName" required>
+        <label class="reseller-form__label sr-only" for="lastName">*Apelido</label>
+        <input type="text" class="reseller-form__input" id="lastName" placeholder="*Apelido" required>
       </div>
-
+  
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Empresa
-        </label>
-        <input type="text" class="reseller-form__input" id="company" required>
+        <label class="reseller-form__label sr-only" for="company">*Empresa</label>
+        <input type="text" class="reseller-form__input" id="company" placeholder="*Empresa" required>
       </div>
-
+  
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Número de Identificação Fiscal
-        </label>
-        <input type="text" class="reseller-form__input" id="nif" required>
+        <label class="reseller-form__label sr-only" for="nif">*Número de Identificação Fiscal</label>
+        <input type="text" class="reseller-form__input" id="nif" placeholder="*Número de Identificação Fiscal" required>
       </div>
-
+  
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Localidade
-        </label>
-        <input type="text" class="reseller-form__input" id="city" required>
+        <label class="reseller-form__label sr-only" for="city">*Localidade</label>
+        <input type="text" class="reseller-form__input" id="city" placeholder="*Localidade" required>
       </div>
-
+  
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Email
-        </label>
-        <input type="email" class="reseller-form__input" id="email" required>
+        <label class="reseller-form__label sr-only" for="email">*Email</label>
+        <input type="email" class="reseller-form__input" id="email" placeholder="*Email" required>
       </div>
-
+  
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">
-          <span class="reseller-form__required">*</span>Actividade da sua Empresa
-        </label>
+        <label class="reseller-form__label sr-only">*Actividade da sua Empresa</label>
         <div class="reseller-form__checkbox-group">
           <label class="reseller-form__checkbox-label">
             <input type="checkbox" class="reseller-form__checkbox" value="Centro Auto">
@@ -166,10 +152,11 @@
           </label>
         </div>
       </div>
-
+  
       <button type="submit" class="reseller-form__submit" id="submitButton">Enviar</button>
     </form>
   </div>
+  
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
