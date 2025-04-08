@@ -98,7 +98,7 @@
     <h1 class="reseller-form__title">Formulário de Revendedor</h1>
     <p class="reseller-form__subtitle">Preencher dados abaixo</p>
   
-    {% form 'create_customer' %}
+    {% form 'contact' %}
       {% if form.errors %}
         <div class="reseller-form__error" style="display: block;">
           {{ form.errors | default_errors }}
@@ -108,91 +108,81 @@
       {% if form.posted_successfully? %}
         <div class="reseller-form__success" style="display: block;">
           <p>Formulário enviado com sucesso!</p>
-          <p>Receberá um email de confirmação nos próximos minutos. A sua conta será verificada em até 48 horas.</p>
+          <p>Receberá um email de confirmação nos próximos minutos.</p>
         </div>
       {% endif %}
       
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_first_name">*Nome</label>
-        <input type="text" class="reseller-form__input" id="customer_first_name" name="customer[first_name]" placeholder="*Nome" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-first-name">*Nome</label>
+        <input type="text" class="reseller-form__input" id="ContactForm-first-name" name="contact[first_name]" placeholder="*Nome" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_last_name">*Apelido</label>
-        <input type="text" class="reseller-form__input" id="customer_last_name" name="customer[last_name]" placeholder="*Apelido" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-last-name">*Apelido</label>
+        <input type="text" class="reseller-form__input" id="ContactForm-last-name" name="contact[last_name]" placeholder="*Apelido" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_company">*Empresa</label>
-        <input type="text" class="reseller-form__input" id="customer_company" name="customer[addresses][0][company]" placeholder="*Empresa" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-company">*Empresa</label>
+        <input type="text" class="reseller-form__input" id="ContactForm-company" name="contact[company]" placeholder="*Empresa" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_nif">*Número de Identificação Fiscal</label>
-        <input type="text" class="reseller-form__input" id="customer_nif" name="customer[nif]" placeholder="*Número de Identificação Fiscal" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-nif">*Número de Identificação Fiscal</label>
+        <input type="text" class="reseller-form__input" id="ContactForm-nif" name="contact[nif]" placeholder="*Número de Identificação Fiscal" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_city">*Localidade</label>
-        <input type="text" class="reseller-form__input" id="customer_city" name="customer[addresses][0][city]" placeholder="*Localidade" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-city">*Localidade</label>
+        <input type="text" class="reseller-form__input" id="ContactForm-city" name="contact[city]" placeholder="*Localidade" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_email">*Email</label>
-        <input type="email" class="reseller-form__input" id="customer_email" name="customer[email]" placeholder="*Email" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-email">*Email</label>
+        <input type="email" class="reseller-form__input" id="ContactForm-email" name="contact[email]" placeholder="*Email" required>
       </div>
       
       <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="customer_password">*Senha</label>
-        <input type="password" class="reseller-form__input" id="customer_password" name="customer[password]" placeholder="*Senha" required>
+        <label class="reseller-form__label sr-only" for="ContactForm-phone">*Telefone</label>
+        <input type="tel" class="reseller-form__input" id="ContactForm-phone" name="contact[phone]" placeholder="*Telefone" required>
       </div>
   
       <div class="reseller-form__input-wrapper">
         <label class="reseller-form__label">*Actividade da sua Empresa</label>
         <div class="reseller-form__checkbox-group">
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="customer[tags][]" value="actividade_centro_auto">
+            <input type="checkbox" name="contact[activities][]" value="Centro Auto">
             Centro Auto
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="customer[tags][]" value="actividade_posto_de_abastecimento">
+            <input type="checkbox" name="contact[activities][]" value="Posto de Abastecimento">
             Posto de Abastecimento
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="customer[tags][]" value="actividade_casa_de_pecas_e_acessorios">
+            <input type="checkbox" name="contact[activities][]" value="Casa de Peças e Acessórios">
             Casa de Peças e Acessórios
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="customer[tags][]" value="actividade_centro_de_lavagem">
+            <input type="checkbox" name="contact[activities][]" value="Centro de Lavagem">
             Centro de Lavagem
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="customer[tags][]" value="actividade_outros">
+            <input type="checkbox" name="contact[activities][]" value="Outros">
             Outros
           </label>
         </div>
       </div>
       
-      <input type="hidden" name="customer[note]" id="customer_note">
-      <input type="hidden" name="customer[addresses][0][country]" value="Portugal">
-      <input type="hidden" name="customer[tags][]" value="pending_approval">
+      <div class="reseller-form__input-wrapper">
+        <label class="reseller-form__label sr-only" for="ContactForm-message">Mensagem Adicional</label>
+        <textarea class="reseller-form__input" id="ContactForm-message" name="contact[message]" placeholder="Mensagem Adicional" rows="4"></textarea>
+      </div>
+      
+      <input type="hidden" name="contact[form_type]" value="reseller_form">
       
       <button type="submit" class="reseller-form__submit">Enviar</button>
     {% endform %}
   </div>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.querySelector('form[action="/account"]');
-      const nifInput = document.getElementById('customer_nif');
-      const noteInput = document.getElementById('customer_note');
-      
-      form.addEventListener('submit', function() {
-        // Only add NIF to customer notes
-        noteInput.value = `NIF: ${nifInput.value}`;
-      });
-    });
-  </script>
 </div>
 
 {% schema %}
