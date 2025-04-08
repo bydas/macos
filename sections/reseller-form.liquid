@@ -146,28 +146,29 @@
         <label class="reseller-form__label">*Actividade da sua Empresa</label>
         <div class="reseller-form__checkbox-group">
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[body]" value="Centro Auto">
+            <input type="checkbox" class="activity-checkbox" value="Centro Auto">
             Centro Auto
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[body]" value="Posto de Abastecimento">
+            <input type="checkbox" class="activity-checkbox" value="Posto de Abastecimento">
             Posto de Abastecimento
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[body]" value="Casa de Peças e Acessórios">
+            <input type="checkbox" class="activity-checkbox" value="Casa de Peças e Acessórios">
             Casa de Peças e Acessórios
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[body]" value="Centro de Lavagem">
+            <input type="checkbox" class="activity-checkbox" value="Centro de Lavagem">
             Centro de Lavagem
           </label>
           <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" name="contact[body]" value="Outros">
+            <input type="checkbox" class="activity-checkbox" value="Outros">
             Outros
           </label>
         </div>
       </div>
       
+      <input type="hidden" name="contact[body]" id="activities-hidden">
       <input type="hidden" name="contact[form_type]" value="reseller_form">
       
       <button type="submit" class="reseller-form__submit">Enviar</button>
@@ -177,11 +178,11 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.querySelector('form[action="/contact"]');
-      const checkboxes = document.querySelectorAll('input[type="checkbox"][name="contact[body]"]');
-      const messageField = document.getElementById('ContactForm-message');
+      const checkboxes = document.querySelectorAll('.activity-checkbox');
+      const hiddenField = document.getElementById('activities-hidden');
       
-      form.addEventListener('submit', function() {
-        // Collect all selected activities
+      // Update hidden field when checkboxes change
+      function updateHiddenField() {
         const selectedActivities = [];
         checkboxes.forEach(checkbox => {
           if (checkbox.checked) {
@@ -189,17 +190,21 @@
           }
         });
         
-        // Add selected activities to the message field
         if (selectedActivities.length > 0) {
-          const currentMessage = messageField.value;
-          const activitiesText = "Actividades selecionadas: " + selectedActivities.join(", ");
-          
-          if (currentMessage) {
-            messageField.value = currentMessage + "\n\n" + activitiesText;
-          } else {
-            messageField.value = activitiesText;
-          }
+          hiddenField.value = "Actividades selecionadas: " + selectedActivities.join(", ");
+        } else {
+          hiddenField.value = "";
         }
+      }
+      
+      // Add event listeners to all checkboxes
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateHiddenField);
+      });
+      
+      // Update on form submit to ensure all selections are included
+      form.addEventListener('submit', function() {
+        updateHiddenField();
       });
     });
   </script>
