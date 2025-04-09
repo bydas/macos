@@ -3,7 +3,7 @@ $(document).ready(function () {
   var $carousel = $('#categories-carousel');
 
   $carousel.flickity({
-    groupCells: false,
+    groupCells: 5,
     cellAlign: 'left',
     contain: true,
     freeScroll: false,
@@ -52,6 +52,7 @@ $(document).ready(function () {
     setTimeout(updateNavButtons, 100);
   });
 });
+
 
 
 /* ----- Flickity Carousel - SLIDESHOW ----- */
