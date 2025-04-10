@@ -1,5 +1,5 @@
-<section class="container-fluid w-100">
-  <div class="row justify-content-center align-items-center w-100">
+<section class="container-fluid highlights-section w-100 p-0">
+  <div class="row justify-content-center align-items-center w-100 h-100 p-0 g-0">
     <div class="col-12 col-lg-6 h-100 p-0">
       <div id="highlights-slideshow" class="">
         
@@ -10,7 +10,7 @@
               <img src="{{ slide.settings.image | image_url }}" width="" height="" alt="slide">
 
             {% else %}
-                <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="100%" height="" alt="Macos logo">
+                <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="70%" height="" alt="Macos logo">
               
             {% endif %}
           </div>
@@ -20,14 +20,14 @@
       </div>
     </div>
     
-    <div class="col-12 col-lg-6 highlights-images d-flex flex-column gap-1 p-0 h-100">
+    <div class="col-12 col-lg-6 highlights-images d-flex flex-column justify-content-center align-items-center ps-2 gap-2">
       
       {% if section.settings.top-image != blank %}
-        <img src="{{ section.settings.top-image | image_url }}" width="100%" height="" alt="MACOS">
+        <img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS">
       {% endif %}
     
       {% if section.settings.bottom-image != blank %}
-        <img src="{{ section.settings.bottom-image | image_url }}" width="100%" height="" alt="MACOS">
+        <img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS">
       {% endif %}
       
     </div>
