@@ -190,7 +190,7 @@
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
             "page": "",
-            "description": "<p>Texto sobre rapidexdade.</p>"
+            "description": "<p>Texto sobre rapidex.</p>"
           }
         },
         "block_advantage_GKYQFp": {
@@ -199,7 +199,7 @@
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
             "page": "contact",
-            "description": ""
+            "description": "<p>Texto sobre apoio ao cliente.</p>"
           }
         }
       },
