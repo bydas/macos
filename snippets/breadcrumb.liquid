@@ -27,14 +27,14 @@
 
   {% else %}
 
-    <nav class="container fs-4">
+    <nav class="container fs-4 mb-2 pt-0 pt-sm-3 pt-lg-2 pt-xl-0">
       {% assign parent_collection = collection.metafields.custom.parent.value %}
       
       {% if parent_collection != blank %}
-        <a href="{{ parent_collection.url }}" class="go_back-link">← Voltar a {{ parent_collection.title }}</a>
+        <a href="{{ parent_collection.url }}" class="go_back-link">← {{ parent_collection.title }}</a>
 
       {% else %}
-        <a href="/" class="go_back-link">← Voltar à página Home</a>
+        <a href="/" class="go_back-link">← Home</a>
 
       {% endif %}
     </nav>
