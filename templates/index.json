@@ -44,7 +44,7 @@
         "slide_gY6H8W": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/29208940-B360-44AE-9BB4-7CCCBB2DAAE6.png"
+            "image": "shopify://shop_images/ChatGPT_Image_10_04_2025_15_14_14.png"
           }
         },
         "slide_9Ujttz": {
@@ -148,8 +148,7 @@
           "settings": {
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
-            "page": "quem-somos",
-            "description": "<p><em>Saiba mais sobre a história da Macos.</em></p>"
+            "page": "quem-somos"
           }
         },
         "block_advantage_qKzVKH": {
@@ -157,8 +156,7 @@
           "settings": {
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
-            "page": "",
-            "description": "<p><em>Na Macos, a qualidade é o elemento chave.</em></p>"
+            "page": ""
           }
         },
         "block_advantage_fAazkg": {
@@ -166,8 +164,7 @@
           "settings": {
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
-            "page": "",
-            "description": "<p><em>Entregas com parceiros de confiança para não haver imprevistos.</em></p>"
+            "page": ""
           }
         },
         "block_advantage_eCrYGd": {
@@ -175,8 +172,7 @@
           "settings": {
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
-            "page": "",
-            "description": "<p><em>A nossa equipa certifica-se de que tudo acontece o mais rápido possível.</em></p>"
+            "page": ""
           }
         },
         "block_advantage_GKYQFp": {
@@ -184,8 +180,7 @@
           "settings": {
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
-            "page": "contact",
-            "description": "<p><em>Algum imprevisto? Estamos ao seu dispor para o ajudar.</em></p>"
+            "page": "contact"
           }
         }
       },
