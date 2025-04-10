@@ -12,23 +12,33 @@
   assign child_handles = child_collections | split: "," | uniq
 %}
 
-{% if child_handles.size > 0 %}
+
 
   {%- style -%}
     .section-product-categories {
-      padding: 1% 10% 0;
-      min-height: 200px;
-      
-      {% if section.settings.background_image != blank %}
-        
-        background-image: url('{{ section.settings.background_image | image_url }}');
-        background-size: cover;
-        background-position: center;
-        
+
+      {% if child_handles.size <= 0 %}
+
+        padding: 0.3rem 10%;
+        background-color: rgb(230, 230, 230);
+
       {% else %}
         
-        background-color: rgb(230, 230, 230);
+        padding: 1% 10% 0;
+        min-height: 200px;
         
+        {% if section.settings.background_image != blank %}
+          
+          background-image: url('{{ section.settings.background_image | image_url }}');
+          background-size: cover;
+          background-position: center;
+          
+        {% else %}
+
+          background-color: rgb(230, 230, 230);
+          
+        {% endif %}
+
       {% endif %}
     }
     
@@ -36,7 +46,15 @@
   
   <section class="container">
     <div class="row">
-      <div class="col-12 pt-5">
+      <div class="col-12">
+        {% render 'breadcrumb', navigation_type: section.settings.navigation %}
+      </div>
+    </div>
+
+    {% if child_handles.size > 0 %}
+    
+    <div class="row">
+      <div class="col-12 pt-4">
   
         <div id="categories-carousel" class="categories-carousel position-relative">
           
@@ -70,9 +88,10 @@
         
       </div>
     </div>
+{% endif %}
+
   </section>
 
-{% endif %}
 
 {% schema %}
   {
@@ -83,7 +102,26 @@
         "type": "image_picker",
         "id": "background_image",
         "label": "Background Image"
-      }
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "select",
+        "id": "navigation",
+        "label": "Type of navigation",
+        "options": [
+          { 
+            "value": "breadcrumb", 
+            "label": "Breadcrumb"
+          },
+          {
+            "value": "back-button",
+            "label": "Back-button"
+          }
+        ]
+      },
     ],
     "presets": [
       {
