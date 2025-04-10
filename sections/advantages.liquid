@@ -17,11 +17,16 @@
       {% for block in section.blocks %}
 
         {% if block.settings.image != blank %}
-          <a href="{{ pages[block.settings.page].url }}" class="advantage-link">
-            <div class="advantage_card d-flex flex-column justify-content-center align-items-center">
+          <a href="{{ pages[block.settings.page].url }}" class="advantage-link position-relative">
+            <div class="advantage_card d-flex flex-column justify-content-center align-items-center rounded-5">
               
               <div class="advantage_image d-flex justify-content-center align-items-center">
                 <img src="{{ block.settings.image | image_url }}" height="" width="" alt="Advantage">
+                <div class="advantage-info text-dark position-absolute top-0 start-0 rounded-5 d-flex justify-content-center align-items-center px-xl-5 px-md-4 px-2 text-center">
+                  {% if block.settings.description != blank %}
+                    {{ block.settings.description }}
+                  {% endif %}
+                </div>
               </div>
     
               {% if block.settings.label != blank %}
@@ -31,11 +36,12 @@
               {% endif %}
               
             </div>
+
+            
           </a>
         {% endif %}
 
       {% endfor %}
-      
     </div>
   </div>
 </section>
@@ -72,6 +78,11 @@
             "type": "page",
             "id": "page",
             "label": "Page"
+          },
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description"
           }
         ]
       }
