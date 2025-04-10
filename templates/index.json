@@ -148,7 +148,8 @@
           "settings": {
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
-            "page": "quem-somos"
+            "page": "quem-somos",
+            "description": "<p>Saiba mais sobre a história da Macos.</p>"
           }
         },
         "block_advantage_qKzVKH": {
@@ -156,7 +157,8 @@
           "settings": {
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
-            "page": ""
+            "page": "",
+            "description": "<p>Na Macos, a qualidade é o elemento chave.</p>"
           }
         },
         "block_advantage_fAazkg": {
@@ -164,7 +166,8 @@
           "settings": {
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
-            "page": ""
+            "page": "",
+            "description": "<p>Entregas com parceiros de confiança para não haver imprevistos.</p>"
           }
         },
         "block_advantage_eCrYGd": {
@@ -172,7 +175,8 @@
           "settings": {
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
-            "page": ""
+            "page": "",
+            "description": "<p>A nossa equipa certifica-se de que tudo acontece o mais rápido possível.</p>"
           }
         },
         "block_advantage_GKYQFp": {
@@ -180,7 +184,8 @@
           "settings": {
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
-            "page": "contact"
+            "page": "contact",
+            "description": "<p>Algum imprevisto? Estamos ao seu dispor para o ajudar.</p>"
           }
         }
       },
