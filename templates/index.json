@@ -163,7 +163,7 @@
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
             "page": "quem-somos",
-            "description": ""
+            "description": "<p>Saiba mais sobre a Macos.</p>"
           }
         },
         "block_advantage_qKzVKH": {
@@ -199,7 +199,7 @@
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
             "page": "contact",
-            "description": "<p>Saiba mais sobre a Macos.</p>"
+            "description": ""
           }
         }
       },
