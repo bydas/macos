@@ -163,7 +163,7 @@
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
             "page": "quem-somos",
-            "description": "<p>Saiba mais sobre a Macos.</p>"
+            "description": "<p>Texto sobre a Macos.</p>"
           }
         },
         "block_advantage_qKzVKH": {
@@ -172,7 +172,7 @@
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
             "page": "",
-            "description": ""
+            "description": "<p>Texto sobre qualidade.</p>"
           }
         },
         "block_advantage_fAazkg": {
@@ -181,7 +181,7 @@
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
             "page": "",
-            "description": ""
+            "description": "<p>Texto sobre entregas.</p>"
           }
         },
         "block_advantage_eCrYGd": {
@@ -190,7 +190,7 @@
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
             "page": "",
-            "description": ""
+            "description": "<p>Texto sobre rapidexdade.</p>"
           }
         },
         "block_advantage_GKYQFp": {
