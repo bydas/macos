@@ -65,6 +65,12 @@
             "image": "shopify://shop_images/destaque4.jpg"
           }
         },
+        "slide_faxTFP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/destaque6.jpg"
+          }
+        },
         "slide_mkzXXT": {
           "type": "slide",
           "settings": {
@@ -77,6 +83,7 @@
         "slide_9Ujttz",
         "slide_wTwQqh",
         "slide_etEh6X",
+        "slide_faxTFP",
         "slide_mkzXXT"
       ],
       "settings": {
@@ -148,7 +155,8 @@
           "settings": {
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
-            "page": "quem-somos"
+            "page": "quem-somos",
+            "description": ""
           }
         },
         "block_advantage_qKzVKH": {
@@ -156,7 +164,8 @@
           "settings": {
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
-            "page": ""
+            "page": "",
+            "description": ""
           }
         },
         "block_advantage_fAazkg": {
@@ -164,7 +173,8 @@
           "settings": {
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
-            "page": ""
+            "page": "",
+            "description": ""
           }
         },
         "block_advantage_eCrYGd": {
@@ -172,7 +182,8 @@
           "settings": {
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
-            "page": ""
+            "page": "",
+            "description": ""
           }
         },
         "block_advantage_GKYQFp": {
@@ -180,7 +191,8 @@
           "settings": {
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
-            "page": "contact"
+            "page": "contact",
+            "description": ""
           }
         }
       },
