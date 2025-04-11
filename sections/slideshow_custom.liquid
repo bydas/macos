@@ -22,10 +22,10 @@
     
     <div class="col-12 col-lg-6 highlights-mosaics">
       {% if section.settings.top-image != blank %}
-        <a href="/"><img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS"></a>
+        <a href="{{ section.settings.top-image-collection }}"><img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS"></a>
       {% endif %}
       {% if section.settings.bottom-image != blank %}
-        <a href="/"><img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS"></a>
+        <a href="{{ section.settings.bottom-image-collection }}"><img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS"></a>
       {% endif %}
     </div>
   </div>
@@ -38,14 +38,28 @@
     "class": "section-slideshow-custom",
     "settings": [
       {
+        "type": "header",
+        "content": "Mosaics"
+      },
+      {
         "type": "image_picker",
         "id": "top-image",
         "label": "Top image"
       },
       {
+        "type": "url",
+        "id": "top-image-collection",
+        "label": "Top image collection"
+      },
+      {
         "type": "image_picker",
         "id": "bottom-image",
         "label": "Bottom image"
+      },
+      {
+        "type": "url",
+        "id": "bottom-image-collection",
+        "label": "Bottom image collection"
       }
     ],
     "blocks": [
