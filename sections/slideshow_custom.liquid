@@ -20,16 +20,13 @@
       </div>
     </div>
     
-    <div class="col-12 col-lg-6 highlights-images d-flex flex-column justify-content-center align-items-center ps-2 gap-2">
-      
+    <div class="col-12 col-lg-6 highlights-mosaics">
       {% if section.settings.top-image != blank %}
-        <img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS">
+        <a href="/"><img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS"></a>
       {% endif %}
-    
       {% if section.settings.bottom-image != blank %}
-        <img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS">
+        <a href="/"><img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS"></a>
       {% endif %}
-      
     </div>
   </div>
 </section>
