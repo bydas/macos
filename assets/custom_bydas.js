@@ -1,14 +1,29 @@
 /* ----- Flickity Carousel - CATEGORIES ----- */
 $(document).ready(function () {
   var $carousel = $('#categories-carousel');
+  var groupCells = 0;
+
+  // breakpoints for groupcells
+  if (window.innerWidth <= 578) {
+    groupCells = false;
+
+  } else if (window.innerWidth <= 992) {
+    groupCells = 4;
+
+  } else {
+    groupCells = 5;
+  }
+  
+
 
   $carousel.flickity({
-    groupCells: 5,
+    groupCells: groupCells,
     cellAlign: 'left',
     contain: true,
     freeScroll: false,
     pageDots: false,
-    draggable: true
+    draggable: true,
+    cellSpacing: 50
   });
 
   var flkty = $carousel.data('flickity');
@@ -55,7 +70,7 @@ $(document).ready(function () {
 
 
 
-/* ----- Flickity Carousel - SLIDESHOW ----- */
+/* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
 $('#highlights-slideshow').flickity({
   autoPlay: true,
   groupCells: false,
