@@ -67,7 +67,7 @@
     "blog_card_style": "standard",
     "blog_card_image_padding": 0,
     "blog_card_text_alignment": "left",
-    "blog_card_color_scheme": "scheme-5",
+    "blog_card_color_scheme": "scheme-0e6dfaba-3f97-420c-b9ab-c58ca2b2ac3d",
     "blog_card_border_thickness": 0,
     "blog_card_border_opacity": 10,
     "blog_card_corner_radius": 0,
@@ -105,7 +105,7 @@
     "badge_position": "top left",
     "badge_corner_radius": 4,
     "sale_badge_color_scheme": "scheme-5",
-    "sold_out_badge_color_scheme": "scheme-2",
+    "sold_out_badge_color_scheme": "scheme-0e6dfaba-3f97-420c-b9ab-c58ca2b2ac3d",
     "brand_headline": "",
     "brand_description": "<p></p>",
     "brand_image_width": 100,
@@ -126,7 +126,7 @@
     "show_vendor": false,
     "show_cart_note": true,
     "cart_drawer_collection": "",
-    "cart_color_scheme": "scheme-1",
+    "cart_color_scheme": "scheme-0e6dfaba-3f97-420c-b9ab-c58ca2b2ac3d",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
