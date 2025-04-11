@@ -628,6 +628,20 @@ img.btoptioni {
   box-shadow: none !important;
 }
 
+/* page news - blogs */
+.article-card-wrapper .article-card {
+  /* border: none; */
+  border-radius: 2rem;
+  overflow: hidden;
+}
+.article-card-wrapper .article-card .card__inner img {
+  width: 100% !important;
+  object-fit: cover !important;
+}
+.article-card-wrapper .article-card .card__content {
+  padding: 0 2rem;;
+}
+
 /* cart */
 .cart__warnings .button,
 .cart__checkout-button,

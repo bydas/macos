@@ -17,8 +17,8 @@
 {%- endstyle -%}
 
 {%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="main-blog container section-{{ section.id }}-padding">
+    <h1 class="text-center text-uppercase mb-5 title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ blog.title | escape }}
     </h1>
 
@@ -31,7 +31,7 @@
             style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >
-          {%- render 'article-card',
+          {%- render 'article-card-custom',
             article: article,
             media_height: section.settings.image_height,
             media_aspect_ratio: article.image.aspect_ratio,
