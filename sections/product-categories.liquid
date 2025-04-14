@@ -1,5 +1,6 @@
 {%- style -%}
   .section-product-categories {
+    overflow: visible !important;
     padding: 3rem 10% 0;
     min-height: 200px;
     
@@ -17,14 +18,14 @@
   }
 {%- endstyle -%}
 
-<section class="container-fluid">
+<section class="container-fluid overflow-visible">
   <div class="row mb-4">
     <div class="col-12 p-0 pb-3 d-flex justify-content-between">
-
+      
       {% if section.settings.title != blank %}
         <h2>{{ section.settings.title }}</h2>
       {% endif %}
-
+      
       {% if section.settings.description != blank %}
         <div class="section-product-categories-description d-none d-md-inline">{{ section.settings.description }}</div>
       {% endif %}
@@ -32,9 +33,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 p-0">
-
-      <div id="categories-carousel" class="position-relative">
+    <div class="col-12 p-0 position-relative">
+      
+      <div id="categories-carousel">
         {% for category in section.settings.categories %}
           
           <div class="category-card me-lg-5 me-md-4 me-3 carousel-cell">
@@ -43,61 +44,46 @@
               <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">
                 
                 {% if category.image != blank %}
-                  <img src="{{ category.image | image_url }}" width="" height="" alt="Category">
+                  <img src="{{ category.image | image_url }}" height="" width="" alt="Category">
                 {% else %}
-                  <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="" height="" alt="Category">
+                  <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" height="" width="" alt="Category">
                 {% endif %}
-              
+                
               </div>
             </a>
             
-            <div class="category-title text-center mt-2 position-relative">
+            <div class="category-title text-center mt-2">
               <a href="{{ category.url }}">{{ category.title }}</a>
             </div>
-            <div class="children-categories d-none">
-              {% comment %} 
-                {% liquid 
-                  assign child_collections = ""
-  
-                  for collection in collections
-  
-                    if collection.metafields.custom.parent.value.handle == category.metafields.custom.parent.value.handle
-  
-                      assign child_collections = child_collections | append: ","
-                      
-                    endif
-  
-                  endfor
-  
-                  assign subcategories = child_collections | split: "," | uniq
-                %}
-  
-                {% if subcategories.size > 0 %}
+            
+            <!-- SUBCATEGORIAS -->
+            <div class="children-categories" role="menu">
+              
+              {% liquid 
+                assign parent_collection = category
+                assign child_collections = ""
+                
+                for collection in collections
+                  if collection.metafields.custom.parent.value.handle == parent_collection.handle
+                    assign child_collections = child_collections | append: collection.handle | append: ","
+                  endif
+                endfor
+                
+                assign child_handles = child_collections | split: "," | uniq
+              %}
+              
+              {% for handle in child_handles %}
+                {% assign subcollection = collections[handle] %}
+                
+                {% if subcollection != blank %}
                   
-                  <ul>
-  
-                    {% for subcategorie in subcategories %}
-                      
-                      <li>{{subcategorie.title }}</li>
-  
-                    {% endfor %}
-  
-                  </ul>
-  
-                {% endif %} 
-              {% endcomment %}
-  
-              <div>
-                <a>Subcategoria</a>
-                <a>Subcategoria</a>
-                <a>Subcategoria</a>
-                <a>Subcategoria</a>
-                <a>Subcategoria</a>
-                <a>Subcategoria</a>
-              </div>
-  
+                  <a href="{{ subcollection.url }}" class="d-block">{{ subcollection.title }}</a>
+                  
+                {% endif %}
+              {% endfor %}
               
             </div>
+            
           </div>
           
         {% endfor %}
@@ -107,6 +93,114 @@
   </div>
 </section>
 
+<!-- Container para "portar" os dropdowns fora do carrossel -->
+<div id="dropdown-portal"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    /* Variáveis para controlar qual dropdown está aberto */
+    let openCard = null;
+    let openDropdown = null;
+    let popperInstance = null;
+    
+    /* Fecha o dropdown atualmente aberto */
+    function closeOpenDropdown() {
+      if (openDropdown && openCard) {
+        openDropdown.style.display = 'none';
+        openCard.appendChild(openDropdown);
+        if (popperInstance) {
+          popperInstance.destroy();
+          popperInstance = null;
+        }
+        openDropdown = null;
+        openCard = null;
+      }
+    }
+    
+    /* Fecha o dropdown se o utilizador clicar fora dele */
+    document.addEventListener('click', function(event) {
+      if (openDropdown && openCard) {
+        // Se o clique não foi no cartão aberto nem no próprio dropdown, fecha
+        if (!openCard.contains(event.target) && !openDropdown.contains(event.target)) {
+          closeOpenDropdown();
+        }
+      }
+    });
+    
+    /* Percorre cada cartão de categoria */
+    document.querySelectorAll('.category-card').forEach(function(card) {
+      
+      const dropdown = card.querySelector('.children-categories');
+      
+      // Verifica se existem subcategorias (pelo menos um link)
+      const hasSubcategories = dropdown.querySelector('a') !== null;
+      
+      if (hasSubcategories) {
+        
+        // Ao clicar no cartão, em vez de ir para a categoria, abre o dropdown
+        card.addEventListener('click', function(e) {
+          
+          // Se o clique foi dentro do próprio dropdown (links das subcategorias), deixa funcionar
+          if (dropdown.contains(e.target)) {
+            return;
+          }
+          
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Se já está aberto e é o mesmo cartão, fecha
+          if (openCard === card) {
+            closeOpenDropdown();
+            return;
+          }
+          
+          // Fecha qualquer dropdown aberto de outro cartão
+          closeOpenDropdown();
+          
+          // Garante que o link principal só é acrescentado uma vez
+          if (!dropdown.querySelector('.main-category-link')) {
+            const mainLink = document.createElement('a');
+            mainLink.className = 'main-category-link';
+            
+            // Recolhe o nome da categoria para o texto "Explorar *nome da categoria*"
+            const categoryName = card.querySelector('.category-title a').textContent;
+            mainLink.textContent = 'Explorar ' + categoryName;
+            
+            // O link principal é o <a> no título da categoria
+            mainLink.href = card.querySelector('.category-title a').href;
+            
+            dropdown.insertBefore(mainLink, dropdown.firstChild);
+          }
+          
+          // Move o dropdown para o portal para escapar ao overflow do carrossel
+          document.getElementById('dropdown-portal').appendChild(dropdown);
+          dropdown.style.display = 'block';
+          dropdown.style.position = 'absolute';
+          
+          // Cria a instância do Popper para posicionar o dropdown
+          popperInstance = Popper.createPopper(card, dropdown, {
+            placement: 'bottom-start',
+            modifiers: [
+              {
+                name: 'offset',
+                options: { offset: [0, 0] }
+              }
+            ]
+          });
+          
+          // Atualiza as referências para este cartão
+          openCard = card;
+          openDropdown = dropdown;
+        });
+        
+      }
+      // Se não houver subcategorias, mantém o comportamento normal de navegação
+      
+    });
+    
+  });
+</script>
 
 {% schema %}
   {

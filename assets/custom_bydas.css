@@ -20,7 +20,8 @@ a:hover, .active {
 .full-unstyled-link {
   color: rgb(255, 160, 0); /* orange */
 }
-.go_back-link {
+.go_back-link, 
+.children-categories a {
   color: rgb(60, 60, 60);
 }
 
@@ -129,16 +130,25 @@ h1 {
 }
 
 .children-categories {
-  position: absolute;
-  bottom: 0;
-  z-index: 999999;
-  background-color: white;
-  border: 2px solid rgba(100, 100, 100, 0.75);
-  border-radius: 20px;
-  padding: 0.5rem 3rem;
+  display: none;
+  width: 36rem;
+  z-index: 999;
+  background: white;
+  /* border: 1px solid rgba(180, 180, 180, 0.3); */
+  border-radius: 3rem;
+  padding: 2rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 .children-categories a {
   cursor: pointer;
+  padding: 2px 5rem;
+}
+.main-category-link {
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 /* section featured collection new products */
@@ -442,12 +452,12 @@ h1 {
 }
 
 .whatsapp-icon-fixed img {
-  width: 6rem;
+  width: 5.5rem;
 }
 .whatsapp-icon-fixed {
   position: fixed;
-  bottom: 4rem;
-  right: 4rem;
+  bottom: 3rem;
+  right: 3rem;
   z-index: 99999;
   opacity: 0.7;
   transition: opacity 150ms, scale 150ms;
@@ -455,15 +465,15 @@ h1 {
 .whatsapp-icon-fixed:hover {
   opacity: 1;
   transition-duration: 150ms;
-  scale: 1.05;
+  scale: 1.09;
 }
 .whatsapp-label {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, visibility 0.2s ease;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 2rem;
-  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 1.5rem;
+  padding: 0.8rem 1.5rem;
   pointer-events: none !important;
 }
 
@@ -640,6 +650,9 @@ img.btoptioni {
 }
 .article-card-wrapper .article-card .card__content {
   padding: 0 2rem;;
+}
+.article-card__image.media {
+  background-color: white;
 }
 
 /* cart */

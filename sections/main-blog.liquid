@@ -17,7 +17,8 @@
 {%- endstyle -%}
 
 {%- paginate blog.articles by 6 -%}
-  <div class="main-blog container section-{{ section.id }}-padding">
+<div class="w-100 color-{{ section.settings.color_scheme }}">
+  <div class="main-blog container section-{{ section.id }}-padding ">
     <h1 class="text-center text-uppercase mb-5 title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ blog.title | escape }}
     </h1>
@@ -48,6 +49,7 @@
       {%- render 'pagination', paginate: paginate -%}
     {%- endif -%}
   </div>
+</div>
 {%- endpaginate -%}
 
 {% schema %}
@@ -56,6 +58,11 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    },
     {
       "type": "select",
       "id": "layout",
