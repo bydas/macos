@@ -13,8 +13,6 @@ $(document).ready(function () {
   } else {
     groupCells = 5;
   }
-  
-
 
   $carousel.flickity({
     groupCells: groupCells,
@@ -68,6 +66,110 @@ $(document).ready(function () {
   });
 });
 
+// ### SUBCATEGORIES DROPDOWN ###
+document.addEventListener('DOMContentLoaded', function() {
+  
+  /* Variáveis para controlar qual dropdown está aberto */
+  let openCard = null;
+  let openDropdown = null;
+  let popperInstance = null;
+  
+  /* Função para fechar o dropdown atualmente aberto */
+  function closeOpenDropdown() {
+    if (openDropdown && openCard) {
+      openDropdown.style.display = 'none';
+      openCard.appendChild(openDropdown);
+      if (popperInstance) {
+        popperInstance.destroy();
+        popperInstance = null;
+      }
+      // Remove a classe active do cartão
+      openCard.classList.remove('card-active');
+      openDropdown = null;
+      openCard = null;
+    }
+  }
+  
+  /* Fecha o dropdown se o utilizador clicar fora dele */
+  document.addEventListener('click', function(event) {
+    if (openDropdown && openCard) {
+      if (!openCard.contains(event.target) && !openDropdown.contains(event.target)) {
+        closeOpenDropdown();
+      }
+    }
+  });
+  
+  /* Percorre cada cartão de categoria */
+  document.querySelectorAll('.category-card').forEach(function(card) {
+    
+    const dropdown = card.querySelector('.children-categories');
+    
+    // Verifica se existem subcategorias (pelo menos um link)
+    const hasSubcategories = dropdown.querySelector('a') !== null;
+    
+    if (hasSubcategories) {
+      
+      // Ao clicar no cartão, em vez de ir para a categoria, abre o dropdown
+      card.addEventListener('click', function(e) {
+        
+        // Se o clique for dentro do próprio dropdown (links), permite a interação
+        if (dropdown.contains(e.target)) {
+          return;
+        }
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Se o mesmo cartão já estiver aberto, fecha-o
+        if (openCard === card) {
+          closeOpenDropdown();
+          return;
+        }
+        
+        // Fecha qualquer dropdown de outro cartão
+        closeOpenDropdown();
+        
+        // Acrescenta a opção para ir para a categoria principal no topo,
+        // com o texto "Explorar *nome da categoria*"
+        if (!dropdown.querySelector('.main-category-link')) {
+          const mainLink = document.createElement('a');
+          mainLink.className = 'main-category-link';
+          const categoryName = card.querySelector('.category-title a').textContent;
+          mainLink.textContent = 'Explorar ' + categoryName;
+          mainLink.href = card.querySelector('.category-title a').href;
+          dropdown.insertBefore(mainLink, dropdown.firstChild);
+        }
+        
+        // Move o dropdown para o portal
+        document.getElementById('dropdown-portal').appendChild(dropdown);
+        dropdown.style.display = 'block';
+        dropdown.style.position = 'absolute';
+        
+        // Cria a instância Popper para posicionar o dropdown abaixo do cartão
+        popperInstance = Popper.createPopper(card, dropdown, {
+          placement: 'bottom-start',
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [0, 4]
+              }
+            }
+          ]
+        });
+        
+        // Atualiza as referências e adiciona a classe active ao cartão
+        openCard = card;
+        openDropdown = dropdown;
+        card.classList.add('card-active');
+      });
+      
+    }
+    // Se não houver subcategorias, mantém o comportamento normal (navegação)
+    
+  });
+  
+});
 
 
 /* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */

@@ -7,6 +7,11 @@ body {
   font-weight: 400 !important;
 }
 
+small {
+  position: relative;
+  top: -0.5rem;
+}
+
 .sr-only {
   display: none !important;
 }
@@ -82,7 +87,8 @@ h1 {
   height: 260px;
   margin-right: 4rem;
 }
-.category-card:hover .category-title a {
+.category-card:hover .category-title a,
+.category-card.card-active .category-title a {
   color: #FF9800;
 }
 .category-image {
@@ -102,7 +108,8 @@ h1 {
 .category-card img {
   transition: scale 0.2s ease;
 }
-.category-card:hover img {
+.category-card:hover img,
+.category-card.card-active img {
   scale: 1.04;
 }
 .category-title {
@@ -131,13 +138,14 @@ h1 {
 
 .children-categories {
   display: none;
-  width: 36rem;
+  width: 36.5rem;
   z-index: 999;
   background: white;
   /* border: 1px solid rgba(180, 180, 180, 0.3); */
   border-radius: 3rem;
   padding: 2rem 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-top: -25px !important;
 }
 .children-categories a {
   cursor: pointer;
@@ -149,6 +157,12 @@ h1 {
   border-bottom: 2px solid #ddd;
   margin-bottom: 0.5rem;
   display: block;
+}
+
+.card-active {
+  text-decoration: underline;
+  color: #FF9800;
+  font-weight: 700;
 }
 
 /* section featured collection new products */
@@ -501,6 +515,10 @@ h1 {
   border-radius: 25px;
 }
 
+.contact-email-input {
+  width: calc(200% + 2rem);
+}
+
 .map-row {
   background-color: rgb(240, 240, 240);
   border-radius: 2.5rem;
@@ -514,6 +532,13 @@ h1 {
 }
 .section-map-icon {
   width: 4rem;
+}
+.contact a {
+  color: rgb(80, 80, 80);
+}
+
+.contact button[type="submit"]:after {
+  content: none;
 }
 
 /* --- configuradores --- */
@@ -816,6 +841,12 @@ img.btoptioni {
     margin-bottom: 1.5rem;
   }
 
+}
+
+@media all and (max-width: 749px) {
+  .contact-email-input {
+    width: 100%;
+  }
 }
 
 @media all and (max-width: 577px) {

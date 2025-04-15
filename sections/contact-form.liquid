@@ -66,7 +66,21 @@
               >
               <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
             </div>
-            <div class="field field--with-error">
+            
+            <div class="field contact-fields-custom">
+              <input
+                type="tel"
+                id="ContactForm-phone"
+                class="field__input"
+                autocomplete="tel"
+                name="contact[{{ 'templates.contact.form.phone' | t }}]"
+                pattern="[0-9\-]*"
+                value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                placeholder="{{ 'templates.contact.form.phone' | t }}"
+              >
+              <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+            </div>
+            <div class="field field--with-error contact-email-input">
               <input
                 autocomplete="email"
                 type="email"
@@ -101,19 +115,7 @@
               {%- endif -%}
             </div>
           </div>
-          <div class="field contact-fields-custom">
-            <input
-              type="tel"
-              id="ContactForm-phone"
-              class="field__input"
-              autocomplete="tel"
-              name="contact[{{ 'templates.contact.form.phone' | t }}]"
-              pattern="[0-9\-]*"
-              value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-              placeholder="{{ 'templates.contact.form.phone' | t }}"
-            >
-            <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
-          </div>
+          
           <div class="field contact-fields-custom">
             <textarea
               rows="10"
@@ -136,13 +138,64 @@
         {%- endform -%}
       </div>
       <div class="col-12 col-lg-3 mt-5 pt-5 mt-lg-0 pt-lg-0">
-        <h2 class="mb-5">Ligue-nos</h2>
-        <div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <p><b>Geral: </b>228 347 140</p>
-          <p><b>Encomendas: </b>228 347 141</p>
-          <p><b>Matrículas: </b>228 300 632</p>
-        </div>
+
+        {% if section.settings.side-title != blank %}
+          <h2 class="mb-5">{{ section.settings.side-title }}</h2>
+        {% endif %}
+
+        {% if section.settings.side-description != blank %}
+          <p>{{ section.settings.side-description }}</p>
+        {% endif %}
+          
+        {% if section.settings.phone_number_1 != blank or section.settings.phone_number_2 != blank or section.settings.phone_number_3 != blank %}
+          
+          <div class="phone-numbers-wrapper">
+
+            <div>
+              <div class="d-flex flex-row flex-md-column flex-xl-row">
+                {% if section.settings.phone_label_1 != blank %}
+                  <span>{{ section.settings.phone_label_1 }}&nbsp;</span>
+                {% endif %}
+
+                {% if section.settings.phone_number_1 != blank %}
+                  {% assign formatted_number_1 = section.settings.phone_number_1 | remove: " " %}
+                  <a href="tel:{{ formatted_number_1 }}"><span>{{section.settings.phone_number_1}}</span></a>
+                {% endif %}
+              </div>
+            </div>
+
+            <div>
+              <div class="d-flex flex-row flex-md-column flex-xl-row">
+                {% if section.settings.phone_label_2 != blank %}
+                  <span>{{ section.settings.phone_label_2 }}&nbsp;</span>
+                {% endif %}
+
+                {% if section.settings.phone_number_2 != blank %}
+                  {% assign formatted_number_2 = section.settings.phone_number_2 | remove: " " %}
+                  <a href="tel:{{ formatted_number_2 }}"><span>{{section.settings.phone_number_2}}</span></a>
+                {% endif %}
+              </div>
+            </div>
+
+            <div>
+              <div class="d-flex flex-row flex-md-column flex-xl-row">
+                {% if section.settings.phone_label_3 != blank %}
+                  <span>{{ section.settings.phone_label_3 }}&nbsp;</span>
+                {% endif %}
+
+                {% if section.settings.phone_number_3 != blank %}
+                  {% assign formatted_number_3 = section.settings.phone_number_3 | remove: " " %}
+                  <a href="tel:{{ formatted_number_3 }}"><span>{{section.settings.phone_number_3}}</span></a>
+                {% endif %}
+              </div>
+            </div>
+
+            <small class="fs-6">(chamada p/ a rede fixa nacional)</small>
+
+          </div>
+
+        {% endif %}
+
       </div>
     </div>
   </div>
@@ -220,6 +273,50 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Side section"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "side-title",
+      "label": "Side section title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "side-description",
+      "label": "Side description"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "phone_label_1",
+      "label": "Phone label 1"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_1",
+      "label": "Phone number 1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "phone_label_2",
+      "label": "Phone label 2"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_2",
+      "label": "Phone number 2"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "phone_label_3",
+      "label": "Phone label 3"
+    },
+    {
+      "type": "text",
+      "id": "phone_number_3",
+      "label": "Phone number 3"
     }
   ],
   "presets": [
