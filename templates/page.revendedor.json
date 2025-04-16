@@ -12,13 +12,18 @@
     "main": {
       "type": "main-page",
       "settings": {
+        "color_scheme": "scheme-1",
         "padding_top": 28,
         "padding_bottom": 28
       }
     },
     "reseller_form_HQPgHd": {
       "type": "reseller-form",
-      "settings": {}
+      "settings": {
+        "color-scheme": "scheme-5",
+        "padding-top": 50,
+        "padding-bottom": 15
+      }
     }
   },
   "order": [
