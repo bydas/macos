@@ -189,12 +189,12 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "#ff9800",
+          "background": "#f3f3f3",
           "background_gradient": "",
           "text": "#121212",
           "button": "#ff9800",
-          "button_label": "#ff9800",
-          "secondary_button_label": "#ff9800",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#202020",
           "shadow": "#121212"
         }
       },
