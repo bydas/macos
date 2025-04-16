@@ -1,187 +1,100 @@
 <div class="reseller-form">
   <style>
-    .reseller-form {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .reseller-form__title {
-      color: #FF6600;
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-    
-    .reseller-form__subtitle {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-    }
-    
-    .reseller-form__input-wrapper {
-      margin-bottom: 20px;
-      position: relative;
-    }
 
-    
-    .reseller-form__required {
-      color: #FF6600;
-      margin-right: 5px;
-    }
-    
-    .reseller-form__input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-    
-    .reseller-form__input:focus {
-      outline: none;
-      border-color: #FF6600;
-    }
-    
-    .reseller-form__checkbox-group {
-      margin-top: 5px;
-    }
-    
-    .reseller-form__checkbox-label {
-      display: block;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
-    
-    .reseller-form__checkbox {
-      margin-right: 10px;
-    }
-    
-    .reseller-form__submit {
-      background-color: #FF6600;
-      color: white;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-    
-    .reseller-form__submit:hover {
-      background-color: #e65c00;
-    }
-    
-    .reseller-form__submit:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-    
-    .reseller-form__error {
-      color: red;
-      font-size: 14px;
-      margin-top: 5px;
-      display: none;
-    }
-    
-    .reseller-form__success {
-      color: green;
-      text-align: center;
-      margin-top: 20px;
-      display: none;
-    }
-    
-    .validation-error {
-      color: red;
-      font-size: 12px;
-      margin-top: 5px;
-      display: none;
-    }
   </style>
 
-  <div class="reseller-form__container">
-    <h1 class="reseller-form__title">Formulário de Revendedor</h1>
-    <p class="reseller-form__subtitle">Preencher dados abaixo</p>
-  
-    {% form 'contact' %}
-      {% if form.errors %}
-        <div class="reseller-form__error" style="display: block;">
-          {{ form.errors | default_errors }}
-        </div>
-      {% endif %}
-      
-      {% if form.posted_successfully? %}
-        <div class="reseller-form__success" style="display: block;">
-          <p>No prazo de 48h receberá resposta ao seu pedido. Caso seja aprovado receberá um E-mail a confirmar a sua conta de revendedor e a partir desse momento terá acesso às condições de revenda. <br>
-            Se tiver alguma dúvida durante o processo não hesite em entrar em contacto connosco.</p>
-        </div>
-      {% endif %}
-      
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="ContactForm-first-name">*Nome</label>
-        <input type="text" class="reseller-form__input" id="ContactForm-first-name" name="contact[first_name]" placeholder="*Nome" required>
+  <div class="reseller-form__container container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="reseller-form__title">Formulário de Revendedor</h1>
+        <p class="reseller-form__subtitle">Preencher dados abaixo</p>
       </div>
-  
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="ContactForm-last-name">*Apelido</label>
-        <input type="text" class="reseller-form__input" id="ContactForm-last-name" name="contact[last_name]" placeholder="*Apelido" required>
+
+      <div class="row">
+
+          {% form 'contact', class: "d-flex flex-wrap justify-content-center gap-3 mb-5" %}
+            <div class="col-12">
+
+              {% if form.errors %}
+                <div class="reseller-form__error" style="display: block;">
+                  {{ form.errors | default_errors }}
+                </div>
+              {% endif %}
+              
+              {% if form.posted_successfully? %}
+                <div class="reseller-form__success" style="display: block;">
+                  <p>No prazo de 48h receberá resposta ao seu pedido. Caso seja aprovado receberá um e-mail a confirmar a sua conta de revendedor e a partir desse momento terá acesso às condições de revenda. <br>
+                    Se tiver alguma dúvida durante o processo não hesite em entrar em contacto connosco.</p>
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="reseller-form__input-wrapper">
+              <label class="reseller-form__label sr-only" for="ContactForm-first-name">*Nome</label>
+              <input type="text" class="reseller-form__input" id="ContactForm-first-name" name="contact[first_name]" placeholder="*Nome" required>
+            </div>
+        
+            <div class="reseller-form__input-wrapper">
+              <label class="reseller-form__label sr-only" for="ContactForm-last-name">*Apelido</label>
+              <input type="text" class="reseller-form__input" id="ContactForm-last-name" name="contact[last_name]" placeholder="*Apelido" required>
+            </div>
+        
+            <div class="reseller-form__input-wrapper">
+              <label class="reseller-form__label sr-only" for="ContactForm-company">*Empresa</label>
+              <input type="text" class="reseller-form__input" id="ContactForm-company" name="contact[company]" placeholder="*Empresa" required>
+            </div>
+        
+            <div class="reseller-form__input-wrapper">
+              <label class="reseller-form__label sr-only" for="ContactForm-nif">*Número de Identificação Fiscal</label>
+              <input type="text" class="reseller-form__input" id="ContactForm-nif" name="contact[nif]" placeholder="*Número de Identificação Fiscal" required>
+              <div class="validation-error" id="nif-error">O NIF deve conter exatamente 9 dígitos numéricos sem espaços.</div>
+            </div>
+        
+            <div class="reseller-form__input-wrapper">
+              <label class="reseller-form__label sr-only" for="ContactForm-city">*Localidade</label>
+              <input type="text" class="reseller-form__input" id="ContactForm-city" name="contact[city]" placeholder="*Localidade" required>
+            </div>
+        
+            <div class="reseller-form__input-wrapper">
+              <label class="reseller-form__label sr-only" for="ContactForm-email">*Email</label>
+              <input type="email" class="reseller-form__input" id="ContactForm-email" name="contact[email]" placeholder="*Email" required>
+            </div>
+        
+            <div class="reseller-form__input-wrapper w-100 ms-lg-5 ms-1 ps-xxl-5 ps-lg-4 my-4">
+              <label class="reseller-form__label fw-bold">*Actividade da sua empresa:</label>
+              <div class="reseller-form__checkbox-group">
+                <label class="reseller-form__checkbox-label m-0">
+                  <input type="checkbox" class="activity-checkbox" value="Centro Auto">
+                  Centro Auto
+                </label>
+                <label class="reseller-form__checkbox-label m-0">
+                  <input type="checkbox" class="activity-checkbox" value="Posto de Abastecimento">
+                  Posto de Abastecimento
+                </label>
+                <label class="reseller-form__checkbox-label m-0">
+                  <input type="checkbox" class="activity-checkbox" value="Casa de Peças e Acessórios">
+                  Casa de Peças e Acessórios
+                </label>
+                <label class="reseller-form__checkbox-label m-0">
+                  <input type="checkbox" class="activity-checkbox" value="Centro de Lavagem">
+                  Centro de Lavagem
+                </label>
+                <label class="reseller-form__checkbox-label m-0">
+                  <input type="checkbox" class="activity-checkbox" value="Outros">
+                  Outros
+                </label>
+              </div>
+              <div class="validation-error" id="checkbox-error">Por favor, selecione pelo menos uma actividade.</div>
+            </div>
+            
+            <input type="hidden" name="contact[body]" id="activities-hidden">
+            <input type="hidden" name="contact[form_type]" value="reseller_form">
+            
+            <button type="submit" class="reseller-form__submit" id="submit-button">Enviar</button>
+          {% endform %}
+
       </div>
-  
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="ContactForm-company">*Empresa</label>
-        <input type="text" class="reseller-form__input" id="ContactForm-company" name="contact[company]" placeholder="*Empresa" required>
-      </div>
-  
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="ContactForm-nif">*Número de Identificação Fiscal</label>
-        <input type="text" class="reseller-form__input" id="ContactForm-nif" name="contact[nif]" placeholder="*Número de Identificação Fiscal" required>
-        <div class="validation-error" id="nif-error">O NIF deve conter exatamente 9 dígitos numéricos sem espaços.</div>
-      </div>
-  
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="ContactForm-city">*Localidade</label>
-        <input type="text" class="reseller-form__input" id="ContactForm-city" name="contact[city]" placeholder="*Localidade" required>
-      </div>
-  
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label sr-only" for="ContactForm-email">*Email</label>
-        <input type="email" class="reseller-form__input" id="ContactForm-email" name="contact[email]" placeholder="*Email" required>
-      </div>
-  
-      <div class="reseller-form__input-wrapper">
-        <label class="reseller-form__label">*Actividade da sua Empresa</label>
-        <div class="reseller-form__checkbox-group">
-          <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="activity-checkbox" value="Centro Auto">
-            Centro Auto
-          </label>
-          <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="activity-checkbox" value="Posto de Abastecimento">
-            Posto de Abastecimento
-          </label>
-          <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="activity-checkbox" value="Casa de Peças e Acessórios">
-            Casa de Peças e Acessórios
-          </label>
-          <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="activity-checkbox" value="Centro de Lavagem">
-            Centro de Lavagem
-          </label>
-          <label class="reseller-form__checkbox-label m-0">
-            <input type="checkbox" class="activity-checkbox" value="Outros">
-            Outros
-          </label>
-        </div>
-        <div class="validation-error" id="checkbox-error">Por favor, selecione pelo menos uma actividade.</div>
-      </div>
-      
-      <input type="hidden" name="contact[body]" id="activities-hidden">
-      <input type="hidden" name="contact[form_type]" value="reseller_form">
-      
-      <button type="submit" class="reseller-form__submit" id="submit-button">Enviar</button>
-    {% endform %}
+    </div>
   </div>
   
   <script>

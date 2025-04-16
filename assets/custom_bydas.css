@@ -52,7 +52,8 @@ h1 {
 
 /* submit buttons */
 .card .button[type="submit"], 
-.card .button[type="submit"] span, 
+.card .button[type="submit"] span,
+.reseller-form__submit, 
 .newsletter-submit-button-wrapper * {
   text-transform: uppercase;
   color: white;
@@ -97,7 +98,8 @@ h1 {
   overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
-.category-image:hover {
+.category-image:hover,
+.category-card.card-active .category-image {
   box-shadow: 1rem 1rem 2.2rem -2rem black;
 }
 .category-image img {
@@ -405,7 +407,8 @@ h1 {
   background-color: rgb(230, 230, 230);
   border-radius: 25px;
 }
-.newsletter-submit-button {
+.newsletter-submit-button,
+.reseller-form__submit {
   position: static;
   overflow: visible;
   width: auto !important;
@@ -414,8 +417,10 @@ h1 {
   background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
   border-radius: 7px;
   transition: box-shadow 0.3s;
+  border: none;
 }
-.newsletter-submit-button:hover {
+.newsletter-submit-button:hover,
+.reseller-form__submit:hover {
   box-shadow: 0 1.5rem 2rem -2rem black !important;
   text-decoration: underline;
   transition-duration: 0.3s;
@@ -514,11 +519,9 @@ h1 {
   background-color: rgb(235, 235, 235);
   border-radius: 25px;
 }
-
 .contact-email-input {
   width: calc(200% + 2rem);
 }
-
 .map-row {
   background-color: rgb(240, 240, 240);
   border-radius: 2.5rem;
@@ -536,9 +539,86 @@ h1 {
 .contact a {
   color: rgb(80, 80, 80);
 }
-
 .contact button[type="submit"]:after {
   content: none;
+}
+
+/* form revendedor */
+.reseller-form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.reseller-form__title {
+  color: #FF9800;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.reseller-form__subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.reseller-form__input-wrapper {
+  width: 45%;
+  position: relative;
+}
+
+
+.reseller-form__required {
+  color: #FF9800;
+  margin-right: 5px;
+}
+
+.reseller-form__input {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: 1px solid #ddd;
+  border-radius: 3rem;
+}
+
+.reseller-form__input:focus {
+  outline: none;
+}
+
+.reseller-form__checkbox-label {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.reseller-form__checkbox {
+  margin-right: 10px;
+}
+
+.reseller-form__submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.reseller-form__error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}
+
+.reseller-form__success {
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+  display: none;
+}
+
+.validation-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
 }
 
 /* --- configuradores --- */
@@ -770,6 +850,10 @@ img.btoptioni {
   .card-configurador table {
     width: 90%;
     justify-self: center;
+  }
+
+  .reseller-form__input-wrapper {
+    width: 100%;
   }
   
 }

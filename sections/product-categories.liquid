@@ -76,9 +76,21 @@
                 {% assign subcollection = collections[handle] %}
                 
                 {% if subcollection != blank %}
+
+                  {% if subcollection.handle == "configurador-escovas-limpa-para-brisas" %}
+                    <a href="/pages/configurador-de-escovas-limpa-para-brisas" class="d-block">{{ subcollection.title }}</a>
+
+                  {% elsif subcollection.handle == "configurador-auto-paraventos" %}
+                    <a href="/pages/auto-paraventos-configurador" class="d-block">{{ subcollection.title }}</a>
+
+                  {% elsif subcollection.handle == "configurador-barras-de-tejadilho" %}
+                    <a href="/pages/configurador-de-barras-de-tejadilho" class="d-block">{{ subcollection.title }}</a>
                   
-                  <a href="{{ subcollection.url }}" class="d-block">{{ subcollection.title }}</a>
-                  
+                  {% else %}
+                    <a href="{{ subcollection.url }}" class="d-block">{{ subcollection.title }}</a>
+                    
+                  {% endif %}
+                
                 {% endif %}
               {% endfor %}
               
