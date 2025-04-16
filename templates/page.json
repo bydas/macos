@@ -16,13 +16,8 @@
         "padding_bottom": 28
       }
     },
-    "reseller_form_HQPgHd": {
-      "type": "reseller-form",
-      "settings": {}
-    }
   },
   "order": [
-    "main",
-    "reseller_form_HQPgHd"
+    "main"
   ]
 }

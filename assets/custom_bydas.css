@@ -12,6 +12,11 @@ small {
   top: -0.5rem;
 }
 
+hr {
+  padding: 0;
+  margin: 4rem auto;
+}
+
 .sr-only {
   display: none !important;
 }
@@ -306,6 +311,11 @@ h1 {
 .product-card-buttons-wrapper button[type="submit"]::after {
   content: none;
 }
+#card-product-custom .card__information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /* quantity input */
 .quantity {
@@ -501,6 +511,14 @@ h1 {
   visibility: visible;
 }
 
+/* simple pages (main-page.liquid) */
+.side-image img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 3rem;
+  object-fit: contain;
+}
 
 /* page contacts / map section */
 .contact-fields-custom .field::after, 
@@ -549,77 +567,65 @@ h1 {
   margin: 0 auto;
   padding: 20px;
 }
-
 .reseller-form__title {
   color: #FF9800;
   text-align: center;
   margin-bottom: 10px;
   font-size: 24px;
 }
-
 .reseller-form__subtitle {
   text-align: center;
   margin-bottom: 30px;
   color: #333;
 }
-
 .reseller-form__input-wrapper {
   width: 45%;
   position: relative;
 }
-
-
 .reseller-form__required {
   color: #FF9800;
   margin-right: 5px;
 }
-
 .reseller-form__input {
   width: 100%;
   padding: 1rem 2rem;
   border: 1px solid #ddd;
   border-radius: 3rem;
 }
-
 .reseller-form__input:focus {
   outline: none;
 }
-
 .reseller-form__checkbox-label {
   display: block;
   margin-bottom: 10px;
   cursor: pointer;
 }
-
 .reseller-form__checkbox {
   margin-right: 10px;
 }
-
 .reseller-form__submit:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
 .reseller-form__error {
   color: red;
   font-size: 14px;
   margin-top: 5px;
   display: none;
 }
-
 .reseller-form__success {
   color: green;
   text-align: center;
   margin-top: 20px;
   display: none;
 }
-
 .validation-error {
   color: red;
   font-size: 12px;
   margin-top: 5px;
   display: none;
 }
+
 
 /* --- configuradores --- */
 

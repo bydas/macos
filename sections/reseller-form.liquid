@@ -1,8 +1,11 @@
-<div class="reseller-form">
-  <style>
+{% style %}
+  .reseller-form {
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+  }
+{% endstyle %}
 
-  </style>
-
+<div class="reseller-form color-{{ section.settings.color-scheme }}">
   <div class="reseller-form__container container">
     <div class="row">
       <div class="col-12">
@@ -190,7 +193,35 @@
 {% schema %}
 {
   "name": "Reseller Form",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color-scheme",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "label": "Top",
+      "step": 5,
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "label": "Bottom",
+      "step": 5,
+      "default": 0,
+      "min": 0,
+      "max": 100
+    }
+  ],
   "presets": [
     {
       "name": "Reseller Form",

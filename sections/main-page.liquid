@@ -14,12 +14,24 @@
   }
 {%- endstyle -%}
 
-<div class="container section-{{ section.id }}-padding">
-  <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+<div class=" color-{{ section.settings.color_scheme }} w-100">
+  <div class="container section-{{ section.id }}-padding">
+    <div class="row">
+      <h1 class="col-12 main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        {{ page.title | escape }}
+      </h1>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-8 pe-0 pe-lg-5 rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ page.content }}
+      </div>
+      <div class="col-12 col-lg-4 side-image scroll-trigger animate--slide-in">
+        <div class="side-image-wrapper position-relative h-100 d-flex justify-content-center align-items-start">
+          <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/ChatGPT_Image_9_04_2025_11_50_23.png?v=1744213738" width="" height="" alt="Quem Somos">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -32,6 +44,11 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
     },
     {
       "type": "range",
