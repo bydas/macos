@@ -28,7 +28,14 @@
       </div>
       <div class="col-12 col-lg-4 side-image scroll-trigger animate--slide-in">
         <div class="side-image-wrapper position-relative h-100 d-flex justify-content-center align-items-start">
-          <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/ChatGPT_Image_9_04_2025_11_50_23.png?v=1744213738" width="" height="" alt="Quem Somos">
+          {% liquid
+            if section.settings.side-image != blank
+              assign side_image = section.settings.side-image | image_url
+            else
+              assign side_image = "https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326"
+            endif
+          %}
+          <img src="{{ side_image }}" width="" height="" alt="MACOS">
         </div>
       </div>
     </div>
@@ -69,6 +76,11 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "image_picker",
+      "id": "side-image",
+      "label": "Side image"
     }
   ]
 }

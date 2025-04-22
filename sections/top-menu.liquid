@@ -1,5 +1,5 @@
 {%- style -%}
-  .section-top-menu div {
+  .section-top-menu nav {
     background-color: {{ section.settings.background-color }}; 
     text-align: {{ section.settings.align }}; 
     padding: {{ section.settings.padding-section }}px;
@@ -12,13 +12,31 @@
   }
 {%- endstyle -%}
 
-<div>
+{% assign top_menu = linklists[section.settings.menu] %}
+
+<nav class="top-menu p-relative">
+  <ul class="list-unstyled d-flex justify-content-center align-items-center mb-0">
   
-  {% for item in section.settings.menu.links %}
-    <a href="{{ item.url }}" class="{% if request.path == item.url %}active{% endif %}">{{ item.title }}</a>
+  {% for item in top_menu.links %}
+    <li>
+      <a href="{{ item.url }}" class="{% if request.path == item.url %} active{% endif %}">{{ item.title }}</a>
+
+      {% if item.links.size > 0 %}
+
+        <div class="top-menu-dropdown border">
+
+          {% for child in item.links %}
+            <a href="{{ child.url }}">{{ child.title }}</a>
+          {% endfor %}
+
+        </div>
+        
+      {% endif %}
+    </li>
+
   {% endfor %}
-  
-</div>
+  </ul>
+</nav>
 
 {% schema %}
   {

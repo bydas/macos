@@ -45,10 +45,19 @@ h1 {
   border: 1px solid rgba(50, 50, 50, 0.75);
 }
 
+.pagination__list {
+  width: 100%;
+}
+
 /* top menu */
 .section-top-menu {
   text-transform: uppercase;
   font-weight: 400;
+  width: 100vw;
+}
+.top-menu-dropdown {
+  position: absolute;
+  width: 10rem !important;
 }
 
 .slider-component-full-width .slider--desktop .slider__slide:first-child{
@@ -410,6 +419,8 @@ h1 {
   border: unset;
   outline: unset;
   border-radius: unset;
+  box-shadow: 0px 0px 5px 0px rgb(175, 175, 175) !important;
+  scale: 1.01;
 }
 .newsletter-input, 
 .newsletter-input:focus, 
@@ -536,6 +547,13 @@ h1 {
 .contact-fields-custom .field__input {
   background-color: rgb(235, 235, 235);
   border-radius: 25px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.contact-fields-custom .field__input:focus {
+  box-shadow: 0px 0px 5px 0px rgb(175, 175, 175) !important;
+  scale: 1.01;
 }
 .contact-email-input {
   width: calc(200% + 2rem);
@@ -591,9 +609,12 @@ h1 {
   padding: 1rem 2rem;
   border: 1px solid #ddd;
   border-radius: 3rem;
+  transition: box-shadow 30ms;
 }
 .reseller-form__input:focus {
   outline: none;
+  border: none;
+  transition-duration: 30ms;
 }
 .reseller-form__checkbox-label {
   display: block;
@@ -871,7 +892,7 @@ img.btoptioni {
     font-size: 9px !important;
   }
   
-  .section-top-menu div {
+  .section-top-menu nav {
     padding:0 !important
   }
   
