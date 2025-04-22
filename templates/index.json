@@ -192,7 +192,7 @@
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
             "page": "",
-            "description": "<p>Apoio ao Cliente MACOS: disponível para si através do número 253 299 007 — conte connosco para o ajudar.</p>"
+            "description": "<p>Na MACOS, a rapidez é prioridade — da encomenda à entrega, tudo num instante.</p>"
           }
         },
         "block_advantage_GKYQFp": {
@@ -201,7 +201,7 @@
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
             "page": "contact",
-            "description": "<p>Texto sobre apoio ao cliente.</p>"
+            "description": "<p>Apoio ao Cliente MACOS: disponível para si através do número 253 299 007 — conte connosco para o ajudar.</p>"
           }
         }
       },
