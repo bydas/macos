@@ -12,10 +12,12 @@
     "main": {
       "type": "main-page",
       "settings": {
+        "color_scheme": "",
         "padding_top": 28,
-        "padding_bottom": 28
+        "padding_bottom": 28,
+        "side-image": "shopify://shop_images/download.png"
       }
-    },
+    }
   },
   "order": [
     "main"
