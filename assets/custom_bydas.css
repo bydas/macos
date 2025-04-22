@@ -7,6 +7,10 @@ body {
   font-weight: 400 !important;
 }
 
+svg {
+  shape-rendering: geometricPrecision !important;
+}
+
 small {
   position: relative;
   top: -0.5rem;
@@ -57,7 +61,13 @@ h1 {
 }
 .top-menu-dropdown {
   position: absolute;
-  width: 10rem !important;
+  left: 0;
+  width: 100%;
+  border-radius: 0 0 0.5rem 0.5rem;
+  display: none;
+}
+.top-menu li:hover > .top-menu-dropdown {
+  display: block;
 }
 
 .slider-component-full-width .slider--desktop .slider__slide:first-child{
