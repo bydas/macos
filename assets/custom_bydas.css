@@ -9,6 +9,7 @@ body {
 
 svg {
   shape-rendering: geometricPrecision !important;
+  backface-visibility: hidden !important;
 }
 
 small {
@@ -297,6 +298,19 @@ h1 {
 }
 
 /* card products */
+.card__media .media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  position: static !important;
+}
+
+
 .w-custom {
   width: 40%;
 }
