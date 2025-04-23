@@ -54,7 +54,7 @@
     >
       <div class="d-flex" id="new-products-card">
         <!-- CARD IMAGE WRAPPER -->
-        <div class="card-image-wrapper">
+        <div class="card-image-wrapper d-flex justify-content-center align-items-center">
           
           <div
             class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"

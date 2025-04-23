@@ -1,23 +1,25 @@
 <section class="container-fluid highlights-section w-100 p-0">
   <div class="row justify-content-center align-items-center w-100 h-100 p-0 g-0">
     <div class="col-12 col-lg-6 h-100 p-0">
-      <div id="highlights-slideshow" class="">
+      {% comment %} <div class="slideshow-wrapper"> {% endcomment %}
+        <div id="highlights-slideshow">
         
-        {% for slide in section.blocks %}
-
-          <div class="carousel-cell">
-            {% if slide.settings.image != blank %}
-              <img src="{{ slide.settings.image | image_url }}" width="" height="" alt="slide">
-
-            {% else %}
-                <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="70%" height="" alt="Macos logo">
-              
-            {% endif %}
-          </div>
+          {% for slide in section.blocks %}
+  
+            <div class="carousel-cell">
+              {% if slide.settings.image != blank %}
+                <img src="{{ slide.settings.image | image_url }}" width="" height="" alt="slide">
+  
+              {% else %}
+                  <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="70%" height="" alt="Macos logo">
+                
+              {% endif %}
+            </div>
+            
+          {% endfor %}
           
-        {% endfor %}
-        
-      </div>
+        </div>
+      {% comment %} </div> {% endcomment %}
     </div>
     
     <div class="col-12 col-lg-6 highlights-mosaics">

@@ -220,6 +220,11 @@ h1 {
   width: 100vw;
   aspect-ratio: 30 / 9;
 }
+/* .slideshow-wrapper {
+  aspect-ratio: 30 / 9;
+  width: 100%;
+  height: auto;
+} */
 #highlights-slideshow {
   height: 100% !important;
 }
@@ -270,9 +275,12 @@ h1 {
 }
 
 /* new products card */
+#new-products-card {
+  height: 100%;
+}
 #new-products-card .card-image-wrapper {
   width: 45%;
-  height: 100%;
+  height: 100% !important;
 }
 #new-products-card .card-content-wrapper {
   width: 55%;
