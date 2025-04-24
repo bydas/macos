@@ -7,11 +7,14 @@ $(document).ready(function () {
   if (window.innerWidth <= 578) {
     groupCells = false;
 
-  } else if (window.innerWidth <= 992) {
+  } else if (window.innerWidth <= 1100) {
     groupCells = 4;
 
-  } else {
+  } else if (window.innerWidth <= 1300){
     groupCells = 5;
+
+  } else {
+    groupCells = 6;
   }
 
   $carousel.flickity({
