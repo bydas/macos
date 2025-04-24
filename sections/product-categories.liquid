@@ -40,7 +40,7 @@
           
           <div class="category-card me-lg-5 me-md-4 me-3 carousel-cell">
             
-            <a href="{{ category.url }}">
+            <a href="{% if category.handle == 'configurador-auto-paraventos' %}/pages/auto-paraventos-configurador{% else %}{{ category.url }}{% endif %}">
               <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">
                 
                 {% if category.image != blank %}
