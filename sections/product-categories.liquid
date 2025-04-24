@@ -53,7 +53,7 @@
             </a>
             
             <div class="category-title text-center mt-2">
-              <a href="{{ category.url }}">
+              <a href="{% if category.handle == "configurador-auto-paraventos" %}/pages/auto-paraventos-configurador{% else %}{{ category.url }}{% endif %}">
                 {% if category.handle == "configurador-auto-paraventos" %}Auto-paraventos{% else %}{{ category.title }}{% endif %}
               </a>
             </div>
