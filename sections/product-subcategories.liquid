@@ -57,12 +57,28 @@
         <div id="categories-carousel" class="categories-carousel position-relative">
           
           {% for handle in child_handles %}
-            {% assign subcollection = collections[handle] %}
+            
+            {% liquid 
+               assign subcollection = collections[handle] 
+               assign link = ""
+               
+               if subcollection.handle == "configurador-escovas-limpa-vidros"
+                    assign link = "/pages/configurador-escovas-limpa-vidros"
+               
+               elsif subcollection.handle == "configurador-auto-paraventos"
+                    assign link = "/pages/auto-paraventos-configurador"
+               
+               elsif subcollection.handle == "configurador-barras-de-tejadilho"
+                    assign link = "/pages/configurador-de-barras-de-tejadilho"
+               else
+                    assign link = subcollection.url
+               endif
+            %}
 
             {% if subcollection != blank %}
               <div class="category-card me-md-5 me-sm-4 me-3 carousel-cell">
                 
-                <a href="{{ subcollection.url }}">
+                <a href="{{ link }}">
                   <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">
                     
                     {% if subcollection.image != blank %}
@@ -75,7 +91,7 @@
                 </a>
                 
                 <div class="category-title text-center mt-2">
-                  <a href="{{ subcollection.url }}">{{ subcollection.title }}</a>
+                  <a href="{{ link }}">{{ subcollection.title }}</a>
                 </div>
               
               </div>
