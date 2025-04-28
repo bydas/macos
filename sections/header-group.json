@@ -54,7 +54,7 @@
         "logo_position": "middle-center",
         "mobile_logo_position": "center",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu_type_desktop": "drawer",
         "sticky_header_type": "reduce-logo-size",
         "show_line_separator": true,
         "color_scheme": "scheme-0e6dfaba-3f97-420c-b9ab-c58ca2b2ac3d",
