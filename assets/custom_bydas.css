@@ -29,8 +29,11 @@ hr {
 a {
   text-decoration: none;
 }
-a:hover, .active {
+a:hover, .active{
   color: #FF9800 !important;
+}
+.pagination .active, .pagination__item--current {
+  border-radius: 50% !important;
 }
 .full-unstyled-link {
   color: rgb(255, 160, 0); /* orange */
