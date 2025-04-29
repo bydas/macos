@@ -75,6 +75,7 @@
         "share"
       ],
       "settings": {
+        "navigation": "back-button",
         "enable_sticky_info": true,
         "color_scheme": "scheme-5",
         "media_size": "small",
