@@ -13,7 +13,7 @@
       "type": "main-search",
       "settings": {
         "color_scheme": "scheme-5",
-        "columns_desktop": 5,
+        "columns_desktop": 4,
         "columns_mobile": "2",
         "image_ratio": "portrait",
         "image_shape": "default",
