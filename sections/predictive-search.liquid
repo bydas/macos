@@ -158,7 +158,7 @@
                         </div>
                       {%- endif -%}
                       <p class="predictive-search__item-heading h5">{{ product.title | escape }}</p>
-                      {%- if settings.predictive_search_show_price -%}
+                      {%- if settings.predictive_search_show_price and customer -%}
                         {% render 'price', product: product, use_variant: true, show_badges: false %}
                       {%- endif -%}
                     </div>
