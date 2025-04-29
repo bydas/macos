@@ -1,13 +1,12 @@
 {% if navigation_type == "breadcrumb" %}
+  
+  {% liquid
+    assign current_category = collection
+    assign father_category = current_category.metafields.custom.parent.value
+    assign grandfather_category = father_category.metafields.custom.parent.value
+  %}
 
   <nav class="breadcrumb-nav container fs-4 mb-2 pt-0 pt-sm-3 pt-lg-2 pt-xl-0">
-  
-    {% liquid
-      assign current_category = collection
-      assign father_category = current_category.metafields.custom.parent.value
-      assign grandfather_category = father_category.metafields.custom.parent.value
-    %}
-
     <a href="/">Home</a>
   
     {% if grandfather_category != blank %}
@@ -50,12 +49,14 @@
       endif
 
     else
-    endcomment
+
       assign parent_collection = collection.metafields.custom.parent.value
-    comment
+
     endif
     endcomment
   %}
+
+  {% assign parent_collection = collection.metafields.custom.parent.value %}
 
   <nav class="container fs-4 mb-2 pt-0 pt-sm-3 pt-lg-2 pt-xl-0">
 
