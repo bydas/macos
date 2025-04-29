@@ -12,9 +12,9 @@
     "main": {
       "type": "search-results",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "padding_top": 28,
-        "padding_bottom": 28,
+        "padding_bottom": 28
       }
     }
   },
