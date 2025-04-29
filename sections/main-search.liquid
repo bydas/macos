@@ -272,7 +272,7 @@
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
                         {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
-                        {% render 'card-product',
+                        {% render 'card-product-custom',
                           card_product: item,
                           media_aspect_ratio: section.settings.image_ratio,
                           image_shape: section.settings.image_shape,
@@ -284,7 +284,7 @@
                         %}
                         {%- assign skip_card_product_styles = true -%}
                       {%- when 'article' -%}
-                        {% render 'article-card',
+                        {% render 'article-card-custom',
                           article: item,
                           show_image: true,
                           show_date: section.settings.article_show_date,
