@@ -26,7 +26,7 @@ a {
 }
 a:hover, 
 .page-active
-.list-menu__item--active {
+.footer-block__details-content .list-menu__item--active {
   color: #FF9800 !important;
 }
 .pagination .active, .pagination__item--current {
