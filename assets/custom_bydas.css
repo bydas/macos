@@ -238,7 +238,7 @@ h1 {
 /* breadcrumb */
 .breadcrumb-nav a {
   color: rgb(80, 80, 80);
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 /* highlights slideshow */
