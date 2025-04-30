@@ -11,9 +11,9 @@
   "current": {
     "logo": "shopify://shop_images/logo.png",
     "logo_width": 300,
-    "type_header_font": "univers_next_n4",
+    "type_header_font": "serif",
     "heading_scale": 100,
-    "type_body_font": "univers_next_n4",
+    "type_body_font": "serif",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
