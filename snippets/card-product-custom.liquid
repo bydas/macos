@@ -48,7 +48,7 @@
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if extend_height %} card--extend-height{% endif %}
-        {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
+        {% comment %} {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %} {% endcomment %}
         {% if horizontal_class %} card--horizontal{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
@@ -578,8 +578,8 @@
         </div>
       </div>
 
-      <!-- START QUANTITY AND BUY-BUTTON -->
-      <div class="product-card-buttons-wrapper z-3 w-100 py-4 py-sm-3 d-flex flex-row justify-content-center align-items-center">
+      <!-- START QUANTITY AND BUY BUTTON -->
+      <div class="product-card-buttons-wrapper z-3 w-100 py-4 py-sm-3 d-flex flex-row justify-content-center align-items-center h-auto">
         
         <!-- START QUANTITY -->
         <div class="price-per-item__container w-50 ps-4 justify-content-center">

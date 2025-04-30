@@ -314,6 +314,7 @@ a:hover, .active{
   display: grid;
   grid-template-rows: minmax(0, 1fr) maxcontent minmax(0, 1fr);
   width: 100%;
+  height: auto;
   flex-grow: 1;
   padding: 2rem;
 }
@@ -853,6 +854,7 @@ img.btoptioni {
 .cart-drawer__empty-content .button::after {
   border: none;
   box-shadow: none !important;
+  content: none;
 }
 .cart__warnings .button:hover,
 .cart-drawer__empty-content .button:hover {
