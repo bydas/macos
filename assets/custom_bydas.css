@@ -89,6 +89,7 @@ a:hover, .active{
   font-stretch: condensed;
   letter-spacing: 0.1rem;
   min-width: auto;
+  margin-bottom: 0;
 }
 
 /* flickity buttons */
