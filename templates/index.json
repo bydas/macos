@@ -172,7 +172,7 @@
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
             "page": "quem-somos",
-            "description": "<p>A MACOS é a sua loja online de confiança para peças e acessórios automóvel das melhores marcas.</p>"
+            "description": "<p>A sua loja online de peças e acessórios automóvel das melhores marcas.</p>"
           }
         },
         "block_advantage_qKzVKH": {
@@ -181,7 +181,7 @@
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
             "page": "",
-            "description": "<p>Na MACOS, a qualidade dos produtos automóvel é garantida pelas melhores marcas do mercado.</p>"
+            "description": "<p>Qualidade garantida pelas melhores marcas do mercado.</p>"
           }
         },
         "block_advantage_fAazkg": {
@@ -190,7 +190,7 @@
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
             "page": "",
-            "description": "<p>Entregas rápidas e seguras para todo o país com a confiança MACOS.</p>"
+            "description": "<p>Entregas rápidas e seguras para todo o país com a confiança.</p>"
           }
         },
         "block_advantage_eCrYGd": {
@@ -199,7 +199,7 @@
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
             "page": "",
-            "description": "<p>Na MACOS, a rapidez é prioridade — da encomenda à entrega, tudo num instante.</p>"
+            "description": "<p>A rapidez é prioridade — da encomenda à entrega, tudo num instante.</p>"
           }
         },
         "block_advantage_GKYQFp": {
@@ -208,7 +208,7 @@
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
             "page": "contact",
-            "description": "<p>Apoio ao Cliente MACOS: disponível para si através do número 253 299 007 — conte connosco para o ajudar.</p>"
+            "description": "<p>Apoio ao Cliente  disponível para si conte connosco para o ajudar.</p>"
           }
         }
       },
