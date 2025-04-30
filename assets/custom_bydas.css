@@ -40,8 +40,17 @@ a:hover,
   color: rgb(60, 60, 60);
 }
 
+/* login */
 .login-button::after {
   content: none !important;
+}
+#CustomerEmail,
+#CustomerPassword {
+  background-color: rgb(235, 235, 235);
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .button::after {
@@ -544,6 +553,13 @@ a:hover,
 .footer__content-bottom {
   padding-top: 0 !important;
 }
+.social-icon {
+  transition: scale 100ms ease-in-out;
+}
+.social-icon:hover {
+  scale: 1.1;
+}
+
 
 /* .phone-icon {
   position: relative;
@@ -605,18 +621,24 @@ a:hover,
 .contact-fields-custom.field,
 .contact-fields-custom.field:focus,
 .contact-fields-custom.field:focus-visible,
-.contact-fields-custom .field__input,
-#CustomerEmail,
-#CustomerPassword {
-  background-color: rgb(235, 235, 235);
+.contact-fields-custom .field__input {
+  background-color: white;
   border-radius: 25px;
   border: none;
   outline: none;
   box-shadow: none;
 }
+.contact-fields-custom .field,
+.contact-fields-custom.field {
+  border: 1px solid rgb(225, 225, 225);
+}
 .contact-fields-custom .field__input:focus {
   box-shadow: 0px 0px 5px 0px rgb(175, 175, 175) !important;
   scale: 1.01;
+}
+
+.call-label {
+  font-size: 1.150rem;
 }
 .contact-email-input {
   width: calc(200% + 2rem);

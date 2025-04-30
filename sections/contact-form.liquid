@@ -17,7 +17,7 @@
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="contact container section-{{ section.id }}-padding">
     <div class="row justify-content-between">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 col-lg-6">
         {%- if section.settings.heading != blank -%}
           <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
             {{ section.settings.heading }}
@@ -190,12 +190,15 @@
               </div>
             </div>
 
-            <small class="fs-6">(chamada p/ a rede fixa nacional)</small>
+            <small class="call-label">(chamada p/ a rede fixa nacional)</small>
 
           </div>
 
         {% endif %}
 
+      </div>
+      <div class="col-12 col-lg-2 d-none d-lg-block">
+        <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/pc.png?v=1746026483" alt="" width="" height="">
       </div>
     </div>
   </div>
