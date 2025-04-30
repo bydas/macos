@@ -271,13 +271,13 @@
 
                 {% if settings.social_twitter_link != blank %}
                   <a href="{{ settings.social_twitter_link }}" target="_blank">
-                    <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/twitter.png?v=1742999578" width="" height="30px" alt="Twitter">
+                    <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/twitter.png?v=1742999578" width="" height="30px" alt="X">
                   </a>
                 {% endif %}
 
                 {% if settings.social_youtube_link != blank %}
                   <a href="{{ settings.social_youtube_link }}" target="_blank">
-                    <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/youtube.png?v=1742999578" width="" height="30px" alt="Youtube">
+                    <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/linkedin.png?v=1746022977" width="" height="30px" alt="LinkedIn">
                   </a>
                 {% endif %}
                 
@@ -739,7 +739,12 @@
       "type": "inline_richtext",
       "id": "custom-liquid-header",
       "label": "Social media heading"
-    }
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom Liquid"
+  }
   ],
   "default": {
     "blocks": [
