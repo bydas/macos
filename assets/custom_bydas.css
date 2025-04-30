@@ -1078,6 +1078,14 @@ img.btoptioni {
   .card-configurador table {
     width: auto;
   }
+
+  .whatsapp-icon-fixed img {
+  width: 5rem;
+  }
+  .whatsapp-icon-fixed {
+    bottom: 2rem;
+    right: 1rem;
+  }
   
 }
 
