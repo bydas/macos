@@ -1,0 +1,226 @@
+<div class="container">
+  <header class="page__header row">
+    <h1 class="page__title heading h1 col-12">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    {{ page.content }}
+
+    <div class="form__input-row row mt-5 mb-4" id="form_input_stuff">
+      <!-- Selects existentes -->
+      <div class="form__input-wrapper col-12 col-md-4 mb-4 mb-md-0">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="marca" id="marcadocarro" class="configurador-input" required onChange="brandChanged(event)">
+            <option value="">Marca</option>
+          </select>
+        </div>
+      </div>
+      <div class="form__input-wrapper col-12 col-md-4 mb-4 mb-md-0">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="modelo" id="modelodocarro" class="configurador-input" onChange="modelChanged(event)">
+            <option value="">Modelo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form__input-wrapper col-12 col-md-4">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="ano" id="anodocarro" class="configurador-input" onChange="yearChanged(event)">
+            <option value="">Ano</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container para inserir vários cards -->
+    <div id="cardsContainer"></div>
+
+    <!-- Template escondido de um card -->
+    <div hidden id="optionParaventos">
+      <div class="card card-configurador mb-4">
+        <div class="card_header">
+          <h2 class="card_title heading h3 mb-4 mb-lg-0">Paraventos</h2>
+        </div>
+        <div class="card_section btoption row justify-content-evenly align-items-center flex-column flex-lg-row" style="padding: 0 20px 30px;">
+          <img class="btoptioni col-12 col-lg-3" src="img0101" width="" height="" alt="" />
+          <div class="btoptiont col-12 col-lg-7">
+            <table class="tabbt">
+              <thead>
+                <tr>
+                  <th style="width: 325px;"><b>Paraventos</b></th>
+                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>nome0</td>
+                  <td>
+                    <p style="text-align:center">
+                      <a target="_blank" href="/search?type=product&q=skuskusku0">skuskusku0</a>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="btoptionprice col-12 col-lg-2 align-self-center">
+            <div class="btbox2">
+              <p>
+                <span class="fw-bold">Preço:</span>
+                <span class="btprice fw-bold">price1231230€</span>
+              </p>
+              <div style="text-align: center;">
+                <button type="button" class="product-form__add-button button button--primary button-configurador" data-variant-id="" onclick="handleBuy(event)">
+                  COMPRAR
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var cars = {}, selectedBrand, selectedModel, selectedYear, initialParaventos;
+  var brandToId, idToBrand, modelToId, idToModel, yearToId, idToYear;
+
+  doMagic();
+  document.addEventListener('DOMContentLoaded', doMagic);
+
+  function brandChanged(e) {
+    selectedBrand = e.target.value;
+    // reset modelos e anos
+    const m = document.getElementById('modelodocarro');
+    m.length = 1;
+    const y = document.getElementById('anodocarro');
+    y.length = 1;
+    // preencher modelos
+    Object.keys(cars[selectedBrand]||{}).sort().forEach(modelo => {
+      const opt = document.createElement('option');
+      opt.value = modelo;
+      opt.textContent = modelo;
+      m.appendChild(opt);
+    });
+    // limpa cards
+    document.getElementById('cardsContainer').innerHTML = '';
+  }
+
+  function modelChanged(e) {
+    selectedModel = e.target.value;
+    const y = document.getElementById('anodocarro');
+    y.length = 1;
+    // preencher anos
+    Object.keys(cars[selectedBrand][selectedModel]||{}).sort().forEach(ano => {
+      const opt = document.createElement('option');
+      opt.value = ano;
+      opt.textContent = ano;
+      y.appendChild(opt);
+    });
+    document.getElementById('cardsContainer').innerHTML = '';
+  }
+
+  async function yearChanged(e) {
+    selectedYear = e.target.value;
+    const lista = cars[selectedBrand][selectedModel][selectedYear]||[];
+    const container = document.getElementById('cardsContainer');
+    container.innerHTML = '';
+
+    await Promise.all(lista.map(async carr => {
+      const handle = carr[5];
+      const query = `{
+        product(handle:"${handle}") {
+          title availableForSale
+          featuredImage { url altText }
+          variants(first:1) { edges { node { id sku priceV2{amount} availableForSale } } }
+        }
+      }`;
+      try {
+        const resp = await fetch(
+          'https://macos-auto.myshopify.com/api/2024-01/graphql.json',
+          {
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json',
+              'X-Shopify-Storefront-Access-Token':ACCESS_TOKEN
+            },
+            body: JSON.stringify({query})
+          }
+        );
+        const prod = (await resp.json()).data.product;
+        if (!prod) return;
+
+        const v = prod.variants.edges[0].node;
+        let card = initialParaventos
+          .replace(/img0101/g, prod.featuredImage?.url||'')
+          .replace(/nome0/g, prod.title)
+          .replace(/skuskusku0/g, v.sku)
+          .replace(/price1231230/g, parseFloat(v.priceV2.amount).toFixed(2)+'€')
+          .replace('data-variant-id=""', `data-variant-id="${v.id.split('/').pop()}"`)
+          .replace('hidden', '');
+
+        if (!v.availableForSale) {
+          card = card
+            .replace('COMPRAR','ESGOTADO')
+            .replace('button','button disabled');
+        }
+
+        container.insertAdjacentHTML('beforeend', card);
+      } catch(err){
+        console.error(err);
+      }
+    }));
+  }
+
+  function handleBuy(e) {
+    const btn = e.currentTarget;
+    const variantId = btn.dataset.variantId;
+    fetch('/cart/add.js', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({items:[{id:variantId,quantity:1}]})
+    })
+    .then(r=> r.ok ? location.reload() : alert('Artigo esgotado'));
+  }
+
+  function handleData() {
+    const linhas = this.responseText.split('\n').filter(l=>l.trim());
+    const rows = linhas.map(l=>l.split(',').map(v=>v.trim()));
+    const cc = {};
+    const marcas = new Set();
+
+    for (let i=1;i<rows.length;i++) {
+      const r = rows[i];
+      if (r.length<4) continue;
+      const brand = r[1], parts = r[2].split('|').map(p=>p.trim());
+      const model = parts[0], year = parts[1];
+      marcas.add(brand);
+      cc[brand] = cc[brand]||{};
+      cc[brand][model] = cc[brand][model]||{};
+      cc[brand][model][year] = cc[brand][model][year]||[];
+      cc[brand][model][year].push(r);
+    }
+    cars = cc;
+
+    // popula marcas
+    const bsel = document.getElementById('marcadocarro');
+    while (bsel.options.length>1) bsel.remove(1);
+    Array.from(marcas).sort().forEach(m=>{
+      const o = document.createElement('option');
+      o.value = m; o.textContent = m;
+      bsel.appendChild(o);
+    });
+
+    // guarda template
+    initialParaventos = document.getElementById('optionParaventos').outerHTML;
+  }
+
+  function doMagic() {
+    const url = "{{ 'config_chuventos.csv' | asset_url }}";
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', handleData);
+    xhr.open('GET', url);
+    xhr.send();
+  }
+</script>
