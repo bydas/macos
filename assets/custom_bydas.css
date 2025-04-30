@@ -729,7 +729,7 @@ a:hover, .active{
 }
 .configurador-input {
   width: 100%;
-  padding: .8rem 2.5rem .8rem;
+  padding: .8rem 3.5rem .8rem 2.5rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
   color: rgba(0, 0, 0, 0.8);
   appearance: none;
