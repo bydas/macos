@@ -19,7 +19,7 @@
   
   {% for item in top_menu.links %}
     <li class="position-relative">
-      <a href="{{ item.url }}" class="{% if request.path == item.url %} active{% endif %}">{{ item.title }}</a>
+      <a href="{{ item.url }}" class="{% if request.path == item.url %}page-active{% endif %}">{{ item.title }}</a>
 
       {% if item.links.size > 0 %}
 

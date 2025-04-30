@@ -7,11 +7,6 @@ p, h1, h2, h3, h4, h5, div {
   font-family: inherit !important;
 }
 
-svg {
-  shape-rendering: geometricPrecision !important;
-  backface-visibility: hidden !important;
-}
-
 small {
   position: relative;
   top: -0.5rem;
@@ -29,7 +24,9 @@ hr {
 a {
   text-decoration: none !important;
 }
-a:hover, .active{
+a:hover, 
+.page-active
+.list-menu__item--active {
   color: #FF9800 !important;
 }
 .pagination .active, .pagination__item--current {
