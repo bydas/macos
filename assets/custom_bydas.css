@@ -1,3 +1,11 @@
+h1, h2, h3, h4, h5 {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+
+p, small, a, span, div {
+  font-family: "Roboto", sans-serif !important;
+}
+
 small {
   position: relative;
   top: -0.5rem;
@@ -1077,14 +1085,6 @@ img.btoptioni {
 
   .card-configurador table {
     width: auto;
-  }
-
-  .whatsapp-icon-fixed img {
-  width: 5rem;
-  }
-  .whatsapp-icon-fixed {
-    bottom: 2rem;
-    right: 1rem;
   }
   
 }
