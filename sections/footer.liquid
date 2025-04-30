@@ -97,31 +97,31 @@
                         {% if block.settings.address != blank %}
                           {% assign formatted_address = block.settings.address | replace: " ", "+" | strip_html | strip_newlines %}
                           <div class="d-flex align-items-center">
-                            <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" width="40px" height="" alt="Morada"></div>
+                            <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" width="20px" height="" alt="Morada"></div>
                             <div class="ps-3"><a href="https://www.google.com/maps/search/{{ formatted_address }}" target="_blank">{{ block.settings.address }}</a></div>
                           </div>
                         {% endif %}
                         
                         {% if block.settings.other_addresses_title != blank %}
                           <div class="d-flex align-items-center">
-                            <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" width="40px" height="" alt="Moradas"></div>
+                            <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/location.png?v=1742999578" width="20px" height="" alt="Moradas"></div>
                             <div class="ps-3"><a href="{{ pages[block.settings.other_addresses_page].url }}#contact-submit-button">{{ block.settings.other_addresses_title }}</a></div>
                           </div>
                         {% endif %}
 
                         {% if block.settings.email != blank %}
                           <div class="d-flex align-items-center">
-                            <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/contacts.png?v=1742999578" width="40px" height="" alt="Email"></div>
+                            <div><img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/contacts.png?v=1742999578" width="20px" height="" alt="Email"></div>
                             <div class="ps-3"><a href="mailto:{{- block.settings.email -}}">geral@macos.pt</a></div>
                           </div>
                         {% endif %}
                         
                         {% if block.settings.phone_number_1 != blank or block.settings.phone_number_2 != blank or block.settings.phone_number_3 != blank %}
                           
-                          <div class="d-flex align-items-center">
+                          <div class="d-flex align-items-start">
 
                             <div class="phone-icon">
-                              <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/telefone.png?v=1742999578" width="40px" height="" alt="Telefone">
+                              <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/telefone.png?v=1742999578" width="20px" height="" alt="Telefone">
                             </div>
                             
                             <div class="phone-numbers-wrapper ps-3">
@@ -455,7 +455,7 @@
   </div>
   <div class="whatsapp-icon-fixed">
     <a href="https://wa.me/919594503" target="_blank" class="full-unstyled-link">
-      <span class="whatsapp-label">Fale connosco!</span>
+      {% comment %} <span class="whatsapp-label">Fale connosco!</span> {% endcomment %}
       <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/whatsapp.png?v=1742999578" width="" height="" alt="WhatsApp">
     </a>
   </div>
