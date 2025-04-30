@@ -1092,12 +1092,8 @@ img.btoptioni {
   width: 5rem;
   }
   .whatsapp-icon-fixed {
-    position: fixed;
-    bottom: 3rem;
-    right: 3rem;
-    z-index: 99999;
-    opacity: 0.75;
-    transition: opacity 150ms, scale 150ms;
+    bottom: 2rem;
+    right: 2rem;
   }
   
 }
