@@ -69,7 +69,7 @@
               </p>
               <div style="text-align: center;">
                 <button type="submit" class="product-form__add-button button button--primary button-configurador" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(0)">
-                  BUY
+                  COMPRAR
                 </button>
               </div>
             </div>
@@ -233,8 +233,13 @@
           .replace('price1231230', (Number(variant.priceV2.amount)).toFixed(2))
           .replace('hidden=""', '');
         
+        // Check stock availability
         if (!variant.availableForSale) {
-          paraventosPage = paraventosPage.replace('BUY', 'esgotado');
+          paraventosPage = paraventosPage.replace(
+            '<button type="submit"',
+            '<button type="submit" disabled'
+          );
+          paraventosPage = paraventosPage.replace('COMPRAR', 'ESGOTADO');
         }
         
         const variantId = variant.id.split('/').pop();
@@ -279,7 +284,9 @@
 
   function reqListener(env) {
     if (this.status !== 200) {
-      alert('artigo esgotado');
+      alert('Artigo Esgotado');      if (!variant.availableForSale) {
+        paraventosPage = paraventosPage.replace('COMPRAR', 'ESGOTADO');
+      }
     } else {
       const a = window.location.href.split('?')[0] + '?brand=' + brandToId[selectedBrand] + '&model=' + modelToId[selectedModel] + '&year=' + yearToId[selectedYear];
       window.location.href = a;

@@ -23,8 +23,7 @@ $(document).ready(function () {
     contain: true,
     freeScroll: false,
     pageDots: false,
-    draggable: true,
-    cellSpacing: 50
+    draggable: true
   });
 
   var flkty = $carousel.data('flickity');
