@@ -185,20 +185,6 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "link_list_Crj4kX": {
-          "type": "link_list",
-          "settings": {
-            "heading": "<strong>SOBRE A MACOS</strong>",
-            "menu": "pme-footer-menu"
-          }
-        },
-        "link_list_kQ3kHp": {
-          "type": "link_list",
-          "settings": {
-            "heading": "<strong>APOIO AO CLIENTE</strong>",
-            "menu": "footer"
-          }
-        },
         "contacts_c8BtzW": {
           "type": "contacts",
           "settings": {
@@ -214,12 +200,26 @@
             "phone_number_3": "228 300 632",
             "email": "geral@macos.pt"
           }
+        },
+        "link_list_Crj4kX": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>SOBRE A MACOS</strong>",
+            "menu": "pme-footer-menu"
+          }
+        },
+        "link_list_kQ3kHp": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>APOIO AO CLIENTE</strong>",
+            "menu": "footer"
+          }
         }
       },
       "block_order": [
+        "contacts_c8BtzW",
         "link_list_Crj4kX",
-        "link_list_kQ3kHp",
-        "contacts_c8BtzW"
+        "link_list_kQ3kHp"
       ],
       "settings": {
         "color_scheme": "scheme-2",
