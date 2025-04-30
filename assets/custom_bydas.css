@@ -296,6 +296,10 @@ a:hover, .active{
   object-fit: cover;
 }
 
+
+.card:hover .card__information a {
+  text-decoration: underline !important;
+}
 /* new products card */
 #new-products-card {
   height: 100%;
@@ -860,6 +864,8 @@ img.btoptioni {
 .cart-drawer__empty-content .button:hover {
   color: white !important;
 }
+
+
 
 
 /* ######### MEDIA QUERIES ######### */
