@@ -285,7 +285,7 @@
   function reqListener(env) {
     if (this.status !== 200) {
       alert('Artigo Esgotado');      if (!variant.availableForSale) {
-        paraventosPage = paraventosPage.replace('COMPRAR', 'ESGOTADO');
+        paraventosPage = paraventosPage.replace('ADICIONAR', 'ESGOTADO');
       }
     } else {
       const a = window.location.href.split('?')[0] + '?brand=' + brandToId[selectedBrand] + '&model=' + modelToId[selectedModel] + '&year=' + yearToId[selectedYear];

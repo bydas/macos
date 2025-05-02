@@ -70,7 +70,7 @@
               </p>
               <div style="text-align: center;">
                 <button type="button" class="product-form__add-button button button--primary button-configurador" data-variant-id="" onclick="handleBuy(event)">
-                  COMPRAR
+                  ADICIONAR
                 </button>
               </div>
             </div>
@@ -162,7 +162,7 @@
 
         if (!v.availableForSale) {
           card = card
-            .replace('COMPRAR','ESGOTADO')
+            .replace('ADICIONAR','ESGOTADO')
             .replace('button','button disabled');
         }
 
