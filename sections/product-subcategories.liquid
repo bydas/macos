@@ -54,6 +54,10 @@
       .section-product-categories {
         padding: 2rem 2rem 0.5rem;
       }
+
+      .breadcrumb-col {
+        padding: 0;
+      }
       
     {% endif %}
   }
@@ -62,7 +66,7 @@
 
 <section class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 breadcrumb-col">
       {% render 'breadcrumb', navigation_type: section.settings.navigation %}
     </div>
   </div>
