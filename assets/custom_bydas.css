@@ -985,12 +985,12 @@ img.btoptioni {
 @media all and (max-width: 768px) {
 
   .section-top-menu a {
-    padding: 0 3px !important;
+    padding: 0 !important;
     font-size: 1.2rem !important;
   }
   
   .section-top-menu nav {
-    padding: 0 !important
+    padding: 0 1rem !important
   }
   
   .section-product-categories .category-card {
@@ -1070,6 +1070,10 @@ img.btoptioni {
   .advantage-link {
     width: 15rem;
     height: 15rem;
+  }
+
+  .section-product-categories {
+    padding: 3rem 3rem 0 !important;
   }
   
   .flickity-prev-next-button.next,
