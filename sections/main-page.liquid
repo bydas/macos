@@ -15,7 +15,7 @@
 {%- endstyle -%}
 
 <div class=" color-{{ section.settings.color_scheme }} w-100">
-  <div class="container section-{{ section.id }}-padding">
+  <div class="container px-4 px-sm-0 section-{{ section.id }}-padding">
     <div class="row">
       <h1 class="col-12 main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         {{ page.title | escape }}
@@ -23,7 +23,7 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-lg-8 pe-0 pe-lg-5 rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="col-12 col-lg-8 pe-lg-5 rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ page.content }}
       </div>
       <div class="col-12 col-lg-4 side-image scroll-trigger animate--slide-in">
