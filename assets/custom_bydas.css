@@ -68,6 +68,9 @@ a:hover,
   font-stretch: condensed;
   width: 100%;
 }
+.section-top-menu a {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
 .top-menu-dropdown {
   position: absolute;
   left: 0;
@@ -351,7 +354,6 @@ a:hover,
   position: static !important;
 }
 
-
 .w-custom {
   width: 40%;
 }
@@ -389,6 +391,9 @@ a:hover,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.card__heading a {
+  font-size: 1.4rem !important;
 }
 
 /* quantity input */
