@@ -1092,6 +1092,10 @@ img.btoptioni {
   .card-configurador table {
     width: auto;
   }
+
+  .card__heading a {
+    font-weight: 500;
+  }
   
 }
 
