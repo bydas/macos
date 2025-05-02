@@ -53,12 +53,25 @@ input[type="password"],
 #AddAddress select,
 div[id^=EditAddress] select,
 textarea {
-  background-color: rgb(235, 235, 235) !important;
+  /* background-color: rgb(235, 235, 235) !important; */
+  background-color: white !important;
   border-radius: 25px !important;
   border: none;
-  outline: none;
   box-shadow: none;
 }
+.field
+  :not(:has(.search__input))
+  :not(:has([id^="NewsletterForm"])) {
+    outline: 1px solid rgb(225, 225, 225) !important;
+}
+
+input[id^="NewsletterForm"],
+.search .field, 
+.search input,
+.search__button * {
+  background-color: rgb(235, 235, 235) !important;
+}
+
 
 #CustomerEmail:focus,
 #CustomerPassword:focus,
@@ -177,10 +190,7 @@ button::after {
   border: none;
   box-shadow: 0px 0px 5px 0px rgb(175, 175, 175);
 }
-.search .field, 
-.search input {
-  background-color: rgb(235, 235, 235);
-}
+
 
 
 /* section product categories, subcategories and breadcrumb */
@@ -406,7 +416,6 @@ button::after {
 .w-custom {
   width: 40%;
 }
-
 
 .shopify-payment-button__button {
   background: linear-gradient(180deg, rgb(0, 0, 0), rgb(40, 40, 40));
@@ -661,7 +670,7 @@ button::after {
 
 /* page contacts / map section */
 
-.contact-fields-custom .field, 
+/* .contact-fields-custom .field, 
 .contact-fields-custom .field:focus, 
 .contact-fields-custom .field:focus-visible,
 .contact-fields-custom.field,
@@ -673,7 +682,7 @@ button::after {
 .contact-fields-custom .field,
 .contact-fields-custom.field {
   border: 1px solid rgb(225, 225, 225);
-}
+} */
 .contact-fields-custom .field__input:focus {
   box-shadow: 0px 0px 5px 0px rgb(175, 175, 175) !important;
   scale: 1.01;
