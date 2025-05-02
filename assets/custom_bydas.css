@@ -986,11 +986,11 @@ img.btoptioni {
 
   .section-top-menu a {
     padding: 0 3px !important;
-    font-size: 11px !important;
+    font-size: 1.2rem !important;
   }
   
   .section-top-menu nav {
-    padding:0 !important
+    padding: 0 !important
   }
   
   .section-product-categories .category-card {
@@ -1091,10 +1091,6 @@ img.btoptioni {
 
   .card-configurador table {
     width: auto;
-  }
-
-  .card__heading a {
-    font-weight: 500;
   }
   
 }
