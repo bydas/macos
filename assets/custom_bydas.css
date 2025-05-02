@@ -432,6 +432,7 @@ button::after {
   background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
   color: white;
   font-weight: 500;
+  text-transform: uppercase;
 }
 /* .shopify-payment-button__button {
   outline: 1px solid #a3a3a36b;
