@@ -39,6 +39,24 @@
 
     {% endif %}
   }
+
+  /* Media query */
+  @media all and (max-width: 577px) {
+
+    {% if child_handles.size <= 0 %}
+
+      .section-product-categories {
+        padding: 1rem 0;
+      }
+
+    {% else %}
+
+      .section-product-categories {
+        padding: 2rem;
+      }
+      
+    {% endif %}
+  }
   
 {%- endstyle -%}
 

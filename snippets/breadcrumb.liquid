@@ -10,16 +10,16 @@
     <a href="/">Home</a>
   
     {% if grandfather_category != blank %}
-      <span class="mx-2">/</span>
+      <span class="mx-1 mx-sm-2">/</span>
       <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
     {% endif %}
   
     {% if father_category != blank %}
-      <span class="mx-2">/</span>
+      <span class="mx-1 mx-sm-2">/</span>
       <a href="{{ father_category.url }}">{{ father_category.title }}</a>
     {% endif %}
 
-    <span class="mx-2">/</span>
+    <span class="mx-1 mx-sm-2">/</span>
     <span>{{ current_category.title }}</span>
   
   </nav>
