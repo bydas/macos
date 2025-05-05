@@ -729,9 +729,53 @@
       endif
     -%}
 
+    {% comment %} 
+    {% if customer %}
+
+      <script type="application/ld+json">
+        {{ product | structured_data }}
+      </script>
+
+    {% endif %}
+    {% endcomment %}
+
     <script type="application/ld+json">
-      {{ product | structured_data }}
+      {
+        "@context":        "https://schema.org/",
+        "@type":           "Product",
+        "name":            {{ product.title | json }},
+        "description":     {{ product.description | strip_html | json }},
+        "image": [
+          {% for img in product.images %}
+            {{ img | image_url: 'large' | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+        "sku":             {{ product.selected_or_first_available_variant.sku | json }},
+        "brand": {
+          "@type":         "Brand",
+          "name":          {{ product.vendor | json }}
+        },
+        "url":             {{ request.origin | append: page.url | json }},
+        "offers": {
+          "@type":         "Offer",
+          "priceCurrency": {{ shop.currency | json }},
+          {% if customer %}
+            "price":       {{ product.price | divided_by: 100.0 }},{% comment %}não esquecer a vírgula se price for incluído{% endcomment %}
+          {% endif %}
+          "availability":  "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+        }
+        {% comment %}
+          Se tiveres ratings ou reviews, podes também incluir:
+        ,"aggregateRating":{
+            "@type":"AggregateRating",
+            "ratingValue":{{ product.metafields.myapp.avg_rating }},
+            "reviewCount":{{ product.metafields.myapp.review_count }}
+          }
+        ,"review":[ ... ]
+        {% endcomment %}
+      }
     </script>
+      
   </div>
 </product-info>
 
