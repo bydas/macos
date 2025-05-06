@@ -416,6 +416,27 @@
                               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
                             </div>
                           </div>
+
+                        {% else %}
+
+                          <div class="card__media fallback-image shape--default color-{{ settings.card_color_scheme }}">
+                            <div class="media media--transparent media--hover-effect">
+                              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                               {% assign fallback_image = "https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" %}
+                              <img
+                                src="{{ fallback_image }}"
+                                alt="MACOS"
+                                class="motion-reduce"
+                                {% unless lazy_load == false %}
+                                  loading="lazy"
+                                {% endunless %}
+                                width=""
+                                height=""
+                              >
+                              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+                            </div>
+                          </div>
+                
                         {%- endif -%}
                         <a
                           {% if card_product == blank %}
@@ -541,7 +562,6 @@
                     {{ card_product.media[1] | image_url }} {{ card_product.media[1].width }}w
                   "
                   src="{{ card_product.media[1] | image_url: width: 533 }}"
-                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                   alt="{{ card_product.media[1].alt | escape }}"
                   class="motion-reduce"
                   loading="lazy"
@@ -551,6 +571,27 @@
               {%- endif -%}
             </div>
           </div>
+
+        {% else %}
+
+          <div class="card__media fallback-image shape--default color-{{ settings.card_color_scheme }}">
+            <div class="media media--transparent media--hover-effect">
+              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+               {% assign fallback_image = "https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" %}
+              <img
+                src="{{ fallback_image }}"
+                alt="MACOS"
+                class="motion-reduce"
+                {% unless lazy_load == false %}
+                  loading="lazy"
+                {% endunless %}
+                width=""
+                height=""
+              >
+              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+            </div>
+          </div>
+
         {%- endif -%}
         <div class="card__content">
           <div class="card__information">

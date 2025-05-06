@@ -43,6 +43,19 @@ a:hover,
   color: black !important;
 }
 
+/* --- PRIVACY BANNER --- */
+#shopify-pc__banner,
+#shopify-pc__prefs__dialog {
+  border-radius: 2rem;
+}
+#shopify-pc__banner button:not([id="shopify-pc__banner__btn-manage-prefs"]) {
+  color: white !important;
+  border: none;
+  padding: 1rem 4rem !important;
+}
+.shopify-pc__prefs__header-actions button {
+  border: none !important;
+}
 
 /* --- INPUTS --- */
 .field, 
@@ -112,6 +125,8 @@ textarea:focus {
   margin-bottom: 0;
 }
 
+#shopify-pc__banner button:not([id="shopify-pc__banner__btn-manage-prefs"]),
+.shopify-pc__prefs__header-actions button,
 .newsletter-submit-button,
 .reseller-form__submit,
 .login-button {
@@ -120,8 +135,8 @@ textarea:focus {
   width: auto !important;
   height: auto !important ;
   padding: 0.75rem 4rem;
-  background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
-  border-radius: 7px;
+  background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0)) !important;
+  border-radius: 7px !important;
   transition: box-shadow 0.2s;
 }
 
@@ -137,6 +152,15 @@ button::after {
 .button::after {
   box-shadow: none;
   /* border: 1px solid rgba(50, 50, 50, 0.75); */
+}
+
+#shopify-pc__banner button:not([id="shopify-pc__banner__btn-manage-prefs"]):hover,
+.shopify-pc__prefs__header-actions button:hover,
+.newsletter-submit-button:hover,
+.reseller-form__submit:hover {
+  box-shadow: 0 1.5rem 2rem -2rem black !important;
+  text-decoration: underline;
+  transition-duration: 0.2s;
 }
 
 /* flickity buttons */
@@ -575,13 +599,6 @@ button::after {
   scale: 1.01;
 }
 
-
-.newsletter-submit-button:hover,
-.reseller-form__submit:hover {
-  box-shadow: 0 1.5rem 2rem -2rem black !important;
-  text-decoration: underline;
-  transition-duration: 0.2s;
-}
 .newsletter-form__field-wrapper .field {
   width: 65%;
 }
