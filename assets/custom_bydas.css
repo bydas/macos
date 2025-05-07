@@ -208,7 +208,7 @@ button::after {
 }
 
 /* search section */
-.search *, 
+.search *:not(h2):not(#predictive-search-results-groups-wrapper), 
 .search *:focus {
   border-radius: 3rem;
 }

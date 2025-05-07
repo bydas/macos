@@ -416,26 +416,6 @@
                               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
                             </div>
                           </div>
-
-                        {% else %}
-
-                          <div class="card__media fallback-image shape--default color-{{ settings.card_color_scheme }}">
-                            <div class="media media--transparent media--hover-effect">
-                              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-                               {% assign fallback_image = "https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" %}
-                              <img
-                                src="{{ fallback_image }}"
-                                alt="MACOS"
-                                class="motion-reduce"
-                                {% unless lazy_load == false %}
-                                  loading="lazy"
-                                {% endunless %}
-                                width=""
-                                height=""
-                              >
-                              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
-                            </div>
-                          </div>
                 
                         {%- endif -%}
                         <a
