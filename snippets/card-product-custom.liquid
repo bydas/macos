@@ -20,6 +20,16 @@
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
+{% style %}
+  {% if card_product.featured_media == blank %}
+
+    .card__inner {
+      display: block !important;
+    }
+    
+  {% endif %}
+{% endstyle %}
+
 {%- unless skip_styles -%}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -44,22 +54,27 @@
     <div
       class="
         card card--{{ settings.card_style }}
-        {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
+        card--media
+        {% comment %} {% if card_product.featured_media %} card--media{% else %} card--text{% endif %} {% endcomment %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if extend_height %} card--extend-height{% endif %}
         {% comment %} {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %} {% endcomment %}
         {% if horizontal_class %} card--horizontal{% endif %}
       "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      {% if card_product.featured_media %}
+        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      {% else %}
+        style="--ratio-percent: 125%;"
+      {% endif %}
     >
       <div class="card__content">
         <div class="card__information">
           <h3
-            class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-            {% if card_product.featured_media or settings.card_style == 'card' %}
+            class="card__heading h5"
+            {% comment %} {% if card_product.featured_media or settings.card_style == 'card' %} {% endcomment %}
               id="title-{{ section_id }}-{{ card_product.id }}"
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
           >
             <a
               href="{{ card_product.url }}"
@@ -501,8 +516,12 @@
         </div>
       </div>
       <div
-        class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
-        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+        class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
+        {% if card_product.featured_media %}
+          style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+        {% else %}
+          style="--ratio-percent: 125%;"
+        {% endif %}
       >
         {%- if card_product.featured_media -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
@@ -866,7 +885,11 @@
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
       "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      {% if card_product.featured_media %}
+        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      {% else %}
+        style="--ratio-percent: 125%;"
+      {% endif %}
     >
       <div
         class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
