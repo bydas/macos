@@ -111,7 +111,7 @@
       "type": "featured-collection-new-products",
       "settings": {
         "collection": "turtle-wax",
-        "products_to_show": 6,
+        "products_to_show": 3,
         "title": "Novidades",
         "heading_size": "h2",
         "description": "",
