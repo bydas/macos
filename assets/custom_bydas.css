@@ -488,6 +488,7 @@ button::after {
 }
 .product-card-buttons-wrapper .quantity__button:hover {
   scale: 1.5;
+  transition: 1s;
 }
 .product-card-buttons-wrapper button[type="submit"]{
   padding: 0;
