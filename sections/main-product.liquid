@@ -727,7 +727,7 @@
         assign seo_media = product.featured_media
       endif
     -%}
-    {% comment %} 
+    
     {% if customer %}
 
       <script type="application/ld+json">
@@ -735,8 +735,8 @@
       </script>
 
     {% endif %} 
-    {% endcomment %}
-
+    
+{% comment %}
     <script type="application/ld+json">
       {
         "@context":        "https://schema.org/",
@@ -773,7 +773,9 @@
         {% endcomment %}
       }
     </script>
-      
+    {% endcomment %}
+
+    
   </div>
 </product-info>
 
