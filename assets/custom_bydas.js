@@ -1,5 +1,4 @@
-
-/* ----- Flickity Carousel - CATEGORIES ----- */
+/*
 $(document).ready(function () {
   var $carousel = $('#categories-carousel');
   var groupCells = 0;
@@ -72,12 +71,10 @@ $(document).ready(function () {
 // ### SUBCATEGORIES DROPDOWN ###
 document.addEventListener('DOMContentLoaded', function() {
   
-  /* Variáveis para controlar qual dropdown está aberto */
   let openCard = null;
   let openDropdown = null;
   let popperInstance = null;
   
-  /* Função para fechar o dropdown atualmente aberto */
   function closeOpenDropdown() {
     if (openDropdown && openCard) {
       openDropdown.style.display = 'none';
@@ -93,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  /* Fecha o dropdown se o utilizador clicar fora dele */
   document.addEventListener('click', function(event) {
     if (openDropdown && openCard) {
       if (!openCard.contains(event.target) && !openDropdown.contains(event.target)) {
@@ -102,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  /* Percorre cada cartão de categoria */
   document.querySelectorAll('.category-card').forEach(function(card) {
     
     const dropdown = card.querySelector('.children-categories');
@@ -175,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-/* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
 $('#highlights-slideshow').flickity({
   autoPlay: true,
   groupCells: false,
@@ -193,7 +187,6 @@ $(window).on('resize', function() {
 });
 
 
-/* ----- Flickity Carousel - BRANDS ----- */
 var $carousel = $('#main-carousel').flickity({
   autoPlay: false,
   wrapAround: true,
@@ -227,7 +220,7 @@ $carousel.on('mouseenter', function() {
 $carousel.on('mouseleave', function() {
   isPaused = false;
 });
-
+*/
 
 
 
