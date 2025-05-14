@@ -109,6 +109,7 @@
     },
     "featured_collection_new_products_NQFqiW": {
       "type": "featured-collection-new-products",
+      "disabled": true,
       "settings": {
         "collection": "turtle-wax",
         "products_to_show": 2,
