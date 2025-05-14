@@ -728,7 +728,6 @@
       endif
     -%}
 
-    {% comment %} 
     {% if customer %}
 
       <script type="application/ld+json">
@@ -736,9 +735,8 @@
       </script>
 
     {% endif %}
-    {% endcomment %}
 
-    <script type="application/ld+json">
+    {% comment %} <script type="application/ld+json">
       {
         "@context":        "https://schema.org/",
         "@type":           "Product",
@@ -773,7 +771,7 @@
         ,"review":[ ... ]
         {% endcomment %}
       }
-    </script>
+    </script> {% endcomment %}
       
   </div>
 </product-info>
