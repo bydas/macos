@@ -1,6 +1,6 @@
-document.querySelectorAll(img).forEach(img => {
-  img.setAttribute("loading", "eager");
-})
+// document.querySelectorAll(img).forEach(img => {
+//  img.setAttribute("loading", "eager");
+// })
 
 /* ----- Flickity Carousel - CATEGORIES ----- */
 $(document).ready(function () {
