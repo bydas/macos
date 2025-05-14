@@ -265,7 +265,6 @@ button::after {
 }
 .category-title {
   line-height: 2.5rem;
-  /* font-size: 1.5rem; */
 }
 .category-title a {
   color: black;
@@ -292,7 +291,6 @@ button::after {
   width: 36.5rem;
   z-index: 999;
   background: white;
-  /* border: 1px solid rgba(180, 180, 180, 0.3); */
   border-radius: 3rem;
   padding: 2rem 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -327,7 +325,7 @@ button::after {
 /* section featured collection */
 .section-featured-collection {
   background-color: rgb(230, 230, 230);
-  border-top: 3px solid rgb(220, 220, 220)
+  /* border-top: 3px solid rgb(220, 220, 220); */
 }
 .section-featured-collection .collection__title {
   padding: 0 !important
@@ -1143,6 +1141,10 @@ img.btoptioni {
 
   .card-title-custom {
     font-size: 1.3rem;
+  }
+
+  .card-content-wrapper {
+    padding: 1rem 1.2rem 1rem 0;
   }
 
   .btoptionprice,
