@@ -9,42 +9,6 @@
  */
 {
   "sections": {
-    "product_categories_nkRLMF": {
-      "type": "product-categories",
-      "settings": {
-        "background_image": "shopify://shop_images/background.jpg",
-        "title": "Produtos",
-        "description": "<p>REVENDA DE ACESSÓRIOS PARA AUTOMÓVEIS</p>",
-        "categories": [
-          "turtle-wax",
-          "configurador-auto-paraventos",
-          "acessorios-de-exterior",
-          "acessorios-de-interior-1",
-          "aditivos-restore",
-          "ambientadores-1",
-          "barras-de-tejadilho-e-acessorios-1",
-          "chapas-de-matricula",
-          "coberturas",
-          "correntes-de-neve",
-          "diversos",
-          "eletricidade-auto",
-          "emergencia-1",
-          "escovas-limpa-para-brisas",
-          "farois-e-farolins-1",
-          "ferramentas",
-          "iluminacao-lampadas",
-          "limpeza-auto",
-          "oleos-e-lubrificantes",
-          "mclaren",
-          "sinalizacao-1",
-          "tapetes-automovel",
-          "tinta-spray-vinil-removivel",
-          "viagem-e-transporte",
-          "wd-40",
-          "winter"
-        ]
-      }
-    },
     "slideshow_custom_8Vipmk": {
       "type": "slideshow_custom",
       "blocks": {
@@ -105,6 +69,42 @@
         "top-image-collection": "shopify://pages/contact",
         "bottom-image": "shopify://shop_images/kodak_105aa59f-10ce-4cf1-9434-acff0e62b18f.jpg",
         "bottom-image-collection": "shopify://collections/pilhas-alcalinas-kodak"
+      }
+    },
+    "product_categories_nkRLMF": {
+      "type": "product-categories",
+      "settings": {
+        "background_image": "shopify://shop_images/background.jpg",
+        "title": "Produtos",
+        "description": "<p>REVENDA DE ACESSÓRIOS PARA AUTOMÓVEIS</p>",
+        "categories": [
+          "turtle-wax",
+          "configurador-auto-paraventos",
+          "acessorios-de-exterior",
+          "acessorios-de-interior-1",
+          "aditivos-restore",
+          "ambientadores-1",
+          "barras-de-tejadilho-e-acessorios-1",
+          "chapas-de-matricula",
+          "coberturas",
+          "correntes-de-neve",
+          "diversos",
+          "eletricidade-auto",
+          "emergencia-1",
+          "escovas-limpa-para-brisas",
+          "farois-e-farolins-1",
+          "ferramentas",
+          "iluminacao-lampadas",
+          "limpeza-auto",
+          "oleos-e-lubrificantes",
+          "mclaren",
+          "sinalizacao-1",
+          "tapetes-automovel",
+          "tinta-spray-vinil-removivel",
+          "viagem-e-transporte",
+          "wd-40",
+          "winter"
+        ]
       }
     },
     "featured_collection_new_products_NQFqiW": {
@@ -225,8 +225,8 @@
     }
   },
   "order": [
-    "product_categories_nkRLMF",
     "slideshow_custom_8Vipmk",
+    "product_categories_nkRLMF",
     "featured_collection_new_products_NQFqiW",
     "featured_collection_UyinUK",
     "advantages_HFqee3"
