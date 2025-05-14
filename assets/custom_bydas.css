@@ -39,6 +39,10 @@ a:hover,
   color: rgb(60, 60, 60);
 }
 
+p > iframe {
+  border-radius: 2rem;
+}
+
 #shopify-pc__banner button {
   color: black !important;
 }
