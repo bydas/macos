@@ -1,3 +1,7 @@
+document.querySelectorAll(img).forEach(img => {
+  img.setAttribute("loading", "eager");
+})
+
 /* ----- Flickity Carousel - CATEGORIES ----- */
 $(document).ready(function () {
   var $carousel = $('#categories-carousel');
