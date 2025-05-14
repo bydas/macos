@@ -412,7 +412,6 @@ button::after {
 #new-products-card .card-content-wrapper {
   width: 55%;
   height: 100%;
-  padding: 0 1.5rem 1.5rem 0;
 }
 #new-products-card .product-card-buttons-wrapper {
   background: transparent;
@@ -421,7 +420,6 @@ button::after {
   width: 100%;
   height: auto;
   flex-grow: 1;
-  padding: 2rem;
 }
 #new-products-card .product-card-buttons-wrapper button[name="add"] {
   color: rgb(0, 0, 0);
@@ -432,8 +430,15 @@ button::after {
 #new-products-card .full-unstyled-link::after {
   z-index: 1;
 }
+#new-products-card .card__content,
+#new-products-card .card__information {
+  padding: 0;
+}
 
 /* card products */
+.price-item {
+  font-weight: 500;
+}
 .card__media .media {
   display: flex;
   justify-content: center;
@@ -445,11 +450,9 @@ button::after {
   object-fit: contain !important;
   position: static !important;
 }
-
 .w-custom {
   width: 40%;
 }
-
 .shopify-payment-button__button {
   background: linear-gradient(180deg, rgb(0, 0, 0), rgb(40, 40, 40));
 }
@@ -470,9 +473,7 @@ button::after {
 .main-product-buy-button::after {
   content: none;
 }
-
-#card-product-custom .card__media, 
-#card-product-custom .card__media  {
+#card-product-custom .card__media {
   all: unset;
 }
 .card-wrapper:hover {
@@ -507,9 +508,13 @@ button::after {
   content: none;
 }
 #card-product-custom .card__information {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
+  padding: 2rem 1rem 0;
+}
+#card-product-custom .card__content {
+  padding: 0 1rem;
 }
 .card__heading a {
   font-size: 1.5rem !important;
@@ -951,7 +956,6 @@ img.btoptioni {
 
 /* page news - blogs */
 .article-card-wrapper .article-card {
-  /* border: none; */
   border-radius: 2rem;
   overflow: hidden;
 }
@@ -964,6 +968,12 @@ img.btoptioni {
 }
 .article-card__image.media {
   background-color: white;
+}
+.article-card-wrapper .card__information {
+  padding: 2rem 0 0.5rem !important;
+}
+.article-card__excerpt {
+  font-size: 1.55rem;
 }
 
 /* cart */
