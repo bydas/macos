@@ -981,7 +981,8 @@ img.btoptioni {
 .cart-item {
   width: 100% !important;
 }
-.cart-item__image-container {
+.cart-item__image-container,
+.cart-item__image-container img {
   border-radius: 2rem;
 }
 
