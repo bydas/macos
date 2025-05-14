@@ -727,16 +727,17 @@
         assign seo_media = product.featured_media
       endif
     -%}
-
+    {% comment %} 
     {% if customer %}
 
       <script type="application/ld+json">
         {{ product | structured_data }}
       </script>
 
-    {% endif %}
+    {% endif %} 
+    {% endcomment %}
 
-    {% comment %} <script type="application/ld+json">
+    <script type="application/ld+json">
       {
         "@context":        "https://schema.org/",
         "@type":           "Product",
@@ -771,7 +772,7 @@
         ,"review":[ ... ]
         {% endcomment %}
       }
-    </script> {% endcomment %}
+    </script>
       
   </div>
 </product-info>
