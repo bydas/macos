@@ -981,6 +981,9 @@ img.btoptioni {
 .cart-item {
   width: 100% !important;
 }
+.cart-item__image-container {
+  border-radius: 2rem;
+}
 
 /* badges */
 .card__badge span {
