@@ -65,8 +65,9 @@
     const brandsElement = document.getElementById("cruz_brands");
 
     if (brandsElement) {
+      console.log(brands);
       for (const brand of brands) {
-        console.log(brand)
+        console.log(brand);
         const option = document.createElement("option");
         option.value = brand.IdBrand;
         option.innerText = brand.Brand;
