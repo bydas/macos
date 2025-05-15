@@ -65,7 +65,7 @@
           return res.json();
         })
         .then((actionData) => {        
-          const fetchDataRequest = secondRequest ? actionData[request] : actionData[request][secondRequest];
+          const fetchDataRequest = secondRequest ? actionData[request][secondRequest] : actionData[request];
           
           if (actionData && fetchDataRequest) {
             if (request === "brands") {
