@@ -25,19 +25,38 @@
 
       <div class="form__input-wrapper col-12 col-md-4" style="display: block;">
         <div class="select-wrapper select-wrapper--primary">
-          <select name="modelo" id="cruz_models" class="configurador-input">
+          <select name="modelo" id="cruz_bodies" class="configurador-input">
             <option value="">Escolha uma Viatura</option>
           </select>
         </div>
       </div>
     </div>
-
-    <div id="optionsToChoseFrom"></div>
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    
+  document.addEventListener("DOMContentLoaded", async function () {
+    const endpoint = "https://macos.apps.bydas.com/";
+    let brands = [];
+
+    await fetch(`${endpoint}?action=cruz_brands`, {
+      headers: { "Content-Type": "application/json" }
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.error("Couldn't fetch brands");
+          return null;
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        if (data && data.brands) {
+          brands = data.brands;
+        }
+      })
+      .catch((error) => console.error(error))
+
+    cosole.log(brands);
   });
 </script>
