@@ -30,6 +30,8 @@
           </select>
         </div>
       </div>
+
+      <div id="cruz_solutions"></div>
     </div>
   </div>
 </div>
@@ -41,12 +43,14 @@
     const brandsInput = document.getElementById("cruz_brands");
     const modelsInput = document.getElementById("cruz_models");
     const bodiesInput = document.getElementById("cruz_bodies");
+    const solutionsElement = document.getElementById("cruz_solutions");
 
     if (!brandsInput || !modelsInput || !bodiesInput) return;
     
     let brands = [];
     let models = [];
     let bodies = [];
+    let solutions = [];
     
     const getData = async (action, data, request) => {
       await fetch(`${endpoint}?action=${action}`, {
@@ -161,6 +165,23 @@
         for (const bodyOption of bodyOptions) {
           if (bodyOption.value) bodyOption.remove();
         }
+      }
+    });
+
+    bodiesInput.addEventListener("change", async function (e) {
+      const bodyId = e.target.value;
+      
+      if (bodyId) {
+        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
+
+        if (solutionsElement) {
+          for (const solution of solutions) {
+            const solutionCard = {% render 'card-product-custom' product: solution %};
+            
+            solutionsElement.appendChild(solutionCard);
+          }
+        }
+      } else {
       }
     });
   });
