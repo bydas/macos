@@ -174,7 +174,7 @@
       const bodyId = e.target.value;
       
       if (bodyId) {
-        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
+        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles", "data"); 
 
         if (solutionsElement) {
           for (const solution of solutions) {
