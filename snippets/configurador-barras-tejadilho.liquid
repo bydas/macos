@@ -86,6 +86,8 @@
       if (brandId) {
         await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
 
+        console.log(models);
+
         if (modelsInput) {
           for (const model of models) {
             const modelOption = document.createElement("option");
