@@ -37,11 +37,17 @@
 <script>
   document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
+    
     const brandsElement = document.getElementById("cruz_brands");
     const modelsElement = document.getElementById("cruz_models");
+    const bodiesElement = document.getElementById("cruz_bodies");
+
+    if (!brandsElement || !modelsElement || !bodiesElement) return;
+    
     const brands = [];
     const models = [];
-
+    const bodies = [];
+    
     const getData = async (action, data, request) => {
       await fetch(`${endpoint}?action=${action}`, {
         headers: { "Content-Type": "application/json" }
@@ -90,6 +96,12 @@
           }
         }
       } else {
+        const bodyOptions = bodiesElement.querySelectorAll("option");
+
+        for (const bodyOption of bodyOptions) {
+          if (bodyOption.value) bodyOption.remove();
+        }
+        
         const modelOptions = modelsElement.querySelectorAll("option");
 
         for (const modelOption of modelOptions) {
@@ -97,5 +109,29 @@
         }
       }
     }); 
+
+    modelsElement.addEventListener("change", async function (e) {
+      const modelId = e.target.value;
+      
+      if (modelId) {
+        await getData(`cruz_models&IdBrand=${modelId}`, bodies, "bodies"); 
+
+        if (bodiesElement) {
+          for (const body of bodies) {
+            const bodyOption = document.createElement("option");
+            bodyOption.value = model.IdVeh;
+            bodyOption.innerText = model.Body;
+            
+            bodiesElement.appendChild(bodyOption);
+          }
+        }
+      } else {
+        const bodyOptions = bodiesElement.querySelectorAll("option");
+
+        for (const bodyOption of bodyOptions) {
+          if (bodyOption.value) bodyOption.remove();
+        }
+      }
+    });
   });
 </script>
