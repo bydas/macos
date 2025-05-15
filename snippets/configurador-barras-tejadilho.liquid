@@ -52,7 +52,7 @@
     let bodies = [];
     let solutions = [];
     
-    const getData = async (action, data, request) => {
+    const getData = async (action, data, request, secondRequest) => {
       await fetch(`${endpoint}?action=${action}`, {
         headers: { "Content-Type": "application/json" }
       })
@@ -64,8 +64,10 @@
   
           return res.json();
         })
-        .then((actionData) => {
-          if (actionData && actionData[request]) {
+        .then((actionData) => {        
+          const fetchDataRequest = secondRequest ? actionData[request] : actionData[request][secondRequest];
+          
+          if (actionData && fetchDataRequest) {
             if (request === "brands") {
               brands.length = 0;
               models.length = 0;
@@ -76,10 +78,8 @@
             } else {
               bodies.length = 0;
             }
-
-            console.log(actionData[request])
             
-            data.push(...actionData[request]);
+            data.push(...fetchDataRequest);
           }
         })
         .catch((error) => console.error(error))
@@ -174,7 +174,7 @@
       const bodyId = e.target.value;
       
       if (bodyId) {
-        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions.data, "vehicles"); 
+        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
         if (solutionsElement) {
           for (const solution of solutions) {
