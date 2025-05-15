@@ -57,6 +57,16 @@
       })
       .catch((error) => console.error(error))
 
-    console.log(brands);
+    const brandsElement = document.getElementById("cruz_brands");
+
+    if (brandsElement) {
+      for (const brand of brands) {
+        const option = document.createElement("option");
+        option.value = brand.IdBrand;
+        option.innerText = brand.Brand;
+        
+        brandsElement.appendChild(option);
+      }
+    }
   });
 </script>
