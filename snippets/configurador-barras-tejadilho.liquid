@@ -40,8 +40,8 @@
     const brands = [];
     const models = [];
 
-    const getData = (action, data, request) => {
-      fetch(`${endpoint}?action=${action}`, {
+    const getData = async (action, data, request) => {
+      await fetch(`${endpoint}?action=${action}`, {
         headers: { "Content-Type": "application/json" }
       })
         .then((res) => {
@@ -65,9 +65,7 @@
     const brandsElement = document.getElementById("cruz_brands");
 
     if (brandsElement) {
-      console.log(brands);
-      for (const brand in brands) {
-        console.log(brand);
+      for (const brand of brands) {
         const option = document.createElement("option");
         option.value = brand.IdBrand;
         option.innerText = brand.Brand;
