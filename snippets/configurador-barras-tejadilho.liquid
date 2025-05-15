@@ -62,6 +62,7 @@
         })
         .then((actionData) => {
           if (actionData && actionData[request]) {
+            console.log(actionData[request]);
             data = actionData[request];
           }
         })
