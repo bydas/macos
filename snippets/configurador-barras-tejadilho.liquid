@@ -44,9 +44,9 @@
 
     if (!brandsInput || !modelsInput || !bodiesInput) return;
     
-    const brands = [];
-    const models = [];
-    const bodies = [];
+    let brands = [];
+    let models = [];
+    let bodies = [];
     
     const getData = async (action, data, request) => {
       await fetch(`${endpoint}?action=${action}`, {
