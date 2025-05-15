@@ -70,6 +70,8 @@
               models = models.filter((model) => !model);
               bodies = bodies.filter((body) => !body);
             }
+
+            console.log(actionData[request]);
             
             data.push(...actionData[request]);
           }
