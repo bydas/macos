@@ -66,7 +66,7 @@
 
     if (brandsElement) {
       console.log(brands);
-      for (const brand of brands) {
+      for (const brand in brands) {
         console.log(brand);
         const option = document.createElement("option");
         option.value = brand.IdBrand;
