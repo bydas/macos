@@ -86,12 +86,14 @@
           console.log(models);
           for (const model of models) {
             const option = document.createElement("option");
-            option.value = model.IdBrand;
-            option.innerText = model.Brand;
+            option.value = model.Model;
+            option.innerText = model.Model;
             
             modelsElement.appendChild(option);
           }
         }
+      } else {
+        models = [];
       }
     }); 
   });
