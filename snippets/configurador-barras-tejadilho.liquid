@@ -38,11 +38,11 @@
   document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
     
-    const brandsElement = document.getElementById("cruz_brands");
-    const modelsElement = document.getElementById("cruz_models");
-    const bodiesElement = document.getElementById("cruz_bodies");
+    const brandsInput = document.getElementById("cruz_brands");
+    const modelsInput = document.getElementById("cruz_models");
+    const bodiesInput = document.getElementById("cruz_bodies");
 
-    if (!brandsElement || !modelsElement || !bodiesElement) return;
+    if (!brandsInput || !modelsInput || !bodiesInput) return;
     
     const brands = [];
     const models = [];
@@ -70,39 +70,39 @@
 
     await getData("cruz_brands", brands, "brands");
     
-    if (brandsElement) {
+    if (brandsInput) {
       for (const brand of brands) {
         const brandOption = document.createElement("option");
         brandOption.value = brand.IdBrand;
         brandOption.innerText = brand.Brand;
         
-        brandsElement.appendChild(brandOption);
+        brandsInput.appendChild(brandOption);
       }
     }
 
-    brandsElement.addEventListener("change", async function (e) {
+    brandsInput.addEventListener("change", async function (e) {
       const brandId = e.target.value;
       
       if (brandId) {
         await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
 
-        if (modelsElement) {
+        if (modelsInput) {
           for (const model of models) {
             const modelOption = document.createElement("option");
             modelOption.value = model.Model;
             modelOption.innerText = model.Model;
             
-            modelsElement.appendChild(modelOption);
+            modelsInput.appendChild(modelOption);
           }
         }
       } else {
-        const bodyOptions = bodiesElement.querySelectorAll("option");
+        const bodyOptions = bodiesInput.querySelectorAll("option");
 
         for (const bodyOption of bodyOptions) {
           if (bodyOption.value) bodyOption.remove();
         }
         
-        const modelOptions = modelsElement.querySelectorAll("option");
+        const modelOptions = modelsInput.querySelectorAll("option");
 
         for (const modelOption of modelOptions) {
           if (modelOption.value) modelOption.remove();
@@ -110,23 +110,24 @@
       }
     }); 
 
-    modelsElement.addEventListener("change", async function (e) {
+    modelsInput.addEventListener("change", async function (e) {
+      const brandId = brandsInput.value;
       const modelId = e.target.value;
       
-      if (modelId) {
-        await getData(`cruz_models&IdBrand=${modelId}`, bodies, "bodies"); 
+      if (brandId && modelId) {
+        await getData(`cruz_bodies&IdBrand=${brandId}&Model=${modelId}`, bodies, "bodies"); 
 
-        if (bodiesElement) {
+        if (bodiesInput) {
           for (const body of bodies) {
             const bodyOption = document.createElement("option");
             bodyOption.value = model.IdVeh;
             bodyOption.innerText = model.Body;
             
-            bodiesElement.appendChild(bodyOption);
+            bodiesInput.appendChild(bodyOption);
           }
         }
       } else {
-        const bodyOptions = bodiesElement.querySelectorAll("option");
+        const bodyOptions = bodiesInput.querySelectorAll("option");
 
         for (const bodyOption of bodyOptions) {
           if (bodyOption.value) bodyOption.remove();
