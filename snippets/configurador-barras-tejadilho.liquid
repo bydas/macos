@@ -62,6 +62,7 @@
         })
         .then((actionData) => {
           if (actionData && actionData[request]) {
+            data = [];
             data.push(...actionData[request]);
           }
         })
@@ -86,9 +87,19 @@
       if (brandId) {
         await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
 
-        console.log(models);
-
         if (modelsInput) {
+          const bodyOptions = bodiesInput.querySelectorAll("option");
+
+          for (const bodyOption of bodyOptions) {
+            if (bodyOption.value) bodyOption.remove();
+          }
+          
+          const modelOptions = modelsInput.querySelectorAll("option");
+  
+          for (const modelOption of modelOptions) {
+            if (modelOption.value) modelOption.remove();
+          }
+          
           for (const model of models) {
             const modelOption = document.createElement("option");
             modelOption.value = model.Model;
@@ -120,6 +131,12 @@
         await getData(`cruz_bodies&IdBrand=${brandId}&Model=${modelId}`, bodies, "bodies"); 
 
         if (bodiesInput) {
+          const bodyOptions = bodiesInput.querySelectorAll("option");
+
+          for (const bodyOption of bodyOptions) {
+            if (bodyOption.value) bodyOption.remove();
+          }
+          
           for (const body of bodies) {
             const bodyOption = document.createElement("option");
             bodyOption.value = body.IdVeh;
