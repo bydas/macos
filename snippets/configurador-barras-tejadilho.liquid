@@ -63,15 +63,13 @@
         .then((actionData) => {
           if (actionData && actionData[request]) {
             if (request === "brands") {
-              brands = brands.filter((brand) => !brand);
-              models = models.filter((model) => !model);
-              bodies = bodies.filter((body) => !body);
+              brands.length = 0;
+              models.length = 0;
+              bodies.length = 0;
             } else if (request === "models") {
-              models = models.filter((model) => !model);
-              bodies = bodies.filter((body) => !body);
+              models.length = 0;
+              bodies.length = 0;
             }
-
-            console.log(actionData[request]);
             
             data.push(...actionData[request]);
           }
