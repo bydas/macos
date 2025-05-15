@@ -69,8 +69,6 @@
             } else if (request === "models") {
               models = models.filter((model) => !model);
               bodies = bodies.filter((body) => !body);
-            } else {
-              bodies = bodies.filter((body) => !body);
             }
             
             data.push(...actionData[request]);
@@ -80,6 +78,8 @@
     }
 
     await getData("cruz_brands", brands, "brands");
+
+    console.log(brands);
     
     if (brandsInput) {
       for (const brand of brands) {
