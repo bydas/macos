@@ -52,7 +52,7 @@
     let bodies = [];
     let solutions = [];
     
-    const getData = async (action, data, request, secondRequest) => {
+    const getData = async (action, data, request) => {
       await fetch(`${endpoint}?action=${action}`, {
         headers: { "Content-Type": "application/json" }
       })
@@ -64,10 +64,8 @@
   
           return res.json();
         })
-        .then((actionData) => {        
-          const fetchDataRequest = secondRequest ? actionData[request][secondRequest] : actionData[request];
-          
-          if (actionData && fetchDataRequest) {
+        .then((actionData) => {                  
+          if (actionData && actionData[request]) {
             if (request === "brands") {
               brands.length = 0;
               models.length = 0;
@@ -79,7 +77,7 @@
               bodies.length = 0;
             }
             
-            data.push(...fetchDataRequest);
+            data.push(...actionData[request]);
           }
         })
         .catch((error) => console.error(error))
@@ -174,11 +172,13 @@
       const bodyId = e.target.value;
       
       if (bodyId) {
-        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles", "data"); 
+        await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
         if (solutionsElement) {
-          for (const solution of solutions) {
+          for (const solution of solutions.data) {
             const solutionCardHTML = `{% render 'card-product-custom' card_product: solution %}`;
+
+            // RENDER AINDA NÃO FUNCIONANDO
 
             const wrapper = document.createElement('div');
             wrapper.innerHTML = solutionCardHTML;
