@@ -7,23 +7,29 @@
     {{ page.content }}
     
     <div class="form__input-row row mt-5 mb-4">
-      <div class="form__input-wrapper col-12 col-md-6 mb-4 mb-md-0">
+      <div class="form__input-wrapper col-12 col-md-4 mb-4 mb-md-0">
         <div class="select-wrapper select-wrapper--primary">
-          <select name="marca" id="marcadocarro" class="configurador-input" data-default="" required="" onChange="brandChanged(event)">
+          <select name="marca" id="cruz_brands" class="configurador-input">
             <option value="">Marca do Veículo</option>
           </select>
         </div>
       </div>
 
-      <div class="form__input-wrapper col-12 col-md-6" style="display: block;">
+      <div class="form__input-wrapper col-12 col-md-4" style="display: block;">
         <div class="select-wrapper select-wrapper--primary">
-          <select name="modelo" id="modelodocarro" class="configurador-input" data-default="" onChange="onModelChange(event)">
+          <select name="modelo" id="cruz_models" class="configurador-input">
             <option value="">Modelo do Veículo</option>
           </select>
         </div>
       </div>
-      
-      <div class="shipping-estimator__results" style="display: none;"></div>
+
+      <div class="form__input-wrapper col-12 col-md-4" style="display: block;">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="modelo" id="cruz_models" class="configurador-input">
+            <option value="">Modelo do Veículo</option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <div id="optionsToChoseFrom"></div>
