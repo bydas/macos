@@ -120,8 +120,8 @@
         if (bodiesInput) {
           for (const body of bodies) {
             const bodyOption = document.createElement("option");
-            bodyOption.value = model.IdVeh;
-            bodyOption.innerText = model.Body;
+            bodyOption.value = body.IdVeh;
+            bodyOption.innerText = body.Body;
             
             bodiesInput.appendChild(bodyOption);
           }
