@@ -37,7 +37,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
-    let brands = [];
+    const brands = [];
 
     await fetch(`${endpoint}?action=cruz_brands`, {
       headers: { "Content-Type": "application/json" }
@@ -52,7 +52,7 @@
       })
       .then((data) => {
         if (data && data.brands) {
-          brands = data.brands;
+          brands.push(data.brands);
         }
       })
       .catch((error) => console.error(error))
@@ -68,5 +68,7 @@
         brandsElement.appendChild(option);
       }
     }
+
+    const models = [];
   });
 </script>
