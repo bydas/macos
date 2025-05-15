@@ -62,8 +62,7 @@
         })
         .then((actionData) => {
           if (actionData && actionData[request]) {
-            data = [];
-            data.push(...actionData[request]);
+            data = actionData[request];
           }
         })
         .catch((error) => console.error(error))
