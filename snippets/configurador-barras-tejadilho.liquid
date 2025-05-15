@@ -35,7 +35,7 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
     const brands = [];
     const models = [];
@@ -76,6 +76,7 @@
 
     brandsElement.addEventListener("change", async function (e) {
       const brandId = e.target.value;
+      console.log(e);
       
       if (brandId) {
         await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
