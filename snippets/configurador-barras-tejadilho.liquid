@@ -175,6 +175,7 @@
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
         if (solutionsElement) {
+          console.log(solutions)
           for (const solution of solutions.data) {
             const solutionCardHTML = `{% render 'card-product-custom' card_product: solution %}`;
 
