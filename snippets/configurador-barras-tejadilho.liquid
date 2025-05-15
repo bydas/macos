@@ -52,7 +52,7 @@
       })
       .then((data) => {
         if (data && data.brands) {
-          brands.push(data.brands);
+          brands.push(...data.brands);
         }
       })
       .catch((error) => console.error(error))
