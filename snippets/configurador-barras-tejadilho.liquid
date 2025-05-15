@@ -93,7 +93,7 @@
         const modelOptions = modelsElement.querySelectorAll("option");
 
         for (const modelOption of modelOptions) {
-          modelOption.remove();
+          if (modelOption) modelOption.remove();
         }
       }
     }); 
