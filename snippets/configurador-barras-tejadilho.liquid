@@ -38,24 +38,29 @@
   document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
     const brands = [];
+    const models = [];
 
-    await fetch(`${endpoint}?action=cruz_brands`, {
-      headers: { "Content-Type": "application/json" }
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.error("Couldn't fetch brands");
-          return null;
-        }
+    const getData = (action, data, request) => {
+      fetch(`${endpoint}?action=${action}`, {
+        headers: { "Content-Type": "application/json" }
+      })
+        .then((res) => {
+          if (!res.ok) {
+            console.error("Couldn't fetch " + action);
+            return null;
+          }
+  
+          return res.json();
+        })
+        .then((actionData) => {
+          if (actionData && actionData[request]) {
+            data.push(...actionData[request]);
+          }
+        })
+        .catch((error) => console.error(error))
+    }
 
-        return res.json();
-      })
-      .then((data) => {
-        if (data && data.brands) {
-          brands.push(...data.brands);
-        }
-      })
-      .catch((error) => console.error(error))
+    await getData("cruz_brands", brands, "brands");
     
     const brandsElement = document.getElementById("cruz_brands");
 
@@ -69,6 +74,12 @@
       }
     }
 
-    const models = [];
+    brandsElement.addEventListener("change", function (e) {
+      const brandId = e.target.value;
+      
+      if (brandId) {
+        await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
+      }
+    }); 
   });
 </script>
