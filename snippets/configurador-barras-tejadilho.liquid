@@ -175,11 +175,10 @@
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
         if (solutionsElement) {
-          console.log(solutions)
-          for (const solution of solutions.data) {
+          for (const solution of solutions) {
             const solutionCardHTML = `{% render 'card-product-custom' card_product: solution %}`;
 
-            // RENDER AINDA NÃO FUNCIONANDO
+            // RENDER AINDA NÃO FUNCIONANDO E SEM SOLUTIONS.DATA
 
             const wrapper = document.createElement('div');
             wrapper.innerHTML = solutionCardHTML;
