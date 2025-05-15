@@ -52,11 +52,12 @@
       })
       .then((data) => {
         if (data && data.brands) {
+          console.log(typeof (...data.brands));
           brands.push(...data.brands);
         }
       })
       .catch((error) => console.error(error))
-
+    
     const brandsElement = document.getElementById("cruz_brands");
 
     if (brandsElement) {
