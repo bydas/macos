@@ -44,9 +44,9 @@
 
     if (!brandsInput || !modelsInput || !bodiesInput) return;
     
-    let brands = [];
-    let models = [];
-    let bodies = [];
+    const brands = [];
+    const models = [];
+    const bodies = [];
     
     const getData = async (action, data, request) => {
       await fetch(`${endpoint}?action=${action}`, {
@@ -62,16 +62,17 @@
         })
         .then((actionData) => {
           if (actionData && actionData[request]) {
-            console.log(actionData[request]);
-            data = actionData[request];
+            for (const d of data) {
+              d.pop();
+            }
+            
+            data.push(...actionData[request]);
           }
         })
         .catch((error) => console.error(error))
     }
 
     await getData("cruz_brands", brands, "brands");
-
-   console.log(brands);
     
     if (brandsInput) {
       for (const brand of brands) {
