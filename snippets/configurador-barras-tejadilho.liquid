@@ -37,6 +37,8 @@
 <script>
   document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
+    const brandsElement = document.getElementById("cruz_brands");
+    const modelsElement = document.getElementById("cruz_models");
     const brands = [];
     const models = [];
 
@@ -62,15 +64,13 @@
 
     await getData("cruz_brands", brands, "brands");
     
-    const brandsElement = document.getElementById("cruz_brands");
-
     if (brandsElement) {
       for (const brand of brands) {
-        const option = document.createElement("option");
-        option.value = brand.IdBrand;
-        option.innerText = brand.Brand;
+        const brandOption = document.createElement("option");
+        brandOption.value = brand.IdBrand;
+        brandOption.innerText = brand.Brand;
         
-        brandsElement.appendChild(option);
+        brandsElement.appendChild(brandOption);
       }
     }
 
@@ -80,20 +80,21 @@
       if (brandId) {
         await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
 
-        const modelsElement = document.getElementById("cruz_models");
-
         if (modelsElement) {
-          console.log(models);
           for (const model of models) {
-            const option = document.createElement("option");
-            option.value = model.Model;
-            option.innerText = model.Model;
+            const modelOption = document.createElement("option");
+            modelOption.value = model.Model;
+            modelOption.innerText = model.Model;
             
-            modelsElement.appendChild(option);
+            modelsElement.appendChild(modelOption);
           }
         }
       } else {
-        models = [];
+        const modelOptions = modelsElement.querySelectorAll("option");
+
+        for (const modelOption of modelOptions) {
+          modelOption.remove();
+        }
       }
     }); 
   });
