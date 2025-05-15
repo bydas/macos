@@ -176,12 +176,15 @@
 
         if (solutionsElement) {
           for (const solution of solutions) {
-            const solutionCard = {% render 'card-product-custom' product: solution %};
-            
+            const solutionCardHTML = `{% render 'card-product-custom' card_product: solution %}`;
+
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = solutionCardHTML;
+
+            const solutionCard = wrapper.firstElementChild;
             solutionsElement.appendChild(solutionCard);
           }
         }
-      } else {
       }
     });
   });
