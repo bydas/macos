@@ -35,13 +35,13 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
     const brands = [];
     const models = [];
 
-    const getData = async (action, data, request) => {
-      await fetch(`${endpoint}?action=${action}`, {
+    const getData = (action, data, request) => {
+      fetch(`${endpoint}?action=${action}`, {
         headers: { "Content-Type": "application/json" }
       })
         .then((res) => {
@@ -60,7 +60,7 @@
         .catch((error) => console.error(error))
     }
 
-    getData("cruz_brands", brands, "brands");
+    await getData("cruz_brands", brands, "brands");
     
     const brandsElement = document.getElementById("cruz_brands");
 
@@ -74,11 +74,11 @@
       }
     }
 
-    brandsElement.addEventListener("change", function (e) {
+    brandsElement.addEventListener("change", async function (e) {
       const brandId = e.target.value;
       
       if (brandId) {
-        getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
+        await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
       }
     }); 
   });
