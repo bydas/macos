@@ -69,6 +69,8 @@
             } else if (request === "models") {
               models.length = 0;
               bodies.length = 0;
+            } else {
+              bodies.length = 0;
             }
             
             data.push(...actionData[request]);
