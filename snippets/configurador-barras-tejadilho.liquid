@@ -76,10 +76,21 @@
 
     brandsElement.addEventListener("change", async function (e) {
       const brandId = e.target.value;
-      console.log(e);
       
       if (brandId) {
         await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
+
+        const modelsElement = document.getElementById("cruz_models");
+
+        if (modelsElement) {
+          for (const model of models) {
+            const option = document.createElement("option");
+            option.value = model.IdBrand;
+            option.innerText = model.Brand;
+            
+            modelsElement.appendChild(option);
+          }
+        }
       }
     }); 
   });
