@@ -298,10 +298,11 @@
             const blockPriceContainer = document.createElement("div"); 
             
             const totalPriceElement = document.createElement("span");
-            totalPriceElement.setAttribute("id", key)
+            totalPriceElement.setAttribute("id", key);
             
             const buyBtn = document.createElement("button");
             buyBtn.innerText = "Adicionar";
+            buyBtn.setAttribute("id", `btn-${key}`);
 
             [totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
             [blockComponents, blockPriceContainer].forEach((el) => blockFeatures.appendChild(el));
@@ -329,6 +330,8 @@
               optional.disabled = !s.optional;
               optional.setAttribute("data-price", s.price);
               optional.setAttribute("data-solution", key);
+              optional.setAttribute("data-products", `btn-${key}`);
+              optional.setAttribute("data-id", s.id);
 
               [title, sku, price, optional].forEach((el) => component.appendChild(el));
 
@@ -360,10 +363,13 @@
       if (isOption) {
         const optionPrice = Number(e.target.getAttribute("data-price"));
         const solutionPriceElement = solutionsElement.querySelector(`#${e.target.getAttribute("data-solution")}`);
+        const currentSelectedProducts = solutionsElement.querySelector(`#${e.target.getAttribute("data-products")}`);
 
         if (e.target.checked) {
+          currentSelectedProducts.setAttribute("data-products-id", currentSelectedProducts.getAttribute("data-products-id") + ", " + e.target.getAttribute("data-id"));
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) + optionPrice).toFixed(2)} €`;
         } else {
+          currentSelectedProducts.setAttribute("data-products-id", currentSelectedProducts.getAttribute("data-products-id").replace("", ", " + e.target.getAttribute("data-id")));
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) - optionPrice).toFixed(2)} €`;
         }
       }
