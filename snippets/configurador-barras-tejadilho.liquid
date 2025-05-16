@@ -328,6 +328,9 @@
                   
                   return res.json();
                 })
+                .then(cart => {
+                  window.location.href("/cart");
+                })
                 .catch(err => console.error(err));
             });
 
