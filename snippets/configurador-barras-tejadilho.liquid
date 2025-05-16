@@ -63,7 +63,7 @@
     font-size: 1.6rem;
   }
 
-  .spinner {
+  .spinnerConfig {
     display: none;
     width: 50px;
     height: 50px;
@@ -113,7 +113,7 @@
       </div>
 
       <div id="cruz_solutions">
-        <div class="spinner"></div>
+        <div class="spinnerConfig"></div>
       </div>
     </div>
   </div>
@@ -127,7 +127,7 @@
     const modelsInput = document.getElementById("cruz_models");
     const bodiesInput = document.getElementById("cruz_bodies");
     const solutionsElement = document.getElementById("cruz_solutions");
-    const spinner = document.querySelector(".spinner");
+    const spinnerConfig = document.querySelector(".spinnerConfig");
     
     if (!brandsInput || !modelsInput || !bodiesInput) return;
     
@@ -281,7 +281,7 @@
 
     bodiesInput.addEventListener("change", async function (e) {
       console.log("MUDOU")
-      spinner.style.display = "block";
+      spinnerConfig.style.display = "block";
       
       const bodyId = e.target.value;
       
@@ -404,7 +404,7 @@
             })
           });
 
-          spinner.style.display = "none";
+          spinnerConfig.style.display = "none";
         }
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
