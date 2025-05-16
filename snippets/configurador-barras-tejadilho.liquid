@@ -352,8 +352,6 @@
               
               const price = document.createElement("span");
 
-              console.log(window.customerLoggedIn);
-
               if (window.customerLoggedIn) {
                 price.innerText = s.price;
               }
@@ -377,7 +375,9 @@
                 buyBtn.setAttribute("data-products-id", productsId.join(","));
               };
 
-              totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
+              if (window.customerLoggedIn) {
+                totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
+              }
               
               blockComponents.appendChild(component);
             })
