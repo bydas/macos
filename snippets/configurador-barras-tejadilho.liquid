@@ -352,13 +352,13 @@
       const isOption = e.target.className === "solution_optional";
 
       if (isOption) {
-        const optionPrice = Number(e.target.getAttribute("data-price")).toFixed(2);
+        const optionPrice = Number(e.target.getAttribute("data-price"));
         const solutionPriceElement = solutionsElement.querySelector(`#${e.target.getAttribute("data-solution")}`);
 
         if (e.target.checked) {
-          solutionPriceElement.innerText = `${Number(solutionPriceElement.innerText.split("€")[0]).toFixed(2) + optionPrice} €`;
+          solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) + optionPrice).toFixed(2)} €`;
         } else {
-          solutionPriceElement.innerText = `${Number(solutionPriceElement.innerText.split("€")[0]).toFixed(2) - optionPrice} €`;
+          solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) - optionPrice).toFixed(2)} €`;
         }
       }
     })
