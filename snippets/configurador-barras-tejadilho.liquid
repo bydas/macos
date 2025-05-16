@@ -290,13 +290,13 @@
             let totalPrice = 0;
             
             const blockTitle = document.createElement("h1");
-            blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
+            blockTitle.innerText = `Opção index - ${value[0].solutionName}`;
 
             const blockFeatures = document.createElement("div");
             const blockComponents = document.createElement("ul");
             const blockPriceContainer = document.createElement("div"); 
             const totalPriceElement = document.createElement("span");
-            totalPriceElement.setAttribute("id", `${value[0].solutionName}`)
+            totalPriceElement.setAttribute("id", key)
             const buyBtn = document.createElement("button");
             buyBtn.innerText = "Adicionar";
 
@@ -306,7 +306,7 @@
 
             solutionsElement.appendChild(blockElement);
             
-            return value.map((s, index) => {
+            return value.map((s) => {
               const component = document.createElement("li");
               
               const title = document.createElement("h3");
