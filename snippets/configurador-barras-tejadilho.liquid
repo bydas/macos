@@ -186,8 +186,33 @@
         }
 
         if (solutionsElement) {
-          Object.values(solutionOptions).map((s, index) => {
+          Object.entries(solutionOptions).map(([key, value], index) => {
+            const blockElement = document.createElement("div");
             
+            const blockTitle = document.createElement("h1");
+            blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
+            
+            const blockComponents = document.createElement("ul");
+
+            [blockTitle, blockComponents].forEach((b) => blockElement.appendChild(b));
+
+            solutionsElement.appendChild(blockElement);
+            
+            return value.map((s, index) => {
+              const component = document.createElement("li");
+              
+              const title = document.createElement("h3");
+              sku.innerText = s.product.title;
+              
+              const sku = document.createElement("a");
+              sku.innerText = s.sku;
+              sku.href = `products/${s.product.handle}`;
+              
+              const price = document.createElement("span");
+              sku.innerText = s.price;
+
+              blockComponents.appendChild(component);
+            })
           });
           
           // const solutionElementHTML = 
