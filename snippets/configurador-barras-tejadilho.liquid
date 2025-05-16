@@ -64,11 +64,11 @@
   }
 
   .spinnerConfig {
-    display: none !important;
+    display: none;
     width: 30px;
     height: 30px;
-    border: 3px solid white !important;
-    border-top-color: orange !important;
+    border: 3px solid white;
+    border-top-color: orange;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto;
@@ -112,9 +112,8 @@
         </div>
       </div>
 
-      <div id="cruz_solutions">
-        <div class="spinnerConfig"></div>
-      </div>
+      <div class="spinnerConfig"></div>
+      <div id="cruz_solutions"></div>
     </div>
   </div>
 </div>
@@ -280,7 +279,8 @@
     });
 
     bodiesInput.addEventListener("change", async function (e) {
-      spinnerConfig.style.display = "block !important";
+      console.log("MUDOU");
+      spinnerConfig.style.display = "block";
       
       const bodyId = e.target.value;
       
@@ -403,7 +403,7 @@
             })
           });
 
-          spinnerConfig.style.display = "none !important";
+          spinnerConfig.style.display = "none";
         }
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
