@@ -329,7 +329,7 @@
                   return res.json();
                 })
                 .then(cart => {
-                  window.location.reload();
+                  window.location.href = "/cart";
                 })
                 .catch(err => console.error(err));
             });
