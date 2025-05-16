@@ -325,7 +325,7 @@
               optional.checked = !s.optional;
               optional.disabled = !s.optional;
               optional.setAttribute("data-price", s.price);
-              optional.setAttribute("data-solution", value[0].solutionName);
+              optional.setAttribute("data-solution", key);
 
               [title, sku, price, optional].forEach((el) => component.appendChild(el));
 
