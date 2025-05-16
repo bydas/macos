@@ -320,6 +320,7 @@
 
               const optional = document.createElement("input");
               optional.type = "checkbox";
+              optinal.classList.add("solution_optional")
               optional.checked = !s.optional;
               optional.disabled = !s.optional;
 
@@ -343,5 +344,11 @@
         }
       }
     });
+
+    solutionsElement.addEventListener("change", function (e) {
+      const isOption = e.target.className === "solution_optional";
+
+      console.log(e, isOption);
+    })
   });
 </script>
