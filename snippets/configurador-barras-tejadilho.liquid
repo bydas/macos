@@ -76,8 +76,6 @@
             } else {
               bodies.length = 0;
             }
-
-            console.log(actionData[request]);
             
             data.push(...actionData[request]);
           }
@@ -188,51 +186,50 @@
         }
 
         if (solutionsElement) {
-            console.log(solutionOptions);       
           
-           // const solutionElementHTML = 
-           //   `<div class="card card-configurador mb-4">
-           //      <div class="card_header">
-           //        <h2 class="card_title"></h2>
-           //      </div>
+          const solutionElementHTML = 
+           `<div class="card card-configurador mb-4">
+              <div class="card_header">
+                <h2 class="card_title"></h2>
+              </div>
+              
+              <div class="card_section btoption row flex-column flex-lg-row align-items-center justify-content-evenly" style="padding: 0px 20px 30px 20px;">
+                <img class="col-12 col-lg-3 btoptioni" src="${img}">
                 
-           //      <div class="card_section btoption row flex-column flex-lg-row align-items-center justify-content-evenly" style="padding: 0px 20px 30px 20px;">
-           //        <img class="col-12 col-lg-3 btoptioni" src="${img}">
-                  
-           //        <div class="btoptiont col-12 col-lg-6">
-           //          <table class="tabbt">
-           //            <thead>
-           //              <tr valign="top">
-           //                <th style="width: 240px;"><b>Acessórios</b></th>
-           //                <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
-           //                <th style="width: 85px; text-align: center;"><b>Preço</b></th>
-           //              </tr>
-           //            </thead>
-                      
-           //            <tbody></tbody>
-           //          </table>
-           //        </div>
-                  
-           //        <div class="btoptionprice col-12 col-lg-3">
-           //          <div \${antiroubo0010} class="btbox1">
-           //            <p>Total com anti-roubo: <span class="fw-bold"> \${TOTALWITHANTITHIEF}€</span></p>
-           //            <input type="checkbox" value="check" onclick=""> Adicionar Anti-Roubo
-           //          </div> 
+                <div class="btoptiont col-12 col-lg-6">
+                  <table class="tabbt">
+                    <thead>
+                      <tr valign="top">
+                        <th style="width: 240px;"><b>Acessórios</b></th>
+                        <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                        <th style="width: 85px; text-align: center;"><b>Preço</b></th>
+                      </tr>
+                    </thead>
                     
-           //          <p></p>
+                    <tbody></tbody>
+                  </table>
+                </div>
+                
+                <div class="btoptionprice col-12 col-lg-3">
+                  <div \${antiroubo0010} class="btbox1">
+                    <p>Total com anti-roubo: <span class="fw-bold"> \${TOTALWITHANTITHIEF}€</span></p>
+                    <input type="checkbox" value="check" onclick=""> Adicionar Anti-Roubo
+                  </div> 
+                  
+                  <p></p>
+                  
+                  <div class="btbox2">
+                    <p style="margin-top:20px;"><span class="fw-bold">Total:</span><span class="btprice fw-bold" style="" id="opt"> \${TOTALWITHOPTIONS}€</span></p>
                     
-           //          <div class="btbox2">
-           //            <p style="margin-top:20px;"><span class="fw-bold">Total:</span><span class="btprice fw-bold" style="" id="opt"> \${TOTALWITHOPTIONS}€</span></p>
-                      
-           //            <div style="text-align: center;">
-           //              <button type="submit" disabled class="product-form__add-button button button-configurador" data-action="add-to-cart" style="height:50px; font-size:14px;">ADICIONAR</button>
-           //            </div>
-                      
-           //            <!--<p class="bt_discount"><span class="fw-bold"> 10% </span> de desconto no carrinho </p>-->
-           //          </div>
-           //        </div>
-           //      </div>
-           //    </div>`; 
+                    <div style="text-align: center;">
+                      <button type="submit" disabled class="product-form__add-button button button-configurador" data-action="add-to-cart" style="height:50px; font-size:14px;">ADICIONAR</button>
+                    </div>
+                    
+                    <!--<p class="bt_discount"><span class="fw-bold"> 10% </span> de desconto no carrinho </p>-->
+                  </div>
+                </div>
+              </div>
+            </div>`; 
         }
       }
     });
