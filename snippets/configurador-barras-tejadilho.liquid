@@ -6,7 +6,7 @@
     gap: 2rem;
     margin-top: 2rem;
   }
-  
+
   #cruz_solutions > div {
     display: grid;
     grid-template-rows: repeat(2, max-content);
@@ -71,7 +71,7 @@
 
   <div class="page__content rte">
     {{ page.content }}
-    
+
     <div class="form__input-row row mt-5 mb-4">
       <div class="form__input-wrapper col-12 col-md-4 mb-4 mb-md-0">
         <div class="select-wrapper select-wrapper--primary">
@@ -287,6 +287,7 @@
         if (solutionsElement) {
           Object.entries(solutionOptions).map(([key, value], index) => {
             const blockElement = document.createElement("div");
+            const productsId = [];
             let totalPrice = 0;
             
             const blockTitle = document.createElement("h1");
@@ -295,8 +296,10 @@
             const blockFeatures = document.createElement("div");
             const blockComponents = document.createElement("ul");
             const blockPriceContainer = document.createElement("div"); 
+            
             const totalPriceElement = document.createElement("span");
             totalPriceElement.setAttribute("id", key)
+            
             const buyBtn = document.createElement("button");
             buyBtn.innerText = "Adicionar";
 
@@ -321,7 +324,7 @@
 
               const optional = document.createElement("input");
               optional.type = "checkbox";
-              optional.classList.add("solution_optional")
+              optional.classList.add("solution_optional");
               optional.checked = !s.optional;
               optional.disabled = !s.optional;
               optional.setAttribute("data-price", s.price);
@@ -333,6 +336,8 @@
                 totalPrice += Number(s.price)
               };
 
+              productsId.push(s.id);
+              buyBtn.setAttribute("data-products-id", productsId.join(","));
               totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
               
               blockComponents.appendChild(component);
@@ -361,6 +366,6 @@
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) - optionPrice).toFixed(2)} €`;
         }
       }
-    })
+    });
   });
 </script>
