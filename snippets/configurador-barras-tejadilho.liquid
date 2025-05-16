@@ -174,18 +174,12 @@
       if (bodyId) {
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
+        console.log(solutions);
+
         if (solutionsElement) {
-          for (const solution of solutions) {
-            const solutionCardHTML = `{% render 'card-product-custom' card_product: solution %}`;
-
-            // RENDER AINDA NÃO FUNCIONANDO E SEM SOLUTIONS.DATA
-
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = solutionCardHTML;
-
-            const solutionCard = wrapper.firstElementChild;
-            solutionsElement.appendChild(solutionCard);
-          }
+          // for (const solution of solutions) {
+            
+          // }
         }
       }
     });
