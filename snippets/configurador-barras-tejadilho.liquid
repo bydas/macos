@@ -34,6 +34,7 @@
     place-content: center;
     gap: 1.6rem;
     padding: 0;
+    margin: 0;
   }
 
   #cruz_solutions > div > div > ul > li {
@@ -135,11 +136,14 @@
               brands.length = 0;
               models.length = 0;
               bodies.length = 0;
+              solutions.length = 0;
             } else if (request === "models") {
               models.length = 0;
               bodies.length = 0;
+              solutions.length = 0;
             } else {
               bodies.length = 0;
+              solutions.length = 0;
             }
             
             data.push(...actionData[request]);
@@ -169,6 +173,12 @@
         if (modelsInput) {
           const bodyOptions = bodiesInput.querySelectorAll("option");
 
+          const solutionsElements = solutionsElement.querySelectorAll("div");
+
+          for (const solutionResult of solutionsElements) {
+            solutionResult.remove();
+          }
+
           for (const bodyOption of bodyOptions) {
             if (bodyOption.value) bodyOption.remove();
           }
@@ -189,6 +199,12 @@
         }
       } else {
         const bodyOptions = bodiesInput.querySelectorAll("option");
+
+        const solutionsElements = solutionsElement.querySelectorAll("div");
+
+        for (const solutionResult of solutionsElements) {
+          solutionResult.remove();
+        }
 
         for (const bodyOption of bodyOptions) {
           if (bodyOption.value) bodyOption.remove();
@@ -212,6 +228,12 @@
         if (bodiesInput) {
           const bodyOptions = bodiesInput.querySelectorAll("option");
 
+          const solutionsElements = solutionsElement.querySelectorAll("div");
+
+          for (const solutionResult of solutionsElements) {
+            solutionResult.remove();
+          }
+
           for (const bodyOption of bodyOptions) {
             if (bodyOption.value) bodyOption.remove();
           }
@@ -226,6 +248,12 @@
         }
       } else {
         const bodyOptions = bodiesInput.querySelectorAll("option");
+
+        const solutionsElements = solutionsElement.querySelectorAll("div");
+
+          for (const solutionResult of solutionsElements) {
+            solutionResult.remove();
+          }
 
         for (const bodyOption of bodyOptions) {
           if (bodyOption.value) bodyOption.remove();
