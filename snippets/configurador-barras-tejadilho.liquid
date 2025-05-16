@@ -186,7 +186,9 @@
         }
 
         if (solutionsElement) {
-          console.log(solutionOptions);
+          Object.entries(solutionOptions).map(([key, value], index) => {
+            console.log(key, value);
+          });
           
           // const solutionElementHTML = 
           //  `<div class="card card-configurador mb-4">
