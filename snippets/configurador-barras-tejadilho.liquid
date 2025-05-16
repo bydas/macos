@@ -262,9 +262,11 @@
     });
 
     bodiesInput.addEventListener("change", async function (e) {
-      const spinner = `{% render 'loading-spinner' %}`;
-
-      solutionsElement.appendChild(spinner);
+      solutionsElement.insertAdjacentHTML('beforeend', `
+        <div id="spinner-wrapper">
+          {% render 'loading-spinner' %}
+        </div>
+      `);
       
       const bodyId = e.target.value;
       
@@ -387,7 +389,10 @@
             })
           });
 
-          spinner.remove();
+          const spinnerWrapper = document.getElementById('spinner-wrapper');
+          if (spinnerWrapper) {
+            spinnerWrapper.remove();
+          }
         }
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
