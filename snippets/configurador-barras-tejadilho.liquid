@@ -1,3 +1,59 @@
+<style>
+  #cruz_solutions {
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+    gap: 2rem;
+  }
+  
+  #cruz_solutions > div {
+    display: grid;
+    grid-template-rows: repeat(2, max-content);
+    gap: 2rem;
+    padding: 1.5rem;
+    border: 1px solid grey;
+  }
+
+  #cruz_solutions > div > h1 {
+    padding: 0;
+    margin: 0;
+  }
+
+  #cruz_solutions > div > div {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 2rem;
+  }
+
+  #cruz_solutions > div > div > ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-column: max-content;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  #cruz_solutions > div > div > div {
+    display: grid;
+    grid-template-rows: repeat(2, max-content);
+    gap: 1rem;
+  }
+
+  #cruz_solutions > div > div > div > span {
+    font-size: 1rem;
+  }
+
+  #cruz_solutions > div > div > div > button {
+    color: white;
+    border: none;
+    background: black;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+</style>
+
 <div class="container" id="configurador">
   <header class="page__header row">
     <h1 class="page__title heading h1 col-12">{{ page.title }}</h1>
@@ -192,14 +248,16 @@
             
             const blockTitle = document.createElement("h1");
             blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
-            
+
+            const blockFeatures = document.createElement("div");
             const blockComponents = document.createElement("ul");
             const blockPriceContainer = document.createElement("div"); 
             const totalPriceElement = document.createElement("span");
             const buyBtn = document.createElement("button");
 
             [totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
-            [blockTitle, blockComponents, blockPriceContainer].forEach((b) => blockElement.appendChild(b));
+            [blockComponents, blockPriceContainer].forEach((el) => blockFeatures.appendChild(el));
+            [blockTitle, blockFeatures].forEach((b) => blockElement.appendChild(b));
 
             solutionsElement.appendChild(blockElement);
             
