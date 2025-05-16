@@ -265,6 +265,12 @@
       const bodyId = e.target.value;
       
       if (bodyId) {
+        const solutionsElements = solutionsElement.querySelectorAll("div");
+
+        for (const solutionResult of solutionsElements) {
+          solutionResult.remove();
+        }
+        
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
         const solutionOptions = {};
@@ -328,6 +334,12 @@
               blockComponents.appendChild(component);
             })
           });
+        }
+      } else {
+        const solutionsElements = solutionsElement.querySelectorAll("div");
+
+        for (const solutionResult of solutionsElements) {
+          solutionResult.remove();
         }
       }
     });
