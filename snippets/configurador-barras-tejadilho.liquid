@@ -363,17 +363,21 @@
       if (isOption) {
         const optionPrice = Number(e.target.getAttribute("data-price"));
         const solutionPriceElement = solutionsElement.querySelector(`#${e.target.getAttribute("data-solution")}`);
-        const currentSelectedProducts = solutionsElement.querySelector(`#${e.target.getAttribute("data-products")}`);
+        const buyBtnElement = solutionsElement.querySelector(`#${e.target.getAttribute("data-products")}`);
 
         if (e.target.checked) {
-          currentSelectedProducts.setAttribute("data-products-id", currentSelectedProducts.getAttribute("data-products-id") + ", " + e.target.getAttribute("data-id"));
+          buyBtnElement.setAttribute("data-products-id", buyBtnElement.getAttribute("data-products-id") + ", " + e.target.getAttribute("data-id"));
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) + optionPrice).toFixed(2)} €`;
         } else {
-          const newDataProductsId = currentSelectedProducts.getAttribute("data-products-id").replace(", " + e.target.getAttribute("data-id"), "");
+          const newDataProductsId = buyBtnElement.getAttribute("data-products-id").replace(", " + e.target.getAttribute("data-id"), "");
           
-          currentSelectedProducts.setAttribute("data-products-id", newDataProductsId);
+          buyBtnElement.setAttribute("data-products-id", newDataProductsId);
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) - optionPrice).toFixed(2)} €`;
         }
+
+        buyBtnElement.addEventListener("click", function () {
+          console.log("CLICK");
+        });
       }
     });
   });
