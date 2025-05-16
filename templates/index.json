@@ -101,7 +101,7 @@
         "slide_mkzXXT"
       ],
       "settings": {
-        "top-image": "shopify://shop_images/entrega.jpg",
+        "top-image": "shopify://shop_images/entrega.webp",
         "top-image-collection": "shopify://pages/contact",
         "bottom-image": "shopify://shop_images/kodak_105aa59f-10ce-4cf1-9434-acff0e62b18f.jpg",
         "bottom-image-collection": "shopify://collections/pilhas-alcalinas-kodak"
@@ -140,15 +140,15 @@
       "type": "featured-collection",
       "settings": {
         "collection": "turtle-wax",
-        "products_to_show": 8,
+        "products_to_show": 4,
         "title": "Destaques",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": true,
-        "full_width": true,
+        "enable_desktop_slider": false,
+        "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "color_scheme": "scheme-0e6dfaba-3f97-420c-b9ab-c58ca2b2ac3d",
