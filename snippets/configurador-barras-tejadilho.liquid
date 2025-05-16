@@ -351,7 +351,10 @@
               sku.href = `/products/${s.product.handle}`;
               
               const price = document.createElement("span");
-              price.innerText = s.price;
+
+              if (window.customerLoggedIn === 'true') {
+                price.innerText = s.price;
+              }
 
               const optional = document.createElement("input");
               optional.type = "checkbox";
