@@ -64,8 +64,7 @@
   }
 
   .spinner {
-    opacity: 0;
-    visibility: hidden;
+    display: none;
     width: 50px;
     height: 50px;
     border: 6px solid rgba(0,0,0,0.1);
@@ -281,8 +280,8 @@
     });
 
     bodiesInput.addEventListener("change", async function (e) {
-      spinner.style.opacity = "1";
-      spinner.style.visibility = "visible";
+      console.log("MUDOU")
+      spinner.style.display = "block";
       
       const bodyId = e.target.value;
       
@@ -405,8 +404,7 @@
             })
           });
 
-          spinner.style.opacity = "0";
-          spinner.style.visibility = "hidden";
+          spinner.style.display = "none";
         }
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
