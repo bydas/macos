@@ -58,10 +58,12 @@
                   {%- endif -%}
                 </div>
 
-                <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
-                </div>
+                {% if customer %}
+                  <div class="totals">
+                    <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                    <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  </div>
+                {% endif %}
 
                 <small class="tax-note caption-large rte">
                   {%- if cart.duties_included and cart.taxes_included -%}
@@ -147,7 +149,7 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
-    },    
+    },
     {
       "type": "range",
       "id": "padding_top",
