@@ -332,12 +332,13 @@
 
               [title, sku, price, optional].forEach((el) => component.appendChild(el));
 
+              productsId.push(s.id);
+
               if (!s.optional) {
-                totalPrice += Number(s.price)
+                totalPrice += Number(s.price);
+                buyBtn.setAttribute("data-products-id", productsId.join(", "));
               };
 
-              productsId.push(s.id);
-              buyBtn.setAttribute("data-products-id", productsId.join(","));
               totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
               
               blockComponents.appendChild(component);
