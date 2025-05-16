@@ -211,6 +211,8 @@
               const price = document.createElement("span");
               price.innerText = s.price;
 
+              [title, sku, price].forEach((el) => component.appendChild(el));
+
               blockComponents.appendChild(component);
             })
           });
