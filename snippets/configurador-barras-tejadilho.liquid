@@ -194,12 +194,8 @@
             blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
             
             const blockComponents = document.createElement("ul");
-            
             const blockPriceContainer = document.createElement("div"); 
-            
             const totalPriceElement = document.createElement("span");
-            totalPriceElement.innerText = totalPrice.toFixed(2);
-            
             const buyBtn = document.createElement("button");
 
             [totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
@@ -227,7 +223,11 @@
 
               [title, sku, price, optional].forEach((el) => component.appendChild(el));
 
-              if (!s.optional) totalPrice += Number(s.price);
+              if (!s.optional) {
+                totalPrice += Number(s.price)
+              };
+
+              totalPriceElement.innerText = totalPrice.toFixed(2);
               
               blockComponents.appendChild(component);
             })
