@@ -211,7 +211,11 @@
               const price = document.createElement("span");
               price.innerText = s.price;
 
-              [title, sku, price].forEach((el) => component.appendChild(el));
+              const optional = document.createElement("input");
+              optional.type = "checkbox";
+              optional.checked = true;
+
+              [title, sku, price, optional].forEach((el) => component.appendChild(el));
 
               blockComponents.appendChild(component);
             })
