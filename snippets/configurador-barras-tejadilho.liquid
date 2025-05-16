@@ -356,9 +356,9 @@
         const solutionPriceElement = solutionsElement.querySelector(`#${e.target.getAttribute("data-solution")}`);
 
         if (e.target.checked) {
-          solutionPriceElement.innerText = Number(solutionPriceElement.innerText) + optionPrice;
+          solutionPriceElement.innerText = `${Number(solutionPriceElement.innerText.split("€")[0]) + optionPrice} €`;
         } else {
-          solutionPriceElement.innerText = Number(solutionPriceElement.innerText) - optionPrice;
+          solutionPriceElement.innerText = `${Number(solutionPriceElement.innerText.split("€")[0]) - optionPrice} €`;
         }
       }
     })
