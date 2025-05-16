@@ -20,7 +20,11 @@
     >
 
     <script>
-      window.customerLoggedIn = {{ customer ? 'true' : 'false' }};
+      {% if customer %}
+        window.customerLoggedIn = true;
+      {% else %}
+        window.customerLoggedIn = false;
+      {% endif %}
     </script>
 
     {%- if settings.favicon != blank -%}
