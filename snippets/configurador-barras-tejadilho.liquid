@@ -214,6 +214,7 @@
               const optional = document.createElement("input");
               optional.type = "checkbox";
               optional.checked = s.optional;
+              optional.disabled = !s.optional;
 
               [title, sku, price, optional].forEach((el) => component.appendChild(el));
 
