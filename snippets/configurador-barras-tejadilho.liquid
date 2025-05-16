@@ -262,6 +262,10 @@
     });
 
     bodiesInput.addEventListener("change", async function (e) {
+      const spinner = `{% render 'loading-spinner' %}`;
+
+      solutionsElement.appendChild(spinner);
+      
       const bodyId = e.target.value;
       
       if (bodyId) {
@@ -382,6 +386,8 @@
               blockComponents.appendChild(component);
             })
           });
+
+          spinner.remove();
         }
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
