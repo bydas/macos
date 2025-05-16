@@ -369,7 +369,9 @@
           currentSelectedProducts.setAttribute("data-products-id", currentSelectedProducts.getAttribute("data-products-id") + ", " + e.target.getAttribute("data-id"));
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) + optionPrice).toFixed(2)} €`;
         } else {
-          currentSelectedProducts.setAttribute("data-products-id", currentSelectedProducts.getAttribute("data-products-id").replace("", ", " + e.target.getAttribute("data-id")));
+          const newDataProductsId = currentSelectedProducts.getAttribute("data-products-id").replace("", ", " + e.target.getAttribute("data-id"));
+          
+          currentSelectedProducts.setAttribute("data-products-id", newDataProductsId);
           solutionPriceElement.innerText = `${(Number(solutionPriceElement.innerText.split("€")[0]) - optionPrice).toFixed(2)} €`;
         }
       }
