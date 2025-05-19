@@ -54,16 +54,16 @@
             "image": "shopify://shop_images/destaques.png"
           }
         },
+        "slide_wTwQqh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/destaque1.jpg"
+          }
+        },
         "slide_9Ujttz": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/destaque2.jpg"
-          }
-        },
-        "slide_wTwQqh": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaques3.jpg"
           }
         },
         "slide_CeVEjD": {
@@ -93,8 +93,8 @@
       },
       "block_order": [
         "slide_gY6H8W",
-        "slide_9Ujttz",
         "slide_wTwQqh",
+        "slide_9Ujttz",
         "slide_CeVEjD",
         "slide_etEh6X",
         "slide_faxTFP",
