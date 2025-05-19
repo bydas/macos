@@ -84,12 +84,6 @@
             "image": "shopify://shop_images/destaques6.jpg"
           }
         },
-        "slide_faxTFP": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaque6.jpg"
-          }
-        },
         "slide_mkzXXT": {
           "type": "slide",
           "disabled": true,
@@ -105,7 +99,6 @@
         "slide_9Ujttz",
         "slide_etEh6X",
         "slide_bMCfJC",
-        "slide_faxTFP",
         "slide_mkzXXT"
       ],
       "settings": {
