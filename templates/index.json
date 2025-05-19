@@ -51,25 +51,25 @@
         "slide_gY6H8W": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/destaques.png"
+            "image": "shopify://shop_images/destaque0_24dc0c64-293b-4e48-a725-09df2ce80217.jpg"
+          }
+        },
+        "slide_wTwQqh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/destaque1.jpg"
+          }
+        },
+        "slide_CeVEjD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/destaques7.jpg"
           }
         },
         "slide_9Ujttz": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/destaque2.jpg"
-          }
-        },
-        "slide_CeVEjD": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaque3.jpg"
-          }
-        },
-        "slide_wTwQqh": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaques3.jpg"
           }
         },
         "slide_etEh6X": {
@@ -93,9 +93,9 @@
       },
       "block_order": [
         "slide_gY6H8W",
-        "slide_9Ujttz",
-        "slide_CeVEjD",
         "slide_wTwQqh",
+        "slide_CeVEjD",
+        "slide_9Ujttz",
         "slide_etEh6X",
         "slide_faxTFP",
         "slide_mkzXXT"
