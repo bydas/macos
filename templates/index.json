@@ -60,10 +60,10 @@
             "image": "shopify://shop_images/destaque1.jpg"
           }
         },
-        "slide_CeVEjD": {
+        "slide_jn3EL9": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/destaques7.jpg"
+            "image": "shopify://shop_images/destaque3.jpg"
           }
         },
         "slide_9Ujttz": {
@@ -94,7 +94,7 @@
       "block_order": [
         "slide_gY6H8W",
         "slide_wTwQqh",
-        "slide_CeVEjD",
+        "slide_jn3EL9",
         "slide_9Ujttz",
         "slide_etEh6X",
         "slide_faxTFP",
