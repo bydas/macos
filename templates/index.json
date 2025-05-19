@@ -72,6 +72,12 @@
             "image": "shopify://shop_images/destaques6.jpg"
           }
         },
+        "slide_QnCFXr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/destaque7.jpg"
+          }
+        },
         "slide_R9qWe9": {
           "type": "slide",
           "settings": {
@@ -84,6 +90,7 @@
         "slide_wTwQqh",
         "slide_jn3EL9",
         "slide_bMCfJC",
+        "slide_QnCFXr",
         "slide_R9qWe9"
       ],
       "settings": {
