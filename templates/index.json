@@ -50,9 +50,7 @@
       "blocks": {
         "slide_gY6H8W": {
           "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaques.png"
-          }
+          "settings": {}
         },
         "slide_wTwQqh": {
           "type": "slide",
