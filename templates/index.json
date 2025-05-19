@@ -74,7 +74,9 @@
         },
         "slide_R9qWe9": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/destaques3_a1d6d8b3-ba33-41af-9f7d-a7208ca905e0.jpg"
+          }
         }
       },
       "block_order": [
