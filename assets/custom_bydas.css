@@ -959,7 +959,7 @@ img.btoptioni {
 }
 .card-barras-content li {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr auto;
+  grid-template-columns: 3fr 1fr 1fr auto;
   gap: 1rem;
   align-items: center;
   padding: 1rem;
