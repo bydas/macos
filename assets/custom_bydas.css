@@ -985,7 +985,7 @@ img.btoptioni {
   align-items: end;
   flex-direction: column;
 }
-.priceWrapper {
+.price-wrapper {
   display: flex;
   align-items: space-between;
 }
