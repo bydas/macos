@@ -27,7 +27,7 @@ hr {
 .header-description {
   width: max-content;
   margin-right: 7%;
-  font-family: "Russo One", sans-serif;
+  font-family: "Russo One", sans-serif !important;
 }
 
 a {
