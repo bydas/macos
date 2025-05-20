@@ -25,7 +25,7 @@ hr {
 }
 
 .header-description {
-  width: min-content;
+  width: max-content;
   margin: 7%;
 }
 
