@@ -893,6 +893,11 @@ button::after {
   padding: 2rem 2rem 3rem;
   font-size: 1.5rem;
 }
+.card-barras-content {
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
 .card-configurador table {
   width: 100%;
 }
@@ -1077,6 +1082,9 @@ img.btoptioni {
   .card-configurador .card_title {
     padding: 3rem 3rem 0;
     text-align: center;
+  }
+  .card-barras-content {
+    flex-direction: column;
   }
   img.btoptioni {
     min-width: 40%;
