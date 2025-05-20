@@ -315,8 +315,9 @@
             blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
 
             const blockFeatures = document.createElement("div");
-            blockFeatures.classList.add("card_section", "card-barras-content", "row");
+            blockFeatures.classList.add("card_section");
             const blockComponents = document.createElement("ul");
+            blockComponents.classList.add("card-barras-content", "row");
             const blockPriceContainer = document.createElement("div"); 
             
             const totalPriceElement = document.createElement("span");
