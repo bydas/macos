@@ -981,7 +981,7 @@ img.btoptioni {
 }
 .barras-price-container {
   display: flex;
-  justify-content: right;
+  align-items: end;
   flex-direction: column;
   gap: 1rem;
 }
