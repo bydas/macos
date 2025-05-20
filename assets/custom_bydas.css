@@ -1119,8 +1119,8 @@ img.btoptioni {
   .card-barras-tejadilho {
     flex-direction: column;
   }
-  .card-barras-content {
-    flex-direction: column;
+  .barras-price-container {
+    align-items: center;
   }
   img.btoptioni {
     min-width: 40%;
