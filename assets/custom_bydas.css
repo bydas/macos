@@ -893,11 +893,6 @@ button::after {
   padding: 2rem 2rem 3rem;
   font-size: 1.5rem;
 }
-.card-barras-content {
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
-}
 .card-configurador table {
   width: 100%;
 }
@@ -951,6 +946,14 @@ img.btoptioni {
 .rte table th,
 .rte table td {
   padding: 3px 6px;
+}
+.card-barras {
+  display: flex;
+}
+.card-barras-content {
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
 }
 
 .facets-container select {
