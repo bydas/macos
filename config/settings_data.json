@@ -218,9 +218,9 @@
       },
       "10842145328576398252": {
         "type": "shopify://apps/bold-custom-pricing-wholesale/blocks/v3_bold_pr/27ce59c5-d805-4118-89c7-4a7fe286ddce",
-        "disabled": false,
+        "disabled": true,
         "settings": {
-          "enable_compare_at": true,
+          "enable_compare_at": false,
           "skip_pr_js_load": false
         }
       }
