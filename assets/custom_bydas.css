@@ -279,7 +279,7 @@ button::after {
   line-height: 2.5rem;
 }
 .category-title a {
-  color: darkgray;
+  color: rgb(10, 10, 10);
   font-size: 1.5rem;
 }
 .section-product-categories .flickity-prev-next-button {
