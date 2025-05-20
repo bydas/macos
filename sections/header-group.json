@@ -26,6 +26,7 @@
     "header": {
       "type": "header",
       "settings": {
+        "header_description": "REVENDA DE ACESSÓRIOS PARA AUTOMÓVEIS",
         "logo_position": "middle-center",
         "mobile_logo_position": "center",
         "menu": "main-menu",
