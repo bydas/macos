@@ -1,86 +1,104 @@
+{% style %}
+  .section-slideshow-custom {
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+{% endstyle %}
+
 <section class="container-fluid highlights-section w-100 p-0">
   <div class="row justify-content-center align-items-center w-100 h-100 p-0 g-0">
     <div class="col-12 col-lg-6 h-100 p-0">
       {% comment %} <div class="slideshow-wrapper"> {% endcomment %}
-        <div id="highlights-slideshow">
-        
-          {% for slide in section.blocks %}
-  
-            <div class="carousel-cell">
-              {% if slide.settings.image != blank %}
-                <img src="{{ slide.settings.image | image_url }}" width="" height="" alt="slide">
-  
-              {% else %}
-                  <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="70%" height="" alt="Macos logo">
-                
-              {% endif %}
-            </div>
-            
-          {% endfor %}
-          
-        </div>
+      <div id="highlights-slideshow">
+        {% for slide in section.blocks %}
+          <div class="carousel-cell">
+            {% if slide.settings.image != blank %}
+              <img src="{{ slide.settings.image | image_url }}" width="" height="" alt="slide">
+
+            {% else %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326"
+                width="70%"
+                height=""
+                alt="Macos logo"
+              >
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
       {% comment %} </div> {% endcomment %}
     </div>
-    
+
     <div class="col-12 col-lg-6 highlights-mosaics">
-      {% if section.settings.top-image != blank %}
-        <a href="{{ section.settings.top-image-collection }}"><img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS"></a>
+      {% if section.settings['top-image'] != blank %}
+        <a href="{{ section.settings.top-image-collection }}"
+          ><img src="{{ section.settings.top-image | image_url }}" width="" height="" alt="MACOS"
+        ></a>
       {% endif %}
-      {% if section.settings.bottom-image != blank %}
-        <a href="{{ section.settings.bottom-image-collection }}"><img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS"></a>
+      {% if section.settings['bottom-image'] != blank %}
+        <a href="{{ section.settings.bottom-image-collection }}"
+          ><img src="{{ section.settings.bottom-image | image_url }}" width="" height="" alt="MACOS"
+        ></a>
       {% endif %}
     </div>
   </div>
 </section>
 
-
 {% schema %}
+{
+  "name": "Slideshow custom",
+  "class": "section-slideshow-custom",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Mosaics"
+    },
+    {
+      "type": "image_picker",
+      "id": "top-image",
+      "label": "Top image"
+    },
+    {
+      "type": "url",
+      "id": "top-image-collection",
+      "label": "Top image collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom-image",
+      "label": "Bottom image"
+    },
+    {
+      "type": "url",
+      "id": "bottom-image-collection",
+      "label": "Bottom image collection"
+    },
   {
-    "name": "Slideshow custom",
-    "class": "section-slideshow-custom",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Mosaics"
-      },
-      {
-        "type": "image_picker",
-        "id": "top-image",
-        "label": "Top image"
-      },
-      {
-        "type": "url",
-        "id": "top-image-collection",
-        "label": "Top image collection"
-      },
-      {
-        "type": "image_picker",
-        "id": "bottom-image",
-        "label": "Bottom image"
-      },
-      {
-        "type": "url",
-        "id": "bottom-image-collection",
-        "label": "Bottom image collection"
-      }
-    ],
-    "blocks": [
-      {
-        "name": "Slide",
-        "type": "slide",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Slideshow Custom"
-      }
-    ]
+    "type": "range",
+    "id": "margin_bottom",
+    "min": 0,
+    "max": 50,
+    "step": 1,
+    "default": 0,
+    "label": "Margin bottom"
   }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow Custom"
+    }
+  ]
+}
 {% endschema %}
