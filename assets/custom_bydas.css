@@ -956,7 +956,7 @@ img.btoptioni {
   flex-direction: row;
 }
 .card-barras-content ul {
-  list-style-type: none;
+  list-style-type: none !important;
 }
 
 .facets-container select {
