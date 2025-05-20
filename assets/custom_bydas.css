@@ -949,6 +949,7 @@ img.btoptioni {
 }
 .card-barras-tejadilho {
   display: flex;
+  gap: 1rem;
 }
 .card-barras-content {
   justify-content: space-evenly;
