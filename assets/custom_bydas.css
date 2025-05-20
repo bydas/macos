@@ -881,6 +881,7 @@ button::after {
 .card-configurador {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2.5rem;
+  background-color: white;
 }
 .card-configurador .card_title {
   padding: 3rem 3rem;
