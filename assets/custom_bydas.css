@@ -28,7 +28,7 @@ hr {
   font-family: "Russo One", sans-serif !important;
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 50dvw;
   opacity: 0.5;
   font-size: 12px;
 }
