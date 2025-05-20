@@ -963,7 +963,7 @@ img.btoptioni {
   gap: 1rem;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .facets-container select {
