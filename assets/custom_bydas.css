@@ -29,7 +29,8 @@ hr {
   position: absolute;
   bottom: 0;
   left: 50%;
-  opacity: 50;
+  opacity: 0.5;
+  font-size: 12px;
 }
 
 a {
