@@ -982,6 +982,7 @@ img.btoptioni {
 .barras-price-container {
   display: flex;
   justify-content: right;
+  flex-direction: column;
 }
 
 .facets-container select {
