@@ -955,6 +955,9 @@ img.btoptioni {
   align-items: center;
   flex-direction: row;
 }
+.card-barras-content ul {
+  list-style-type: none;
+}
 
 .facets-container select {
   padding: 0 1.5rem !important;
