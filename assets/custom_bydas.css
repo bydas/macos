@@ -25,7 +25,8 @@ hr {
 }
 
 .header-description {
-  align-self: center;
+  font-family: "Russo One", sans-serif !important;
+  align-self: center !important;
 }
 
 a {
