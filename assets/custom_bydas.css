@@ -162,6 +162,7 @@ button:not(:has(img, svg)),
   text-transform: uppercase;
   background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
   color: white !important;
+  border-radius: 7px !important;
 }
 button::after {
   content: none !important;
