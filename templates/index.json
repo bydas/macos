@@ -66,22 +66,43 @@
             "image": "shopify://shop_images/destaque3.jpg"
           }
         },
-        "slide_bMCfJC": {
+        "slide_4Rkt8c": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/destaques6.jpg"
+            "image": "shopify://shop_images/destaque5.jpg"
           }
         },
-        "slide_QnCFXr": {
+        "slide_kHJ4pr": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/destaque7.jpg"
+            "image": "shopify://shop_images/destaques3_09903fb0-bd72-42ef-b91f-e87ae27e628b.jpg"
           }
         },
-        "slide_R9qWe9": {
+        "slide_9Ujttz": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/destaque2.jpg"
+          }
+        },
+        "slide_etEh6X": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/destaque4.jpg"
+          }
+        },
+        "slide_faxTFP": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/destaque6.jpg"
+          }
+        },
+        "slide_mkzXXT": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/destaques3_a1d6d8b3-ba33-41af-9f7d-a7208ca905e0.jpg"
+            "image": "shopify://shop_images/destaques5.jpg"
           }
         }
       },
@@ -89,9 +110,12 @@
         "slide_gY6H8W",
         "slide_wTwQqh",
         "slide_jn3EL9",
-        "slide_bMCfJC",
-        "slide_QnCFXr",
-        "slide_R9qWe9"
+        "slide_4Rkt8c",
+        "slide_kHJ4pr",
+        "slide_9Ujttz",
+        "slide_etEh6X",
+        "slide_faxTFP",
+        "slide_mkzXXT"
       ],
       "settings": {
         "top-image": "shopify://shop_images/entrega_96838d91-40e2-4f86-9d74-b0394ad85df7.webp",
@@ -142,7 +166,7 @@
         "columns_desktop": 4,
         "enable_desktop_slider": false,
         "full_width": false,
-        "show_view_all": false,
+        "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-0e6dfaba-3f97-420c-b9ab-c58ca2b2ac3d",
         "image_ratio": "portrait",
