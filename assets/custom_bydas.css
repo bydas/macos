@@ -23,12 +23,11 @@ hr {
 .header {
   background-color: #a6a7a9 !important;
 }
-/*
+
 .header-description {
-  position: absolute;
-  right: 15%;
+  margin: 7%;
 }
-*/
+
 a {
   text-decoration: none !important;
 }
