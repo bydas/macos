@@ -272,6 +272,18 @@
             
             const blockComponents = document.createElement("ul");
             blockComponents.classList.add("card-barras-content", "row", "col-12", "col-md-7");
+
+            const componentHeader = document.createElement("li");
+            componentHeader.classList.add("component-header");
+            const componentTitleLabel = document.createElement("h4");
+            componentTitleLabel.innerText = "Componentes";
+            const componentSKULabel = document.createElement("h4");
+            componentSKULabel.innerText = "SKU";
+            const componentPriceLabel = document.createElement("h4");
+            componentPriceLabel.innerText = "Preço";
+            const componentOptionalLabel = document.createElement("h4");
+            componentOptionalLabel.innerText = "Opcional";
+            componentHeader.append(componentTitleLabel, componentSKULabel, componentPriceLabel, componentOptionalLabel);
             
             const blockPriceContainer = document.createElement("div"); 
             blockPriceContainer.classList.add("btoptionprice", "col-12", "col-lg-2");
@@ -319,6 +331,7 @@
             });
 
             [totalPriceLabel, totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
+            blockComponents.appendChild(componentHeader);
             [blockComponents, blockPriceContainer].forEach((el) => blockFeatures.appendChild(el));
             [blockTitle, blockFeatures].forEach((b) => blockElement.appendChild(b));
 
