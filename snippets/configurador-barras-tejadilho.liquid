@@ -316,8 +316,10 @@
 
             const blockFeatures = document.createElement("div");
             blockFeatures.classList.add("card_section", "card-barras-tejadilho");
+            
             const blockComponents = document.createElement("ul");
             blockComponents.classList.add("card-barras-content", "row", "col-12", "col-md-7");
+            
             const blockPriceContainer = document.createElement("div"); 
             blockPriceContainer.classList.add("btoptionprice", "col-12", "col-lg-2");
             
@@ -325,6 +327,7 @@
             totalPriceElement.setAttribute("id", key);
             
             const buyBtn = document.createElement("button");
+            buyBtn.classList.add("button-configurador");
             buyBtn.innerText = "Adicionar";
             buyBtn.setAttribute("id", `btn-${key}`);
 
