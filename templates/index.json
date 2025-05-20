@@ -122,7 +122,7 @@
         "top-image": "shopify://shop_images/entrega_96838d91-40e2-4f86-9d74-b0394ad85df7.webp",
         "top-image-collection": "shopify://pages/contact",
         "bottom-image": "shopify://shop_images/kodak_2c8676b7-c2a1-4fef-a280-720a372184f2.webp",
-        "bottom-image-collection": "#footer",
+        "bottom-image-collection": "#socialMedia",
         "margin_bottom": 0
       }
     },
