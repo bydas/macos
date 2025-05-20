@@ -241,6 +241,7 @@ button::after {
 /* section product categories, subcategories and breadcrumb */
 .section-product-categories-description {
   color: rgb(180, 180, 180);
+  margin-bottom: 1px;
 }
 .category-card {
   width: 170px;
