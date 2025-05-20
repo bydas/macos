@@ -988,6 +988,7 @@ img.btoptioni {
 .price-wrapper {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .facets-container select {
