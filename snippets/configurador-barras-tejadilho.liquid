@@ -300,6 +300,10 @@
             
             const totalPriceElement = document.createElement("span");
             totalPriceElement.setAttribute("id", key);
+
+            const priceWrapper = document.createElement("div");
+            priceWrapper.classList.add("price-wrapper");
+            priceWrapper.append(totalPriceLabel, totalPriceElement);
             
             const buyBtn = document.createElement("button");
             buyBtn.classList.add("button-configurador");
@@ -336,7 +340,7 @@
                 .catch(err => console.error(err));
             });
 
-            [totalPriceLabel, totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
+            [priceWrapper, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
             blockComponents.appendChild(componentHeader);
             [optionImgContainer, blockComponents, blockPriceContainer].forEach((el) => blockFeatures.appendChild(el));
             [blockTitle, blockFeatures].forEach((b) => blockElement.appendChild(b));
