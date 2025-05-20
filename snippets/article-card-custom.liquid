@@ -127,7 +127,9 @@
               <span>{{ article.author }}</span>
             {%- endif -%}
           </div>
+          
           {% if request.page_type == 'blog' %}
+            
             {%- if show_excerpt -%}
               {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
                 <p class="article-card__excerpt rte-width">
@@ -144,6 +146,7 @@
                 {%- endif -%}
               </div>
             {%- endif -%}
+            
           {% endif %}
         </div>
         {%- if show_badge -%}
