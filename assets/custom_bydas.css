@@ -23,6 +23,9 @@ hr {
 .header {
   background-color: #a6a7a9 !important;
 }
+.header-description {
+  position: absolute;
+}
 
 a {
   text-decoration: none !important;
