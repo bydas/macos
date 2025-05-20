@@ -561,9 +561,8 @@ button::after {
 
 
 /* advantages section */
-.section-advantages, 
-.section-footer-macos {
-  background-color: rgb(240, 240, 240);
+.section-advantages {
+  background-color: rgb(245, 245, 245);
 }
 .advantage-link {
   color: inherit;
@@ -650,6 +649,9 @@ button::after {
 }
 
 /* footer  */
+.section-footer-macos {
+  background-color: rgb(240, 240, 240);
+}
 .footer-contacts-wrapper {
   font-size: 1.4rem;
 }
