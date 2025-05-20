@@ -956,6 +956,14 @@ img.btoptioni {
   flex-direction: row;
   list-style-type: none !important;
 }
+.card-barras-content li {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+}
 
 .facets-container select {
   padding: 0 1.5rem !important;
