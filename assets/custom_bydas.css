@@ -966,9 +966,6 @@ img.btoptioni {
   align-items: center;
   padding: 1rem;
 }
-.card-barras-content li span {
-  text-align: right;
-}
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
