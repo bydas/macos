@@ -1116,6 +1116,9 @@ img.btoptioni {
     padding: 3rem 3rem 0;
     text-align: center;
   }
+  .card-barras-tejadilho {
+    flex-direction: column;
+  }
   .card-barras-content {
     flex-direction: column;
   }
