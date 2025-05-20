@@ -11,6 +11,7 @@
   "sections": {
     "product_categories_nkRLMF": {
       "type": "product-categories",
+      "disabled": true,
       "settings": {
         "background_image": "shopify://shop_images/background.jpg",
         "title": "Produtos",
