@@ -969,7 +969,7 @@ img.btoptioni {
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-.component-header {
+.component-header * {
   font-weight: 600;
 }
 
