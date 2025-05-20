@@ -3,17 +3,17 @@
     overflow: visible !important;
     padding: 3rem 10% 0;
     min-height: 200px;
-    
+
     {% if section.settings.background_image != blank %}
-      
+
       background-image: url('{{ section.settings.background_image | image_url }}');
       background-size: cover;
       background-position: center;
-      
+
     {% else %}
-      
+
       background-color: rgb(230, 230, 230);
-      
+
     {% endif %}
   }
 
@@ -24,95 +24,95 @@
   .section-product-categories {
     padding: 2rem 2rem 0.5rem;
   }
-      
+
   }
 {%- endstyle -%}
 
 <section class="container-fluid overflow-visible">
-  <div class="row mb-4">
-    <div class="col-12 p-0 pb-3 d-flex justify-content-between">
-      
-      {% if section.settings.title != blank %}
-        <h2>{{ section.settings.title }}</h2>
-      {% endif %}
-      
-      {% if section.settings.description != blank %}
-        <div class="section-product-categories-description d-none d-md-inline">{{ section.settings.description }}</div>
-      {% endif %}
-      
+  {% comment %}
+    <div class="row mb-4">
+      <div class="col-12 p-0 pb-3 d-flex justify-content-between">
+
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="section-product-categories-description d-none d-md-inline">{{ section.settings.description }}</div>
+        {% endif %}
+
+      </div>
     </div>
-  </div>
+  {% endcomment %}
+
   <div class="row">
     <div class="col-12 p-0 position-relative">
-      
       <div id="categories-carousel">
         {% for category in section.settings.categories %}
-          
           <div class="category-card me-lg-5 me-md-4 me-3 carousel-cell">
             <a href="{% if category.handle == 'configurador-auto-paraventos' %}/pages/auto-paraventos-configurador{% else %}{{ category.url }}{% endif %}">
-              
               <div class="category-image d-flex justify-content-center align-items-center bg-white rounded-4">
-                
                 {% if category.image != blank %}
                   <img src="{{ category.image | image_url }}" width="" height="" alt="Category" loading="eager">
                 {% else %}
-                  <img src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" width="" height="" alt="Category" loading="eager">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326"
+                    width=""
+                    height=""
+                    alt="Category"
+                    loading="eager"
+                  >
                 {% endif %}
-                
               </div>
             </a>
-            
+
             <div class="category-title text-center mt-2">
               <a href="{% if category.handle == 'configurador-auto-paraventos' %}/pages/auto-paraventos-configurador{% else %}{{ category.url }}{% endif %}">
-                {% if category.handle == "configurador-auto-paraventos" %}Auto-paraventos{% else %}{{ category.title }}{% endif %}
+                {% if category.handle == 'configurador-auto-paraventos' -%}
+                  Auto-paraventos
+                {%- else -%}
+                  {{- category.title -}}
+                {%- endif %}
               </a>
             </div>
-            
+
             <!-- SUBCATEGORIES -->
             <div class="children-categories" role="menu">
-              
-              {% liquid 
+              {% liquid
                 assign parent_collection = category
-                assign child_collections = ""
-                
+                assign child_collections = ''
+
                 for collection in collections
                   if collection.metafields.custom.parent.value.handle == parent_collection.handle
-                    assign child_collections = child_collections | append: collection.handle | append: ","
+                    assign child_collections = child_collections | append: collection.handle | append: ','
                   endif
                 endfor
-                
-                assign child_handles = child_collections | split: "," | uniq
+
+                assign child_handles = child_collections | split: ',' | uniq
               %}
-              
+
               {% for handle in child_handles %}
                 {% assign subcollection = collections[handle] %}
-                
-                {% if subcollection != blank %}
 
-                  {% if subcollection.handle == "configurador-escovas-limpa-vidros" %}
+                {% if subcollection != blank %}
+                  {% if subcollection.handle == 'configurador-escovas-limpa-vidros' %}
                     <a href="/pages/configurador-de-escovas-limpa-vidros" class="d-block">{{ subcollection.title }}</a>
 
-                  {% elsif subcollection.handle == "configurador-auto-paraventos" %}
+                  {% elsif subcollection.handle == 'configurador-auto-paraventos' %}
                     <a href="/pages/auto-paraventos-configurador" class="d-block">{{ subcollection.title }}</a>
 
-                  {% elsif subcollection.handle == "configurador-barras-de-tejadilho" %}
+                  {% elsif subcollection.handle == 'configurador-barras-de-tejadilho' %}
                     <a href="/pages/configurador-de-barras-de-tejadilho" class="d-block">{{ subcollection.title }}</a>
-                  
+
                   {% else %}
                     <a href="{{ subcollection.url }}" class="d-block">{{ subcollection.title }}</a>
-                    
                   {% endif %}
-                
                 {% endif %}
               {% endfor %}
-              
             </div>
-            
           </div>
-          
         {% endfor %}
       </div>
-      
     </div>
   </div>
 </section>
@@ -121,40 +121,40 @@
 <div id="dropdown-portal"></div>
 
 {% schema %}
-  {
-    "name": "Product Categories",
-    "class": "section-product-categories",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Products"
-      },
-      {
-        "type": "image_picker",
-        "id": "background_image",
-        "label": "Background Image"
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Products"
-      },
-      {
-        "type": "richtext",
-        "id": "description",
-        "label": "Description"
-      },
-      {
-        "type": "collection_list",
-        "id": "categories",
-        "label": "Categories"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Product Categories"
-      }
-    ]
-  }
+{
+  "name": "Product Categories",
+  "class": "section-product-categories",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Products"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "collection_list",
+      "id": "categories",
+      "label": "Categories"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Categories"
+    }
+  ]
+}
 {% endschema %}
