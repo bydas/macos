@@ -961,6 +961,8 @@ img.btoptioni {
   align-items: center;
   flex-direction: row;
   list-style-type: none !important;
+  padding: 0;
+  margin: 0;
 }
 .card-barras-content li {
   display: grid;
