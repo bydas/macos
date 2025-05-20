@@ -954,8 +954,6 @@ img.btoptioni {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
-}
-.card-barras-content ul {
   list-style-type: none !important;
 }
 
