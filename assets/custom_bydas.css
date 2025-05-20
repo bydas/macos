@@ -956,6 +956,7 @@ img.btoptioni {
   justify-content: space-between;
   flex-direction: row;
   gap: 1rem;
+  padding: 2rem !important;
 }
 .card-barras-content {
   justify-content: space-evenly;
@@ -988,7 +989,6 @@ img.btoptioni {
   display: flex;
   align-items: end;
   flex-direction: column;
-  padding: 2rem !important;
 }
 .price-wrapper {
   width: 100%;
