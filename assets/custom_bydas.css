@@ -25,6 +25,7 @@ hr {
 }
 .header-description {
   position: absolute;
+  right: 10%;
 }
 
 a {
