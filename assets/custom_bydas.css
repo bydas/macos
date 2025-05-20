@@ -963,6 +963,8 @@ img.btoptioni {
   gap: 1rem;
   align-items: center;
   padding: 1rem;
+}
+.card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
