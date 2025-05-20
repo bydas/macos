@@ -984,11 +984,15 @@ img.btoptioni {
   display: flex;
   align-items: end;
   flex-direction: column;
+  padding: 0 1rem;
 }
 .price-wrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+.price-wrapper .button-configurador {
+  width: 100% !important;
 }
 
 .facets-container select {
