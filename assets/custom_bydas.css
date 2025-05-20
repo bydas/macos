@@ -879,7 +879,7 @@ button::after {
 
 /* cards/results */
 .card-configurador {
-  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2.5rem;
   background-color: white;
 }
