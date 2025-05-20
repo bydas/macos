@@ -130,6 +130,7 @@ textarea:focus {
 /* submit buttons */
 .card .button[type="submit"], 
 .card .button[type="submit"] span,
+.button-configurador,
 .reseller-form__submit, 
 .newsletter-submit-button-wrapper * {
   text-transform: uppercase;
@@ -145,6 +146,7 @@ textarea:focus {
 .shopify-pc__prefs__header-actions button,
 .newsletter-submit-button,
 .reseller-form__submit,
+.button-configurador,
 .login-button {
   position: static;
   overflow: visible;
