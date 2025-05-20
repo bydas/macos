@@ -375,6 +375,9 @@
               const sku = document.createElement("a");
               sku.innerText = s.sku;
               sku.href = `/products/${s.product.handle}`;
+
+              const priceLabel = document.createElement("span");
+              priceLabel.innerText = "Preço:"
               
               const price = document.createElement("span");
 
