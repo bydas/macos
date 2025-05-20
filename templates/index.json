@@ -42,7 +42,8 @@
           "viagem-e-transporte",
           "wd-40",
           "winter"
-        ]
+        ],
+        "margin_bottom": 2
       }
     },
     "slideshow_custom_8Vipmk": {
@@ -121,7 +122,8 @@
         "top-image": "shopify://shop_images/entrega_96838d91-40e2-4f86-9d74-b0394ad85df7.webp",
         "top-image-collection": "shopify://pages/contact",
         "bottom-image": "shopify://shop_images/kodak_2c8676b7-c2a1-4fef-a280-720a372184f2.webp",
-        "bottom-image-collection": "shopify://collections/pilhas-alcalinas-kodak"
+        "bottom-image-collection": "shopify://collections/pilhas-alcalinas-kodak",
+        "margin_bottom": 0
       }
     },
     "featured_collection_new_products_NQFqiW": {
