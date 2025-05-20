@@ -969,6 +969,9 @@ img.btoptioni {
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+.component-header {
+  font-weight: 600;
+}
 
 .facets-container select {
   padding: 0 1.5rem !important;
