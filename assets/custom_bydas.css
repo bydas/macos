@@ -146,7 +146,6 @@ textarea:focus {
 .shopify-pc__prefs__header-actions button,
 .newsletter-submit-button,
 .reseller-form__submit,
-.button-configurador,
 .login-button {
   position: static;
   overflow: visible;
