@@ -280,7 +280,7 @@ button::after {
 }
 .category-title a {
   color: darkgray;
-  font-size: 1.5rem !important;
+  font-size: 1.5rem;
 }
 .section-product-categories .flickity-prev-next-button {
   position: absolute;
