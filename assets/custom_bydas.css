@@ -928,7 +928,7 @@ button::after {
   border: none;
   outline: none;
   width: 100%;
-  padding: 1rem 4rem;
+  padding: 0.75rem 4rem;
 }
 .button-configurador:hover, 
 .card-configurador .configurador-pdf:hover {
