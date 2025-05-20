@@ -979,6 +979,10 @@ img.btoptioni {
   object-fit: contain;
   border: none !important;
 }
+.barras-price-container {
+  display: flex;
+  justify-content: right;
+}
 
 .facets-container select {
   padding: 0 1.5rem !important;
