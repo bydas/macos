@@ -321,6 +321,9 @@
             
             const blockPriceContainer = document.createElement("div"); 
             blockPriceContainer.classList.add("btoptionprice", "col-12", "col-lg-2");
+
+            const totalPriceLabel = document.createElement("span");
+            totalPriceLabel.innerText = "Preço: "
             
             const totalPriceElement = document.createElement("span");
             totalPriceElement.setAttribute("id", key);
@@ -360,7 +363,7 @@
                 .catch(err => console.error(err));
             });
 
-            [totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
+            [totalPriceLabel, totalPriceElement, buyBtn].forEach((el) => blockPriceContainer.appendChild(el));
             [blockComponents, blockPriceContainer].forEach((el) => blockFeatures.appendChild(el));
             [blockTitle, blockFeatures].forEach((b) => blockElement.appendChild(b));
 
