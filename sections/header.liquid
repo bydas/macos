@@ -220,7 +220,10 @@
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- endif -%}
-      <span class="header-description">REVENDA DE ACESSÓRIOS PARA AUTOMÓVEIS</span>
+
+      {% if section.settings.header_description != blank %}
+        <span class="header-description">{{ section.settings.header_description }}</span>
+      {% endif %}
     {%- endif -%}
 
     <div class="header__icons align-items-center{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
@@ -472,6 +475,11 @@
   "class": "section-header",
   "max_blocks": 3,
   "settings": [
+    {
+      "type": "text",
+      "id": "header_description",
+      "label": "Header description"
+    },
     {
       "type": "select",
       "id": "logo_position",
