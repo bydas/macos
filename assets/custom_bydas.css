@@ -20,6 +20,10 @@ hr {
   display: none !important;
 }
 
+.header {
+  background-color: #a6a7a9 !important;
+}
+
 a {
   text-decoration: none !important;
 }
