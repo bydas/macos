@@ -28,6 +28,7 @@ hr {
   width: max-content;
   margin-right: 7%;
   font-family: "Russo One", sans-serif !important;
+  word-break: break-all;
 }
 
 a {
