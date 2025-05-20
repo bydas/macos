@@ -987,7 +987,7 @@ img.btoptioni {
 }
 .price-wrapper {
   display: flex;
-  align-items: space-between;
+  justify-content: space-between;
 }
 
 .facets-container select {
