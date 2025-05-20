@@ -985,6 +985,10 @@ img.btoptioni {
   align-items: end;
   flex-direction: column;
 }
+.priceWrapper {
+  display: flex;
+  align-items: space-between;
+}
 
 .facets-container select {
   padding: 0 1.5rem !important;
