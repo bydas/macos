@@ -1253,6 +1253,11 @@ img.btoptioni {
     margin-bottom: 1.5rem;
   }
 
+  .card-barras-content li > div {
+    flex-direction: column;
+    gap: 0;
+}
+
 }
 
 @media all and (max-width: 749px) {
@@ -1302,10 +1307,6 @@ img.btoptioni {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .card-barras-content li > div {
-    flex-direction: column;
-    gap: 0;
-}
   .card-barras-content li > input[type="checkbox"] {
     justify-self: center;
   }
