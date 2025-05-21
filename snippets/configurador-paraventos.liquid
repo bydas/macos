@@ -177,7 +177,7 @@
         if (!v.availableForSale) {
           card = card
             .replace('ADICIONAR','ESGOTADO')
-            .replace('button','button disabled');
+            .replace(/<button\b/g, '<button disabled');
         }
 
         container.insertAdjacentHTML('beforeend', card);
