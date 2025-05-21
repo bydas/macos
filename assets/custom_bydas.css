@@ -1291,15 +1291,12 @@ img.btoptioni {
     padding: 0 .5rem;
   }
   .card-barras-content {
-    padding: 0 !important;
+    padding: 0 0 0 .5rem !important;
   }
   .component-header h4 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  .card-barras-content {
-    padding-left: .5rem; 
   }
   .card-barras-content li > div {
     flex-direction: column;
