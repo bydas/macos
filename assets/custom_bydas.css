@@ -1304,7 +1304,7 @@ img.btoptioni {
     flex-direction: column;
     gap: 0;
 }
-  .card-barras-content li > *:nth-child(4) {
+  .card-barras-content li > input:nth-child(4) {
     justify-content: center;
   }
   
