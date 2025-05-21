@@ -1300,7 +1300,7 @@ img.btoptioni {
   }
   .card-barras-content li > div {
     flex-direction: column;
-    gap: .5rem;
+    gap: 0;
 }
   
 }
