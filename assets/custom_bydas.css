@@ -50,6 +50,10 @@ a:hover,
   color: rgb(60, 60, 60);
 }
 
+.popover-body {
+  font-size: inherit;
+}
+
 p > iframe {
   border-radius: 2rem;
 }
