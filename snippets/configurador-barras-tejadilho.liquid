@@ -380,6 +380,9 @@
 
               if (window.customerLoggedIn) {
                 price.innerText = s.price + "€";
+              } else {
+                priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
+                price.innerHTML = priceInfoPopoverHTML;
               }
 
               const optional = document.createElement("input");
