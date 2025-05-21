@@ -1287,6 +1287,8 @@ img.btoptioni {
     padding: 0 !important;
   }
   .component-header h4 {
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
   }
   .card-barras-content li {
