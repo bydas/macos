@@ -1120,6 +1120,11 @@ img.btoptioni {
     height: 16rem;
   }
   
+  .card-barras-content li > div {
+    flex-direction: column;
+    gap: 0;
+  }
+  
 }
 
 @media all and (max-width: 993px) {
@@ -1252,12 +1257,6 @@ img.btoptioni {
     min-width: 60%;
     margin-bottom: 1.5rem;
   }
-
-  .card-barras-content li > div {
-    flex-direction: column;
-    gap: 0;
-}
-
 }
 
 @media all and (max-width: 749px) {
