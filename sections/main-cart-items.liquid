@@ -218,7 +218,17 @@
 
                     {% else %}
                       <td class="fs-5 text-end">
-                        <a>Iniciar sessão</a>
+                        <a
+                          tabindex="0"
+                          class="btn btn-lg btn-danger"
+                          role="button"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="focus"
+                          data-bs-title="Dismissible popover"
+                          data-bs-content="And here’s some amazing content. It’s very engaging. Right?"
+                        >
+                          Iniciar sessão
+                        </a>
                       </td>
                     {% endif %}
 
