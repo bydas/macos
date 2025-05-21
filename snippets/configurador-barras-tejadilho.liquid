@@ -356,9 +356,9 @@
               const title = document.createElement("h3");
 
               if (s?.pdf) {
-                title.innerText = s.product.title + `<a href=${s.pdf} target="_blank">(Ver PDF)</a>`;
+                title.innerHTML = s.product.title + `<a href=${s.pdf} target="_blank">(Ver PDF)</a>`;
               } else {
-                title.innerHTML = s.product.title; 
+                title.innerText = s.product.title; 
               }
               
               const sku = document.createElement("a");
