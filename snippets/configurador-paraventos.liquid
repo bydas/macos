@@ -40,8 +40,11 @@
         <div class="card_header">
           <h2 class="card_title heading h3 mb-4 mb-lg-0">Paraventos</h2>
         </div>
-        <div class="card_section btoption row justify-content-evenly align-items-center flex-column flex-lg-row" style="padding: 0 20px 30px;">
-          <img class="btoptioni col-12 col-lg-3" src="img0101" width="" height="" alt="" />
+        <div
+          class="card_section btoption row justify-content-evenly align-items-center flex-column flex-lg-row"
+          style="padding: 0 20px 30px;"
+        >
+          <img class="btoptioni col-12 col-lg-3" src="img0101" width="" height="" alt="">
           <div class="btoptiont col-12 col-lg-7">
             <table class="tabbt">
               <thead>
@@ -69,7 +72,12 @@
                 <span class="btprice fw-bold">price1231230</span>
               </p>
               <div style="text-align: center;">
-                <button type="button" class="product-form__add-button button button--primary button-configurador" data-variant-id="" onclick="handleBuy(event)">
+                <button
+                  type="button"
+                  class="product-form__add-button button button--primary button-configurador"
+                  data-variant-id=""
+                  onclick="handleBuy(event)"
+                >
                   ADICIONAR
                 </button>
               </div>
@@ -79,6 +87,9 @@
       </div>
     </div>
 
+    <div id="see-price-info" style="display: none">
+      {% render 'see-price-info' %}
+    </div>
   </div>
 </div>
 
@@ -126,6 +137,8 @@
     const lista = cars[selectedBrand][selectedModel][selectedYear]||[];
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
+
+    const 
 
     await Promise.all(lista.map(async carr => {
       const handle = carr[5];
