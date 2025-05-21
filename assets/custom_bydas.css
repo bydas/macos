@@ -923,6 +923,11 @@ button::after {
   float: right; 
   font-size: 2rem;
 }
+.total-price-barras {
+  color: rgb(230, 107, 0);
+  font-size: 2rem;
+  font-weight: bold;
+}
 .button-configurador {
   background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
   border: none;
