@@ -51,7 +51,7 @@ a:hover,
 }
 
 .popover-body {
-  font-size: inherit;
+  font-size: 1.25rem;
 }
 
 p > iframe {
