@@ -383,6 +383,12 @@
               } else {
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
                 price.innerHTML = priceInfoPopoverHTML;
+                
+                // Inicializar popover manualmente
+                const popoverTriggerList = price.querySelectorAll('[data-bs-toggle="popover"]');
+                popoverTriggerList.forEach(function (popoverTriggerEl) {
+                  new bootstrap.Popover(popoverTriggerEl);
+                });
               }
 
               const optional = document.createElement("input");
