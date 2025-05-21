@@ -86,10 +86,6 @@
         </div>
       </div>
     </div>
-
-    <div id="see-price-info" style="display: none">
-      {% render 'see-price-info' %}
-    </div>
   </div>
 </div>
 
@@ -137,8 +133,6 @@
     const lista = cars[selectedBrand][selectedModel][selectedYear]||[];
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
-
-    const 
 
     await Promise.all(lista.map(async carr => {
       const handle = carr[5];
