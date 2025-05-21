@@ -1138,6 +1138,9 @@ img.btoptioni {
     flex-direction: column;
     gap: 1rem;
   }
+  .option-image {
+    max-height: 20rem;
+  }
   .barras-price-container {
     align-items: center;
   }
@@ -1273,6 +1276,12 @@ img.btoptioni {
 
   .card-configurador table {
     width: auto;
+  }
+  .card-barras-tejadilho {
+    padding: 2rem .5rem 3rem !important;
+  }
+  .card-barras-content {
+    padding: 0;
   }
   
 }
