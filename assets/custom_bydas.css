@@ -999,6 +999,7 @@ img.btoptioni {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 .price-wrapper .button-configurador {
   width: 100% !important;
