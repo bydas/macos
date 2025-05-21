@@ -1298,6 +1298,10 @@ img.btoptioni {
   .card-barras-content li {
     padding-left: .5rem; 
   }
+  .card-barras-content li > div {
+    flex-direction: column;
+    gap: .5rem;
+}
   
 }
 
