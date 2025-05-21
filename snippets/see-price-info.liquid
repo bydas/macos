@@ -1,10 +1,12 @@
+{% assign placement = popover_placement | default: 'left' %}
+
 <a
   tabindex="0"
   type="button"
   class=""
   data-bs-container="body"
   data-bs-toggle="popover"
-  data-bs-placement="left"
+  data-bs-placement="{{ placement }}"
   data-bs-content="Inicie sessão para ver os preços."
   data-bs-trigger="focus"
   style="width:fit-content"
