@@ -379,6 +379,9 @@
     const car = cars[selectedBrand][selectedModel][selectedYear];
     const requests = { whatIs: [], p: [], image: [] };
 
+    const priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
+
+
     if (car[3] || car[4]) {
       if (car[3]) {
         requests.whatIs.push(['classic', 'primary']);
