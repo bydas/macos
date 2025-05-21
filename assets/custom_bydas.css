@@ -979,6 +979,7 @@ img.btoptioni {
 }
 .card-barras-content li > div {
   display: flex;
+  gap: 1rem;
 }
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
