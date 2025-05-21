@@ -972,7 +972,7 @@ img.btoptioni {
 }
 .card-barras-content li {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr 0.5fr;
   gap: 1rem;
   align-items: center;
   padding: 1rem;
