@@ -1136,6 +1136,7 @@ img.btoptioni {
   }
   .card-barras-tejadilho {
     flex-direction: column;
+    gap: 1rem;
   }
   .barras-price-container {
     align-items: center;
