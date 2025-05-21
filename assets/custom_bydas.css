@@ -962,6 +962,9 @@ img.btoptioni {
   flex-direction: row;
   padding: 2rem !important;
 }
+.card-barras-tejadilho input[type="checkbox"] {
+  width: min-content;
+}
 .card-barras-content {
   list-style-type: none !important;
   padding: 0 1.5rem !important;
