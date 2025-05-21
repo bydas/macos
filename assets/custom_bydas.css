@@ -977,6 +977,7 @@ img.btoptioni {
   grid-template-columns: 3fr 1fr 1fr 1fr;
   align-items: center;
   gap: 1rem;
+  padding: 0;
 }
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
