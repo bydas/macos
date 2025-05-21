@@ -138,7 +138,11 @@
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
 
-    const 
+    const priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
+    
+    const priceReplacement = window.customerLoggedIn
+                        ? parseFloat(v.priceV2.amount).toFixed(2)+'€'
+                        : priceInfoPopoverHTML;
 
     await Promise.all(lista.map(async carr => {
       const handle = carr[5];
@@ -169,7 +173,7 @@
           .replace(/img0101/g, prod.featuredImage?.url||'')
           .replace(/nome0/g, prod.title)
           .replace(/skuskusku0/g, v.sku)
-          .replace(/price1231230/g, parseFloat(v.priceV2.amount).toFixed(2)+'€')
+          .replace(/price1231230/g, priceReplacement)
           .replace('data-variant-id=""', `data-variant-id="${v.id.split('/').pop()}"`)
           .replace('hidden', '');
 
@@ -180,6 +184,14 @@
         }
 
         container.insertAdjacentHTML('beforeend', card);
+        
+        // Seleciona o trigger dentro do card que acabaste de inserir
+        const lastCard = container.lastElementChild;
+        const popoverTrigger = lastCard.querySelector('[data-bs-toggle="popover"]');
+        if (popoverTrigger) {
+          new bootstrap.Popover(popoverTrigger);
+        }
+        
       } catch(err){
         console.error(err);
       }
