@@ -1287,7 +1287,7 @@ img.btoptioni {
     padding: 0 !important;
   }
   .component-header h4 {
-    overflow: ellipsis;
+    text-overflow: ellipsis;
   }
   .card-barras-content li:not(:first-child) {
     padding-left: .5rem; 
