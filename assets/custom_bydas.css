@@ -960,7 +960,7 @@ img.btoptioni {
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  padding: 2rem !important;
+  padding: 2rem 2rem 3rem !important;
 }
 .card-barras-tejadilho input[type="checkbox"] {
   width: min-content;
