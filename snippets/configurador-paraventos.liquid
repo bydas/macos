@@ -173,7 +173,7 @@
           .replace(/img0101/g, prod.featuredImage?.url||'')
           .replace(/nome0/g, prod.title)
           .replace(/skuskusku0/g, v.sku)
-          .replace(/price1231230/g, priceReplacement)
+          .replace(/price1231230/g, parseFloat(v.priceV2.amount).toFixed(2)+'€')
           .replace('data-variant-id=""', `data-variant-id="${v.id.split('/').pop()}"`)
           .replace('hidden', '');
 
@@ -184,14 +184,6 @@
         }
 
         container.insertAdjacentHTML('beforeend', card);
-        
-        // Seleciona o trigger dentro do card que acabaste de inserir
-        const lastCard = container.lastElementChild;
-        const popoverTrigger = lastCard.querySelector('[data-bs-toggle="popover"]');
-        if (popoverTrigger) {
-          new bootstrap.Popover(popoverTrigger);
-        }
-        
       } catch(err){
         console.error(err);
       }
