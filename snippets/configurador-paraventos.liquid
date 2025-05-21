@@ -181,6 +181,13 @@
         }
 
         container.insertAdjacentHTML('beforeend', card);
+        const lastCard = container.lastElementChild;
+        
+        // Inicializar popover manualmente por ser injetado via JS
+        const popoverTrigger = lastCard.querySelector('[data-bs-toggle="popover"]');
+        if (popoverTrigger) {
+          new bootstrap.Popover(popoverTrigger);
+        }
       } catch(err){
         console.error(err);
       }
