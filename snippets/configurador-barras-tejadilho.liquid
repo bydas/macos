@@ -417,7 +417,7 @@
                 totalPriceElement.innerHTML = priceInfoPopoverHTML;
                 
                 // Inicializar popover manualmente
-                const popoverTriggerList = price.querySelectorAll('[data-bs-toggle="popover"]');
+                const popoverTriggerList = totalPriceElement.querySelectorAll('[data-bs-toggle="popover"]');
                 popoverTriggerList.forEach(function (popoverTriggerEl) {
                   new bootstrap.Popover(popoverTriggerEl);
                 });
