@@ -1284,7 +1284,7 @@ img.btoptioni {
     padding: 0 .5rem;
   }
   .card-barras-content {
-    padding: 0;
+    padding: 0 !important;
   }
   
 }
