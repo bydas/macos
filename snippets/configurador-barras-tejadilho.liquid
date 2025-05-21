@@ -6,7 +6,7 @@
     gap: 2rem;
     margin-top: 4rem;
   }
-  
+
   #cruz_solutions > div {
     display: grid;
     grid-template-rows: repeat(2, max-content);
@@ -26,8 +26,6 @@
   @keyframes spin {
     to { transform: rotate(360deg); }
   }
-
-  
 {% endstyle %}
 
 <div class="container" id="configurador">
@@ -65,6 +63,9 @@
 
       <div class="spinnerConfig"></div>
       <div id="cruz_solutions"></div>
+      <div id="see-price-info">
+        {% render 'see-price-info' %}
+      </div>
     </div>
   </div>
 </div>
@@ -402,6 +403,8 @@
 
               if (window.customerLoggedIn) {
                 totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
+              } else {
+                
               }
               
               blockComponents.appendChild(component);
