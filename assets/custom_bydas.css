@@ -955,7 +955,6 @@ img.btoptioni {
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  gap: 1rem;
   padding: 2rem !important;
 }
 .card-barras-content {
@@ -963,7 +962,7 @@ img.btoptioni {
   align-items: center;
   flex-direction: row;
   list-style-type: none !important;
-  padding: 0 !important;
+  padding: 0 1.5rem !important;
   margin: 0;
 }
 .card-barras-content li {
