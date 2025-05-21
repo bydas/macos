@@ -977,6 +977,9 @@ img.btoptioni {
   gap: 1rem;
   padding: .75rem 0;
 }
+.card-barras-content li:first-child {
+  display: flex;
+}
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
