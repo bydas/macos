@@ -138,11 +138,7 @@
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
 
-    const priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
-    
-    const priceReplacement = window.customerLoggedIn
-                        ? parseFloat(v.priceV2.amount).toFixed(2)+'€'
-                        : priceInfoPopoverHTML;
+    const 
 
     await Promise.all(lista.map(async carr => {
       const handle = carr[5];
