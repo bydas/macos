@@ -361,6 +361,7 @@
               if (s?.pdf) {
                 const pdfLink = document.createElement("a");
                 pdfLink.href = s.pdf;
+                pdfLink.target= "_blank";
                 pdfLink.innerText = "(Ver PDF)"; 
                 pdfLink.classList.add("configurador-pdf", "fs-5");
 
