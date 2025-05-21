@@ -966,8 +966,6 @@ img.btoptioni {
   width: min-content;
 }
 .card-barras-content {
-  display: flex;
-  gap: 1rem;
   list-style-type: none !important;
   padding: 0 1.5rem !important;
   margin: 0;
@@ -977,7 +975,7 @@ img.btoptioni {
   grid-template-columns: 3fr 1fr 1fr 1fr;
   align-items: center;
   gap: 1rem;
-  padding: 0;
+  padding: 1rem 0;
 }
 .card-barras-content li:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
