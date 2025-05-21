@@ -414,7 +414,7 @@
                 totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
               } else {
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
-                price.innerHTML = priceInfoPopoverHTML;
+                totalPriceElement.innerHTML = priceInfoPopoverHTML;
                 
                 // Inicializar popover manualmente
                 const popoverTriggerList = price.querySelectorAll('[data-bs-toggle="popover"]');
