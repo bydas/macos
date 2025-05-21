@@ -1286,6 +1286,10 @@ img.btoptioni {
   .card-barras-content {
     padding: 0 !important;
   }
+
+  .card-barras-content li:not(:first-child) {
+    padding-left: .5rem; 
+  }
   
 }
 
