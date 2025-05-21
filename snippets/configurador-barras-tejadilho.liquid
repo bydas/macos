@@ -356,7 +356,7 @@
               const title = document.createElement("h3");
 
               if (s?.pdf) {
-                text.innerText = s.product.title + `<a href=${s.pdf} target="_blank">(Ver PDF)</a>`;
+                title.innerText = s.product.title + `<a href=${s.pdf} target="_blank">(Ver PDF)</a>`;
               } else {
                 title.innerHTML = s.product.title; 
               }
