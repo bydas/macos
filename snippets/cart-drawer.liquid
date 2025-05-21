@@ -165,7 +165,7 @@
                               </div>
                             {%- endif -%}
                           {% else %}
-                            {% render 'see-price-info' %}
+                            {% render 'see-price-info', popover_placement: 'right' %}
                           {% endif %}
 
                           {%- if item.product.has_only_default_variant == false
