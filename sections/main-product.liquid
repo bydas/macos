@@ -75,7 +75,7 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="mb-5">
-      {%  render 'breadcrumb', navigation_type: section.settings.navigation %}
+      {% render 'breadcrumb', navigation_type: section.settings.navigation %}
     </div>
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
@@ -109,9 +109,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-
                 {% if customer %}
-
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
                       product: product,
@@ -120,7 +118,7 @@
                       price_class: 'price--large'
                     -%}
                   </div>
-                
+
                   {%- if product.quantity_price_breaks_configured? -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -147,7 +145,9 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
-                  
+
+                {% else %}
+                  {% render 'see-price-info' %}
                 {% endif %}
 
               {%- when 'inventory' -%}
@@ -215,7 +215,8 @@
                   {{ block.shopify_attributes }}
                 >
                   <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
-                  <strong>SKU:</strong>&nbsp{{- product.selected_or_first_available_variant.sku -}}
+                  <strong>SKU:</strong>&nbsp
+                  {{- product.selected_or_first_available_variant.sku -}}
                 </p>
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
@@ -366,7 +367,10 @@
                                 </dt>
                                 <dd>
                                   <span class="price-per-item--current">
-                                    {{- 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price -}}
+                                    {{-
+                                      'products.product.volume_pricing.price_at_each_html'
+                                      | t: price: variant_price
+                                    -}}
                                   </span>
                                 </dd>
                               </dl>
@@ -727,14 +731,14 @@
         assign seo_media = product.featured_media
       endif
     -%}
-    {% comment %} 
-    {% if customer %}
+    {% comment %}
+      {% if customer %}
 
-      <script type="application/ld+json">
-        {{ product | structured_data }}
-      </script>
+        <script type="application/ld+json">
+          {{ product | structured_data }}
+        </script>
 
-    {% endif %} 
+      {% endif %}
     {% endcomment %}
 
     <script type="application/ld+json">
@@ -773,7 +777,6 @@
         {% endcomment %}
       }
     </script>
-      
   </div>
 </product-info>
 
@@ -1727,7 +1730,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_2.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_2",
@@ -1927,7 +1930,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_3.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_3",
@@ -2244,7 +2247,7 @@
       ],
       "default": "hide",
       "label": "t:sections.main-product.settings.mobile_thumbnails.label"
-    },    
+    },
     {
       "type": "select",
       "id": "media_position",
