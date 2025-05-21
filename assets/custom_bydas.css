@@ -21,7 +21,7 @@ hr {
 }
 
 .header {
-  background: linear-gradient(180deg ,rgb(220, 220, 220), white) !important;
+  background: linear-gradient(0deg ,rgb(220, 220, 220), white) !important;
 }
 
 .header-description {
