@@ -352,13 +352,20 @@
             
             return value.map((s) => {
               const component = document.createElement("li");
+
+              const titleContainer = document.createElement("div");
               
               const title = document.createElement("h3");
+              title.innerText = s.product.title; 
+
+              titleContainer.appendChild(title)
 
               if (s?.pdf) {
-                title.innerHTML = s.product.title + `<a href=${s.pdf} target="_blank" class="fs-4">(Ver PDF)</a>`;
-              } else {
-                title.innerText = s.product.title; 
+                const pdfLink = document.createElement("a");
+                pdfLink.href = s.pdf;
+                pdfLink.innerText = "(Ver PDF)"; 
+
+                titleContainer.appendChild(pdfLink)
               }
               
               const sku = document.createElement("a");
@@ -384,7 +391,7 @@
               optional.setAttribute("data-products", `btn-${key}`);
               optional.setAttribute("data-id", s.id);
 
-              [title, sku, price, optional].forEach((el) => component.appendChild(el));
+              [titleContainer, sku, price, optional].forEach((el) => component.appendChild(el));
 
               productsId.push(s.id);
 
