@@ -354,7 +354,7 @@
               const component = document.createElement("li");
               
               const title = document.createElement("h3");
-              title.innerText = s.product.title;
+              title.innerHTML = s.product.title + `<a href=${s.pdf} target="_blank">Ver PDF</a>`;
               
               const sku = document.createElement("a");
               sku.innerText = s.sku;
