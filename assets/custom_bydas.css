@@ -1280,6 +1280,9 @@ img.btoptioni {
   .card-barras-tejadilho {
     padding: 2rem .5rem 3rem !important;
   }
+  .barras-price-container {
+    padding: 0 .5rem;
+  }
   .card-barras-content {
     padding: 0;
   }
