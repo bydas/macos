@@ -1,0 +1,399 @@
+<div class="container">
+  <header class="page__header row">
+    <h1 class="page__title heading h1 col-12">{{ page.title }}</h1>
+  </header>
+
+  <div class="page__content rte">
+    {{ page.content }}
+    <div class="form__input-row row mt-5 mb-4" id="form_input_stuff">
+      <div class="form__input-wrapper col-12 col-md-4 mb-4 mb-md-0">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="marca" id="marcadocarro" class="configurador-input" data-default="" required="" onChange="brandChanged(event)">
+            <option value="">Marca</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form__input-wrapper col-12 col-md-4 mb-4 mb-md-0" style="display: block;">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="modelo" id="modelodocarro" class="configurador-input" data-default="" onChange="modelChanged(event)">
+            <option value="">Modelo</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form__input-wrapper col-12 col-md-4" style="display: block;">
+        <div class="select-wrapper select-wrapper--primary">
+          <select name="ano" id="anodocarro" class="configurador-input" data-default="" onChange="yearChanged(event)">
+            <option value="">Ano</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="shipping-estimator__results" style="display: none;"></div>
+    </div>
+
+    <div hidden id="optionParaventos">
+      <div class="card card-configurador mb-4" id="btoptions">
+        <div class="card_header" id="op1">
+          <h2 class="card_title heading h3 mb-4 mb-lg-0">Paraventos</h2>
+        </div>
+
+        <div id="opt1" class="card_section btoption row justify-content-evenly align-items-center flex-column flex-lg-row" style="padding: 0px 20px 30px 20px;">
+          <img class="btoptioni col-12 col-lg-3" src="img0101" height="" width="">
+          <div class="btoptiont col-12 col-lg-7">
+            <table style="" class="tabbt">
+              <thead>
+                <tr valign="top">
+                  <th style="width: 325px;"><b>Paraventos</b></th>
+                  <th style="width: 85px; text-align: center;"><b>Ref.</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td label="Acessórios">nome0</td>
+                  <td label="Referência">
+                    <p style="text-align:center">
+                      <a target="_blank" href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0">skuskusku0</a>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="btoptionprice col-12 col-lg-2 align-self-center">
+            <div class="btbox2">
+              <p>
+                <span class="fw-bold">Preço:</span>
+                <span class="btprice fw-bold">price1231230€</span>
+              </p>
+              <div style="text-align: center;">
+                <button type="submit" class="product-form__add-button button button--primary button-configurador" data-action="add-to-cart" style="height:50px; font-size:14px;" onclick="handleBuy(0)">
+                  BUY
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var loading = true;
+  var cars;
+  var selectedBrand;
+  var selectedModel;
+  var selectedYear;
+  var initialParaventos;
+
+  var brandToId;
+  var idToBrand;
+
+  var modelToId;
+  var idToModel;
+
+  var yearToId;
+  var idToYear;
+
+  var opts;
+
+  // Initialize immediately and also on DOMContentLoaded
+  doMagic();
+  document.addEventListener('DOMContentLoaded', function() {
+    doMagic();
+  });
+
+  function brandChanged(event) {
+    const model = document.getElementById('modelodocarro');
+    while (model.length > 1) {
+      model.remove(1);
+    }
+    const year = document.getElementById('anodocarro');
+    while (year.length > 1) {
+      year.remove(1);
+    }
+    modelToId = {};
+    idToModel = {};
+    if (cars !== undefined) {
+      const sel = cars[event.target.value];
+      selectedBrand = event.target.value;
+      const url = new URLSearchParams(document.location.search);
+      
+      // Get unique models for the selected brand
+      const uniqueModels = new Set(Object.keys(sel));
+      
+      // Populate model dropdown with unique models
+      Array.from(uniqueModels).sort().forEach((car, index) => {
+        const opt = document.createElement('option');
+        opt.value = car; // Keep the original value for data purposes
+        
+        // Clean up the display text by removing quotes, parentheses and additional text
+        const displayText = car.replace(/^"|"$/g, '') // Remove starting and ending quotes
+                             .replace(/\s*\([^)]*\)\s*[A-Z]+$/, ''); // Remove parentheses and type
+        opt.textContent = displayText;
+        
+        if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
+          opt.selected = true;
+        }
+        modelToId[car] = index;
+        idToModel[index] = car;
+        model.appendChild(opt);
+      });
+    }
+    document.getElementById('optionParaventos').outerHTML = initialParaventos;
+  }
+
+  function modelChanged(event) {
+    const year = document.getElementById('anodocarro');
+    while (year.length > 1) {
+      year.remove(1);
+    }
+    if (cars !== undefined) {
+      selectedModel = event.target.value;
+      const sel = cars[selectedBrand][event.target.value];
+      const url = new URLSearchParams(document.location.search);
+      yearToId = {};
+      idToYear = {};
+
+      Object.keys(sel).forEach((car, index) => {
+        const opt = document.createElement('option');
+        opt.value = car;
+        opt.textContent = car;
+        if (index === Number(url.get('year')) && url.get('year') !== null && loading) {
+          opt.selected = true;
+        }
+        yearToId[car] = index;
+        idToYear[index] = car;
+        year.appendChild(opt);
+      });
+    }
+    document.getElementById('optionParaventos').outerHTML = initialParaventos;
+  }
+
+  async function yearChanged(event) {
+    selectedYear = event.target.value;
+    const car = cars[selectedBrand][selectedModel][selectedYear];
+    
+    // Get the handle from the CSV data (assuming it's in car[5])
+    const handle = car[5];
+    
+    const query = `{
+      product(handle: "${handle}") {
+        id
+        title
+        handle
+        availableForSale
+        tags
+        productType
+        featuredImage {
+          url
+          altText
+        }
+        variants(first: 1) {
+          edges {
+            node {
+              id
+              sku
+              priceV2 {
+                amount
+              }
+              compareAtPriceV2 {
+                amount
+              }
+              availableForSale
+            }
+          }
+        }
+      }
+    }`;
+
+    try {
+      const response = await fetch('https://macos-auto.myshopify.com/api/2024-01/graphql.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': ACCESS_TOKEN
+        },
+        body: JSON.stringify({ query })
+      });
+
+      const result = await response.json();
+
+      if (result.data.product) {
+        const product = result.data.product;
+        const variant = product.variants.edges[0].node;
+        
+        let paraventosPage = initialParaventos;
+        paraventosPage = paraventosPage
+          .replace('img0101', product.featuredImage?.url || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+          .replace('nome0', product.title)
+          .replace(/skuskusku0/g, variant.sku)
+          .replace('price1231230', (Number(variant.priceV2.amount)).toFixed(2))
+          .replace('hidden=""', '');
+        
+        // Check stock availability
+        if (!variant.availableForSale) {
+          paraventosPage = paraventosPage.replace(
+            '<button type="submit"',
+            '<button type="submit" disabled'
+          );
+          paraventosPage = paraventosPage.replace('BUY', 'ESGOTADO');
+        }
+        
+        const variantId = variant.id.split('/').pop();
+        opts = [variantId];
+        document.getElementById('optionParaventos').outerHTML = paraventosPage;
+      } else {
+        document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
+      }
+    } catch (error) {
+      console.error('Error fetching product:', error);
+      document.getElementById('optionParaventos').outerHTML = initialParaventos.replace('id="opt1"', 'hidden');
+    }
+  }
+
+  function getProduct(sku) {
+    return new Promise((resolve, reject) => {
+      let request = new XMLHttpRequest();
+      request.open('GET', '/products/' + sku + '.js', false);
+      request.send(null);
+      if (request.status === 200) {
+        const ans = JSON.parse(request.responseText);
+        ans.vari = ans.variants[0];
+        resolve(ans);
+      } else {
+        reject(request.status);
+      }
+    });
+  }
+
+  function handleBuy(id) {
+    const requestEntrie = [{
+      id: opts[id],
+      quantity: 1,
+    }];
+
+    const request = new XMLHttpRequest();
+    request.open('POST', '/cart/add.js');
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener('load', reqListener);
+    request.send(JSON.stringify({ items: requestEntrie }));
+  }
+
+  function reqListener(env) {
+    if (this.status !== 200) {
+      alert('Artigo Esgotado');      if (!variant.availableForSale) {
+        paraventosPage = paraventosPage.replace('ADICIONAR', 'ESGOTADO');
+      }
+    } else {
+      const a = window.location.href.split('?')[0] + '?brand=' + brandToId[selectedBrand] + '&model=' + modelToId[selectedModel] + '&year=' + yearToId[selectedYear];
+      window.location.href = a;
+    }
+  }
+
+  function handleData() {
+    try {
+      const lines = this.responseText.split('\n');
+      // Skip empty lines and parse CSV
+      const r = lines.filter(line => line.trim()).map(line => line.split(',').map(value => value.trim()));
+      
+      const ccars = {};
+      const uniqueBrands = new Set();
+      
+      // First pass: collect unique brands and build the data structure
+      for (let i = 1; i < r.length; i++) {
+        const carr = r[i];
+        if (carr.length < 4) continue; // Ensure we have enough columns
+        
+        // Get data from the correct columns based on new CSV structure
+        // Image[0], Brand[1], Name[2], SKU[3], Price[4]
+        const brand = carr[1];
+        const fullTitle = carr[2];
+        const sku = carr[3];
+        
+        if (brand && brand !== '') {
+          uniqueBrands.add(brand);
+          
+          // Split the full title by | to get model and year
+          const titleParts = fullTitle.split('|').map(part => part.trim());
+          const model = titleParts[0]; // First part is the model
+          const year = titleParts[1];  // Second part is the year range
+          
+          // Build the nested structure
+          if (ccars[brand] === undefined) {
+            ccars[brand] = {};
+          }
+          if (ccars[brand][model] === undefined) {
+            ccars[brand][model] = {};
+          }
+          if (ccars[brand][model][year] === undefined) {
+            ccars[brand][model][year] = carr;
+          }
+        }
+      }
+      
+      cars = ccars;
+      
+      const select_elem = document.getElementById('marcadocarro');
+      if (!select_elem) {
+        return;
+      }
+      
+      const url = new URLSearchParams(document.location.search);
+      brandToId = {};
+      idToBrand = {};
+
+      // Clear existing options except the first one
+      while (select_elem.options.length > 1) {
+        select_elem.remove(1);
+      }
+
+      // Populate brand dropdown with unique brands
+      const brandsArray = Array.from(uniqueBrands).sort();
+      
+      brandsArray.forEach((brand, index) => {
+        const option_elem = document.createElement('option');
+        option_elem.value = brand;
+        option_elem.textContent = brand;
+        if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
+          option_elem.selected = true;
+        }
+        brandToId[brand] = index;
+        idToBrand[index] = brand;
+        select_elem.appendChild(option_elem);
+      });
+      
+      initialParaventos = document.getElementById('optionParaventos').outerHTML;
+
+      if (url.get('brand')) {
+        brandChanged({ target: { value: idToBrand[url.get('brand')] } });
+        modelChanged({ target: { value: idToModel[url.get('model')] } });
+        yearChanged({ target: { value: idToYear[url.get('year')] } });
+      }
+      loading = false;
+    } catch (error) {
+      console.error('Error in handleData:', error);
+    }
+  }
+
+  function doMagic() {
+    const csvUrl = "{{ 'config_chuventos.csv' | asset_url }}";
+    httpGet(csvUrl, handleData);
+  }
+
+  async function httpGet(URL, handler) {
+    try {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.addEventListener('load', handler);
+      xmlHttp.addEventListener('error', function(e) {
+        console.error('Error fetching CSV:', e);
+      });
+      xmlHttp.open('GET', URL);
+      xmlHttp.send(null);
+    } catch (error) {
+      console.error('Error in httpGet:', error);
+    }
+  }
+</script>
