@@ -384,7 +384,7 @@
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
                 price.innerHTML = priceInfoPopoverHTML;
                 
-                // Inicializar popover manualmente
+                // Inicializar popover manualmente por ser injetado via JS
                 const popoverTriggerList = price.querySelectorAll('[data-bs-toggle="popover"]');
                 popoverTriggerList.forEach(function (popoverTriggerEl) {
                   new bootstrap.Popover(popoverTriggerEl);
@@ -416,7 +416,7 @@
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
                 totalPriceElement.innerHTML = priceInfoPopoverHTML;
                 
-                // Inicializar popover manualmente
+                // Inicializar popover manualmente por ser injetado via JS
                 const popoverTriggerList = totalPriceElement.querySelectorAll('[data-bs-toggle="popover"]');
                 popoverTriggerList.forEach(function (popoverTriggerEl) {
                   new bootstrap.Popover(popoverTriggerEl);
