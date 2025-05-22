@@ -378,6 +378,10 @@
     }
     document.getElementById('optionClassic').outerHTML = initialClassic;
     document.getElementById('optionFlat').outerHTML = initialFlat;
+
+    // Inicializar popover manualmente por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
   }
   async function yearChanged(event) {
     selectedYear = event.target.value;
@@ -473,7 +477,12 @@
     if (ans[0] !== undefined || ans[1] !== undefined) {
       classicPage = classicPage.replace('hidden=""', '');
     }
+
     document.getElementById('optionClassic').outerHTML = classicPage;
+
+    // Inicializar popover manualmente após a renderização dinâmica do HTML no DOM por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
 
     if (ans[2] !== undefined) {
       const vari = ans[2].variants[0];
@@ -518,7 +527,13 @@
     if (ans[2] !== undefined || ans[3] !== undefined) {
       flatPage = flatPage.replace('hidden=""', '');
     }
+
     document.getElementById('optionFlat').outerHTML = flatPage;
+
+    // Inicializar popover manualmente após a renderização dinâmica do HTML no DOM por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+
     const item0Price = ans[0] ? Number(ans[0].price) : 0;
     const item1Price = ans[1] ? Number(ans[1].price) : 0;
 
