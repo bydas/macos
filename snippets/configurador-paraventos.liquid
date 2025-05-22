@@ -174,11 +174,12 @@
           .replace('data-variant-id=""', `data-variant-id="${v.id.split('/').pop()}"`)
           .replace('hidden', '');
 
-        if (!v.availableForSale) {
-          card = card
-            .replace('ADICIONAR','ESGOTADO')
-            .replace(/<button\b/g, '<button disabled');
-        }
+        // CÓDIGO COMENTADO PARA PERMITIR COMPRA SEM STOCK | PRODUTOS SEMPRE SUJEITOS A ENCOMENDA
+        // if (!v.availableForSale) {
+        //   card = card
+        //     .replace('ADICIONAR','ESGOTADO')
+        //     .replace(/<button\b/g, '<button disabled');
+        // }
 
         container.insertAdjacentHTML('beforeend', card);
         const lastCard = container.lastElementChild;
@@ -202,7 +203,12 @@
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({items:[{id:variantId,quantity:1}]})
     })
-    .then(r=> r.ok ? location.reload() : alert('Artigo esgotado'));
+    // .then(r=> r.ok ? location.reload() : alert('Artigo Esgotado!')); // CÓDIGO COMENTADO PARA PERMITIR COMPRA SEM STOCK | PRODUTOS SEMPRE SUJEITOS A ENCOMENDA
+    .then(() => { location.reload() })
+    .catch(() => { 
+      alert("Ocorreu um erro. Por favor, tente mais tarde.");
+      location.reload(); 
+    });
   }
 
   function handleData() {
