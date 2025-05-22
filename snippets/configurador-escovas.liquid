@@ -339,7 +339,11 @@
     }
     document.getElementById('optionClassic').outerHTML = initialClassic;
     document.getElementById('optionFlat').outerHTML = initialFlat;
-  }
+
+    // Inicializar popover manualmente por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+      }
   function modelChanged(event) {
     const year = document.getElementById('anodocarro');
     while (year.length > 1) {
