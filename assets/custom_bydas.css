@@ -42,8 +42,7 @@ a:hover,
 .pagination .active, .pagination__item--current {
   border-radius: 50% !important;
 }
-.full-unstyled-link,
-.price__container * {
+.full-unstyled-link {
   color: rgb(255, 160, 0); /* orange */
 }
 .go_back-link, 
