@@ -436,7 +436,7 @@
     // handle classic page
     if (ans[0] !== undefined) {
       const vari = ans[0].variants;
-      const priceReplacement = window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[0].price) / 100).toFixed(2) + '€';
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[0].price) / 100).toFixed(2) + '€' ;
 
       classicPage = classicPage
         .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -456,7 +456,7 @@
     }
     if (ans[1] !== undefined) {
       const vari = ans[1].variants;
-      const priceReplacement = window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[1].price) / 100).toFixed(2) + '€';
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[1].price) / 100).toFixed(2) + '€';
 
       classicPage = classicPage
         .replace('img0102', ans[1].featured_image ? ans[1].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -486,7 +486,7 @@
 
     if (ans[2] !== undefined) {
       const vari = ans[2].variants[0];
-      const priceReplacement = window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[2].price) / 100).toFixed(2) + '€';
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[2].price) / 100).toFixed(2) + '€';
 
       flatPage = flatPage
         .replace('img0101', ans[2].featured_image ? ans[2].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -506,7 +506,7 @@
     }
     if (ans[3] !== undefined) {
       const vari = ans[3].variants[0];
-      const priceReplacement = window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[3].price) / 100).toFixed(2) + '€';
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[3].price) / 100).toFixed(2) + '€';
 
       flatPage = flatPage
         .replace('img0102', ans[3].featured_image ? ans[3].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
