@@ -36,8 +36,28 @@
   }
 {%- endstyle -%}
 
+{% liquid
+  assign products_with_price = '' | split: ','
+
+  for product in collection.products
+    assign has_price = false
+
+    for variant in product.variants
+      if variant.price > 0
+        assign has_price = true
+        break
+      endif
+    endfor
+
+    if has_price
+      assign products_handles = product.handle | split: ','
+      assign products_with_price = products_with_price | concat: products_handles
+    endif
+  endfor
+%}
+
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
-  {%- paginate collection.products by section.settings.products_per_page -%}
+  {%- paginate products_with_price by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
@@ -153,7 +173,8 @@
               "
             >
               {% assign skip_card_product_styles = false %}
-              {%- for product in collection.products -%}
+              {%- for handle in paginate.items -%}
+                {% assign product = all_products[handle] %}
                 {% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
