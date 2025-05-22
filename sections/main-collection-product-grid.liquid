@@ -154,7 +154,17 @@
             >
               {% assign skip_card_product_styles = false %}
               {%- for product in collection.products -%}
-                {% if product.price_max > 0 %}
+                {% liquid
+                  assign has_price = false
+                  for variant in product.variants
+                    if variant.price > 0
+                      assign has_price = true
+                      break
+                    endif
+                  endfor
+                %}
+
+                {% if has_price %}
                   {% assign lazy_load = false %}
                   {%- if forloop.index > 2 -%}
                     {%- assign lazy_load = true -%}
