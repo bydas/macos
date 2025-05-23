@@ -1101,11 +1101,6 @@ img.btoptioni {
   .brand-image {
     height: 17rem;
   }
-
-  /* .advantage-info {
-    line-height: 2.3rem;
-    font-size: 1.4rem;
-  } */
   
 }
 
@@ -1236,6 +1231,11 @@ img.btoptioni {
   #new-products_buttons-wrapper .price-per-item__container,
   #new-products_buttons-wrapper .buy-button_container {
     width: 100% !important;
+  }
+
+  .advantage_card:hover .advantage-info {
+    opacity: 0;
+    visibility: hidden;
   }
 
   .card-title-custom {
