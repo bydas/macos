@@ -1266,6 +1266,13 @@ img.btoptioni {
 
 @media all and (max-width: 577px) {
 
+  .category-card {
+    margin-bottom: 0;
+  }
+  .category-title {
+    line-height: 2rem;
+  }
+
   #highlights-slideshow {
     aspect-ratio: 5 / 3;
   }
@@ -1312,12 +1319,9 @@ img.btoptioni {
     width: 4rem;
   }
   .whatsapp-icon-fixed {
-    position: fixed;
     bottom: 2rem;
     right: 1rem;
-    z-index: 99999;
     opacity: 1;
-    transition: opacity 150ms, scale 150ms;
   }
   
 }
