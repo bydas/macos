@@ -26,7 +26,7 @@
     .card__inner {
       display: block !important;
     }
-    
+
   {% endif %}
 {% endstyle %}
 
@@ -50,7 +50,10 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover rounded-5 overflow-hidden" id="card-product-custom">
+  <div
+    class="card-wrapper product-card-wrapper underline-links-hover rounded-5 overflow-hidden"
+    id="card-product-custom"
+  >
     <div
       class="
         card card--{{ settings.card_style }}
@@ -78,7 +81,7 @@
             <h3
               class="card__heading h5"
               {% comment %} {% if card_product.featured_media or settings.card_style == 'card' %} {% endcomment %}
-                id="title-{{ section_id }}-{{ card_product.id }}"
+              id="title-{{ section_id }}-{{ card_product.id }}"
               {% comment %} {% endif %} {% endcomment %}
             >
               <a
@@ -137,7 +140,6 @@
 
             <!-- PRICE -->
             {% if customer %}
-
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
@@ -221,8 +223,9 @@
                 {% endif %}
               {%- endif -%}
 
+            {% else %}
+              {% render 'see-price-info' %}
             {% endif %}
-            
           </div>
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
@@ -432,7 +435,6 @@
                               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
                             </div>
                           </div>
-                
                         {%- endif -%}
                         <a
                           {% if card_product == blank %}
@@ -452,9 +454,7 @@
                         </a>
 
                         {% if customer %}
-                          
                           {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-
                         {% endif %}
 
                         {%- if card_product.quantity_price_breaks_configured? -%}
@@ -473,11 +473,9 @@
                         </a>
 
                         {% if customer %}
-
                           {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-                          
                         {% endif %}
-                        
+
                         {%- if card_product.quantity_price_breaks_configured? -%}
                           <div class="card__information-volume-pricing-note">
                             <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -573,11 +571,10 @@
           </div>
 
         {% else %}
-
           <div class="card__media fallback-image shape--default color-{{ settings.card_color_scheme }}">
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-               {% assign fallback_image = "https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326" %}
+              {% assign fallback_image = 'https://cdn.shopify.com/s/files/1/0914/4015/2907/files/logo.png?v=1741088326' %}
               <img
                 src="{{ fallback_image }}"
                 alt="MACOS"
@@ -591,7 +588,6 @@
               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
             </div>
           </div>
-
         {%- endif -%}
         <div class="card__content">
           <div class="card__information">
@@ -633,7 +629,6 @@
 
       <!-- START QUANTITY AND BUY BUTTON -->
       <div class="product-card-buttons-wrapper z-3 w-100 py-4 py-sm-3 d-flex flex-row justify-content-center align-items-center h-auto">
-        
         <!-- START QUANTITY -->
         <div class="price-per-item__container w-50 ps-4 justify-content-center">
           <quantity-input class="quantity w-100" data-url="{{ card_product.url }}" data-section="{{ section.id }}">
@@ -710,10 +705,7 @@
                       {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
                         {%- assign price_break_price = price_break.price | money_with_currency -%}
                         <span class="price-per-item--current">
-                          {{-
-                            'products.product.volume_pricing.price_at_each_html'
-                            | t: price: price_break_price
-                          -}}
+                          {{- 'products.product.volume_pricing.price_at_each_html' | t: price: price_break_price -}}
                         </span>
                         {%- break -%}
                       {%- endif -%}
@@ -756,23 +748,22 @@
           {%- endif -%}
         </div>
         <!-- END QUANTITY -->
-      
+
         <!-- START BUY BUTTON -->
         <div class="w-50">
-        
           {%- if card_product != blank -%}
             {%- liquid
               assign gift_card_recipient_feature_active = false
               if block.settings.show_gift_card_recipient and product.gift_card?
                 assign gift_card_recipient_feature_active = true
               endif
-        
+
               assign show_dynamic_checkout = false
               if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
                 assign show_dynamic_checkout = true
               endif
             -%}
-        
+
             <product-form
               class="product-form"
               data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -784,7 +775,7 @@
                 </span>
                 <span class="product-form__error-message"></span>
               </div>
-        
+
               {%- form 'product',
                 card_product,
                 id: product_form_id,
@@ -804,11 +795,11 @@
                   {% endif %}
                   class="product-variant-id"
                 >
-        
+
                 {%- if gift_card_recipient_feature_active -%}
                   {%- render 'gift-card-recipient-form', product: card_product, form: form, section: section -%}
                 {%- endif -%}
-        
+
                 <div class="product-form__buttons">
                   {%- liquid
                     assign check_against_inventory = true
@@ -834,7 +825,9 @@
                     <span>
                       {%- if card_product.selected_or_first_available_variant == null -%}
                         {{ 'products.product.unavailable' | t }}
-                      {%- elsif card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                      {%- elsif card_product.selected_or_first_available_variant.available == false
+                        or quantity_rule_soldout
+                      -%}
                         {{ 'products.product.sold_out' | t }}
                       {%- else -%}
                         {{ 'products.product.add_to_cart' | t }}
@@ -862,12 +855,10 @@
               </div>
             </div>
           {%- endif -%}
-          
         </div>
         <!-- END BUY BUTTON -->
       </div>
       <!-- END QUANTITY AND BUY BUTTON -->
-
     </div>
   </div>
 {%- else -%}
@@ -923,11 +914,8 @@
             {%- endif -%}
 
             {% if customer %}
-
               {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
-              
             {% endif %}
-
           </div>
         </div>
       </div>
