@@ -47,7 +47,7 @@
       const isVisible = block.dataset.mobileVisible === "visible" ? true : false;
 
       if (window.innerWidth <= 768) {
-        block.style.display = isVisible ? "block" : "hidden";
+        block.style.display = isVisible ? "block" : "none";
       } else {
         block.style.display = "block";
       }
