@@ -21,16 +21,23 @@
     },
     "custom_liquid_tMrzYi": {
       "type": "custom-liquid",
+      "disabled": true,
       "settings": {
         "custom_liquid": "{% render 'configurador-paraventos' %}",
         "color_scheme": "scheme-2",
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "configurador_paraventos_LFa3qJ": {
+      "type": "configurador-paraventos",
+      "name": "Configurador de Paraventos",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "custom_liquid_tMrzYi"
+    "custom_liquid_tMrzYi",
+    "configurador_paraventos_LFa3qJ"
   ]
 }
