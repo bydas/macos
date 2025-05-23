@@ -173,7 +173,6 @@ button::after {
 }
 .button::after {
   box-shadow: none;
-  /* border: 1px solid rgba(50, 50, 50, 0.75); */
 }
 
 #shopify-pc__banner button:not([id="shopify-pc__banner__btn-manage-prefs"]):hover,
@@ -315,7 +314,7 @@ button::after {
   border-radius: 3rem;
   padding: 2rem 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  margin-top: -25px !important;
+  /* margin-top: -25px !important; */
 }
 .children-categories a {
   cursor: pointer;
