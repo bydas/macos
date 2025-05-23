@@ -211,7 +211,7 @@
             "label": "Macos",
             "page": "quem-somos",
             "description": "<p>A sua loja online de peças e acessórios automóvel das melhores marcas.</p>",
-            "mobile_visible": false
+            "mobile_visible": true
           }
         },
         "block_advantage_qKzVKH": {
