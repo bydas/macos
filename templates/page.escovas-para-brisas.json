@@ -19,16 +19,6 @@
         "padding_bottom": 28
       }
     },
-    "custom_liquid_aGERfG": {
-      "type": "custom-liquid",
-      "disabled": true,
-      "settings": {
-        "custom_liquid": "{% render 'configurador-escovas' %}",
-        "color_scheme": "scheme-2",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "configurador_escovas_7nhKCh": {
       "type": "configurador-escovas",
       "name": "Configurador de Escovas",
@@ -42,7 +32,6 @@
   },
   "order": [
     "main",
-    "custom_liquid_aGERfG",
     "configurador_escovas_7nhKCh"
   ]
 }
