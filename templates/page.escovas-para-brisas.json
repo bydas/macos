@@ -29,12 +29,12 @@
         "padding_bottom": 52
       }
     },
-    "configurador_barras_tejadilho_AQUDrR": {
-      "type": "configurador-barras-tejadilho",
-      "name": "Configurador de Barras de Tejadilho",
+    "configurador_escovas_7nhKCh": {
+      "type": "configurador-escovas",
+      "name": "Configurador de Escovas",
       "settings": {
         "color_scheme": "",
-        "title_alignment": "center",
+        "title_alignment": "left",
         "padding_top": 40,
         "padding_bottom": 52
       }
@@ -43,6 +43,6 @@
   "order": [
     "main",
     "custom_liquid_aGERfG",
-    "configurador_barras_tejadilho_AQUDrR"
+    "configurador_escovas_7nhKCh"
   ]
 }
