@@ -1266,8 +1266,8 @@ img.btoptioni {
 
 @media all and (max-width: 577px) {
 
-  .category-card {
-    padding-bottom: 0;
+  .section-product-categories {
+    padding: 1rem 2rem 0.5rem;
   }
   .category-title {
     line-height: 2rem;
