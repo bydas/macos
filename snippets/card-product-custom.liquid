@@ -222,9 +222,10 @@
                   </quantity-popover>
                 {% endif %}
               {%- endif -%}
-
-            {% else %}
-              {% render 'see-price-info', popover_placement: 'right' %}
+              {% comment %}
+                {% else %}
+                  {% render 'see-price-info', popover_placement: 'right' %}
+              {% endcomment %}
             {% endif %}
           </div>
         </div>
