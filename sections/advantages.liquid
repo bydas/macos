@@ -10,8 +10,12 @@
   <div class="row">
     <div class="col-12 px-lg-0 px-5 d-flex flex-wrap flex-lg-nowrap justify-content-lg-between justify-content-center gap-md-5 gap-3">
       {% for block in section.blocks %}
-        {% if block.settings.image != blank and block.settings.mobile_visible %}
-          <a href="{{ pages[block.settings.page].url }}" class="advantage-link position-relative">
+        {% if block.settings.image != blank %}
+          <a
+            href="{{ pages[block.settings.page].url }}"
+            class="advantage-link position-relative"
+            data-mobile-visible="{% if block.settings.mobile_visible %}visible{% else %}hidden{% endif %}"
+          >
             <div class="advantage_card d-flex flex-column justify-content-center align-items-center rounded-5">
               <div class="advantage_image d-flex justify-content-center align-items-center">
                 <img src="{{ block.settings.image | image_url }}" height="" width="" alt="Advantage">
