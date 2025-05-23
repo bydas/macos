@@ -13,12 +13,15 @@
       "type": "main-page",
       "disabled": true,
       "settings": {
+        "color_scheme": "",
+        "title_alignment": "left",
         "padding_top": 28,
         "padding_bottom": 28
       }
     },
     "custom_liquid_KttfWV": {
       "type": "custom-liquid",
+      "disabled": true,
       "settings": {
         "custom_liquid": "{% render 'configurador-barras-tejadilho' %}",
         "color_scheme": "scheme-2",
