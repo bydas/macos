@@ -1,1 +1,48 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"custom_liquid_aGERfG":{"type":"custom-liquid","settings":{"custom_liquid":"{% render 'configurador-escovas' %}","color_scheme":"scheme-2","padding_top":40,"padding_bottom":52}}},"order":["main","custom_liquid_aGERfG"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "title_alignment": "left",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_aGERfG": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "{% render 'configurador-escovas' %}",
+        "color_scheme": "scheme-2",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "configurador_barras_tejadilho_AQUDrR": {
+      "type": "configurador-barras-tejadilho",
+      "name": "Configurador de Barras de Tejadilho",
+      "settings": {
+        "color_scheme": "",
+        "title_alignment": "center",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_aGERfG",
+    "configurador_barras_tejadilho_AQUDrR"
+  ]
+}
