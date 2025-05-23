@@ -34,7 +34,7 @@
       "name": "Configurador de Escovas",
       "settings": {
         "color_scheme": "",
-        "title_alignment": "left",
+        "title_alignment": "center",
         "padding_top": 40,
         "padding_bottom": 52
       }
