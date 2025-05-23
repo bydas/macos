@@ -1268,7 +1268,7 @@ img.btoptioni {
 
   #highlights-slideshow {
     width: 100% !important;
-    aspect-ratio: 5 / 3;
+    /* aspect-ratio: 5 / 3; */
   }
   #highlights-slideshow .carousel-cell img {
     object-fit: fill !important;
