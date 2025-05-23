@@ -218,7 +218,7 @@
           "settings": {
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
-            "page": "",
+            "page": "qualidade",
             "description": "<p>Qualidade garantida pelas melhores marcas do mercado.</p>"
           }
         },
