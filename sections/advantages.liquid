@@ -39,6 +39,27 @@
   </div>
 </section>
 
+<script>
+
+  function mobileVisible() {
+    const advantageBlocks = document.querySelectorAll("a[data-mobile-visible]");
+
+    advantageBlocks.forEach(block => {
+      const isVisible = block.dataset.mobileVisible === "visible" ? true : false;
+
+      if (window.innerWidth <= 768) {
+        block.style.display = isVisible ? "block" : "hidden";
+      } else {
+        block.style.display = "block";
+      }
+
+    })
+  }
+
+  document.addEventListener("DOMContentLoaded", mobileVisible);
+  window.addEventListener("resize", mobileVisible);
+</script>
+
 {% schema %}
 {
   "name": "Advantages",
