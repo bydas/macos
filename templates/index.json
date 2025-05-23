@@ -210,7 +210,8 @@
             "image": "shopify://shop_images/Macos.png",
             "label": "Macos",
             "page": "quem-somos",
-            "description": "<p>A sua loja online de peças e acessórios automóvel das melhores marcas.</p>"
+            "description": "<p>A sua loja online de peças e acessórios automóvel das melhores marcas.</p>",
+            "mobile_visible": true
           }
         },
         "block_advantage_qKzVKH": {
@@ -219,7 +220,8 @@
             "image": "shopify://shop_images/qualidade.png",
             "label": "Qualidade",
             "page": "qualidade",
-            "description": "<p>Qualidade garantida pelas melhores marcas do mercado.</p>"
+            "description": "<p>Qualidade garantida pelas melhores marcas do mercado.</p>",
+            "mobile_visible": true
           }
         },
         "block_advantage_fAazkg": {
@@ -228,7 +230,8 @@
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
             "page": "entregas-e-rapidez",
-            "description": "<p>Entregas rápidas e seguras para todo o país com a confiança.</p>"
+            "description": "<p>Entregas rápidas e seguras para todo o país com a confiança.</p>",
+            "mobile_visible": true
           }
         },
         "block_advantage_eCrYGd": {
@@ -237,7 +240,8 @@
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
             "page": "entregas-e-rapidez",
-            "description": "<p>A rapidez é prioridade — da encomenda à entrega, tudo num instante.</p>"
+            "description": "<p>A rapidez é prioridade — da encomenda à entrega, tudo num instante.</p>",
+            "mobile_visible": false
           }
         },
         "block_advantage_GKYQFp": {
@@ -246,7 +250,8 @@
             "image": "shopify://shop_images/apoio.png",
             "label": "Apoio ao Cliente",
             "page": "contact",
-            "description": "<p>Apoio ao Cliente  disponível para si conte connosco para o ajudar.</p>"
+            "description": "<p>Apoio ao Cliente  disponível para si conte connosco para o ajudar.</p>",
+            "mobile_visible": true
           }
         }
       },
