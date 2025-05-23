@@ -32,7 +32,11 @@
     "configurador_paraventos_LFa3qJ": {
       "type": "configurador-paraventos",
       "name": "Configurador de Paraventos",
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
