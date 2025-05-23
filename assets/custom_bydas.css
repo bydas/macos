@@ -694,7 +694,7 @@ button::after {
   bottom: 3rem;
   right: 3rem;
   z-index: 99999;
-  opacity: 0.75;
+  opacity: 1;
   transition: opacity 150ms, scale 150ms;
 }
 .whatsapp-icon-fixed:hover {
