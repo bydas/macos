@@ -694,7 +694,7 @@ button::after {
   bottom: 3rem;
   right: 3rem;
   z-index: 99999;
-  opacity: 1;
+  opacity: 0.75;
   transition: opacity 150ms, scale 150ms;
 }
 .whatsapp-icon-fixed:hover {
@@ -1306,6 +1306,18 @@ img.btoptioni {
   }
   .card-barras-content li > input[type="checkbox"] {
     justify-self: center;
+  }
+
+  .whatsapp-icon-fixed img {
+    width: 4rem;
+  }
+  .whatsapp-icon-fixed {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    z-index: 99999;
+    opacity: 1;
+    transition: opacity 150ms, scale 150ms;
   }
   
 }
