@@ -1267,7 +1267,7 @@ img.btoptioni {
 @media all and (max-width: 577px) {
 
   .section-product-categories .category-card {
-    min-height: 175px;
+    min-height: 170px;
     line-height: 2.2rem;
   }
   .category-title {
