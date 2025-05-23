@@ -9,7 +9,7 @@ $(document).ready(function () {
 
   // breakpoints for groupcells
   if (window.innerWidth <= 578) {
-    groupCells = false;
+    groupCells = 2;
 
   } else if (window.innerWidth <= 1100) {
     groupCells = 4;
