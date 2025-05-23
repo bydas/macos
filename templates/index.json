@@ -227,7 +227,7 @@
           "settings": {
             "image": "shopify://shop_images/entregas.png",
             "label": "Entregas",
-            "page": "",
+            "page": "entregas-e-rapidez",
             "description": "<p>Entregas rápidas e seguras para todo o país com a confiança.</p>"
           }
         },
@@ -236,7 +236,7 @@
           "settings": {
             "image": "shopify://shop_images/rapidez.png",
             "label": "Rapidez",
-            "page": "",
+            "page": "entregas-e-rapidez",
             "description": "<p>A rapidez é prioridade — da encomenda à entrega, tudo num instante.</p>"
           }
         },
