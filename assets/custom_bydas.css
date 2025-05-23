@@ -1267,7 +1267,7 @@ img.btoptioni {
 @media all and (max-width: 577px) {
 
   .category-card {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
   .category-title {
     line-height: 2rem;
