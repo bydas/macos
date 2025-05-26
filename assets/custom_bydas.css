@@ -352,9 +352,6 @@ button::after {
 .slider--desktop {
   scroll-snap-type: none !important;
 }
-.slider-component.slider-component-full-width {
-  --desktop-margin-left-first-item: 0 !important;
-}
 
 /* breadcrumb */
 .breadcrumb-nav a {
