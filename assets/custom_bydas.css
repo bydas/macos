@@ -362,9 +362,6 @@ button::after {
   padding-left: 0 !important;
   margin-left: 0 !important;
 }
-.slider-component-full-width .slider--desktop {
-  scroll-padding-left: 0rem !important;
-}
 
 
 
