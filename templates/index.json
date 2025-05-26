@@ -157,6 +157,7 @@
     },
     "featured_collection_UyinUK": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "turtle-wax",
         "products_to_show": 10,
@@ -181,6 +182,15 @@
         "swipe_on_mobile": true,
         "padding_top": 44,
         "padding_bottom": 36
+      }
+    },
+    "featured_collection_custom_XPRQKx": {
+      "type": "featured-collection-custom",
+      "name": "Featured Collection Custom",
+      "settings": {
+        "selected_collection": "turtle-wax",
+        "color_scheme": "scheme-5",
+        "heading": "Destaques"
       }
     },
     "featured_blog_dRkNAU": {
@@ -272,6 +282,7 @@
     "slideshow_custom_8Vipmk",
     "featured_collection_new_products_NQFqiW",
     "featured_collection_UyinUK",
+    "featured_collection_custom_XPRQKx",
     "featured_blog_dRkNAU",
     "advantages_HFqee3"
   ]
