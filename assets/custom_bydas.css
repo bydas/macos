@@ -356,6 +356,15 @@ button::after {
   width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
   max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
 }
+.slider--desktop:after {
+  content: "";
+  width: 0;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+
+
 
 /* breadcrumb */
 .breadcrumb-nav a {
