@@ -348,7 +348,6 @@ button::after {
 .section-featured-collection .collection__title {
   padding: 0 !important
 }
-
 @media screen and (min-width: 990px) {
   /* removing peek effect from featured products slider */
   .slider--desktop {
