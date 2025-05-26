@@ -22,9 +22,9 @@ $(document).ready(function () {
   }
 
   $carousel.flickity({
-    groupCells: false,
+    groupCells: groupCells,
     cellAlign: 'left',
-    contain: false,
+    contain: true,
     freeScroll: false,
     pageDots: false,
     draggable: true
