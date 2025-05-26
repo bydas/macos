@@ -352,7 +352,6 @@ button::after {
 .slider--desktop {
   scroll-snap-type: none !important;
 }
-
 .section-featured-collection .slider--desktop.grid--4-col-desktop .grid__item {
   width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
   max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
