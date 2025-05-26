@@ -348,19 +348,15 @@ button::after {
 .section-featured-collection .collection__title {
   padding: 0 !important
 }
-/* removing infinite slider effect */
+/* removing peek effect from featured products slider */
 /* .slider--desktop {
   scroll-snap-type: none !important;
 } */
 
-/* Só à Featured Collection */
-.featured-collection .slider-wrapper {
-  /* zera o peek mesmo que o JS tente defini-lo */
-  --slider-peek: 0px !important;
-  /* ajusta o padding para manter colunas alinhadas */
-  padding-inline: var(--grid-spacing) 0 !important;
+.grid--4-col-desktop .grid__item {
+  width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+  max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
 }
-
 
 /* breadcrumb */
 .breadcrumb-nav a {
