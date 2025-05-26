@@ -71,25 +71,25 @@ function initializeScrollZoomAnimationTrigger() {
   });
 }
 
-// function percentageSeen(element) {
-//   const viewportHeight = window.innerHeight;
-//   const scrollY = window.scrollY;
-//   const elementPositionY = element.getBoundingClientRect().top + scrollY;
-//   const elementHeight = element.offsetHeight;
+function percentageSeen(element) {
+  const viewportHeight = window.innerHeight;
+  const scrollY = window.scrollY;
+  const elementPositionY = element.getBoundingClientRect().top + scrollY;
+  const elementHeight = element.offsetHeight;
 
-//   if (elementPositionY > scrollY + viewportHeight) {
-//     // If we haven't reached the image yet
-//     return 0;
-//   } else if (elementPositionY + elementHeight < scrollY) {
-//     // If we've completely scrolled past the image
-//     return 100;
-//   }
+  if (elementPositionY > scrollY + viewportHeight) {
+    // If we haven't reached the image yet
+    return 0;
+  } else if (elementPositionY + elementHeight < scrollY) {
+    // If we've completely scrolled past the image
+    return 100;
+  }
 
-//   // When the image is in the viewport
-//   const distance = scrollY + viewportHeight - elementPositionY;
-//   let percentage = distance / ((viewportHeight + elementHeight) / 100);
-//   return Math.round(percentage);
-// }
+  // When the image is in the viewport
+  const distance = scrollY + viewportHeight - elementPositionY;
+  let percentage = distance / ((viewportHeight + elementHeight) / 100);
+  return Math.round(percentage);
+}
 
 window.addEventListener('DOMContentLoaded', () => {
   initializeScrollAnimationTrigger();
