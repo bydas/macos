@@ -353,6 +353,15 @@ button::after {
   scroll-snap-type: none !important;
 } */
 
+/* Só à Featured Collection */
+.featured-collection .slider-wrapper {
+  /* zera o peek mesmo que o JS tente defini-lo */
+  --slider-peek: 0px !important;
+  /* ajusta o padding para manter colunas alinhadas */
+  padding-inline: var(--grid-spacing) 0 !important;
+}
+
+
 /* breadcrumb */
 .breadcrumb-nav a {
   color: rgb(80, 80, 80);
