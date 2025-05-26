@@ -234,7 +234,32 @@ $carousel.on('mouseleave', function() {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.section-featured-collection').forEach(section => {
+    const track   = section.querySelector('.slider');
+    const prevBtn = section.querySelector('.slider-button--prev');
+    const nextBtn = section.querySelector('.slider-button--next');
+    if (!track || !prevBtn || !nextBtn) return;
 
+    // Calcula apenas uma vez o gap + largura visível
+    const firstItem = track.querySelector('.grid__item');
+    const style     = getComputedStyle(firstItem);
+    const gap       = parseFloat(style.marginRight);
+    const pageWidth = track.clientWidth;
+    const scrollAmt = pageWidth + gap;
+
+    [prevBtn, nextBtn].forEach(btn => {
+      // Usa captura para anular o click do tema original
+      btn.addEventListener('click', function(evt) {
+        evt.stopImmediatePropagation();
+        evt.preventDefault();
+
+        const dir = this.classList.contains('slider-button--next') ?  1 : -1;
+        track.scrollBy({ left: scrollAmt * dir, behavior: 'smooth' });
+      }, { capture: true });
+    });
+  });
+});
 
 
 
