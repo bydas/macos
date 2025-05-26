@@ -349,7 +349,7 @@ button::after {
   padding: 0 !important
 }
 /* removing peek effect from featured products slider */
-/* .slider--desktop {
+.slider--desktop {
   scroll-snap-type: none !important;
 }
 .section-featured-collection .slider--desktop.grid--4-col-desktop .grid__item {
@@ -361,7 +361,7 @@ button::after {
   width: 0;
   padding-left: 0 !important;
   margin-left: 0 !important;
-} */
+}
 
 
 
