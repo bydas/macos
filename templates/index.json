@@ -157,7 +157,6 @@
     },
     "featured_collection_UyinUK": {
       "type": "featured-collection",
-      "disabled": true,
       "settings": {
         "collection": "turtle-wax",
         "products_to_show": 10,
@@ -186,6 +185,7 @@
     },
     "featured_collection_custom_XPRQKx": {
       "type": "featured-collection-custom",
+      "disabled": true,
       "name": "Featured Collection Custom",
       "settings": {
         "selected_collection": "turtle-wax",
