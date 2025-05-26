@@ -349,6 +349,9 @@ button::after {
 .section-featured-collection .collection__title {
   padding: 0 !important
 }
+.slider--desktop {
+  scroll-snap-type: none;
+}
 
 /* breadcrumb */
 .breadcrumb-nav a {
