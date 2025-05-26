@@ -353,7 +353,7 @@ button::after {
   scroll-snap-type: none !important;
 } */
 
-.grid--4-col-desktop .grid__item {
+.section-featured-collection .slider--desktop.grid--4-col-desktop .grid__item {
   width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
   max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
 }
