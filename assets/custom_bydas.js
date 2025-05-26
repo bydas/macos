@@ -22,7 +22,7 @@ $(document).ready(function () {
   }
 
   $carousel.flickity({
-    groupCells: groupCells,
+    groupCells: false,
     cellAlign: 'left',
     contain: false,
     freeScroll: false,
