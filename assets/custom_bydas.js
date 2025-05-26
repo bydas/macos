@@ -24,7 +24,7 @@ $(document).ready(function () {
   $carousel.flickity({
     groupCells: groupCells,
     cellAlign: 'left',
-    contain: true,
+    contain: false,
     freeScroll: false,
     pageDots: false,
     draggable: true
