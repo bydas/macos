@@ -344,13 +344,16 @@ button::after {
 /* section featured collection */
 .section-featured-collection {
   background-color: rgb(230, 230, 230);
-  /* border-top: 3px solid rgb(220, 220, 220); */
 }
 .section-featured-collection .collection__title {
   padding: 0 !important
 }
+/* removing infinite slider effect */
 .slider--desktop {
   scroll-snap-type: none !important;
+}
+.slider-component.slider-component-full-width {
+  --desktop-margin-left-first-item: 0 !important;
 }
 
 /* breadcrumb */
