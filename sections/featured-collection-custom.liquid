@@ -1,27 +1,31 @@
 <div class="w-100 color-{{ section.settings.color_scheme }}">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Destaques</h1>
+    {% if section.settings.heading != blank %}
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ section.settings.heading }}</h1>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
     <div class="row">
       <div class="col-12">
         <div class="main-carousel">
-          <div class="carousel-cell">
-            {% render 'card-product-custom',
-              card_product: product,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              section_id: section.id,
-              quick_add: section.settings.quick_add
-            %}
-            {% comment %}skip_styles: skip_card_product_styles, {% endcomment %}
-          </div>
+          {% for product in section.settings.selected_collection %}
+            <div class="carousel-cell w-25">
+              {% render 'card-product-custom',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                section_id: section.id,
+                quick_add: section.settings.quick_add
+              %}
+              {% comment %}skip_styles: skip_card_product_styles, {% endcomment %}
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
