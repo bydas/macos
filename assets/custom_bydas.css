@@ -349,6 +349,9 @@ button::after {
   padding: 0 !important
 }
 /* removing infinite slider effect */
+slider-component.slider-mobile-gutter.slider-component-full-width.slider-component-desktop.scroll-trigger.animate--slide-in {
+  overflow-x: hidden !important;
+}
 /* .slider--desktop {
   scroll-snap-type: none !important;
 } */
