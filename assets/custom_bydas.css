@@ -349,9 +349,9 @@ button::after {
   padding: 0 !important
 }
 /* removing infinite slider effect */
-.slider--desktop {
+/* .slider--desktop {
   scroll-snap-type: none !important;
-}
+} */
 
 /* breadcrumb */
 .breadcrumb-nav a {
