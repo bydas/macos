@@ -350,7 +350,7 @@ button::after {
   padding: 0 !important
 }
 .slider--desktop {
-  scroll-snap-type: none;
+  scroll-snap-type: none !important;
 }
 
 /* breadcrumb */
