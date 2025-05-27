@@ -180,7 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
-$('#highlights-slideshow').flickity({
+if (document.querySelector(#highlights-slideshow)) {
+  $('#highlights-slideshow').flickity({
   autoPlay: true,
   groupCells: false,
   cellAlign: 'left',
@@ -195,6 +196,8 @@ $('#highlights-slideshow').flickity({
 $(window).on('resize', function() {
   $('#highlights-slideshow').flickity('resize');
 });
+}
+
 
 
 /* ----- Flickity Carousel - BRANDS ----- */
