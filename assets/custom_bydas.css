@@ -920,7 +920,7 @@ button::after {
   line-height: 2.2rem;
 }
 .card-configurador th, 
-.card-configurador td {
+.card-configurador td:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.150);
 }
 .card-configurador .configurador-pdf {
