@@ -481,10 +481,11 @@
       classicPage = classicPage
         .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
         .replace('nome0', ans[0].title)
-        .replace(/skuskusku0/g, vari[0].sku)
+        .replace(/skuskusku0/g, "Universal")
+        //.replace(/skuskusku0/g, vari[0].sku)
         .replace('price1231230', priceReplacement)
-        .replace('UFGC0', requests.image[0])
-        .replace('UFGI0', adapt[requests.image[0]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
+        // .replace('UFGC0', requests.image[0])
+        // .replace('UFGI0', adapt[requests.image[0]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[0].available) {
         classicPage = classicPage.replace('BUY1', 'esgotado');
       } else {
