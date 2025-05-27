@@ -12,7 +12,7 @@
         {% for slide in section.blocks %}
           <div class="carousel-cell">
             {% if slide.settings.image != blank %}
-              <img src="{{ slide.settings.image | image_url }}" width="100%" height="100%" alt="slide">
+              <img src="{{ slide.settings.image | image_url }}" width="" height="" alt="slide">
 
             {% else %}
               <img
