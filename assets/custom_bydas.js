@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.category-card').forEach(function(card) {
     
     const dropdown = card.querySelector('.children-categories');
+    if (!dropdown) return;
     
     // Verifica se existem subcategorias (pelo menos um link)
     const hasSubcategories = dropdown.querySelector('a') !== null;
