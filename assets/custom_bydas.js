@@ -187,7 +187,7 @@ $('#highlights-slideshow').flickity({
   pageDots: true,
   draggable: true,
   resize: true,
-  adaptiveHeight: false,
+  adaptiveHeight: true,
   wrapAround: true
 });
 
