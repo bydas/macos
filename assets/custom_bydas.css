@@ -354,7 +354,7 @@ button::after {
     scroll-snap-type: none !important;
   }
       .slider-component-full-width .slider--desktop {
-        scroll-padding-left: 0 !important;
+        scroll-padding-left: -1rem !important;
     }
   .section-featured-collection .slider--desktop.grid--5-col-desktop .grid__item {
     width: calc(20% - var(--grid-desktop-horizontal-spacing) * 4 / 5) !important;
