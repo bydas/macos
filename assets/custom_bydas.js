@@ -233,7 +233,7 @@ $carousel.on('mouseleave', function() {
 
 
 
-/* ----- FEATURED COLLECTION ----- */
+/* ----- FEATURED COLLECTION (desktop)----- */
 if (window.innerWidth >= 990) {
 
   document.addEventListener('DOMContentLoaded', function() {
