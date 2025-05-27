@@ -314,6 +314,11 @@
             </div>
           </div>
         </div>
+
+        <div class="no-products-found" style="display: none">
+          <p>Infelizmente, neste momento não comercializamos escovas para este modelo.</p>
+        </div>
+
         <div id="see-price-info" style="display: none">
           {% render 'see-price-info' %}
         </div>
@@ -598,6 +603,11 @@
 
       // Mostrar a div de escovas flat
       flatPage = flatPage.replace('hidden=""', '');
+    }
+
+    if (!hasClassicProducts && !hasFlatProducts) {
+      const infoNoProducts = document.querySelector(".no-products-found");
+
     }
 
     // Atualizar o DOM
