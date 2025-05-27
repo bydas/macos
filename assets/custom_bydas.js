@@ -241,24 +241,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
+    // 1. Dados estáticos
+    const firstItem = track.querySelector('.grid__item');
+    const itemWidth = firstItem.offsetWidth;
+
+    // 2. Função para recalcular gap, pageWidth, scrollStep, maxScroll e injectar padding no final
     function recalc() {
       const style      = getComputedStyle(track);
       const gap        = parseFloat(style.getPropertyValue('column-gap')) || 0;
       const pageWidth  = track.clientWidth;
       const scrollStep = pageWidth + gap;
       const maxScroll  = track.scrollWidth - pageWidth;
+
+      // --- ⬇️ aqui fazes o truque do padding dinamicamente ⬇️ ---
+      const totalItems = track.children.length;
+      // Calcula quantas colunas cabem (round para evitar frações)
+      const cols = Math.round((pageWidth + gap) / (itemWidth + gap));
+      // Quantos sobram na última "página"
+      let lastCount = totalItems % cols;
+      if (lastCount === 0) lastCount = cols; // se exacto, enche sempre página
+      if (lastCount < cols) {
+        // largura do grupo final
+        const lastWidth = lastCount * itemWidth + (lastCount - 1) * gap;
+        // padding necessário para fazer caber esse grupo à esquerda
+        const padEnd = pageWidth - lastWidth;
+        track.style.paddingInlineEnd = `${padEnd}px`;
+      } else {
+        track.style.paddingInlineEnd = '';
+      }
+
       return { scrollStep, maxScroll, current: track.scrollLeft };
     }
 
+    // 3. Função que faz o scroll “página a página” com clamp
     function scrollByPage(dir) {
       const { scrollStep, maxScroll, current } = recalc();
-      // Próxima posição antes de clamping
       let next = current + dir * scrollStep;
-      // Clampa entre 0 e maxScroll
-      next = Math.min( Math.max(next, 0), maxScroll );
+      next = Math.min(Math.max(next, 0), maxScroll);
       track.scrollTo({ left: next, behavior: 'smooth' });
     }
 
+    // 4. Liga eventos
     nextBtn.addEventListener('click', e => {
       e.stopImmediatePropagation();
       e.preventDefault();
@@ -270,8 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       scrollByPage(-1);
     }, { capture: true });
+
+    // 5. Se a janela redimensionar, recalcula o padding
+    window.addEventListener('resize', () => recalc());
   });
 });
+
 
 
 
