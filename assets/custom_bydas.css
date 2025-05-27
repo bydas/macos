@@ -919,7 +919,8 @@ button::after {
   font-size: 1.4rem;
   line-height: 2.2rem;
 }
-.card-configurador tr:not(:last-child) {
+.card-configurador thead tr,
+.card-configurador tbody:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.150);
 }
 .card-configurador .configurador-pdf {
