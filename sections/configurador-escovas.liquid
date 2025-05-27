@@ -343,54 +343,42 @@
   var opts;
   var adapt;
   doMagic();
+
   function brandChanged(event) {
     const model = document.getElementById('modelodocarro');
-    while (model.length > 1) {
-      model.remove(1);
-    }
+    while (model.length > 1) model.remove(1);
     const year = document.getElementById('anodocarro');
-    while (year.length > 1) {
-      year.remove(1);
-    }
+    while (year.length > 1) year.remove(1);
     modelToId = {};
     idToModel = {};
-    if (cars !== undefined) {
+
+    if (cars) {
       const sel = cars[event.target.value];
       selectedBrand = event.target.value;
       const url = new URLSearchParams(document.location.search);
 
       Object.keys(sel).forEach((car, index) => {
         const opt = document.createElement('option');
-
-        // Add index to option_elem
         opt.value = car;
-
-        // Add element HTML
         opt.textContent = car;
         if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
           opt.selected = true;
         }
         modelToId[car] = index;
         idToModel[index] = car;
-
-        // Append option_elem to select_elem
         model.appendChild(opt);
       });
     }
-    document.getElementById('optionClassic').outerHTML = initialClassic;
-    document.getElementById('optionFlat').outerHTML = initialFlat;
 
-    // Inicializar popover manualmente por ser injetado via JS
-    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
-      .forEach(el => new bootstrap.Popover(el));
+    document.getElementById('optionClassic').outerHTML = initialClassic;
+    document.getElementById('optionFlat').outerHTML    = initialFlat;
+    initPopovers();
   }
 
   function modelChanged(event) {
     const year = document.getElementById('anodocarro');
-    while (year.length > 1) {
-      year.remove(1);
-    }
-    if (cars !== undefined) {
+    while (year.length > 1) year.remove(1);
+    if (cars) {
       selectedModel = event.target.value;
       const sel = cars[selectedBrand][event.target.value];
       const url = new URLSearchParams(document.location.search);
@@ -399,327 +387,242 @@
 
       Object.keys(sel).forEach((car, index) => {
         const opt = document.createElement('option');
-
-        // Add index to option_elem
         opt.value = car;
-
-        // Add element HTML
         opt.textContent = car;
-
         if (index === Number(url.get('year')) && url.get('year') !== null && loading) {
           opt.selected = true;
         }
         yearToId[car] = index;
         idToYear[index] = car;
-
-        // Append option_elem to select_elem
         year.appendChild(opt);
       });
     }
-    document.getElementById('optionClassic').outerHTML = initialClassic;
-    document.getElementById('optionFlat').outerHTML = initialFlat;
 
-    // Inicializar popover manualmente por ser injetado via JS
-    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
-      .forEach(el => new bootstrap.Popover(el));
+    document.getElementById('optionClassic').outerHTML = initialClassic;
+    document.getElementById('optionFlat').outerHTML    = initialFlat;
+    initPopovers();
   }
+
   async function yearChanged(event) {
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
-    const requests = { whatIs: [], p: [], image: [] };
+    // Reservar sempre 4 posições: 0-1 Classic, 2-3 Flat
+    const requests = {
+      whatIs: [],
+      p:       [Promise.resolve(), Promise.resolve(), Promise.resolve(), Promise.resolve()],
+      image:   [null, null, null, null]
+    };
     const priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
 
-    if (car[3] || car[4]) {
-      if (car[3]) {
-        requests.whatIs.push(['classic', 'primary']);
-        requests.p.push(getProduct(car[3]));
-        requests.image.push(car[5]);
-      } else {
-        requests.p.push(Promise.resolve());
-        requests.image.push(car[5]);
-      }
-      if (car[4]) {
-        requests.whatIs.push(['classic', 'secundary']);
-        requests.p.push(getProduct(car[4]));
-        requests.image.push(car[5]);
-      } else {
-        requests.p.push(Promise.resolve());
-        requests.image.push(car[5]);
-      }
+    // — Classic —
+    if (car[3]) {
+      requests.whatIs.push(['classic','primary']);
+      requests.p[0]     = getProduct(car[3]);
+      requests.image[0] = car[5];
+    }
+    if (car[4]) {
+      requests.whatIs.push(['classic','secundary']);
+      requests.p[1]     = getProduct(car[4]);
+      requests.image[1] = car[5];
     }
 
-    if (car[6] || car[7]) {
-      if (car[6]) {
-        requests.whatIs.push(['flat', 'primary']);
-        requests.p.push(getProduct(car[6]));
-        requests.image.push(car[8]);
-      } else {
-        requests.p.push(Promise.resolve());
-        requests.image.push(car[8]);
-      }
-      if (car[7]) {
-        requests.whatIs.push(['flat', 'secundary']);
-        requests.p.push(getProduct(car[7]));
-        requests.image.push(car[8]);
-      } else {
-        requests.p.push(Promise.resolve());
-        requests.image.push(car[8]);
-      }
+    // — Flat —
+    if (car[6]) {
+      requests.whatIs.push(['flat','primary']);
+      requests.p[2]     = getProduct(car[6]);
+      requests.image[2] = car[8];
+    }
+    if (car[7]) {
+      requests.whatIs.push(['flat','secundary']);
+      requests.p[3]     = getProduct(car[7]);
+      requests.image[3] = car[8];
     }
 
     const ans = await Promise.all(requests.p);
 
-    // what to do next: get all responses and fill up the 2 option groups
+    // Classic (ans[0], ans[1])
     let classicPage = initialClassic;
-    let flatPage = initialFlat;
-    opts = [];
-    // handle classic page
-    if (ans[0] !== undefined) {
-      const vari = ans[0].variants;
-      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[0].price) / 100).toFixed(2) + '€' ;
-
+    if (ans[0]) {
+      const vari = ans[0].variants[0];
+      const priceReplacement = !window.customerLoggedIn
+        ? priceInfoPopoverHTML
+        : (Number(ans[0].price)/100).toFixed(2)+'€';
       classicPage = classicPage
-        .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('img0101', ans[0].featured_image||classicPage)
         .replace('nome0', ans[0].title)
-        .replace(/skuskusku0/g, vari[0].sku)
+        .replace(/skuskusku0/g, vari.sku)
         .replace('price1231230', priceReplacement)
-        //.replace('UFGC0', requests.image[0])
-        //.replace('UFGI0', adapt[requests.image[0]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
-      if (!ans[0].available) {
-        classicPage = classicPage.replace('BUY1', 'ESGOTADO');
-      } else {
-        classicPage = classicPage.replace('BUY1', 'ADICIONAR');
-      }
-      opts[0] = vari[0].id;
+        .replace('BUY1', ans[0].available ? 'ADICIONAR' : 'ESGOTADO');
+      opts[0] = vari.id;
     } else {
       classicPage = classicPage.replace('id="opt1"', 'hidden');
     }
-    if (ans[1] !== undefined) {
-      const vari = ans[1].variants;
-      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[1].price) / 100).toFixed(2) + '€';
-
+    if (ans[1]) {
+      const vari = ans[1].variants[0];
+      const priceReplacement = !window.customerLoggedIn
+        ? priceInfoPopoverHTML
+        : (Number(ans[1].price)/100).toFixed(2)+'€';
       classicPage = classicPage
-        .replace('img0102', ans[1].featured_image ? ans[1].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('img0102', ans[1].featured_image||classicPage)
         .replace('nome1', ans[1].title)
-        .replace(/skuskusku1/g, vari[0].sku)
+        .replace(/skuskusku1/g, vari.sku)
         .replace('price1231231', priceReplacement)
-        //.replace('UFGC1', requests.image[1])
-        //.replace('UFGI1', adapt[requests.image[1]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
-      if (!ans[1].available) {
-        classicPage = classicPage.replace('BUY2', 'ESGOTADO');
-      } else {
-        classicPage = classicPage.replace('BUY2', 'ADICIONAR');
-      }
-      opts[1] = vari[0].id;
+        .replace('BUY2', ans[1].available ? 'ADICIONAR' : 'ESGOTADO');
+      opts[1] = vari.id;
     } else {
       classicPage = classicPage.replace('id="opt2"', 'hidden');
     }
-    if (ans[0] !== undefined || ans[1] !== undefined) {
-      classicPage = classicPage.replace('hidden=""', '');
-    }
-
+    if (ans[0]||ans[1]) classicPage = classicPage.replace('hidden=""','');
     document.getElementById('optionClassic').outerHTML = classicPage;
+    initPopovers();
 
-    // Inicializar popover manualmente após a renderização dinâmica do HTML no DOM por ser injetado via JS
-    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
-      .forEach(el => new bootstrap.Popover(el));
-
-    if (ans[2] !== undefined) {
+    // Flat (ans[2], ans[3])
+    let flatPage = initialFlat;
+    if (ans[2]) {
       const vari = ans[2].variants[0];
-      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[2].price) / 100).toFixed(2) + '€';
-
+      const priceReplacement = !window.customerLoggedIn
+        ? priceInfoPopoverHTML
+        : (Number(ans[2].price)/100).toFixed(2)+'€';
       flatPage = flatPage
-        .replace('img0101', ans[2].featured_image ? ans[2].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('img0101', ans[2].featured_image||flatPage)
         .replace('nome0', ans[2].title)
         .replace(/skuskusku0/g, vari.sku)
         .replace('price1231230', priceReplacement)
-        .replace('UFGC0', requests.image[2])
-        .replace('UFGI0', adapt[requests.image[2]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
-      if (!ans[2].available) {
-        flatPage = flatPage.replace('BUY1', 'ESGOTADO');
-      } else {
-        flatPage = flatPage.replace('BUY1', 'ADICIONAR');
-      }
+        .replace('BUY1', ans[2].available ? 'ADICIONAR' : 'ESGOTADO');
       opts[2] = vari.id;
     } else {
-      flatPage = flatPage.replace('id="opt3"', 'hidden');
+      flatPage = flatPage.replace('id="opt3"','hidden');
     }
-    if (ans[3] !== undefined) {
+    if (ans[3]) {
       const vari = ans[3].variants[0];
-      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[3].price) / 100).toFixed(2) + '€';
-
+      const priceReplacement = !window.customerLoggedIn
+        ? priceInfoPopoverHTML
+        : (Number(ans[3].price)/100).toFixed(2)+'€';
       flatPage = flatPage
-        .replace('img0102', ans[3].featured_image ? ans[3].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('img0102', ans[3].featured_image||flatPage)
         .replace('nome1', ans[3].title)
         .replace(/skuskusku1/g, vari.sku)
         .replace('price1231231', priceReplacement)
-        .replace('UFGC1', requests.image[3])
-        .replace('UFGI1', adapt[requests.image[3]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
-      if (!ans[3].available) {
-        flatPage = flatPage.replace('BUY2', 'ESGOTADO');
-      } else {
-        flatPage = flatPage.replace('BUY2', 'ADICIONAR');
-      }
+        .replace('BUY2', ans[3].available ? 'ADICIONAR' : 'ESGOTADO');
       opts[3] = vari.id;
     } else {
-      flatPage = flatPage.replace('id="opt4"', 'hidden');
+      flatPage = flatPage.replace('id="opt4"','hidden');
     }
-    if (ans[2] !== undefined || ans[3] !== undefined) {
-      flatPage = flatPage.replace('hidden=""', '');
-    }
-
+    if (ans[2]||ans[3]) flatPage = flatPage.replace('hidden=""','');
     document.getElementById('optionFlat').outerHTML = flatPage;
+    initPopovers();
 
-    // Inicializar popover manualmente após a renderização dinâmica do HTML no DOM por ser injetado via JS
-    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
-      .forEach(el => new bootstrap.Popover(el));
+    // Destaque das opções mais baratas
+    const p0 = ans[0]?Number(ans[0].price):0;
+    const p1 = ans[1]?Number(ans[1].price):0;
+    const p2 = ans[2]?Number(ans[2].price):0;
+    const p3 = ans[3]?Number(ans[3].price):0;
 
-    const item0Price = ans[0] ? Number(ans[0].price) : 0;
-    const item1Price = ans[1] ? Number(ans[1].price) : 0;
-
-    const item2Price = ans[2] ? Number(ans[2].price) : 0;
-    const item3Price = ans[3] ? Number(ans[3].price) : 0;
-
-    setFirstChild(item0Price + item1Price <= item2Price + item3Price);
-
-    setFirstChildEach('op1', item0Price <= item1Price ? 'opt1' : 'opt2');
-    setFirstChildEach('op2', item2Price <= item3Price ? 'opt3' : 'opt4');
+    setFirstChild((p0+p1) <= (p2+p3));
+    setFirstChildEach('op1', p0 <= p1 ? 'opt1' : 'opt2');
+    setFirstChildEach('op2', p2 <= p3 ? 'opt3' : 'opt4');
   }
+
+  function initPopovers() {
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], #optionFlat [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+  }
+
   function getProduct(sku) {
     return new Promise((resolve, reject) => {
-      let request = new XMLHttpRequest();
-      request.open('GET', '/products/' + sku.split('|')[0] + '.js', false);
-      request.send(null);
-      if (request.status === 200) {
-        const ans = JSON.parse(request.responseText);
-        ans.vari = ans.variants.find((v) => v.sku === sku.split('|')[1]);
+      let req = new XMLHttpRequest();
+      req.open('GET','/products/'+sku.split('|')[0]+'.js',false);
+      req.send(null);
+      if (req.status===200) {
+        const ans = JSON.parse(req.responseText);
+        ans.variants = ans.variants.filter(v=>v.sku===sku.split('|')[1]);
         resolve(ans);
-      } else {
-        reject(request.status);
-      }
+      } else reject(req.status);
     });
   }
-  function handleBuy(id) {
-    console.log(id);
-    const requestEntrie = [
-      {
-        id: opts[id],
-        quantity: 1,
-      },
-    ];
 
-    const request = new XMLHttpRequest();
-    request.open('POST', '/cart/add.js'); // , false
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.addEventListener('load', reqListener);
-    request.send(JSON.stringify({ items: requestEntrie }));
+  function handleBuy(id) {
+    const body = JSON.stringify({ items:[{ id: opts[id], quantity:1 }] });
+    let req = new XMLHttpRequest();
+    req.open('POST','/cart/add.js');
+    req.setRequestHeader('Content-Type','application/json');
+    req.onload = function() {
+      if (this.status!==200) alert('Artigo Esgotado');
+      else {
+        const url = window.location.href.split('?')[0]
+          + '?brand='+brandToId[selectedBrand]
+          + '&model='+modelToId[selectedModel]
+          + '&year='+yearToId[selectedYear];
+        window.location.href = url;
+      }
+    };
+    req.send(body);
   }
-  function reqListener(env) {
-    if (this.status !== 200) {
-      alert('Artigo Esgotado');
-    } else {
-      const a =
-        window.location.href.split('?')[0] +
-        '?brand=' +
-        brandToId[selectedBrand] +
-        '&model=' +
-        modelToId[selectedModel] +
-        '&year=' +
-        yearToId[selectedYear];
-      window.location.href = a;
-    }
-  }
+
   function doMagic() {
     httpGet("{{ 'limpaAdapter.csv' | asset_url }}", handleDataAdapter);
     httpGet("{{ 'outputLimpa.csv' | asset_url }}", handleData);
   }
-  async function httpGet(URL, handler) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', handler);
-    xmlHttp.open('GET', URL);
-
-    xmlHttp.send(null);
+  async function httpGet(url, handler) {
+    let r = new XMLHttpRequest();
+    r.addEventListener('load', handler);
+    r.open('GET', url);
+    r.send();
   }
+
   function handleData() {
-    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+    const rows = this.responseText.trim().split('\n').map(r=>r.split(',').map(v=>v.trim()));
     const ccars = {};
-    for (let i = 1; i < r.length; i++) {
-      const carr = r[i];
-      if (carr[0] === '') continue;
-      if (ccars[carr[0]] === undefined) {
-        ccars[carr[0]] = {};
-      }
-      if (ccars[carr[0]][carr[1]] === undefined) {
-        ccars[carr[0]][carr[1]] = {};
-      }
-      if (ccars[carr[0]][carr[1]][carr[2]] === undefined) {
-        ccars[carr[0]][carr[1]][carr[2]] = carr;
-      }
+    for (let i=1; i<rows.length; i++) {
+      const c = rows[i];
+      if (!c[0]) continue;
+      ccars[c[0]] = ccars[c[0]] || {};
+      ccars[c[0]][c[1]] = ccars[c[0]][c[1]] || {};
+      ccars[c[0]][c[1]][c[2]] = c;
     }
     cars = ccars;
-    const select_elem = document.getElementById('marcadocarro');
+    const sel = document.getElementById('marcadocarro');
     const url = new URLSearchParams(document.location.search);
     brandToId = {};
     idToBrand = {};
-
-    Object.keys(cars).forEach((element, index) => {
-      const option_elem = document.createElement('option');
-
-      // Add index to option_elem
-      option_elem.value = element;
-
-      // Add element HTML
-      option_elem.textContent = element;
-
-      if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
-        option_elem.selected = true;
-      }
-      brandToId[element] = index;
-      idToBrand[index] = element;
-
-      // Append option_elem to select_elem
-      select_elem.appendChild(option_elem);
+    Object.keys(cars).forEach((b,i) => {
+      const o = document.createElement('option');
+      o.value = b; o.textContent = b;
+      if (i===Number(url.get('brand')) && url.get('brand')!==null && loading) o.selected=true;
+      brandToId[b]=i; idToBrand[i]=b;
+      sel.appendChild(o);
     });
-
     initialClassic = document.getElementById('optionClassic').outerHTML;
-    initialFlat = document.getElementById('optionFlat').outerHTML;
-
+    initialFlat    = document.getElementById('optionFlat').outerHTML;
     if (url.get('brand')) {
-      brandChanged({ target: { value: idToBrand[url.get('brand')] } });
-      modelChanged({ target: { value: idToModel[url.get('model')] } });
-      yearChanged({ target: { value: idToYear[url.get('year')] } });
+      brandChanged({target:{value:idToBrand[url.get('brand')]}})
+      modelChanged({target:{value:idToModel[url.get('model')]}})
+      yearChanged({target:{value:idToYear[url.get('year')]}})
     }
-    loading = false;
+    loading=false;
   }
+
   function handleDataAdapter() {
-    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
-    const translator = {};
-    for (let i = 1; i < r.length; i++) {
-      const adapter = r[i];
-      if (adapter[0] === '') continue;
-      translator[adapter[0]] = adapter[1];
+    const rows = this.responseText.trim().split('\n').map(r=>r.split(',').map(v=>v.trim()));
+    adapt = {};
+    for (let i=1; i<rows.length; i++) {
+      if (!rows[i][0]) continue;
+      adapt[rows[i][0]] = rows[i][1];
     }
-    adapt = translator;
   }
-  function setFirstChild(classicTop = true) {
-    const topElement = classicTop ? document.getElementById('optionClassic') : document.getElementById('optionFlat');
 
-    const parent = topElement.parentNode;
-    parent.insertBefore(topElement, parent.firstChild);
-
-    const a = document.getElementById('form_input_stuff');
-    const parent2 = a.parentNode;
-    parent2.insertBefore(a, parent2.firstChild);
+  function setFirstChild(isClassicTop) {
+    const top = isClassicTop ? 'optionClassic' : 'optionFlat';
+    const el  = document.getElementById(top);
+    el.parentNode.insertBefore(el, el.parentNode.firstChild);
+    const form = document.getElementById('form_input_stuff');
+    form.parentNode.insertBefore(form, form.parentNode.firstChild);
   }
-  function setFirstChildEach(first, second) {
-    const topElement = document.getElementById(second);
-
-    const parent = topElement.parentNode;
-    parent.insertBefore(topElement, parent.firstChild);
-
-    const a = document.getElementById(first);
-    const parent2 = a.parentNode;
-    parent2.insertBefore(a, parent2.firstChild);
+  function setFirstChildEach(headerId, optId) {
+    const card = document.getElementById(optId);
+    card.parentNode.insertBefore(card, card.parentNode.firstChild);
+    const hdr = document.getElementById(headerId);
+    hdr.parentNode.insertBefore(hdr, hdr.parentNode.firstChild);
   }
 </script>
 
