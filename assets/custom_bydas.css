@@ -348,18 +348,27 @@ button::after {
 .section-featured-collection .collection__title {
   padding: 0 !important
 }
+  /* removing peek effect from featured products slider on desktop (complemented in js) */
 @media screen and (min-width: 990px) {
-  /* removing peek effect from featured products slider */
   .slider--desktop {
     scroll-snap-type: none !important;
   }
-  .grid--5-col-desktop .grid__item {
+  .section-featured-collection .slider--desktop.grid--5-col-desktop .grid__item {
     width: calc(20% - var(--grid-desktop-horizontal-spacing) * 4 / 5) !important;
     max-width: calc(20% - var(--grid-desktop-horizontal-spacing) * 4 / 5) !important;
   }
   .section-featured-collection .slider--desktop.grid--4-col-desktop .grid__item {
     width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
     max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4) !important;
+  }
+  .section-featured-collection .slider--desktop.grid--3-col-desktop .grid__item {
+    width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3) !important;
+    max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3) !important;
+  }
+
+  .section-featured-collection .slider--desktop.grid--2-col-desktop .grid__item {
+    width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
+    max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2) !important;
   }
   .slider--desktop:after {
     content: "";
