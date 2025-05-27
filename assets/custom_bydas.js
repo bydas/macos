@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
-$('#highlights-slideshow').flickity({
+const $carousel = $('#highlights-slideshow').flickity({
   autoPlay: true,
   groupCells: false,
   cellAlign: 'left',
@@ -191,9 +191,15 @@ $('#highlights-slideshow').flickity({
   wrapAround: true
 });
 
+// Redimensionamento com debounce
+let resizeTimeout;
 $(window).on('resize', function() {
-  $('#highlights-slideshow').flickity('resize');
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function() {
+    $carousel.flickity('resize');
+  }, 150);
 });
+
 
 
 /* ----- Flickity Carousel - BRANDS ----- */
