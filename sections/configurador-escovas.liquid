@@ -323,6 +323,106 @@
 </div>
 
 <script>
+  var loading = true;
+  var cars;
+  var selectedBrand;
+  var selectedModel;
+  var selectedYear;
+  var initialClassic;
+  var initialFlat;
+
+  var brandToId;
+  var idToBrand;
+
+  var modelToId;
+  var idToModel;
+
+  var yearToId;
+  var idToYear;
+
+  var opts;
+  var adapt;
+  doMagic();
+  function brandChanged(event) {
+    const model = document.getElementById('modelodocarro');
+    while (model.length > 1) {
+      model.remove(1);
+    }
+    const year = document.getElementById('anodocarro');
+    while (year.length > 1) {
+      year.remove(1);
+    }
+    modelToId = {};
+    idToModel = {};
+    if (cars !== undefined) {
+      const sel = cars[event.target.value];
+      selectedBrand = event.target.value;
+      const url = new URLSearchParams(document.location.search);
+
+      Object.keys(sel).forEach((car, index) => {
+        const opt = document.createElement('option');
+
+        // Add index to option_elem
+        opt.value = car;
+
+        // Add element HTML
+        opt.textContent = car;
+        if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
+          opt.selected = true;
+        }
+        modelToId[car] = index;
+        idToModel[index] = car;
+
+        // Append option_elem to select_elem
+        model.appendChild(opt);
+      });
+    }
+    document.getElementById('optionClassic').outerHTML = initialClassic;
+    document.getElementById('optionFlat').outerHTML = initialFlat;
+
+    // Inicializar popover manualmente por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+  }
+
+  function modelChanged(event) {
+    const year = document.getElementById('anodocarro');
+    while (year.length > 1) {
+      year.remove(1);
+    }
+    if (cars !== undefined) {
+      selectedModel = event.target.value;
+      const sel = cars[selectedBrand][event.target.value];
+      const url = new URLSearchParams(document.location.search);
+      yearToId = {};
+      idToYear = {};
+
+      Object.keys(sel).forEach((car, index) => {
+        const opt = document.createElement('option');
+
+        // Add index to option_elem
+        opt.value = car;
+
+        // Add element HTML
+        opt.textContent = car;
+
+        if (index === Number(url.get('year')) && url.get('year') !== null && loading) {
+          opt.selected = true;
+        }
+        yearToId[car] = index;
+        idToYear[index] = car;
+
+        // Append option_elem to select_elem
+        year.appendChild(opt);
+      });
+    }
+    document.getElementById('optionClassic').outerHTML = initialClassic;
+    document.getElementById('optionFlat').outerHTML = initialFlat;
+
+    // Inicializar popover manualmente por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+  }
   async function yearChanged(event) {
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
@@ -334,10 +434,16 @@
         requests.whatIs.push(['classic', 'primary']);
         requests.p.push(getProduct(car[3]));
         requests.image.push(car[5]);
+      } else {
+        requests.p.push(Promise.resolve());
+        requests.image.push(car[5]);
       }
       if (car[4]) {
-        requests.whatIs.push(['classic', 'secondary']);
+        requests.whatIs.push(['classic', 'secundary']);
         requests.p.push(getProduct(car[4]));
+        requests.image.push(car[5]);
+      } else {
+        requests.p.push(Promise.resolve());
         requests.image.push(car[5]);
       }
     }
@@ -347,190 +453,273 @@
         requests.whatIs.push(['flat', 'primary']);
         requests.p.push(getProduct(car[6]));
         requests.image.push(car[8]);
+      } else {
+        requests.p.push(Promise.resolve());
+        requests.image.push(car[8]);
       }
       if (car[7]) {
-        requests.whatIs.push(['flat', 'secondary']);
+        requests.whatIs.push(['flat', 'secundary']);
         requests.p.push(getProduct(car[7]));
+        requests.image.push(car[8]);
+      } else {
+        requests.p.push(Promise.resolve());
         requests.image.push(car[8]);
       }
     }
 
     const ans = await Promise.all(requests.p);
 
-    // Organizar as respostas por tipo usando whatIs
-    const classicProducts = { primary: null, secondary: null };
-    const flatProducts = { primary: null, secondary: null };
-
-    ans.forEach((product, index) => {
-      if (product) {
-        const [type, position] = requests.whatIs[index];
-        if (type === 'classic') {
-          classicProducts[position] = product;
-        } else if (type === 'flat') {
-          flatProducts[position] = product;
-        }
-      }
-    });
-
+    // what to do next: get all responses and fill up the 2 option groups
     let classicPage = initialClassic;
     let flatPage = initialFlat;
     opts = [];
+    // handle classic page
+    if (ans[0] !== undefined) {
+      const vari = ans[0].variants;
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[0].price) / 100).toFixed(2) + '€' ;
 
-    // Processar escovas clássicas
-    const hasClassicProducts = classicProducts.primary || classicProducts.secondary;
-
-    if (hasClassicProducts) {
-      // Lado do condutor (primary)
-      if (classicProducts.primary) {
-        const vari = classicProducts.primary.variants;
-        const priceReplacement = !window.customerLoggedIn ?
-          priceInfoPopoverHTML :
-          (Number(classicProducts.primary.price) / 100).toFixed(2) + '€';
-
-        classicPage = classicPage
-          .replace('img0101', classicProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
-          .replace('nome0', classicProducts.primary.title)
-          .replace(/skuskusku0/g, vari[0].sku)
-          .replace('price1231230', priceReplacement);
-
-        if (!classicProducts.primary.available) {
-          classicPage = classicPage.replace('BUY1', 'ESGOTADO');
-        } else {
-          classicPage = classicPage.replace('BUY1', 'ADICIONAR');
-        }
-        opts[0] = vari[0].id;
+      classicPage = classicPage
+        .replace('img0101', ans[0].featured_image ? ans[0].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('nome0', ans[0].title)
+        .replace(/skuskusku0/g, vari[0].sku)
+        .replace('price1231230', priceReplacement)
+        //.replace('UFGC0', requests.image[0])
+        //.replace('UFGI0', adapt[requests.image[0]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
+      if (!ans[0].available) {
+        classicPage = classicPage.replace('BUY1', 'ESGOTADO');
       } else {
-        classicPage = classicPage.replace('id="opt1"', 'style="display:none;" id="opt1"');
+        classicPage = classicPage.replace('BUY1', 'ADICIONAR');
       }
+      opts[0] = vari[0].id;
+    } else {
+      classicPage = classicPage.replace('id="opt1"', 'hidden');
+    }
+    if (ans[1] !== undefined) {
+      const vari = ans[1].variants;
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[1].price) / 100).toFixed(2) + '€';
 
-      // Lado do passageiro (secondary)
-      if (classicProducts.secondary) {
-        const vari = classicProducts.secondary.variants;
-        const priceReplacement = !window.customerLoggedIn ?
-          priceInfoPopoverHTML :
-          (Number(classicProducts.secondary.price) / 100).toFixed(2) + '€';
-
-        classicPage = classicPage
-          .replace('img0102', classicProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
-          .replace('nome1', classicProducts.secondary.title)
-          .replace(/skuskusku1/g, vari[0].sku)
-          .replace('price1231231', priceReplacement);
-
-        if (!classicProducts.secondary.available) {
-          classicPage = classicPage.replace('BUY2', 'ESGOTADO');
-        } else {
-          classicPage = classicPage.replace('BUY2', 'ADICIONAR');
-        }
-        opts[1] = vari[0].id;
+      classicPage = classicPage
+        .replace('img0102', ans[1].featured_image ? ans[1].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('nome1', ans[1].title)
+        .replace(/skuskusku1/g, vari[0].sku)
+        .replace('price1231231', priceReplacement)
+        //.replace('UFGC1', requests.image[1])
+        //.replace('UFGI1', adapt[requests.image[1]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
+      if (!ans[1].available) {
+        classicPage = classicPage.replace('BUY2', 'ESGOTADO');
       } else {
-        classicPage = classicPage.replace('id="opt2"', 'style="display:none;" id="opt2"');
+        classicPage = classicPage.replace('BUY2', 'ADICIONAR');
       }
-
-      // Mostrar a div de escovas clássicas
+      opts[1] = vari[0].id;
+    } else {
+      classicPage = classicPage.replace('id="opt2"', 'hidden');
+    }
+    if (ans[0] !== undefined || ans[1] !== undefined) {
       classicPage = classicPage.replace('hidden=""', '');
     }
 
-    // Processar escovas flat
-    const hasFlatProducts = flatProducts.primary || flatProducts.secondary;
+    document.getElementById('optionClassic').outerHTML = classicPage;
 
-    if (hasFlatProducts) {
-      // Lado do condutor (primary)
-      if (flatProducts.primary) {
-        const vari = flatProducts.primary.variants[0];
-        const priceReplacement = !window.customerLoggedIn ?
-          priceInfoPopoverHTML :
-          (Number(flatProducts.primary.price) / 100).toFixed(2) + '€';
+    // Inicializar popover manualmente após a renderização dinâmica do HTML no DOM por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
 
-        flatPage = flatPage
-          .replace('img0101', flatProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
-          .replace('nome0', flatProducts.primary.title)
-          .replace(/skuskusku0/g, vari.sku)
-          .replace('price1231230', priceReplacement);
+    if (ans[2] !== undefined) {
+      const vari = ans[2].variants[0];
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[2].price) / 100).toFixed(2) + '€';
 
-        // Encontrar a imagem correspondente nos requests
-        const primaryFlatImageIndex = requests.whatIs.findIndex(([type, pos]) => type === 'flat' && pos === 'primary');
-        if (primaryFlatImageIndex !== -1) {
-          flatPage = flatPage
-            .replace('UFGC0', requests.image[primaryFlatImageIndex])
-            .replace('UFGI0', adapt[requests.image[primaryFlatImageIndex]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
-        }
-
-        if (!flatProducts.primary.available) {
-          flatPage = flatPage.replace('BUY1', 'ESGOTADO');
-        } else {
-          flatPage = flatPage.replace('BUY1', 'ADICIONAR');
-        }
-        opts[2] = vari.id;
+      flatPage = flatPage
+        .replace('img0101', ans[2].featured_image ? ans[2].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('nome0', ans[2].title)
+        .replace(/skuskusku0/g, vari.sku)
+        .replace('price1231230', priceReplacement)
+        .replace('UFGC0', requests.image[2])
+        .replace('UFGI0', adapt[requests.image[2]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
+      if (!ans[2].available) {
+        flatPage = flatPage.replace('BUY1', 'ESGOTADO');
       } else {
-        flatPage = flatPage.replace('id="opt3"', 'style="display:none;" id="opt3"');
+        flatPage = flatPage.replace('BUY1', 'ADICIONAR');
       }
+      opts[2] = vari.id;
+    } else {
+      flatPage = flatPage.replace('id="opt3"', 'hidden');
+    }
+    if (ans[3] !== undefined) {
+      const vari = ans[3].variants[0];
+      const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(ans[3].price) / 100).toFixed(2) + '€';
 
-      // Lado do passageiro (secondary)
-      if (flatProducts.secondary) {
-        const vari = flatProducts.secondary.variants[0];
-        const priceReplacement = !window.customerLoggedIn ?
-          priceInfoPopoverHTML :
-          (Number(flatProducts.secondary.price) / 100).toFixed(2) + '€';
-
-        flatPage = flatPage
-          .replace('img0102', flatProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
-          .replace('nome1', flatProducts.secondary.title)
-          .replace(/skuskusku1/g, vari.sku)
-          .replace('price1231231', priceReplacement);
-
-        // Encontrar a imagem correspondente nos requests
-        const secondaryFlatImageIndex = requests.whatIs.findIndex(([type, pos]) => type === 'flat' && pos === 'secondary');
-        if (secondaryFlatImageIndex !== -1) {
-          flatPage = flatPage
-            .replace('UFGC1', requests.image[secondaryFlatImageIndex])
-            .replace('UFGI1', adapt[requests.image[secondaryFlatImageIndex]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
-        }
-
-        if (!flatProducts.secondary.available) {
-          flatPage = flatPage.replace('BUY2', 'ESGOTADO');
-        } else {
-          flatPage = flatPage.replace('BUY2', 'ADICIONAR');
-        }
-        opts[3] = vari.id;
+      flatPage = flatPage
+        .replace('img0102', ans[3].featured_image ? ans[3].featured_image : 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
+        .replace('nome1', ans[3].title)
+        .replace(/skuskusku1/g, vari.sku)
+        .replace('price1231231', priceReplacement)
+        .replace('UFGC1', requests.image[3])
+        .replace('UFGI1', adapt[requests.image[3]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
+      if (!ans[3].available) {
+        flatPage = flatPage.replace('BUY2', 'ESGOTADO');
       } else {
-        flatPage = flatPage.replace('id="opt4"', 'style="display:none;" id="opt4"');
+        flatPage = flatPage.replace('BUY2', 'ADICIONAR');
       }
-
-      // Mostrar a div de escovas flat
+      opts[3] = vari.id;
+    } else {
+      flatPage = flatPage.replace('id="opt4"', 'hidden');
+    }
+    if (ans[2] !== undefined || ans[3] !== undefined) {
       flatPage = flatPage.replace('hidden=""', '');
     }
 
-    // Atualizar o DOM
-    document.getElementById('optionClassic').outerHTML = classicPage;
     document.getElementById('optionFlat').outerHTML = flatPage;
 
-    // Inicializar popovers
-    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], #optionFlat [data-bs-toggle="popover"]')
+    // Inicializar popover manualmente após a renderização dinâmica do HTML no DOM por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
       .forEach(el => new bootstrap.Popover(el));
 
-    // Calcular preços e ordenar
-    const classicTotalPrice = (classicProducts.primary ? Number(classicProducts.primary.price) : 0) +
-                             (classicProducts.secondary ? Number(classicProducts.secondary.price) : 0);
-    const flatTotalPrice = (flatProducts.primary ? Number(flatProducts.primary.price) : 0) +
-                          (flatProducts.secondary ? Number(flatProducts.secondary.price) : 0);
+    const item0Price = ans[0] ? Number(ans[0].price) : 0;
+    const item1Price = ans[1] ? Number(ans[1].price) : 0;
 
-    // Só ordenar se ambos os tipos existirem
-    if (hasClassicProducts && hasFlatProducts) {
-      setFirstChild(classicTotalPrice <= flatTotalPrice);
-    }
+    const item2Price = ans[2] ? Number(ans[2].price) : 0;
+    const item3Price = ans[3] ? Number(ans[3].price) : 0;
 
-    // Ordenar dentro de cada categoria
-    if (hasClassicProducts && classicProducts.primary && classicProducts.secondary) {
-      const primaryPrice = Number(classicProducts.primary.price);
-      const secondaryPrice = Number(classicProducts.secondary.price);
-      setFirstChildEach('op1', primaryPrice <= secondaryPrice ? 'opt1' : 'opt2');
-    }
+    setFirstChild(item0Price + item1Price <= item2Price + item3Price);
 
-    if (hasFlatProducts && flatProducts.primary && flatProducts.secondary) {
-      const primaryPrice = Number(flatProducts.primary.price);
-      const secondaryPrice = Number(flatProducts.secondary.price);
-      setFirstChildEach('op2', primaryPrice <= secondaryPrice ? 'opt3' : 'opt4');
+    setFirstChildEach('op1', item0Price <= item1Price ? 'opt1' : 'opt2');
+    setFirstChildEach('op2', item2Price <= item3Price ? 'opt3' : 'opt4');
+  }
+  function getProduct(sku) {
+    return new Promise((resolve, reject) => {
+      let request = new XMLHttpRequest();
+      request.open('GET', '/products/' + sku.split('|')[0] + '.js', false);
+      request.send(null);
+      if (request.status === 200) {
+        const ans = JSON.parse(request.responseText);
+        ans.vari = ans.variants.find((v) => v.sku === sku.split('|')[1]);
+        resolve(ans);
+      } else {
+        reject(request.status);
+      }
+    });
+  }
+  function handleBuy(id) {
+    console.log(id);
+    const requestEntrie = [
+      {
+        id: opts[id],
+        quantity: 1,
+      },
+    ];
+
+    const request = new XMLHttpRequest();
+    request.open('POST', '/cart/add.js'); // , false
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener('load', reqListener);
+    request.send(JSON.stringify({ items: requestEntrie }));
+  }
+  function reqListener(env) {
+    if (this.status !== 200) {
+      alert('Artigo Esgotado');
+    } else {
+      const a =
+        window.location.href.split('?')[0] +
+        '?brand=' +
+        brandToId[selectedBrand] +
+        '&model=' +
+        modelToId[selectedModel] +
+        '&year=' +
+        yearToId[selectedYear];
+      window.location.href = a;
     }
+  }
+  function doMagic() {
+    httpGet("{{ 'limpaAdapter.csv' | asset_url }}", handleDataAdapter);
+    httpGet("{{ 'outputLimpa.csv' | asset_url }}", handleData);
+  }
+  async function httpGet(URL, handler) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.addEventListener('load', handler);
+    xmlHttp.open('GET', URL);
+
+    xmlHttp.send(null);
+  }
+  function handleData() {
+    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+    const ccars = {};
+    for (let i = 1; i < r.length; i++) {
+      const carr = r[i];
+      if (carr[0] === '') continue;
+      if (ccars[carr[0]] === undefined) {
+        ccars[carr[0]] = {};
+      }
+      if (ccars[carr[0]][carr[1]] === undefined) {
+        ccars[carr[0]][carr[1]] = {};
+      }
+      if (ccars[carr[0]][carr[1]][carr[2]] === undefined) {
+        ccars[carr[0]][carr[1]][carr[2]] = carr;
+      }
+    }
+    cars = ccars;
+    const select_elem = document.getElementById('marcadocarro');
+    const url = new URLSearchParams(document.location.search);
+    brandToId = {};
+    idToBrand = {};
+
+    Object.keys(cars).forEach((element, index) => {
+      const option_elem = document.createElement('option');
+
+      // Add index to option_elem
+      option_elem.value = element;
+
+      // Add element HTML
+      option_elem.textContent = element;
+
+      if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
+        option_elem.selected = true;
+      }
+      brandToId[element] = index;
+      idToBrand[index] = element;
+
+      // Append option_elem to select_elem
+      select_elem.appendChild(option_elem);
+    });
+
+    initialClassic = document.getElementById('optionClassic').outerHTML;
+    initialFlat = document.getElementById('optionFlat').outerHTML;
+
+    if (url.get('brand')) {
+      brandChanged({ target: { value: idToBrand[url.get('brand')] } });
+      modelChanged({ target: { value: idToModel[url.get('model')] } });
+      yearChanged({ target: { value: idToYear[url.get('year')] } });
+    }
+    loading = false;
+  }
+  function handleDataAdapter() {
+    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+    const translator = {};
+    for (let i = 1; i < r.length; i++) {
+      const adapter = r[i];
+      if (adapter[0] === '') continue;
+      translator[adapter[0]] = adapter[1];
+    }
+    adapt = translator;
+  }
+  function setFirstChild(classicTop = true) {
+    const topElement = classicTop ? document.getElementById('optionClassic') : document.getElementById('optionFlat');
+
+    const parent = topElement.parentNode;
+    parent.insertBefore(topElement, parent.firstChild);
+
+    const a = document.getElementById('form_input_stuff');
+    const parent2 = a.parentNode;
+    parent2.insertBefore(a, parent2.firstChild);
+  }
+  function setFirstChildEach(first, second) {
+    const topElement = document.getElementById(second);
+
+    const parent = topElement.parentNode;
+    parent.insertBefore(topElement, parent.firstChild);
+
+    const a = document.getElementById(first);
+    const parent2 = a.parentNode;
+    parent2.insertBefore(a, parent2.firstChild);
   }
 </script>
 
