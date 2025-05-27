@@ -234,72 +234,54 @@ $carousel.on('mouseleave', function() {
 
 
 /* ----- FEATURED COLLECTION ----- */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.section-featured-collection').forEach(section => {
     const track   = section.querySelector('.slider');
     const prevBtn = section.querySelector('.slider-button--prev');
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    // 1. Dados estáticos
-    const firstItem = track.querySelector('.grid__item');
-    const itemWidth = firstItem.offsetWidth;
-
-    // 2. Função para recalcular gap, pageWidth, scrollStep, maxScroll e injectar padding no final
+    // Lê sempre estes valores actualizados
     function recalc() {
-      const style      = getComputedStyle(track);
-      const gap        = parseFloat(style.getPropertyValue('column-gap')) || 0;
-      const pageWidth  = track.clientWidth;
-      const scrollStep = pageWidth + gap;
-      const maxScroll  = track.scrollWidth - pageWidth;
-
-      // --- ⬇️ aqui fazes o truque do padding dinamicamente ⬇️ ---
-      const totalItems = track.children.length;
-      // Calcula quantas colunas cabem (round para evitar frações)
-      const cols = Math.round((pageWidth + gap) / (itemWidth + gap));
-      // Quantos sobram na última "página"
-      let lastCount = totalItems % cols;
-      if (lastCount === 0) lastCount = cols; // se exacto, enche sempre página
-      if (lastCount < cols) {
-        // largura do grupo final
-        const lastWidth = lastCount * itemWidth + (lastCount - 1) * gap;
-        // padding necessário para fazer caber esse grupo à esquerda
-        const padEnd = pageWidth - lastWidth;
-        track.style.paddingInlineEnd = `${padEnd}px`;
-      } else {
-        track.style.paddingInlineEnd = '';
-      }
-
-      return { scrollStep, maxScroll, current: track.scrollLeft };
+      const style     = getComputedStyle(track);
+      const gap       = parseFloat(style.getPropertyValue('column-gap')) || 0;
+      const pageWidth = track.clientWidth;
+      const scrollAmt = pageWidth + gap;
+      const maxScroll = track.scrollWidth - pageWidth;
+      // Calcula quantas “páginas” cabem até ao maxScroll
+      const totalPages = Math.ceil(maxScroll / scrollAmt) + 1;
+      return { gap, pageWidth, scrollAmt, maxScroll, totalPages };
     }
 
-    // 3. Função que faz o scroll “página a página” com clamp
-    function scrollByPage(dir) {
-      const { scrollStep, maxScroll, current } = recalc();
-      let next = current + dir * scrollStep;
-      next = Math.min(Math.max(next, 0), maxScroll);
-      track.scrollTo({ left: next, behavior: 'smooth' });
+    function getPageIndex(scrollAmt) {
+      // Índice arredondado para o mais próximo
+      return Math.round(track.scrollLeft / scrollAmt);
     }
 
-    // 4. Liga eventos
-    nextBtn.addEventListener('click', e => {
-      e.stopImmediatePropagation();
-      e.preventDefault();
-      scrollByPage(+1);
+    // Handler genérico
+    function onNav(dir) {
+      const { scrollAmt, maxScroll, totalPages } = recalc();
+      const currentPage = getPageIndex(scrollAmt);
+      // Novo índice limitado a [0, totalPages-1]
+      let targetPage = Math.min(Math.max(currentPage + dir, 0), totalPages - 1);
+      // Calcula o novo scrollLeft
+      const targetLeft = Math.min(targetPage * scrollAmt, maxScroll);
+      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', evt => {
+      evt.stopImmediatePropagation();
+      evt.preventDefault();
+      onNav(-1);
     }, { capture: true });
 
-    prevBtn.addEventListener('click', e => {
-      e.stopImmediatePropagation();
-      e.preventDefault();
-      scrollByPage(-1);
+    nextBtn.addEventListener('click', evt => {
+      evt.stopImmediatePropagation();
+      evt.preventDefault();
+      onNav(+1);
     }, { capture: true });
-
-    // 5. Se a janela redimensionar, recalcula o padding
-    window.addEventListener('resize', () => recalc());
   });
 });
-
-
 
 
 
