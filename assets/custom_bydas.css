@@ -21,6 +21,7 @@ hr {
 
 .header {
   background: linear-gradient(0deg, rgb(220, 220, 220), white) !important;
+  z-index: 20;
 }
 
 .header-description {
