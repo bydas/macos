@@ -486,7 +486,7 @@
         //.replace('UFGC0', requests.image[0])
         //.replace('UFGI0', adapt[requests.image[0]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[0].available) {
-        classicPage = classicPage.replace('BUY1', 'esgotado');
+        classicPage = classicPage.replace('BUY1', 'ESGOTADO');
       } else {
         classicPage = classicPage.replace('BUY1', 'ADICIONAR');
       }
@@ -506,7 +506,7 @@
         //.replace('UFGC1', requests.image[1])
         //.replace('UFGI1', adapt[requests.image[1]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[1].available) {
-        classicPage = classicPage.replace('BUY2', 'esgotado');
+        classicPage = classicPage.replace('BUY2', 'ESGOTADO');
       } else {
         classicPage = classicPage.replace('BUY2', 'ADICIONAR');
       }
@@ -536,7 +536,7 @@
         .replace('UFGC0', requests.image[2])
         .replace('UFGI0', adapt[requests.image[2]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[2].available) {
-        flatPage = flatPage.replace('BUY1', 'esgotado');
+        flatPage = flatPage.replace('BUY1', 'ESGOTADO');
       } else {
         flatPage = flatPage.replace('BUY1', 'ADICIONAR');
       }
@@ -556,7 +556,7 @@
         .replace('UFGC1', requests.image[3])
         .replace('UFGI1', adapt[requests.image[3]] || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300');
       if (!ans[3].available) {
-        flatPage = flatPage.replace('BUY2', 'esgotado');
+        flatPage = flatPage.replace('BUY2', 'ESGOTADO');
       } else {
         flatPage = flatPage.replace('BUY2', 'ADICIONAR');
       }
@@ -616,7 +616,7 @@
   }
   function reqListener(env) {
     if (this.status !== 200) {
-      alert('artigo esgotado');
+      alert('Artigo Esgotado');
     } else {
       const a =
         window.location.href.split('?')[0] +
