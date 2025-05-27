@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
-if (document.querySelector(#highlights-slideshow)) {
+if (document.querySelector(#highlights-slideshow).length) {
   $('#highlights-slideshow').flickity({
   autoPlay: true,
   groupCells: false,
