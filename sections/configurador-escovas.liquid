@@ -608,7 +608,7 @@
       flatPage = flatPage.replace('hidden=""', '');
     }
 
-    if (!hasClassicProducts && !hasFlatProducts) {
+    if (!hasClassicProducts.length && !hasFlatProducts.length) {
       infoNoProducts.style.display = "block";
     }
 
