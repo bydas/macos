@@ -353,6 +353,9 @@ button::after {
   .slider--desktop {
     scroll-snap-type: none !important;
   }
+      .slider-component-full-width .slider--desktop {
+        scroll-padding-left: 0 !important;
+    }
   .section-featured-collection .slider--desktop.grid--5-col-desktop .grid__item {
     width: calc(20% - var(--grid-desktop-horizontal-spacing) * 4 / 5) !important;
     max-width: calc(20% - var(--grid-desktop-horizontal-spacing) * 4 / 5) !important;
