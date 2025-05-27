@@ -180,22 +180,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
-if (document.querySelector(#highlights-slideshow).length) {
+const highlightsSlideshow = document.getElementById("highlights-slideshow")
+if (highlightsSlideshow) {
   $('#highlights-slideshow').flickity({
-  autoPlay: true,
-  groupCells: false,
-  cellAlign: 'left',
-  contain: true,
-  pageDots: true,
-  draggable: true,
-  resize: true,
-  adaptiveHeight: false,
-  wrapAround: true
-});
-
-$(window).on('resize', function() {
-  $('#highlights-slideshow').flickity('resize');
-});
+    autoPlay: true,
+    groupCells: false,
+    cellAlign: 'left',
+    contain: true,
+    pageDots: true,
+    draggable: true,
+    resize: true,
+    adaptiveHeight: false,
+    wrapAround: true
+  });
+  
+  $(window).on('resize', function() {
+    $('#highlights-slideshow').flickity('resize');
+  });
 }
 
 
