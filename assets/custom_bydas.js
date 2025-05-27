@@ -234,54 +234,45 @@ $carousel.on('mouseleave', function() {
 
 
 /* ----- FEATURED COLLECTION ----- */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.section-featured-collection').forEach(section => {
     const track   = section.querySelector('.slider');
     const prevBtn = section.querySelector('.slider-button--prev');
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    // Lê sempre estes valores actualizados
     function recalc() {
-      const style     = getComputedStyle(track);
-      const gap       = parseFloat(style.getPropertyValue('column-gap')) || 0;
-      const pageWidth = track.clientWidth;
-      const scrollAmt = pageWidth + gap;
-      const maxScroll = track.scrollWidth - pageWidth;
-      // Calcula quantas “páginas” cabem até ao maxScroll
-      const totalPages = Math.ceil(maxScroll / scrollAmt) + 1;
-      return { gap, pageWidth, scrollAmt, maxScroll, totalPages };
+      const style      = getComputedStyle(track);
+      const gap        = parseFloat(style.getPropertyValue('column-gap')) || 0;
+      const pageWidth  = track.clientWidth;
+      const scrollStep = pageWidth + gap;
+      const maxScroll  = track.scrollWidth - pageWidth;
+      return { scrollStep, maxScroll, current: track.scrollLeft };
     }
 
-    function getPageIndex(scrollAmt) {
-      // Índice arredondado para o mais próximo
-      return Math.round(track.scrollLeft / scrollAmt);
+    function scrollByPage(dir) {
+      const { scrollStep, maxScroll, current } = recalc();
+      // Próxima posição antes de clamping
+      let next = current + dir * scrollStep;
+      // Clampa entre 0 e maxScroll
+      next = Math.min( Math.max(next, 0), maxScroll );
+      track.scrollTo({ left: next, behavior: 'smooth' });
     }
 
-    // Handler genérico
-    function onNav(dir) {
-      const { scrollAmt, maxScroll, totalPages } = recalc();
-      const currentPage = getPageIndex(scrollAmt);
-      // Novo índice limitado a [0, totalPages-1]
-      let targetPage = Math.min(Math.max(currentPage + dir, 0), totalPages - 1);
-      // Calcula o novo scrollLeft
-      const targetLeft = Math.min(targetPage * scrollAmt, maxScroll);
-      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
-    }
-
-    prevBtn.addEventListener('click', evt => {
-      evt.stopImmediatePropagation();
-      evt.preventDefault();
-      onNav(-1);
+    nextBtn.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      scrollByPage(+1);
     }, { capture: true });
 
-    nextBtn.addEventListener('click', evt => {
-      evt.stopImmediatePropagation();
-      evt.preventDefault();
-      onNav(+1);
+    prevBtn.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      scrollByPage(-1);
     }, { capture: true });
   });
 });
+
 
 
 
