@@ -376,6 +376,15 @@ button::after {
     padding-left: 0 !important;
     margin-left: 0 !important;
   }
+
+.section-featured-collection .slider {
+    /* remove todo o padding lateral */
+    padding-inline-start: 0 !important;
+    padding-inline-end:   0 !important;
+    /* anula também a variável que define esse gutter */
+    --slider-gutter: 0px !important;
+  }
+  
 }
 
 
