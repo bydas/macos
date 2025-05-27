@@ -233,7 +233,7 @@ $carousel.on('mouseleave', function() {
 
 
 
-
+/* ----- FEATURED COLLECTION ----- */
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.section-featured-collection').forEach(section => {
     const track   = section.querySelector('.slider');
@@ -241,25 +241,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    // Calcula apenas uma vez o gap + largura visível
-    const firstItem = track.querySelector('.grid__item');
-    const style     = getComputedStyle(firstItem);
-    const gap       = parseFloat(style.marginRight);
-    const pageWidth = track.clientWidth;
-    const scrollAmt = pageWidth + gap;
-
     [prevBtn, nextBtn].forEach(btn => {
-      // Usa captura para anular o click do tema original
       btn.addEventListener('click', function(evt) {
         evt.stopImmediatePropagation();
         evt.preventDefault();
 
+        // 1. Recalcular sempre o gap (column-gap) e a largura visível
+        const style     = getComputedStyle(track);
+        const gap       = parseFloat(style.getPropertyValue('column-gap')) || 0;
+        const pageWidth = track.clientWidth;
+        const scrollAmt = pageWidth + gap;
+
+        // 2. Determinar direção
         const dir = this.classList.contains('slider-button--next') ?  1 : -1;
+        // 3. Scroll exato: N*(item+gap)
         track.scrollBy({ left: scrollAmt * dir, behavior: 'smooth' });
       }, { capture: true });
     });
   });
 });
+
 
 
 
