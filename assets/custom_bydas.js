@@ -5,6 +5,7 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 /* ----- Flickity Carousel - CATEGORIES ----- */
 $(document).ready(function () {
   var $carousel = $('#categories-carousel');
+  if (!$carousel) return;
   var groupCells = 0;
 
   // breakpoints for groupcells
