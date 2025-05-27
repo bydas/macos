@@ -241,25 +241,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    [prevBtn, nextBtn].forEach(btn => {
-      btn.addEventListener('click', function(evt) {
-        evt.stopImmediatePropagation();
-        evt.preventDefault();
+    // Lê sempre estes valores actualizados
+    function recalc() {
+      const style     = getComputedStyle(track);
+      const gap       = parseFloat(style.getPropertyValue('column-gap')) || 0;
+      const pageWidth = track.clientWidth;
+      const scrollAmt = pageWidth + gap;
+      const maxScroll = track.scrollWidth - pageWidth;
+      // Calcula quantas “páginas” cabem até ao maxScroll
+      const totalPages = Math.ceil(maxScroll / scrollAmt) + 1;
+      return { gap, pageWidth, scrollAmt, maxScroll, totalPages };
+    }
 
-        // 1. Recalcular sempre o gap (column-gap) e a largura visível
-        const style     = getComputedStyle(track);
-        const gap       = parseFloat(style.getPropertyValue('column-gap')) || 0;
-        const pageWidth = track.clientWidth;
-        const scrollAmt = pageWidth + gap;
+    function getPageIndex(scrollAmt) {
+      // Índice arredondado para o mais próximo
+      return Math.round(track.scrollLeft / scrollAmt);
+    }
 
-        // 2. Determinar direção
-        const dir = this.classList.contains('slider-button--next') ?  1 : -1;
-        // 3. Scroll exato: N*(item+gap)
-        track.scrollBy({ left: scrollAmt * dir, behavior: 'smooth' });
-      }, { capture: true });
-    });
+    // Handler genérico
+    function onNav(dir) {
+      const { scrollAmt, maxScroll, totalPages } = recalc();
+      const currentPage = getPageIndex(scrollAmt);
+      // Novo índice limitado a [0, totalPages-1]
+      let targetPage = Math.min(Math.max(currentPage + dir, 0), totalPages - 1);
+      // Calcula o novo scrollLeft
+      const targetLeft = Math.min(targetPage * scrollAmt, maxScroll);
+      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', evt => {
+      evt.stopImmediatePropagation();
+      evt.preventDefault();
+      onNav(-1);
+    }, { capture: true });
+
+    nextBtn.addEventListener('click', evt => {
+      evt.stopImmediatePropagation();
+      evt.preventDefault();
+      onNav(+1);
+    }, { capture: true });
   });
 });
+
 
 
 
