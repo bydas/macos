@@ -28,7 +28,7 @@
           "correntes-de-neve",
           "diversos",
           "eletricidade-auto",
-          "emergencia-1",
+          "emergencia",
           "escovas-limpa-para-brisas",
           "farois-e-farolins",
           "ferramentas",
@@ -83,7 +83,7 @@
           "type": "slide",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/destaque2.jpg"
+            "image": "shopify://shop_images/restore.jpg"
           }
         },
         "slide_etEh6X": {
