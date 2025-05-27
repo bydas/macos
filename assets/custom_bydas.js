@@ -1,8 +1,6 @@
 // Bootstrap Popover Initialization
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]') ?? null;
-if (popoverTriggerList) {
-  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-} 
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 
 /* ----- Flickity Carousel - CATEGORIES ----- */
 $(document).ready(function () {
