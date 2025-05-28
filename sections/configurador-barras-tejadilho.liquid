@@ -261,8 +261,8 @@
         const solutionOptions = {};
 
         for (const solution of solutions) {
-          const currentOption = solution.IdOption;
-          const optionProducts = solutions.filter((s) => s.IdOption === currentOption);
+          const currentOption = solution.idOption;
+          const optionProducts = solutions.filter((s) => s.idOption === currentOption);
           
           if (!solutionOptions[currentOption]) {
             solutionOptions[currentOption] = optionProducts;
@@ -278,7 +278,7 @@
             
             const blockTitle = document.createElement("h1");
             blockTitle.classList.add("card_title");
-            blockTitle.innerText = `Opção ${index + 1} - ${value[0].NombreSolucion}`;
+            blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
 
             const blockFeatures = document.createElement("div");
             blockFeatures.classList.add("card_section", "card-barras-tejadilho");
@@ -286,8 +286,8 @@
             const optionImgContainer = document.createElement("div");
             optionImgContainer.classList.add("col-12", "col-lg-2");
             const optionImg = document.createElement("img");
-            optionImg.setAttribute("src", value[0].OptionImage);
-            optionImg.setAttribute("alt", value[0].NombreSolucion);
+            optionImg.setAttribute("src", value[0].optionImage);
+            optionImg.setAttribute("alt", value[0].solutionName);
             optionImg.classList.add("option-image");
             optionImgContainer.appendChild(optionImg);
             
@@ -408,8 +408,8 @@
               const optional = document.createElement("input");
               optional.type = "checkbox";
               optional.classList.add("solution_optional");
-              optional.checked = !s.Optional;
-              optional.disabled = !s.Optional;
+              optional.checked = !s.optional;
+              optional.disabled = !s.optional;
               optional.setAttribute("data-price", s.price);
               optional.setAttribute("data-solution", key);
               optional.setAttribute("data-products", `btn-${key}`);
@@ -419,7 +419,7 @@
 
               productsId.push(s.id);
 
-              if (!s.Optional) {
+              if (!s.optional) {
                 totalPrice += Number(s.price);
                 buyBtn.setAttribute("data-products-id", productsId.join(","));
               };
