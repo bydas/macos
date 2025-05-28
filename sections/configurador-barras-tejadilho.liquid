@@ -127,9 +127,9 @@
               solutions.length = 0;
             }
 
-            console.log(actionData);
+            const is_array = Array.isArray(actionData[request]);
             
-            data.push(...actionData[request]);
+            data.push(is_array ? ...actionData[request] : actionData[request]);
           }
         })
         .catch((error) => console.error(error))
