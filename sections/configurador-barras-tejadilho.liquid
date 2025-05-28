@@ -129,9 +129,11 @@
 
             const value = actionData[request];
             
-            data.push(...(Array.isArray(value) ? value : [value]));
-
-            console.log(data);
+            if (Array.isArray(value)) {
+              data.push(...value);
+            } else {
+              data.push(value);
+            }
           }
         })
         .catch((error) => console.error(error))
