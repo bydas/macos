@@ -126,6 +126,8 @@
               bodies.length = 0;
               solutions.length = 0;
             }
+
+            console.log(data);
             
             data.push(...actionData[request]);
           }
@@ -259,8 +261,8 @@
         const solutionOptions = {};
 
         for (const solution of solutions) {
-          const currentOption = solution.idOption;
-          const optionProducts = solutions.filter((s) => s.idOption === currentOption);
+          const currentOption = solution.IdOption;
+          const optionProducts = solutions.filter((s) => s.IdOption === currentOption);
           
           if (!solutionOptions[currentOption]) {
             solutionOptions[currentOption] = optionProducts;
@@ -276,7 +278,7 @@
             
             const blockTitle = document.createElement("h1");
             blockTitle.classList.add("card_title");
-            blockTitle.innerText = `Opção ${index + 1} - ${value[0].solutionName}`;
+            blockTitle.innerText = `Opção ${index + 1} - ${value[0].NombreSolucion}`;
 
             const blockFeatures = document.createElement("div");
             blockFeatures.classList.add("card_section", "card-barras-tejadilho");
@@ -284,8 +286,8 @@
             const optionImgContainer = document.createElement("div");
             optionImgContainer.classList.add("col-12", "col-lg-2");
             const optionImg = document.createElement("img");
-            optionImg.setAttribute("src", value[0].optionImage);
-            optionImg.setAttribute("alt", value[0].solutionName);
+            optionImg.setAttribute("src", value[0].OptionImage);
+            optionImg.setAttribute("alt", value[0].NombreSolucion);
             optionImg.classList.add("option-image");
             optionImgContainer.appendChild(optionImg);
             
@@ -367,7 +369,7 @@
               const titleContainer = document.createElement("div");
               
               const title = document.createElement("h3");
-              title.innerText = s.product.title; 
+              title.innerText = s.shopify.product.title; 
 
               titleContainer.appendChild(title)
 
@@ -382,7 +384,7 @@
               }
               
               const sku = document.createElement("a");
-              sku.innerText = s.sku;
+              sku.innerText = s.SKU;
               sku.href = `/products/${s.product.handle}`;
 
               const priceLabel = document.createElement("span");
@@ -391,7 +393,7 @@
               const price = document.createElement("span");
 
               if (window.customerLoggedIn) {
-                price.innerText = s.price + "€";
+                price.innerText = s.shopify.price + "€";
               } else {
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
                 price.innerHTML = priceInfoPopoverHTML;
@@ -406,9 +408,9 @@
               const optional = document.createElement("input");
               optional.type = "checkbox";
               optional.classList.add("solution_optional");
-              optional.checked = !s.optional;
-              optional.disabled = !s.optional;
-              optional.setAttribute("data-price", s.price);
+              optional.checked = !s.Optional;
+              optional.disabled = !s.Optional;
+              optional.setAttribute("data-price", s.shopify.price);
               optional.setAttribute("data-solution", key);
               optional.setAttribute("data-products", `btn-${key}`);
               optional.setAttribute("data-id", s.id);
@@ -417,8 +419,8 @@
 
               productsId.push(s.id);
 
-              if (!s.optional) {
-                totalPrice += Number(s.price);
+              if (!s.Optional) {
+                totalPrice += Number(s.shopify.price);
                 buyBtn.setAttribute("data-products-id", productsId.join(","));
               };
 
