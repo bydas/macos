@@ -132,9 +132,9 @@
             if (Array.isArray(value)) {
               data.push(...value);
             } else {
-              const { ...rest } = value;
-              console.log(rest);
-              data.push(rest);
+              const objectsArray = Object.values(value);
+
+              data.push(...objectsArray);
             }
           }
         })
