@@ -130,6 +130,8 @@
             const value = actionData[request];
             
             data.push(...(Array.isArray(value) ? value : [value]));
+
+            console.log(data);
           }
         })
         .catch((error) => console.error(error))
