@@ -129,7 +129,7 @@
 
             const is_array = Array.isArray(actionData[request]);
             
-            data.push(is_array ? ...actionData[request] : actionData[request]);
+            data.push(is_array ? (...actionData[request]) : actionData[request]);
           }
         })
         .catch((error) => console.error(error))
