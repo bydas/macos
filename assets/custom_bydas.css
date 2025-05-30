@@ -370,7 +370,7 @@ button::after {
     left: -9rem;
   }
   .custom-position-btns .slider-button--next {
-    left: -9rem;
+    right: -9rem;
   }
   .slider--desktop {
     scroll-snap-type: none !important;
