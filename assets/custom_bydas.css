@@ -365,8 +365,6 @@ button::after {
 
   .custom-position-btns .arrow-custom {
     fill: white;
-    width: 60%;
-    height: 60%;
   }
   .custom-position-btns .svg-wrapper-desktop {
     background: rgba(100, 100, 100, .6);
@@ -376,8 +374,8 @@ button::after {
     background: rgba(75, 75, 75, .7);
   }
   .featured-collection-arrow {
-    width: 4rem;
-    height: 4rem;
+    width: 60%;
+    height: 60%;
   }
   
   .custom-position-btns .slider-button {
