@@ -1,19 +1,18 @@
-{% if navigation_type == "breadcrumb" %}
-  
+{% if navigation_type == 'breadcrumb' %}
   {% liquid
     assign current_category = collection
     assign father_category = current_category.metafields.custom.parent.value
     assign grandfather_category = father_category.metafields.custom.parent.value
   %}
 
-  <nav class="breadcrumb-nav container fs-4 mb-2 pt-0 pt-sm-3 pt-lg-2 pt-xl-0">
+  <nav class="breadcrumb-nav container fs-4 pt-0 pt-sm-3 pt-lg-2 pt-xl-0">
     <a href="/">Home</a>
-  
+
     {% if grandfather_category != blank %}
       <span class="mx-1 mx-sm-2">/</span>
       <a href="{{ grandfather_category.url }}">{{ grandfather_category.title }}</a>
     {% endif %}
-  
+
     {% if father_category != blank %}
       <span class="mx-1 mx-sm-2">/</span>
       <a href="{{ father_category.url }}">{{ father_category.title }}</a>
@@ -21,62 +20,57 @@
 
     <span class="mx-1 mx-sm-2">/</span>
     <span>{{ current_category.title }}</span>
-  
   </nav>
 
 {% else %}
-
   {% liquid
     comment
-    if product
-      assign raw_category = product.metafields.custom.categorias.value
-      assign category_handle = raw_category | handleize
+      if product
+        assign raw_category = product.metafields.custom.categorias.value
+        assign category_handle = raw_category | handleize
 
-      assign raw_subcategory = product.metafields.custom.sub_categorias.value
-      assign raw_sub_subcategory = product.metafields.custom.sub_sub_categorias.value
+        assign raw_subcategory = product.metafields.custom.sub_categorias.value
+        assign raw_sub_subcategory = product.metafields.custom.sub_sub_categorias.value
 
-      if raw_sub_subcategory != blank
-        assign sub_subcategory_handle = raw_sub_subcategory | handleize
-        assign parent_collection = collections[sub_subcategory_handle]
+        if raw_sub_subcategory != blank
+          assign sub_subcategory_handle = raw_sub_subcategory | handleize
+          assign parent_collection = collections[sub_subcategory_handle]
 
-      elsif raw_subcategory != blank
-        assign subcategory_handle = raw_subcategory | handleize
-        assign parent_collection = collections[subcategory_handle]
+        elsif raw_subcategory != blank
+          assign subcategory_handle = raw_subcategory | handleize
+          assign parent_collection = collections[subcategory_handle]
+
+        else
+          assign parent_collection = collections[category_handle]
+
+        endif
 
       else
-        assign parent_collection = collections[category_handle]
-    
+
+        assign parent_collection = collection.metafields.custom.parent.value
+
       endif
-
-    else
-
-      assign parent_collection = collection.metafields.custom.parent.value
-
-    endif
     endcomment
   %}
 
   {% assign parent_collection = collection.metafields.custom.parent.value %}
 
   <nav class="container fs-4 mb-2 pt-0 pt-sm-3 pt-lg-2 pt-xl-0">
-
     {% if product %}
-
-      <a href="#" class="go_back-link" onclick="if (window.history.length>1) { history.back(); } else { location.href='/'; }">← Voltar</a>
+      <a
+        href="#"
+        class="go_back-link"
+        onclick="if (window.history.length>1) { history.back(); } else { location.href='/'; }"
+        >← Voltar</a
+      >
 
     {% else %}
-
       {% if parent_collection != blank %}
         <a href="{{ parent_collection.url }}" class="go_back-link">← {{ parent_collection.title }}</a>
-  
+
       {% else %}
         <a href="/" class="go_back-link">← Home</a>
-  
       {% endif %}
-
     {% endif %}
-    
-
   </nav>
-
 {% endif %}
