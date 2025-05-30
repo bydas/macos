@@ -328,117 +328,114 @@
 </div>
 
 <script>
-    const infoNoProducts = document.querySelector(".no-products-found");
+  const infoNoProducts = document.querySelector(".no-products-found");
+  infoNoProducts.style.display = "none";
+
+  var loading = true;
+  var cars;
+  var selectedBrand;
+  var selectedModel;
+  var selectedYear;
+  var initialClassic;
+  var initialFlat;
+
+  var brandToId;
+  var idToBrand;
+
+  var modelToId;
+  var idToModel;
+
+  var yearToId;
+  var idToYear;
+
+  var opts;
+  var adapt;
+  doMagic();
+  function brandChanged(event) {
     infoNoProducts.style.display = "none";
 
-    var loading = true;
-    var cars;
-    var selectedBrand;
-    var selectedModel;
-    var selectedYear;
-    var initialClassic;
-    var initialFlat;
-
-    var brandToId;
-    var idToBrand;
-
-    var modelToId;
-    var idToModel;
-
-    var yearToId;
-    var idToYear;
-
-    var opts;
-    var adapt;
-    doMagic();
-    function brandChanged(event) {
-      infoNoProducts.style.display = "none";
-
-      const model = document.getElementById('modelodocarro');
-      while (model.length > 1) {
-        model.remove(1);
-      }
-      const year = document.getElementById('anodocarro');
-      while (year.length > 1) {
-        year.remove(1);
-      }
-      modelToId = {};
-      idToModel = {};
-      if (cars !== undefined) {
-        const sel = cars[event.target.value];
-        selectedBrand = event.target.value;
-        const url = new URLSearchParams(document.location.search);
-
-        Object.keys(sel).forEach((car, index) => {
-          const opt = document.createElement('option');
-
-          // Add index to option_elem
-          opt.value = car;
-
-          // Add element HTML
-          opt.textContent = car;
-          if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
-            opt.selected = true;
-          }
-          modelToId[car] = index;
-          idToModel[index] = car;
-
-          // Append option_elem to select_elem
-          model.appendChild(opt);
-        });
-      }
-      document.getElementById('optionClassic').outerHTML = initialClassic;
-      document.getElementById('optionFlat').outerHTML = initialFlat;
-
-      // Inicializar popover manualmente por ser injetado via JS
-      document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
-        .forEach(el => new bootstrap.Popover(el));
+    const model = document.getElementById('modelodocarro');
+    while (model.length > 1) {
+      model.remove(1);
     }
-
-    function modelChanged(event) {
-      infoNoProducts.style.display = "none";
-
-      const year = document.getElementById('anodocarro');
-      while (year.length > 1) {
-        year.remove(1);
-      }
-      if (cars !== undefined) {
-        selectedModel = event.target.value;
-        const sel = cars[selectedBrand][event.target.value];
-        const url = new URLSearchParams(document.location.search);
-        yearToId = {};
-        idToYear = {};
-
-        Object.keys(sel).forEach((car, index) => {
-          const opt = document.createElement('option');
-
-          // Add index to option_elem
-          opt.value = car;
-
-          // Add element HTML
-          opt.textContent = car;
-
-          if (index === Number(url.get('year')) && url.get('year') !== null && loading) {
-            opt.selected = true;
-          }
-          yearToId[car] = index;
-          idToYear[index] = car;
-
-          // Append option_elem to select_elem
-          year.appendChild(opt);
-        });
-      }
-      document.getElementById('optionClassic').outerHTML = initialClassic;
-      document.getElementById('optionFlat').outerHTML = initialFlat;
-
-      // Inicializar popover manualmente por ser injetado via JS
-      document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
-        .forEach(el => new bootstrap.Popover(el));
+    const year = document.getElementById('anodocarro');
+    while (year.length > 1) {
+      year.remove(1);
     }
-    async function yearChanged(event) {
-    // remove qualquer inline display que possa vir de execuções anteriores
-    infoNoProducts.style.removeProperty("display");
+    modelToId = {};
+    idToModel = {};
+    if (cars !== undefined) {
+      const sel = cars[event.target.value];
+      selectedBrand = event.target.value;
+      const url = new URLSearchParams(document.location.search);
 
+      Object.keys(sel).forEach((car, index) => {
+        const opt = document.createElement('option');
+
+        // Add index to option_elem
+        opt.value = car;
+
+        // Add element HTML
+        opt.textContent = car;
+        if (index === Number(url.get('model')) && url.get('model') !== null && loading) {
+          opt.selected = true;
+        }
+        modelToId[car] = index;
+        idToModel[index] = car;
+
+        // Append option_elem to select_elem
+        model.appendChild(opt);
+      });
+    }
+    document.getElementById('optionClassic').outerHTML = initialClassic;
+    document.getElementById('optionFlat').outerHTML = initialFlat;
+
+    // Inicializar popover manualmente por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+  }
+
+  function modelChanged(event) {
+    infoNoProducts.style.display = "none";
+
+    const year = document.getElementById('anodocarro');
+    while (year.length > 1) {
+      year.remove(1);
+    }
+    if (cars !== undefined) {
+      selectedModel = event.target.value;
+      const sel = cars[selectedBrand][event.target.value];
+      const url = new URLSearchParams(document.location.search);
+      yearToId = {};
+      idToYear = {};
+
+      Object.keys(sel).forEach((car, index) => {
+        const opt = document.createElement('option');
+
+        // Add index to option_elem
+        opt.value = car;
+
+        // Add element HTML
+        opt.textContent = car;
+
+        if (index === Number(url.get('year')) && url.get('year') !== null && loading) {
+          opt.selected = true;
+        }
+        yearToId[car] = index;
+        idToYear[index] = car;
+
+        // Append option_elem to select_elem
+        year.appendChild(opt);
+      });
+    }
+    document.getElementById('optionClassic').outerHTML = initialClassic;
+    document.getElementById('optionFlat').outerHTML = initialFlat;
+
+    // Inicializar popover manualmente por ser injetado via JS
+    document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], ' + '#optionFlat   [data-bs-toggle="popover"]')
+      .forEach(el => new bootstrap.Popover(el));
+  }
+  async function yearChanged(event) {
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     const requests = { whatIs: [], p: [], image: [] };
@@ -652,142 +649,142 @@
     }
   }
 
-    function getProduct(sku) {
-      return new Promise((resolve, reject) => {
-        let request = new XMLHttpRequest();
-        request.open('GET', '/products/' + sku.split('|')[0] + '.js', false);
-        request.send(null);
-        if (request.status === 200) {
-          const ans = JSON.parse(request.responseText);
-          ans.vari = ans.variants.find((v) => v.sku === sku.split('|')[1]);
-          resolve(ans);
-        } else {
-          reject(request.status);
-        }
-      });
-    }
-    function handleBuy(id) {
-      console.log(id);
-      const requestEntrie = [
-        {
-          id: opts[id],
-          quantity: 1,
-        },
-      ];
-
-      const request = new XMLHttpRequest();
-      request.open('POST', '/cart/add.js'); // , false
-      request.setRequestHeader('Content-Type', 'application/json');
-      request.addEventListener('load', reqListener);
-      request.send(JSON.stringify({ items: requestEntrie }));
-    }
-    function reqListener(env) {
-      if (this.status !== 200) {
-        alert('Artigo Esgotado');
+  function getProduct(sku) {
+    return new Promise((resolve, reject) => {
+      let request = new XMLHttpRequest();
+      request.open('GET', '/products/' + sku.split('|')[0] + '.js', false);
+      request.send(null);
+      if (request.status === 200) {
+        const ans = JSON.parse(request.responseText);
+        ans.vari = ans.variants.find((v) => v.sku === sku.split('|')[1]);
+        resolve(ans);
       } else {
-        const a =
-          window.location.href.split('?')[0] +
-          '?brand=' +
-          brandToId[selectedBrand] +
-          '&model=' +
-          modelToId[selectedModel] +
-          '&year=' +
-          yearToId[selectedYear];
-        window.location.href = a;
+        reject(request.status);
+      }
+    });
+  }
+  function handleBuy(id) {
+    console.log(id);
+    const requestEntrie = [
+      {
+        id: opts[id],
+        quantity: 1,
+      },
+    ];
+
+    const request = new XMLHttpRequest();
+    request.open('POST', '/cart/add.js'); // , false
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener('load', reqListener);
+    request.send(JSON.stringify({ items: requestEntrie }));
+  }
+  function reqListener(env) {
+    if (this.status !== 200) {
+      alert('Artigo Esgotado');
+    } else {
+      const a =
+        window.location.href.split('?')[0] +
+        '?brand=' +
+        brandToId[selectedBrand] +
+        '&model=' +
+        modelToId[selectedModel] +
+        '&year=' +
+        yearToId[selectedYear];
+      window.location.href = a;
+    }
+  }
+  function doMagic() {
+    httpGet("{{ 'limpaAdapter.csv' | asset_url }}", handleDataAdapter);
+    httpGet("{{ 'outputLimpa.csv' | asset_url }}", handleData);
+  }
+  async function httpGet(URL, handler) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.addEventListener('load', handler);
+    xmlHttp.open('GET', URL);
+
+    xmlHttp.send(null);
+  }
+  function handleData() {
+    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+    const ccars = {};
+    for (let i = 1; i < r.length; i++) {
+      const carr = r[i];
+      if (carr[0] === '') continue;
+      if (ccars[carr[0]] === undefined) {
+        ccars[carr[0]] = {};
+      }
+      if (ccars[carr[0]][carr[1]] === undefined) {
+        ccars[carr[0]][carr[1]] = {};
+      }
+      if (ccars[carr[0]][carr[1]][carr[2]] === undefined) {
+        ccars[carr[0]][carr[1]][carr[2]] = carr;
       }
     }
-    function doMagic() {
-      httpGet("{{ 'limpaAdapter.csv' | asset_url }}", handleDataAdapter);
-      httpGet("{{ 'outputLimpa.csv' | asset_url }}", handleData);
-    }
-    async function httpGet(URL, handler) {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.addEventListener('load', handler);
-      xmlHttp.open('GET', URL);
+    cars = ccars;
+    const select_elem = document.getElementById('marcadocarro');
+    const url = new URLSearchParams(document.location.search);
+    brandToId = {};
+    idToBrand = {};
 
-      xmlHttp.send(null);
-    }
-    function handleData() {
-      const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
-      const ccars = {};
-      for (let i = 1; i < r.length; i++) {
-        const carr = r[i];
-        if (carr[0] === '') continue;
-        if (ccars[carr[0]] === undefined) {
-          ccars[carr[0]] = {};
-        }
-        if (ccars[carr[0]][carr[1]] === undefined) {
-          ccars[carr[0]][carr[1]] = {};
-        }
-        if (ccars[carr[0]][carr[1]][carr[2]] === undefined) {
-          ccars[carr[0]][carr[1]][carr[2]] = carr;
-        }
+    Object.keys(cars).forEach((element, index) => {
+      const option_elem = document.createElement('option');
+
+      // Add index to option_elem
+      option_elem.value = element;
+
+      // Add element HTML
+      option_elem.textContent = element;
+
+      if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
+        option_elem.selected = true;
       }
-      cars = ccars;
-      const select_elem = document.getElementById('marcadocarro');
-      const url = new URLSearchParams(document.location.search);
-      brandToId = {};
-      idToBrand = {};
+      brandToId[element] = index;
+      idToBrand[index] = element;
 
-      Object.keys(cars).forEach((element, index) => {
-        const option_elem = document.createElement('option');
+      // Append option_elem to select_elem
+      select_elem.appendChild(option_elem);
+    });
 
-        // Add index to option_elem
-        option_elem.value = element;
+    initialClassic = document.getElementById('optionClassic').outerHTML;
+    initialFlat = document.getElementById('optionFlat').outerHTML;
 
-        // Add element HTML
-        option_elem.textContent = element;
-
-        if (Number(url.get('brand')) === index && url.get('brand') !== null && loading) {
-          option_elem.selected = true;
-        }
-        brandToId[element] = index;
-        idToBrand[index] = element;
-
-        // Append option_elem to select_elem
-        select_elem.appendChild(option_elem);
-      });
-
-      initialClassic = document.getElementById('optionClassic').outerHTML;
-      initialFlat = document.getElementById('optionFlat').outerHTML;
-
-      if (url.get('brand')) {
-        brandChanged({ target: { value: idToBrand[url.get('brand')] } });
-        modelChanged({ target: { value: idToModel[url.get('model')] } });
-        yearChanged({ target: { value: idToYear[url.get('year')] } });
-      }
-      loading = false;
+    if (url.get('brand')) {
+      brandChanged({ target: { value: idToBrand[url.get('brand')] } });
+      modelChanged({ target: { value: idToModel[url.get('model')] } });
+      yearChanged({ target: { value: idToYear[url.get('year')] } });
     }
-    function handleDataAdapter() {
-      const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
-      const translator = {};
-      for (let i = 1; i < r.length; i++) {
-        const adapter = r[i];
-        if (adapter[0] === '') continue;
-        translator[adapter[0]] = adapter[1];
-      }
-      adapt = translator;
+    loading = false;
+  }
+  function handleDataAdapter() {
+    const r = this.responseText.split('\n').map((line) => line.split(',').map((value) => value.trim()));
+    const translator = {};
+    for (let i = 1; i < r.length; i++) {
+      const adapter = r[i];
+      if (adapter[0] === '') continue;
+      translator[adapter[0]] = adapter[1];
     }
-    function setFirstChild(classicTop = true) {
-      const topElement = classicTop ? document.getElementById('optionClassic') : document.getElementById('optionFlat');
+    adapt = translator;
+  }
+  function setFirstChild(classicTop = true) {
+    const topElement = classicTop ? document.getElementById('optionClassic') : document.getElementById('optionFlat');
 
-      const parent = topElement.parentNode;
-      parent.insertBefore(topElement, parent.firstChild);
+    const parent = topElement.parentNode;
+    parent.insertBefore(topElement, parent.firstChild);
 
-      const a = document.getElementById('form_input_stuff');
-      const parent2 = a.parentNode;
-      parent2.insertBefore(a, parent2.firstChild);
-    }
-    function setFirstChildEach(first, second) {
-      const topElement = document.getElementById(second);
+    const a = document.getElementById('form_input_stuff');
+    const parent2 = a.parentNode;
+    parent2.insertBefore(a, parent2.firstChild);
+  }
+  function setFirstChildEach(first, second) {
+    const topElement = document.getElementById(second);
 
-      const parent = topElement.parentNode;
-      parent.insertBefore(topElement, parent.firstChild);
+    const parent = topElement.parentNode;
+    parent.insertBefore(topElement, parent.firstChild);
 
-      const a = document.getElementById(first);
-      const parent2 = a.parentNode;
-      parent2.insertBefore(a, parent2.firstChild);
-    }
+    const a = document.getElementById(first);
+    const parent2 = a.parentNode;
+    parent2.insertBefore(a, parent2.firstChild);
+  }
 </script>
 
 {% schema %}
