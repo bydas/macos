@@ -617,7 +617,7 @@
     document.getElementById('optionFlat').outerHTML = flatPage;
 
     if (!hasClassicProducts && !hasFlatProducts) {
-      infoNoProducts.style.display = "block";
+      infoNoProducts.style.removeProperty("display");
     }
 
     // Inicializar popovers
