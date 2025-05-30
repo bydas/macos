@@ -362,7 +362,7 @@ button::after {
 }
   /* removing peek effect from featured products slider on desktop (complemented in js) */
 @media screen and (min-width: 990px) {
-
+  /* slider buttons (SVG) */
   .custom-position-btns .arrow-custom {
     fill: white;
   }
@@ -376,6 +376,9 @@ button::after {
   .featured-collection-arrow {
     width: 4rem;
     height: 4rem;
+  }
+  .custom-position-btns button[name="next"] {
+    transform: rotate(180deg);
   }
   
   .custom-position-btns .slider-button {
