@@ -248,8 +248,8 @@ function setupFeaturedCollection() {
     const sliderCounterContainer = document.querySelector(".slider-counter");
     sliderCounterContainer.style.display = isDesktop ? "none" : "block";
 
-    const svgWrapperDesktop = section.querySelectorAll(".svg-wrapper-desktop");
-    const svgWrapper = section.querySelectorAll(".svg-wrapper");
+    const svgWrapperDesktop = section.querySelectorAll(".custom-position-btns .svg-wrapper-desktop");
+    const svgWrapper = section.querySelectorAll(".custom-position-btns .svg-wrapper");
 
     svgWrapperDesktop.forEach(el => {
       el.style.display = isDesktop ? "inline-flex" : "none";
