@@ -608,13 +608,13 @@
       flatPage = flatPage.replace('hidden=""', '');
     }
 
-    if (!hasClassicProducts.length && !hasFlatProducts.length) {
-      infoNoProducts.style.display = "block";
-    }
-
     // Atualizar o DOM
     document.getElementById('optionClassic').outerHTML = classicPage;
     document.getElementById('optionFlat').outerHTML = flatPage;
+
+    if (!hasClassicProducts && !hasFlatProducts) {
+      infoNoProducts.style.display = "block";
+    }
 
     // Inicializar popovers
     document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], #optionFlat [data-bs-toggle="popover"]')
