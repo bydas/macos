@@ -342,6 +342,7 @@ button::after {
 }
 .breadcrumb-nav * {
   font-family: "Roboto Condensed", sans-serif !important;
+  font-size: 1.6rem;
 }
 
 /* section featured collection new products */
