@@ -614,6 +614,7 @@
     // Atualizar o DOM
     document.getElementById('optionClassic').outerHTML = classicPage;
     document.getElementById('optionFlat').outerHTML = flatPage;
+    infoNoProducts.style.removeProperty("display");
 
     if (!hasClassicProducts && !hasFlatProducts) {
       console.log("Sem produtos");
