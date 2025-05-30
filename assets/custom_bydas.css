@@ -340,7 +340,7 @@ button::after {
   color: rgb(80, 80, 80);
   text-decoration: underline !important;
 }
-.breadcrumb * {
+.breadcrumb-nav * {
   font-family: "Roboto Condensed", sans-serif !important;
 }
 
