@@ -243,23 +243,23 @@ function setupFeaturedCollection() {
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    const isDesktop = window.innerWidth >= 990;
+    const breakpoint = window.innerWidth >= 1450;
     
     const sliderCounterContainer = section.querySelector(".slider-counter");
-    sliderCounterContainer.style.display = isDesktop ? "none" : "block";
+    sliderCounterContainer.style.display = breakpoint ? "none" : "block";
 
     const svgWrapperDesktop = section.querySelectorAll(".custom-position-btns .svg-wrapper-desktop");
     const svgWrapper = section.querySelectorAll(".custom-position-btns .svg-wrapper");
 
     svgWrapperDesktop.forEach(el => {
-      el.style.display = isDesktop ? "inline-flex" : "none";
+      el.style.display = breakpoint ? "inline-flex" : "none";
     });
 
     svgWrapper.forEach(el => {
-      el.style.display = isDesktop ? "none" : "inline-flex";
+      el.style.display = breakpoint ? "none" : "inline-flex";
     });
     
-    if (isDesktop) {
+    if (breakpoint) {
 
       // Lê sempre estes valores actualizados
       function recalc() {
