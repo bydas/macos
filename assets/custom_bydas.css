@@ -362,6 +362,16 @@ button::after {
 }
   /* removing peek effect from featured products slider on desktop (complemented in js) */
 @media screen and (min-width: 990px) {
+  .custom-position-btns .slider-button {
+    position: absolute;
+    bottom: 50%;
+  }
+  .custom-position-btns .slider-button--prev {
+    left: -9rem;
+  }
+  .custom-position-btns .slider-button--next {
+    left: -9rem;
+  }
   .slider--desktop {
     scroll-snap-type: none !important;
   }
