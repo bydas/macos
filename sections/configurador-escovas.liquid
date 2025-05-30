@@ -435,6 +435,7 @@
       .forEach(el => new bootstrap.Popover(el));
   }
   async function yearChanged(event) {
+    infoNoProducts.style.removeProperty("display");
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     const requests = { whatIs: [], p: [], image: [] };
@@ -614,7 +615,6 @@
     // Atualizar o DOM
     document.getElementById('optionClassic').outerHTML = classicPage;
     document.getElementById('optionFlat').outerHTML = flatPage;
-    infoNoProducts.style.removeProperty("display");
 
     if (!hasClassicProducts && !hasFlatProducts) {
       console.log("Sem produtos");
