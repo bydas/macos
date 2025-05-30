@@ -974,7 +974,7 @@ img.btoptioni {
 }
 .rte table th,
 .rte table td {
-  padding: 3px 6px;
+  padding: .5rem;
 }
 .card-barras-tejadilho {
   display: flex;
