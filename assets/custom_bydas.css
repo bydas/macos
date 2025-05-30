@@ -375,10 +375,9 @@ button::after {
   .custom-position-btns .svg-wrapper-desktop:hover {
     background: rgba(75, 75, 75, .7);
   }
-  /* .featured-collection-arrow {
-    width: 4rem;
-    height: 4rem;
-  } */
+  .featured-collection-arrow {
+    padding: 8px;
+  }
   .custom-position-btns button[name="next"] {
     transform: rotate(180deg);
   }
