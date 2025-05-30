@@ -185,9 +185,8 @@ button::after {
   transition-duration: 0.2s;
 }
 
-/* flickity buttons & custom featured collection button */
-.flickity-button-icon,
-.arrow-custom {
+/* flickity buttons */
+.flickity-button-icon {
   fill: white;
 }
 .flickity-button {
@@ -363,6 +362,21 @@ button::after {
 }
   /* removing peek effect from featured products slider on desktop (complemented in js) */
 @media screen and (min-width: 990px) {
+
+  .custom-position-btns .arrow-custom {
+    fill: white;
+  }
+  .custom-position-btns .svg-wrapper-desktop {
+    background: rgba(100, 100, 100, .6);
+  }
+  .custom-position-btns .svg-wrapper-desktop:hover {
+    background: rgba(75, 75, 75, .7);
+  }
+  .featured-collection-arrow {
+    width: 4rem;
+    height: 4rem;
+  }
+  
   .custom-position-btns .slider-button {
     position: absolute;
     bottom: 50%;
