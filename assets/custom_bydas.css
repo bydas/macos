@@ -395,10 +395,10 @@ button::after {
     bottom: 50%;
   }
   .custom-position-btns .slider-button--prev {
-    left: -8rem;
+    left: -4vw;
   }
   .custom-position-btns .slider-button--next {
-    right: -8rem;
+    right: -4vw;
   }
   .slider--desktop {
     scroll-snap-type: none !important;
