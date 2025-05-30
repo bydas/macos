@@ -376,7 +376,7 @@ button::after {
     pointer-events: none;
   }
   .custom-position-btns .svg-wrapper-desktop {
-    background: rgba(100, 100, 100, .5);
+    background: rgba(100, 100, 100, .6);
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
@@ -390,7 +390,6 @@ button::after {
   .custom-position-btns button[name="next"] {
     transform: rotate(180deg);
   }
-  
   .custom-position-btns .slider-button {
     position: absolute;
     bottom: 50%;
