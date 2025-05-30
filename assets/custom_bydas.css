@@ -185,8 +185,9 @@ button::after {
   transition-duration: 0.2s;
 }
 
-/* flickity buttons */
-.flickity-button-icon {
+/* flickity buttons & custom featured collection button */
+.flickity-button-icon,
+.arrow-custom {
   fill: white;
 }
 .flickity-button {
