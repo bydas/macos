@@ -236,7 +236,7 @@ $carousel.on('mouseleave', function() {
 
 
 /* ----- FEATURED COLLECTION (desktop)----- */
-document.addEventListener('DOMContentLoaded', function() {
+function setupFeaturedCollection() {
   document.querySelectorAll('.section-featured-collection').forEach(section => {
     const track   = section.querySelector('.slider');
     const prevBtn = section.querySelector('.slider-button--prev');
@@ -258,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
     svgWrapper.forEach(el => {
       el.style.display = isDesktop ? "none" : "inline-flex";
     })
-    
     
     if (isDesktop) {
 
@@ -305,7 +304,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
   });
-});
+}
+document.addEventListener("DOMContentLoaded", setupFeaturedCollection);
+window.addeventListener("resize", setupFeaturedCollection);
   
 
 
