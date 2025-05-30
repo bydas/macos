@@ -369,14 +369,16 @@ button::after {
   .custom-position-btns .svg-wrapper-desktop {
     background: rgba(100, 100, 100, .6);
     border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
   }
   .custom-position-btns .svg-wrapper-desktop:hover {
     background: rgba(75, 75, 75, .7);
   }
-  .featured-collection-arrow {
+  /* .featured-collection-arrow {
     width: 4rem;
     height: 4rem;
-  }
+  } */
   .custom-position-btns button[name="next"] {
     transform: rotate(180deg);
   }
