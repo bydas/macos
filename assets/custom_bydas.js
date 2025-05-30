@@ -258,10 +258,6 @@ function setupFeaturedCollection() {
     svgWrapper.forEach(el => {
       el.style.display = isDesktop ? "none" : "inline-flex";
     });
-
-    // Evita múltiplas ligações ao redimensionar
-    prevBtn.replaceWith(prevBtn.cloneNode(true));
-    nextBtn.replaceWith(nextBtn.cloneNode(true));
     
     if (isDesktop) {
 
