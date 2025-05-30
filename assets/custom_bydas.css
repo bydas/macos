@@ -373,7 +373,7 @@ button::after {
   .custom-position-btns .svg-wrapper-desktop:hover {
     background: rgba(75, 75, 75, .7);
   }
-  .custom-position-btns .slider-button {
+  .featured-collection-arrow {
     width: 4rem;
     height: 4rem;
   }
