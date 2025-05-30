@@ -365,6 +365,8 @@ button::after {
 
   .custom-position-btns .arrow-custom {
     fill: white;
+    width: 60%;
+    height: 60%;
   }
   .custom-position-btns .svg-wrapper-desktop {
     background: rgba(100, 100, 100, .6);
