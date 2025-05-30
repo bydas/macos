@@ -435,7 +435,6 @@
       .forEach(el => new bootstrap.Popover(el));
   }
   async function yearChanged(event) {
-    infoNoProducts.style.removeProperty("display");
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     const requests = { whatIs: [], p: [], image: [] };
@@ -466,8 +465,8 @@
         requests.image.push(car[8]);
       }
     }
-
-    const ans = await Promise.all(requests.p);
+    const safe = requests.p.map(p => p.catch(_=>null));
+    const ans = await Promise.all(safe);
 
     // Organizar as respostas por tipo usando whatIs
     const classicProducts = { primary: null, secondary: null };
