@@ -335,6 +335,14 @@ button::after {
   font-weight: 600;
 }
 
+/* breadcrumb */
+.breadcrumb-nav a {
+  color: rgb(80, 80, 80);
+  font-family: "Roboto Condensed", sans-serif;
+  text-decoration: underline !important;
+}
+
+
 /* section featured collection new products */
 .section-featured-new-products {
   background-color: rgb(240, 240, 240);
@@ -378,14 +386,6 @@ button::after {
     padding-left: 0 !important;
     margin-left: 0 !important;
   }
-}
-
-
-
-/* breadcrumb */
-.breadcrumb-nav a {
-  color: rgb(80, 80, 80);
-  text-decoration: underline !important;
 }
 
 /* highlights slideshow */
