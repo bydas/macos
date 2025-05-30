@@ -352,6 +352,8 @@
     var adapt;
     doMagic();
     function brandChanged(event) {
+      infoNoProducts.style.display = "none";
+
       const model = document.getElementById('modelodocarro');
       while (model.length > 1) {
         model.remove(1);
@@ -394,6 +396,8 @@
     }
 
     function modelChanged(event) {
+      infoNoProducts.style.display = "none";
+
       const year = document.getElementById('anodocarro');
       while (year.length > 1) {
         year.remove(1);
