@@ -315,7 +315,7 @@
           </div>
         </div>
 
-        <div id="see-price-info" style="display: none">
+        <div id="see-price-info">
           {% render 'see-price-info' %}
         </div>
       </div>
@@ -328,8 +328,8 @@
 </div>
 
 <script>
-  const infoNoProducts = document.querySelector(".no-products-found");
-  infoNoProducts.style.display = "none";
+    const infoNoProducts = document.querySelector(".no-products-found");
+    infoNoProducts.style.display = "none";
 
     var loading = true;
     var cars;
