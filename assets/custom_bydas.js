@@ -302,7 +302,6 @@ function setupFeaturedCollection() {
       }, { capture: true });
       
     }
-  
   });
 }
 document.addEventListener("DOMContentLoaded", setupFeaturedCollection);
