@@ -370,6 +370,11 @@ button::after {
     width: 40px;
     height: 40px;
   }
+  .custom-position-btns button:disabled {
+    opacity: .3;
+    cursor: auto;
+    pointer-events: none;
+  }
   .custom-position-btns .svg-wrapper-desktop {
     background: rgba(100, 100, 100, .5);
     border-radius: 50%;
