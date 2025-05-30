@@ -243,7 +243,7 @@ function setupFeaturedCollection() {
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    const isDesktop = window.innerWidth >= 1500;
+    const isDesktop = window.innerWidth >= 990;
     
     const sliderCounterContainer = section.querySelector(".slider-counter");
     sliderCounterContainer.style.display = isDesktop ? "none" : "block";
