@@ -88,7 +88,7 @@
                     <tr>
                       <td label="Acessórios">nome0</td>
                       <td label="Referência">
-                        <p style="text-align:center; margin:0;">
+                        <p style="text-align:center">
                           <a
                             target="_blank"
                             href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0"
@@ -149,7 +149,7 @@
                     <tr style="padding-top: 10px">
                       <td label="Acessórios">nome1</td>
                       <td label="Referência">
-                        <p style="text-align:center; margin:0;">
+                        <p style="text-align:center">
                           <a
                             target="_blank"
                             href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1"
@@ -217,7 +217,7 @@
                     <tr style="padding-top: 10px">
                       <td label="Acessórios">nome0</td>
                       <td label="Referência">
-                        <p style="text-align:center; margin:0;">
+                        <p style="text-align:center">
                           <a
                             target="_blank"
                             href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku0"
@@ -274,7 +274,7 @@
                     <tr style="padding-top: 10px">
                       <td label="Acessórios">nome1</td>
                       <td label="Referência">
-                        <p style="text-align:center; margin:0;">
+                        <p style="text-align:center">
                           <a
                             target="_blank"
                             href="/search?type=product&options[prefix]=last&options[unavailable_products]=last&q=skuskusku1"
@@ -315,21 +315,21 @@
           </div>
         </div>
 
-        <div id="see-price-info">
+        <div class="no-products-found">
+          <p>Infelizmente, neste momento não comercializamos escovas para este modelo.</p>
+        </div>
+
+        <div id="see-price-info" style="display: none">
           {% render 'see-price-info' %}
         </div>
-      </div>
-
-      <div class="col-12 no-products-found">
-        <p>Neste momento não comercializamos escovas para este modelo.</p>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-    const infoNoProducts = document.querySelector(".no-products-found");
-    infoNoProducts.style.display = "none";
+  const infoNoProducts = document.querySelector(".no-products-found");
+  infoNoProducts.style.display = "none";
 
     var loading = true;
     var cars;
@@ -352,8 +352,6 @@
     var adapt;
     doMagic();
     function brandChanged(event) {
-      infoNoProducts.style.display = "none";
-
       const model = document.getElementById('modelodocarro');
       while (model.length > 1) {
         model.remove(1);
@@ -396,7 +394,6 @@
     }
 
     function modelChanged(event) {
-      infoNoProducts.style.display = "none";
       const year = document.getElementById('anodocarro');
       while (year.length > 1) {
         year.remove(1);
@@ -435,9 +432,6 @@
         .forEach(el => new bootstrap.Popover(el));
     }
     async function yearChanged(event) {
-    // remove qualquer inline display que possa vir de execuções anteriores
-    infoNoProducts.style.removeProperty("display");
-
     selectedYear = event.target.value;
     const car = cars[selectedBrand][selectedModel][selectedYear];
     const requests = { whatIs: [], p: [], image: [] };
@@ -614,13 +608,13 @@
       flatPage = flatPage.replace('hidden=""', '');
     }
 
+    if (!hasClassicProducts.length && !hasFlatProducts.length) {
+      infoNoProducts.style.display = "block";
+    }
+
     // Atualizar o DOM
     document.getElementById('optionClassic').outerHTML = classicPage;
     document.getElementById('optionFlat').outerHTML = flatPage;
-
-    if (!hasClassicProducts && !hasFlatProducts) {
-      infoNoProducts.style.display = "block";
-    }
 
     // Inicializar popovers
     document.querySelectorAll('#optionClassic [data-bs-toggle="popover"], #optionFlat [data-bs-toggle="popover"]')
