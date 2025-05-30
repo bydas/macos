@@ -243,11 +243,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = section.querySelector('.slider-button--next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    const sliderCounterContainer = document.querySelector(".slider-counter");
-    sliderCounterContainer.style.display = window.innerWidth >= 990 ? "none" : "block";
+    const isDesktop = window.innerWidth >= 990;
     
-    if (window.innerWidth >= 990) {
-      
+    const sliderCounterContainer = document.querySelector(".slider-counter");
+    sliderCounterContainer.style.display = isDesktop ? "none" : "block";
+
+    const svgWrapperDesktop = section.querySelectorAll(".svg-wrapper-desktop");
+    const svgWrapper = section.querySelectorAll(".svg-wrapper");
+
+    svgWrapperDesktop.forEach(el => {
+      el.style.display = isDesktop ? "inline-flex" : "none";
+    })
+
+    svgWrapper.forEach(el => {
+      el.style.display = isDesktop ? "none" : "inline-flex";
+    })
+    
+    
+    if (isDesktop) {
+
       // Lê sempre estes valores actualizados
       function recalc() {
         const style     = getComputedStyle(track);
