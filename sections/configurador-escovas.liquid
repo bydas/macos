@@ -394,6 +394,7 @@
     }
 
     function modelChanged(event) {
+      infoNoProducts.style.display = "none";
       const year = document.getElementById('anodocarro');
       while (year.length > 1) {
         year.remove(1);
