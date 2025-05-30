@@ -245,7 +245,7 @@ function setupFeaturedCollection() {
 
     const isDesktop = window.innerWidth >= 990;
     
-    const sliderCounterContainer = document.querySelector(".slider-counter");
+    const sliderCounterContainer = section.querySelector(".slider-counter");
     sliderCounterContainer.style.display = isDesktop ? "none" : "block";
 
     const svgWrapperDesktop = section.querySelectorAll(".custom-position-btns .svg-wrapper-desktop");
