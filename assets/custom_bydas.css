@@ -338,10 +338,11 @@ button::after {
 /* breadcrumb */
 .breadcrumb-nav a {
   color: rgb(80, 80, 80);
-  font-family: "Roboto Condensed", sans-serif !important;
   text-decoration: underline !important;
 }
-
+.breadcrumb * {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
 
 /* section featured collection new products */
 .section-featured-new-products {
