@@ -305,7 +305,7 @@ function setupFeaturedCollection() {
   });
 }
 document.addEventListener("DOMContentLoaded", setupFeaturedCollection);
-window.addeventListener("resize", setupFeaturedCollection);
+window.addEventListener("resize", setupFeaturedCollection);
   
 
 
