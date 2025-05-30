@@ -361,7 +361,7 @@ button::after {
   padding: 0 !important
 }
   /* removing peek effect from featured products slider on desktop (complemented in js) */
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1450px) {
   /* slider buttons (SVG) */
   .custom-position-btns .arrow-custom {
     fill: white;
