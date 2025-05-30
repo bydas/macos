@@ -253,11 +253,15 @@ function setupFeaturedCollection() {
 
     svgWrapperDesktop.forEach(el => {
       el.style.display = isDesktop ? "inline-flex" : "none";
-    })
+    });
 
     svgWrapper.forEach(el => {
       el.style.display = isDesktop ? "none" : "inline-flex";
-    })
+    });
+
+    // Evita múltiplas ligações ao redimensionar
+    prevBtn.replaceWith(prevBtn.cloneNode(true));
+    nextBtn.replaceWith(nextBtn.cloneNode(true));
     
     if (isDesktop) {
 
