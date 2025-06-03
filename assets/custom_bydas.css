@@ -27,7 +27,7 @@ hr {
 
 .header-description {
   font-family: "Russo One", sans-serif !important;
-  opacity: 0.5;
+  opacity: 0.55;
   font-size: 12px;
   grid-column: 2;
 }
@@ -522,6 +522,11 @@ button::after {
 #new-products-card .card__content,
 #new-products-card .card__information {
   padding: 0;
+}
+
+/* page main-product */
+.main-product-title {
+  font-size: 20px;
 }
 
 /* card products */
