@@ -453,6 +453,13 @@
                       {%- endif -%}
                     </volume-pricing>
                   {%- endif -%}
+              {%- render 'buy-buttons',
+                  block: block,
+                  product: product,
+                  product_form_id: product_form_id,
+                  section_id: section.id,
+                  show_pickup_availability: true
+                -%}
                 </div>
               {%- when 'popup' -%}
                 <modal-opener
