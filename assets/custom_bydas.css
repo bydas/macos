@@ -185,12 +185,25 @@ button::after {
   transition-duration: 0.2s;
 }
 
-.buy-btn-main-product {
+.main-product-buy-button {
+  background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
   min-height: calc(4rem + 2px);
   width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   padding-top: .3rem;
   padding-bottom: .3rem;
 }
+.main-product-buy-button::after {
+  content: none;
+}
+/* .shopify-payment-button__button {
+  outline: 1px solid #a3a3a36b;
+  background-color: #ffffff;
+  color: #FF9800;
+} */
+
 
 /* flickity buttons */
 .flickity-button-icon {
@@ -560,20 +573,7 @@ button::after {
 .shopify-payment-button__button::after {
   content: none;
 }
-.main-product-buy-button {
-  background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
-  color: white;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-/* .shopify-payment-button__button {
-  outline: 1px solid #a3a3a36b;
-  background-color: #ffffff;
-  color: #FF9800;
-} */
-.main-product-buy-button::after {
-  content: none;
-}
+
 #card-product-custom .card__media {
   all: unset;
 }
