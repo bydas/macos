@@ -185,6 +185,13 @@ button::after {
   transition-duration: 0.2s;
 }
 
+#buyBtnMainProduct-wrapper {
+  min-height: calc(4rem + 2px);
+  width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+}
+
 /* flickity buttons */
 .flickity-button-icon {
   fill: white;
