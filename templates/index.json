@@ -157,7 +157,7 @@
     "featured_collection_UyinUK": {
       "type": "featured-collection",
       "settings": {
-        "collection": "turtle-wax",
+        "collection": "destaques-set",
         "products_to_show": 12,
         "title": "Destaques",
         "heading_size": "h2",
