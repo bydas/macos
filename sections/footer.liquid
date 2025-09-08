@@ -440,8 +440,8 @@
       <div class="footer__copyright caption">
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-        </small>
-        <small class="copyright__content"><a href="https://www.bydas.com">BYDAS</a>{{ powered_by_link }}</small>
+        </small><br>
+        <small class="copyright__content">Desenvolvido por <a href="https://www.bydas.com">BYDAS</a></small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
