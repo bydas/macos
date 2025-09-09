@@ -84,7 +84,6 @@
         {% if form.company %}
           value="{{ form.company }}"
         {% endif %}
-        autocomplete="family-name"
         placeholder="{{ 'customer.register.company' | t }}"
         required
       >
@@ -101,11 +100,10 @@
         {% if form.companyNif %}
           value="{{ form.companyNif }}"
         {% endif %}
-        autocomplete="family-name"
         placeholder="{{ 'customer.register.company_nif' | t }}"
         required
       >
-      <label for="RegisterForm-companyNif">
+      <label for="RegisterForm-CompanyNif">
         {{ 'customer.register.company_nif' | t }}
       </label>
     </div>
@@ -118,11 +116,42 @@
         {% if form.activity %}
           value="{{ form.activity }}"
         {% endif %}
-        autocomplete="family-name"
         placeholder="{{ 'customer.register.activity' | t }}"
         required
       >
       <label for="RegisterForm-Activity">
+        {{ 'customer.register.activity' | t }}
+      </label>
+    </div>
+
+    <div class="field">
+      <input
+        type="text"
+        name="customer[company_address]"
+        id="RegisterForm-CompanyAddress"
+        {% if form.company_address %}
+          value="{{ form.company_address }}"
+        {% endif %}
+        placeholder="{{ 'customer.register.company_address' | t }}"
+        required
+      >
+      <label for="RegisterForm-Address">
+        {{ 'customer.register.company_address' | t }}
+      </label>
+    </div>
+
+    <div class="field">
+      <input
+        type="text"
+        name="customer[contact_phone]"
+        id="RegisterForm-ContactPhone"
+        {% if form.activity %}
+          value="{{ form.activity }}"
+        {% endif %}
+        placeholder="{{ 'customer.register.activity' | t }}"
+        required
+      >
+      <label for="RegisterForm-Address">
         {{ 'customer.register.activity' | t }}
       </label>
     </div>
