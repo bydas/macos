@@ -1,10 +1,7 @@
 // CREATE NEW ACCOUNT FORM
 (function () {
-  // 1) Obtém o formulário de registo (ajusta o seletor ao teu tema, se necessário)
-  const registerForm =
-    document.getElementById('create_customer');
-    // || document.querySelector('form[action*="/account"]');
-
+  // 1) Obtém o formulário de registo
+  const registerForm = document.getElementById('create_customer');
   if (!registerForm) return;
 
   // 2) Função auxiliar para ler valores por ID
@@ -16,38 +13,29 @@
   // 3) Ao submeter, serializa os campos para customer[note]
   registerForm.addEventListener('submit', function () {
     // Captura dos teus campos
-    const company        = readValue('RegisterForm-Company');
-    const companyVat     = readValue('RegisterForm-CompanyNif');     // NIF/VAT
+    const company          = readValue('RegisterForm-Company');
+    const companyVat       = readValue('RegisterForm-CompanyNif');   // NIF/VAT
     const businessActivity = readValue('RegisterForm-Activity');
-    const companyAddress = readValue('RegisterForm-CompanyAddress');
-    const contactPhone   = readValue('RegisterForm-ContactPhone');
+    const companyAddress   = readValue('RegisterForm-CompanyAddress');
+    const contactPhone     = readValue('RegisterForm-ContactPhone');
 
-    // Versão em texto "chave: valor" (mais simples para Shopify Flow com regex)
-    // const noteKeyValue =
-    //   '[B2B Signup]\n' +
-    //   'Empresa: ' + company + '\n' +
-    //   'NIF: ' + companyVat + '\n' +
-    //   'Atividade: ' + businessActivity + '\n' +
-    //   'Morada: ' + companyAddress + '\n' +
-    //   'Telefone: ' + contactPhone;
-
-    // (Alternativa) Versão JSON legível — ativa se preferires JSON
-    const noteJson = JSON.stringify({
-      company,
-      vat: companyVat,
-      activity: businessActivity,
-      address: companyAddress,
-      phone: contactPhone
-    }, null, 2);
+    // Versão legível em texto (multi-linha)
+    const noteReadable =
+      '[B2B Signup]\n' +
+      'Empresa: ' + (company || '-') + '\n' +
+      'NIF: ' + (companyVat || '-') + '\n' +
+      'Atividade: ' + (businessActivity || '-') + '\n' +
+      'Morada: ' + (companyAddress || '-') + '\n' +
+      'Telefone: ' + (contactPhone || '-');
 
     // 4) Coloca o valor no hidden customer[note]
     const noteInput = document.getElementById('RegisterForm-Note');
     if (noteInput) {
-      // noteInput.value = noteKeyValue; // Regex
-      noteInput.value = noteJson; // json
+      noteInput.value = noteReadable;
     }
   });
 })();
+
 
 
 // ------------------------- ########### -------------------------
