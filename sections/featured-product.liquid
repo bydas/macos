@@ -116,7 +116,7 @@
                 {%- when 'price' -%}
 
                   {% if customer %}
-                    {% unless customer.tags contains "nao verificado" %}
+                    {% unless customer.tags contains "nao-verificado" %}
 
                       <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                         {%- render 'price',
@@ -127,7 +127,7 @@
                           price_class: 'price--large'
                         -%}
                       </div>
-                      
+
                     {% endunless %}
                   {% endif %}
                   
