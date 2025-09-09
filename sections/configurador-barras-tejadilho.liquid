@@ -73,7 +73,7 @@
 
           <div class="spinnerConfig"></div>
           <div id="cruz_solutions"></div>
-          <div id="see-price-info" style="display: none">
+          <div id="see-price-info" data-verified="{% if customer.tags contains 'nao-verificado' %}false{% else %}true{% endif %}" style="display: none">
             {% render 'see-price-info' %}
           </div>
         </div>
@@ -331,6 +331,9 @@
             buyBtn.classList.add("button-configurador");
             buyBtn.innerText = "Adicionar";
             buyBtn.setAttribute("id", `btn-${key}`);
+            {% if customer.tags contains "nao-verificado" %}
+              buyBtn.setAttribute("disabled", "disabled");
+            {% endif %}
 
             buyBtn.addEventListener("click", function (e) {
               const finalProductsIds = e.target
