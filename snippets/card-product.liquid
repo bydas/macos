@@ -205,9 +205,9 @@
             {%- endif -%}
 
             {% if customer %}
-
-              {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-              
+              {% unless customer.tags contains "nao-verificado" %}
+                {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+              {% endunless %}
             {% endif %}
 
             {%- if card_product.quantity_price_breaks_configured? -%}
@@ -519,9 +519,9 @@
                         </a>
 
                         {% if customer %}
-
-                          {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-                          
+                          {% unless customer.tags contains "nao-verificado" %}
+                            {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                          {% endunless %}
                         {% endif %}
 
                         {%- if card_product.quantity_price_breaks_configured? -%}
@@ -540,9 +540,9 @@
                         </a>
 
                         {% if customer %}
-                          
-                          {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-
+                          {% unless customer.tags contains "nao-verificado" %}
+                            {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                          {% endunless %}
                         {% endif %}
 
                         {%- if card_product.quantity_price_breaks_configured? -%}
@@ -634,9 +634,9 @@
             {%- endif -%}
 
             {% if customer %}
-
-              {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
-              
+              {% unless customer.tags contains "nao-verificado" %}
+                {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
+              {% endunless %}
             {% endif %}
 
           </div>
