@@ -921,7 +921,9 @@
             {%- endif -%}
 
             {% if customer %}
-              {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
+              {% unless customer.tags contains "nao-verificado" %}
+                {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
+              {% endunless %}
             {% endif %}
           </div>
         </div>
