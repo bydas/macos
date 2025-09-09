@@ -2,8 +2,8 @@
 (function () {
   // 1) Obtém o formulário de registo (ajusta o seletor ao teu tema, se necessário)
   const registerForm =
-    document.getElementById('create_customer') ||
-    document.querySelector('form[action*="/account"]');
+    document.getElementById('create_customer');
+    // || document.querySelector('form[action*="/account"]');
 
   if (!registerForm) return;
 
