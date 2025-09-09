@@ -502,6 +502,11 @@
       "title": "Criar conta",
       "first_name": "Nome próprio",
       "last_name": "Apelido",
+      "company": "Empresa",
+      "company_nif": "NIF da empresa",
+      "company_address": "Morada da empresa",
+      "activity": "Área de atividade",
+      "contact_phone": "Contacto telefónico",
       "email": "E-mail",
       "password": "Palavra-passe",
       "submit": "Criar"
