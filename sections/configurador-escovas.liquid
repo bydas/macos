@@ -123,6 +123,9 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(0)"
+                      {% if customer.tags contains "nao-verificado" %}
+                        disabled
+                      {% endif %}
                     >
                       BUY1
                     </button>
@@ -184,6 +187,9 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(1)"
+                      {% if customer.tags contains "nao-verificado" %}
+                        disabled
+                      {% endif %}
                     >
                       BUY2
                     </button>
@@ -248,6 +254,9 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(2)"
+                      {% if customer.tags contains "nao-verificado" %}
+                        disabled
+                      {% endif %}
                     >
                       BUY1
                     </button>
@@ -305,6 +314,9 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(3)"
+                      {% if customer.tags contains "nao-verificado" %}
+                        disabled
+                      {% endif %}
                     >
                       BUY2
                     </button>
