@@ -145,14 +145,14 @@
         type="text"
         name="customer[contact_phone]"
         id="RegisterForm-ContactPhone"
-        {% if form.activity %}
-          value="{{ form.activity }}"
+        {% if form.contact_phone %}
+          value="{{ form.contact_phone }}"
         {% endif %}
-        placeholder="{{ 'customer.register.activity' | t }}"
+        placeholder="{{ 'customer.register.contact_phone' | t }}"
         required
       >
-      <label for="RegisterForm-Address">
-        {{ 'customer.register.activity' | t }}
+      <label for="RegisterForm-ContactPhone">
+        {{ 'customer.register.contact_phone' | t }}
       </label>
     </div>
 
