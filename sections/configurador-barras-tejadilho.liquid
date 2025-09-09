@@ -328,10 +328,11 @@
             priceWrapper.append(totalPriceLabel, totalPriceElement);
             
             const buyBtn = document.createElement("button");
-            const customerVerified = document.getElementById("see-price-info").dataset.verified === "true";
             buyBtn.classList.add("button-configurador");
             buyBtn.innerText = "Adicionar";
             buyBtn.setAttribute("id", `btn-${key}`);
+            
+            const customerVerified = document.getElementById("see-price-info").dataset.verified === "true";
             if (!customerVerified) {
               buyBtn.setAttribute("disabled", "disabled");
             }
