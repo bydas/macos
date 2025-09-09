@@ -116,17 +116,19 @@
                 {%- when 'price' -%}
 
                   {% if customer %}
+                    {% unless customer.tags contains "nao verificado" %}
 
-                    <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                      {%- render 'price',
-                        product: product,
-                        placeholder: placeholder,
-                        use_variant: true,
-                        show_badges: true,
-                        price_class: 'price--large'
-                      -%}
-                    </div>
-
+                      <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                        {%- render 'price',
+                          product: product,
+                          placeholder: placeholder,
+                          use_variant: true,
+                          show_badges: true,
+                          price_class: 'price--large'
+                        -%}
+                      </div>
+                      
+                    {% endunless %}
                   {% endif %}
                   
                   {%- if product.quantity_price_breaks_configured? -%}
