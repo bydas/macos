@@ -89,6 +89,9 @@
                       class="product-form__add-button button button--primary button-configurador"
                       data-variant-id=""
                       onclick="handleBuy(event)"
+                      {% if customer.tags contains "nao-verificado" %}
+                        disabled
+                      {% endif %}
                     >
                       ADICIONAR
                     </button>
