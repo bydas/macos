@@ -494,6 +494,8 @@
       "company": "Company",
       "company_nif": "Company NIF",
       "activity": "Activity",
+      "company_address": "Company address",
+      "contact_phone": "Contact phone",
       "email": "Email",
       "password": "Password",
       "submit": "Create"
