@@ -74,6 +74,8 @@
       </label>
     </div>
 
+    <!-- START NEW INPUTS -->
+
     <div class="field">
       <input
         type="text"
@@ -108,6 +110,24 @@
       </label>
     </div>
 
+    <div class="field">
+      <input
+        type="text"
+        name="customer[activity]"
+        id="RegisterForm-Activity"
+        {% if form.activity %}
+          value="{{ form.activity }}"
+        {% endif %}
+        autocomplete="family-name"
+        placeholder="{{ 'customer.register.activity' | t }}"
+        required
+      >
+      <label for="RegisterForm-Activity">
+        {{ 'customer.register.activity' | t }}
+      </label>
+    </div>
+
+    <!-- END NEW INPUTS -->
 
     <div class="field">
       <input
