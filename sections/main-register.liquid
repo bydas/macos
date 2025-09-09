@@ -73,6 +73,42 @@
         {{ 'customer.register.last_name' | t }}
       </label>
     </div>
+
+    <div class="field">
+      <input
+        type="text"
+        name="customer[company]"
+        id="RegisterForm-Company"
+        {% if form.company %}
+          value="{{ form.company }}"
+        {% endif %}
+        autocomplete="family-name"
+        placeholder="{{ 'customer.register.company' | t }}"
+        required
+      >
+      <label for="RegisterForm-Company">
+        {{ 'customer.register.nif' | t }}
+      </label>
+    </div>
+
+    <div class="field">
+      <input
+        type="number"
+        name="customer[nif]"
+        id="RegisterForm-Nif"
+        {% if form.nif %}
+          value="{{ form.nif }}"
+        {% endif %}
+        autocomplete="family-name"
+        placeholder="{{ 'customer.register.nif' | t }}"
+        required
+      >
+      <label for="RegisterForm-Nif">
+        {{ 'customer.register.nif' | t }}
+      </label>
+    </div>
+
+
     <div class="field">
       <input
         type="email"
