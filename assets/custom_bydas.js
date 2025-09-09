@@ -21,10 +21,10 @@
 
     // Versão legível em texto (multi-linha)
     const noteReadable =
-      '[B2B Signup]\n' +
+      'Dados de registo:\n' +
       'Empresa: ' + (company || '-') + '\n' +
       'NIF: ' + (companyVat || '-') + '\n' +
-      'Atividade: ' + (businessActivity || '-') + '\n' +
+      'Área de atividade: ' + (businessActivity || '-') + '\n' +
       'Morada: ' + (companyAddress || '-') + '\n' +
       'Telefone: ' + (contactPhone || '-');
 
