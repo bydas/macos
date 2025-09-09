@@ -1131,7 +1131,7 @@ img.btoptioni {
   background-color: transparent;
 }
 .article-template__hero-medium img,
-.article-template__hero-small {
+.article-template__hero-small img {
   object-fit: contain;
 }
 
