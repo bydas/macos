@@ -1126,10 +1126,12 @@ img.btoptioni {
 .article-card__excerpt {
   font-size: 1.55rem;
 }
-.article-template__hero-medium {
+.article-template__hero-medium,
+.article-template__hero-small {
   background-color: transparent;
 }
-.article-template__hero-medium img {
+.article-template__hero-medium img,
+.article-template__hero-small {
   object-fit: contain;
 }
 
