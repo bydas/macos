@@ -1127,7 +1127,7 @@ img.btoptioni {
   font-size: 1.55rem;
 }
 .article-template__hero-medium {
-  background-image: transparent;
+  background-color: transparent;
 }
 .article-template__hero-medium img {
   object-fit: contain;
