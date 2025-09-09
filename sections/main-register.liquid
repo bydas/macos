@@ -87,24 +87,24 @@
         required
       >
       <label for="RegisterForm-Company">
-        {{ 'customer.register.nif' | t }}
+        {{ 'customer.register.company' | t }}
       </label>
     </div>
 
     <div class="field">
       <input
         type="number"
-        name="customer[nif]"
-        id="RegisterForm-Nif"
-        {% if form.nif %}
-          value="{{ form.nif }}"
+        name="customer[company_nif]"
+        id="RegisterForm-CompanyNif"
+        {% if form.companyNif %}
+          value="{{ form.companyNif }}"
         {% endif %}
         autocomplete="family-name"
-        placeholder="{{ 'customer.register.nif' | t }}"
+        placeholder="{{ 'customer.register.company_nif' | t }}"
         required
       >
-      <label for="RegisterForm-Nif">
-        {{ 'customer.register.nif' | t }}
+      <label for="RegisterForm-companyNif">
+        {{ 'customer.register.company_nif' | t }}
       </label>
     </div>
 
