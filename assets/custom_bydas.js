@@ -1,4 +1,4 @@
-// CREATE ACCOUNT FORM
+// CREATE NEW ACCOUNT FORM
 (function () {
   // 1) Obtém o formulário de registo (ajusta o seletor ao teu tema, se necessário)
   const registerForm =
@@ -48,7 +48,9 @@
   });
 })();
 
-// ------------------------- ########################################### -------------------------
+
+// ------------------------- ########### -------------------------
+
 
 // Bootstrap Popover Initialization
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]') ?? null;
