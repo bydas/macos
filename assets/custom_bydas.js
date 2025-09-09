@@ -23,22 +23,22 @@
     const contactPhone   = readValue('RegisterForm-ContactPhone');
 
     // Versão em texto "chave: valor" (mais simples para Shopify Flow com regex)
-    const noteKeyValue =
-      '[B2B Signup]\n' +
-      'Empresa: ' + company + '\n' +
-      'NIF: ' + companyVat + '\n' +
-      'Atividade: ' + businessActivity + '\n' +
-      'Morada: ' + companyAddress + '\n' +
-      'Telefone: ' + contactPhone;
+    // const noteKeyValue =
+    //   '[B2B Signup]\n' +
+    //   'Empresa: ' + company + '\n' +
+    //   'NIF: ' + companyVat + '\n' +
+    //   'Atividade: ' + businessActivity + '\n' +
+    //   'Morada: ' + companyAddress + '\n' +
+    //   'Telefone: ' + contactPhone;
 
     // (Alternativa) Versão JSON legível — ativa se preferires JSON
-    // const noteJson = JSON.stringify({
-    //   company,
-    //   vat: companyVat,
-    //   activity: businessActivity,
-    //   address: companyAddress,
-    //   phone: contactPhone
-    // }, null, 2);
+    const noteJson = JSON.stringify({
+      company,
+      vat: companyVat,
+      activity: businessActivity,
+      address: companyAddress,
+      phone: contactPhone
+    }, null, 2);
 
     // 4) Coloca o valor no hidden customer[note]
     const noteInput = document.getElementById('RegisterForm-Note');
