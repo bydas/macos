@@ -43,7 +43,8 @@
     // 4) Coloca o valor no hidden customer[note]
     const noteInput = document.getElementById('RegisterForm-Note');
     if (noteInput) {
-      noteInput.value = noteKeyValue; // ou noteJson
+      // noteInput.value = noteKeyValue; // Regex
+      noteInput.value = noteJson; // json
     }
   });
 })();
