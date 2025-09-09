@@ -1126,6 +1126,12 @@ img.btoptioni {
 .article-card__excerpt {
   font-size: 1.55rem;
 }
+.article-template__hero-medium {
+  background-image: transparent;
+}
+.article-template__hero-medium img {
+  object-fit: contain;
+}
 
 /* cart */
 .cart__warnings .button::after,
