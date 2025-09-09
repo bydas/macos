@@ -415,7 +415,7 @@
                   class="quick-add-bulk"
                   data-index="{{ card_product.selected_or_first_available_variant.id }}"
                 >
-                  {% if card_product.selected_or_first_available_variant.available == false %}
+                  {% if card_product.selected_or_first_available_variant.available == false or customer.tags contains "nao-verificado" %}
                     <button
                       id="{{ product_form_id }}-submit"
                       type="submit"
@@ -768,6 +768,7 @@
                       {% if card_product.selected_or_first_available_variant.available == false
                         or quantity_rule_soldout
                         or card_product.selected_or_first_available_variant == null
+                        or customer.tags contains "nao-verificado"
                       %}
                         disabled
                       {% endif %}
