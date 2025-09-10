@@ -169,9 +169,17 @@
         "disabled": false,
         "settings": {}
       },
+      "10842145328576398252": {
+        "type": "shopify://apps/bold-custom-pricing-wholesale/blocks/v3_bold_pr/27ce59c5-d805-4118-89c7-4a7fe286ddce",
+        "disabled": true,
+        "settings": {
+          "enable_compare_at": false,
+          "skip_pr_js_load": false
+        }
+      },
       "13741738273725063537": {
         "type": "shopify://apps/bold-custom-pricing-wholesale/blocks/v3_price/27ce59c5-d805-4118-89c7-4a7fe286ddce",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "product-price-locator": "price-item price-item--regular",
           "collection-item-locator": ".card-wrapper",
@@ -184,14 +192,6 @@
           "enable-product-drawer": false,
           "listen-product-fetch": "/products/",
           "drawer-locator": ".quick-add-modal__content.global-settings-popup"
-        }
-      },
-      "10842145328576398252": {
-        "type": "shopify://apps/bold-custom-pricing-wholesale/blocks/v3_bold_pr/27ce59c5-d805-4118-89c7-4a7fe286ddce",
-        "disabled": true,
-        "settings": {
-          "enable_compare_at": false,
-          "skip_pr_js_load": false
         }
       }
     },
