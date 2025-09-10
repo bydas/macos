@@ -16,209 +16,212 @@
 
 <div class="container">
   <div class="row justify-content-evenly">
+
     {% if section.settings.side_text != blank %}
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-5 section-{{ section.id }}-padding">
         {{ section.settings.side_text }}
       </div>
     {% endif %}
 
+    <div class="customer register section-{{ section.id }}-padding col-12 col-md-5">
+      <h1>
+        {{ 'customer.register.title' | t }}
+      </h1>
+      {%- form 'create_customer', novalidate: 'novalidate' -%}
+        {%- if form.errors -%}
+          <h2 class="form__message" tabindex="-1" autofocus>
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+          <ul>
+            {%- for field in form.errors -%}
+              <li>
+                {%- if field == 'form' -%}
+                  {{ form.errors.messages[field] }}
+                {%- else -%}
+                  <a href="#RegisterForm-{{ field }}">
+                    {{ form.errors.translated_fields[field] | capitalize }}
+                    {{ form.errors.messages[field] }}
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        <div class="field">
+          <input
+            type="text"
+            name="customer[first_name]"
+            id="RegisterForm-FirstName"
+            {% if form.first_name %}
+              value="{{ form.first_name }}"
+            {% endif %}
+            autocomplete="given-name"
+            placeholder="{{ 'customer.register.first_name' | t }}"
+            required
+          >
+          <label for="RegisterForm-FirstName">
+            {{ 'customer.register.first_name' | t }}
+          </label>
+        </div>
+        <div class="field">
+          <input
+            type="text"
+            name="customer[last_name]"
+            id="RegisterForm-LastName"
+            {% if form.last_name %}
+              value="{{ form.last_name }}"
+            {% endif %}
+            autocomplete="family-name"
+            placeholder="{{ 'customer.register.last_name' | t }}"
+            required
+          >
+          <label for="RegisterForm-LastName">
+            {{ 'customer.register.last_name' | t }}
+          </label>
+        </div>
+
+        {% comment %} START NEW INPUTS {% endcomment %}
+
+        <div class="field">
+          <input
+            type="text"
+            name="customer[company]"
+            id="RegisterForm-Company"
+            placeholder="{{ 'customer.register.company' | t }}"
+            required
+          >
+          <label for="RegisterForm-Company">
+            {{ 'customer.register.company' | t }}
+          </label>
+        </div>
+
+        <div class="field">
+          <input
+            type="text"
+            inputmode="numeric"
+            name="customer[company_nif]"
+            id="RegisterForm-CompanyNif"
+            placeholder="{{ 'customer.register.company_nif' | t }}"
+            required
+          >
+          <label for="RegisterForm-CompanyNif">
+            {{ 'customer.register.company_nif' | t }}
+          </label>
+        </div>
+
+        <div class="field">
+          <input
+            type="text"
+            name="customer[activity]"
+            id="RegisterForm-Activity"
+            placeholder="{{ 'customer.register.activity' | t }}"
+            required
+          >
+          <label for="RegisterForm-Activity">
+            {{ 'customer.register.activity' | t }}
+          </label>
+        </div>
+
+        <div class="field">
+          <input
+            type="text"
+            name="customer[company_address]"
+            id="RegisterForm-CompanyAddress"
+            placeholder="{{ 'customer.register.company_address' | t }}"
+            required
+          >
+          <label for="RegisterForm-Address">
+            {{ 'customer.register.company_address' | t }}
+          </label>
+        </div>
+
+        <div class="field">
+          <input
+            type="text"
+            name="customer[contact_phone]"
+            id="RegisterForm-ContactPhone"
+            placeholder="{{ 'customer.register.contact_phone' | t }}"
+            required
+          >
+          <label for="RegisterForm-ContactPhone">
+            {{ 'customer.register.contact_phone' | t }}
+          </label>
+        </div>
+
+        <input type="hidden" name="customer[note]" id="RegisterForm-Note">
+
+        {% comment %} END NEW INPUTS {% endcomment %}
+
+        <div class="field">
+          <input
+            type="email"
+            name="customer[email]"
+            id="RegisterForm-email"
+            {% if form.email %}
+              value="{{ form.email }}"
+            {% endif %}
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-email-error"
+            {% endif %}
+            placeholder="{{ 'customer.register.email' | t }}"
+            required
+          >
+          <label for="RegisterForm-email">
+            {{ 'customer.register.email' | t }}
+          </label>
+        </div>
+        {%- if form.errors contains 'email' -%}
+          <span id="RegisterForm-email-error" class="form__message">
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            {{ form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email }}.
+          </span>
+        {%- endif -%}
+        <div class="field">
+          <input
+            type="password"
+            name="customer[password]"
+            id="RegisterForm-password"
+            aria-required="true"
+            {% if form.errors contains 'password' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-password-error"
+            {% endif %}
+            placeholder="{{ 'customer.register.password' | t }}"
+            required
+          >
+          <label for="RegisterForm-password">
+            {{ 'customer.register.password' | t }}
+          </label>
+        </div>
+        {%- if form.errors contains 'password' -%}
+          <span id="RegisterForm-password-error" class="form__message">
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            {{ form.errors.translated_fields.password | capitalize }}
+            {{ form.errors.messages.password }}.
+          </span>
+        {%- endif -%}
+        <button class="login-button">
+          {{ 'customer.register.submit' | t }}
+        </button>
+      {%- endform -%}
+    </div>
+
   </div>
 </div>
-<div class="customer register section-{{ section.id }}-padding col-12 col-md-5">
-  <h1>
-    {{ 'customer.register.title' | t }}
-  </h1>
-  {%- form 'create_customer', novalidate: 'novalidate' -%}
-    {%- if form.errors -%}
-      <h2 class="form__message" tabindex="-1" autofocus>
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        {{ 'templates.contact.form.error_heading' | t }}
-      </h2>
-      <ul>
-        {%- for field in form.errors -%}
-          <li>
-            {%- if field == 'form' -%}
-              {{ form.errors.messages[field] }}
-            {%- else -%}
-              <a href="#RegisterForm-{{ field }}">
-                {{ form.errors.translated_fields[field] | capitalize }}
-                {{ form.errors.messages[field] }}
-              </a>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-    <div class="field">
-      <input
-        type="text"
-        name="customer[first_name]"
-        id="RegisterForm-FirstName"
-        {% if form.first_name %}
-          value="{{ form.first_name }}"
-        {% endif %}
-        autocomplete="given-name"
-        placeholder="{{ 'customer.register.first_name' | t }}"
-        required
-      >
-      <label for="RegisterForm-FirstName">
-        {{ 'customer.register.first_name' | t }}
-      </label>
-    </div>
-    <div class="field">
-      <input
-        type="text"
-        name="customer[last_name]"
-        id="RegisterForm-LastName"
-        {% if form.last_name %}
-          value="{{ form.last_name }}"
-        {% endif %}
-        autocomplete="family-name"
-        placeholder="{{ 'customer.register.last_name' | t }}"
-        required
-      >
-      <label for="RegisterForm-LastName">
-        {{ 'customer.register.last_name' | t }}
-      </label>
-    </div>
 
-    {% comment %} START NEW INPUTS {% endcomment %}
-
-    <div class="field">
-      <input
-        type="text"
-        name="customer[company]"
-        id="RegisterForm-Company"
-        placeholder="{{ 'customer.register.company' | t }}"
-        required
-      >
-      <label for="RegisterForm-Company">
-        {{ 'customer.register.company' | t }}
-      </label>
-    </div>
-
-    <div class="field">
-      <input
-        type="text"
-        inputmode="numeric"
-        name="customer[company_nif]"
-        id="RegisterForm-CompanyNif"
-        placeholder="{{ 'customer.register.company_nif' | t }}"
-        required
-      >
-      <label for="RegisterForm-CompanyNif">
-        {{ 'customer.register.company_nif' | t }}
-      </label>
-    </div>
-
-    <div class="field">
-      <input
-        type="text"
-        name="customer[activity]"
-        id="RegisterForm-Activity"
-        placeholder="{{ 'customer.register.activity' | t }}"
-        required
-      >
-      <label for="RegisterForm-Activity">
-        {{ 'customer.register.activity' | t }}
-      </label>
-    </div>
-
-    <div class="field">
-      <input
-        type="text"
-        name="customer[company_address]"
-        id="RegisterForm-CompanyAddress"
-        placeholder="{{ 'customer.register.company_address' | t }}"
-        required
-      >
-      <label for="RegisterForm-Address">
-        {{ 'customer.register.company_address' | t }}
-      </label>
-    </div>
-
-    <div class="field">
-      <input
-        type="text"
-        name="customer[contact_phone]"
-        id="RegisterForm-ContactPhone"
-        placeholder="{{ 'customer.register.contact_phone' | t }}"
-        required
-      >
-      <label for="RegisterForm-ContactPhone">
-        {{ 'customer.register.contact_phone' | t }}
-      </label>
-    </div>
-
-    <input type="hidden" name="customer[note]" id="RegisterForm-Note">
-
-    {% comment %} END NEW INPUTS {% endcomment %}
-
-    <div class="field">
-      <input
-        type="email"
-        name="customer[email]"
-        id="RegisterForm-email"
-        {% if form.email %}
-          value="{{ form.email }}"
-        {% endif %}
-        spellcheck="false"
-        autocapitalize="off"
-        autocomplete="email"
-        aria-required="true"
-        {% if form.errors contains 'email' %}
-          aria-invalid="true"
-          aria-describedby="RegisterForm-email-error"
-        {% endif %}
-        placeholder="{{ 'customer.register.email' | t }}"
-        required
-      >
-      <label for="RegisterForm-email">
-        {{ 'customer.register.email' | t }}
-      </label>
-    </div>
-    {%- if form.errors contains 'email' -%}
-      <span id="RegisterForm-email-error" class="form__message">
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        {{ form.errors.translated_fields.email | capitalize }}
-        {{ form.errors.messages.email }}.
-      </span>
-    {%- endif -%}
-    <div class="field">
-      <input
-        type="password"
-        name="customer[password]"
-        id="RegisterForm-password"
-        aria-required="true"
-        {% if form.errors contains 'password' %}
-          aria-invalid="true"
-          aria-describedby="RegisterForm-password-error"
-        {% endif %}
-        placeholder="{{ 'customer.register.password' | t }}"
-        required
-      >
-      <label for="RegisterForm-password">
-        {{ 'customer.register.password' | t }}
-      </label>
-    </div>
-    {%- if form.errors contains 'password' -%}
-      <span id="RegisterForm-password-error" class="form__message">
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        {{ form.errors.translated_fields.password | capitalize }}
-        {{ form.errors.messages.password }}.
-      </span>
-    {%- endif -%}
-    <button class="login-button">
-      {{ 'customer.register.submit' | t }}
-    </button>
-  {%- endform -%}
-</div>
 
 {% schema %}
 {
