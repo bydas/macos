@@ -181,18 +181,18 @@
           "drawer-locator": ".quick-add-modal__content.global-settings-popup"
         }
       },
-      "10842145328576398252": {
-        "type": "shopify://apps/bold-custom-pricing-wholesale/blocks/v3_bold_pr/27ce59c5-d805-4118-89c7-4a7fe286ddce",
-        "disabled": true,
-        "settings": {
-          "enable_compare_at": false,
-          "skip_pr_js_load": false
-        }
-      },
       "7924418359578431505": {
         "type": "shopify://apps/seoant-ai-seo/blocks/seoant-core/8e57283b-dcb0-4f7b-a947-fb5c57a0d59d",
         "disabled": false,
         "settings": {}
+      },
+      "10842145328576398252": {
+        "type": "shopify://apps/bold-custom-pricing-wholesale/blocks/v3_bold_pr/27ce59c5-d805-4118-89c7-4a7fe286ddce",
+        "disabled": false,
+        "settings": {
+          "enable_compare_at": false,
+          "skip_pr_js_load": false
+        }
       }
     },
     "color_schemes": {
