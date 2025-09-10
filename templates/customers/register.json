@@ -1,10 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-register",
       "settings": {
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "side_text": "<h2>Criar Conta – MACOS</h2><p> </p><p>Pretender ser um revendedor Macos?</p><p> </p><p>Se tem uma empresa de <strong>acessórios auto</strong> e pretende revender os nossos produtos, preencha o seguinte formulário para ter acesso à sua área privada.</p><p> </p><p>No prazo de 48h receberá resposta ao seu pedido e caso seja aprovado receberá um e-mail a confirmar a sua conta de revendedor e a partir desse momento já terá acesso.</p><p> </p><p>Se tiver alguma dúvida durante o processo não hesite em entrar em contacto connosco através do email <a href=\"mailto:armazem@macos.pt\" target=\"_blank\">armazem@macos.pt</a> ou pelo contacto <a href=\"tel:228347141\">228 347 141</a>.</p><p> </p><p>A Equipa</p><p>Macos, Lda</p>"
       }
     }
   },
