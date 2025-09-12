@@ -150,6 +150,10 @@
           {{ 'customer.login_page.sign_in' | t }}
         </button>
         
+        {% if section.settings.create_account_custom_text != blank %}
+          <div class="create_account_custom_text">{{ section.settings.create_account_custom_text }}</div>
+        {% endif %}
+
         <a href="{{ routes.account_register_url }}">
           {{ 'customer.login_page.create_account' | t }}
         </a>
@@ -209,6 +213,11 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "richtext",
+      "id": "create_account_custom_text",
+      "label": "'Create account' text"
     }
   ]
 }
