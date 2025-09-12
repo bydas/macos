@@ -296,7 +296,9 @@
                     name="id"
                     value="{{ card_product.selected_or_first_available_variant.id }}"
                     class="product-variant-id"
-                    {% if card_product.selected_or_first_available_variant.available == false or customer.tags contains "nao-verificado" %}
+                    {% if card_product.selected_or_first_available_variant.available == false 
+                      or customer == nil
+                      or customer.tags contains "nao-verificado" %}
                       disabled
                     {% endif %}
                   >
