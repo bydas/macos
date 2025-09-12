@@ -516,9 +516,7 @@
         "@type":         "Offer",
         "priceCurrency": {{ shop.currency | json }},
         {% if customer %}
-          {% unless customer.tags contains "nao-verificado" %}
-            "price":       {{ product.price | divided_by: 100.0 }},{% comment %}não esquecer a vírgula no final se price for incluído{% endcomment %}
-          {% endunless %}
+          "price":       {{ product.price | divided_by: 100.0 }},{% comment %}não esquecer a vírgula se price for incluído{% endcomment %}
         {% endif %}
         "availability":  "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
       }
