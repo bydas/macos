@@ -836,7 +836,8 @@
                     {% if card_product.selected_or_first_available_variant.available == false
                       or quantity_rule_soldout
                       or card_product.selected_or_first_available_variant == null
-                      or customer.tags contains "nao-verificado"
+                      or customer == nil
+                      or customer and customer.tags contains "nao-verificado"
                     %}
                       disabled
                     {% endif %}
