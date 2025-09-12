@@ -91,6 +91,7 @@ textarea {
   border-radius: 25px !important;
   border: none;
   box-shadow: none;
+  overflow: hidden;
 }
 .field:not(:has(.search__input)):not(:has([id^="NewsletterForm"])),
 #AddAddress select {
