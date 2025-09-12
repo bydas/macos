@@ -3,6 +3,14 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 
+{% liquid 
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
+%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
