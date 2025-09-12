@@ -3,6 +3,12 @@
   if product == null
     assign placeholder = true
   endif
+
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
 -%}
 
 <product-info
