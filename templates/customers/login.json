@@ -13,7 +13,7 @@
       "type": "main-login",
       "custom_css": [
         ".create_account_custom_text {margin-top: 1lh;}",
-        ".create_account_custom_text * {color: gray;}"
+        ".create_account_custom_text * {color: rgb(255, 152, 0);}"
       ],
       "settings": {
         "color_scheme": "scheme-5",
