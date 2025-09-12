@@ -345,7 +345,10 @@
               class="quick-add-bulk"
               data-index="{{ card_product.selected_or_first_available_variant.id }}"
             >
-              {% if card_product.selected_or_first_available_variant.available == false or customer.tags contains "nao-verificado" %}
+              {% if card_product.selected_or_first_available_variant.available == false
+                or not customer
+                or customer.tags contains "nao-verificado" 
+              %}
                 <button
                   id="{{ product_form_id }}-submit"
                   type="submit"
