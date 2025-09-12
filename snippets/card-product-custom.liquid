@@ -250,9 +250,9 @@
                   aria-haspopup="dialog"
                   aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                   data-product-url="{{ card_product.url }}"
-                  {% if not customer or customer.tags contains "nao-verificado" %}
+                  {% comment %} {% if not customer or customer.tags contains "nao-verificado" %}
                     disabled
-                  {% endif %}
+                  {% endif %} {% endcomment %}
                 >
                   {{ 'products.product.choose_options' | t }}
                   {%- if horizontal_quick_add -%}
