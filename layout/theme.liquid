@@ -26,6 +26,8 @@
       rel="stylesheet"
     >
 
+    {% assign verified_customer = customer and customer.tags contains "nao-verificado" %}
+
     <script>
       {% if customer %}
         window.customerLoggedIn = true;
