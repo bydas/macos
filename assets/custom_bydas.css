@@ -146,6 +146,10 @@ textarea:focus {
   margin-bottom: 0;
   border: none;
 }
+.button-configurador:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
 
 #shopify-pc__banner button:not([id="shopify-pc__banner__btn-manage-prefs"]),
 .shopify-pc__prefs__header-actions button,
