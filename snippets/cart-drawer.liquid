@@ -143,7 +143,7 @@
                             {{- item.product.title | escape -}}
                           </a>
 
-                          {% if customer %}
+                          {% if verified_customer %}
                             {%- if item.original_price != item.final_price -%}
                               <div class="cart-item__discounted-prices">
                                 <span class="visually-hidden">
@@ -226,7 +226,7 @@
                           </ul>
                         </td>
 
-                        {% if customer %}
+                        {% if verified_customer %}
                           <td class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
                             {%- render 'loading-spinner' -%}
                             <div class="cart-item__price-wrapper">
@@ -499,7 +499,7 @@
             {%- endif -%}
           </div>
 
-          {% if customer %}
+          {% if verified_customer %}
             <div class="totals" role="status">
               <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
               <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>

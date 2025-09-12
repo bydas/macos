@@ -139,7 +139,7 @@
             {%- endif -%}
 
             <!-- PRICE -->
-            {% if customer %}
+            {% if verified_customer %}
               {% unless customer.tags contains "nao-verificado" %}
                 {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
                 {%- if card_product.quantity_price_breaks_configured? -%}
@@ -467,7 +467,7 @@
                           <h3>{{ card_product.title | escape }}</h3>
                         </a>
 
-                        {% if customer %}
+                        {% if verified_customer %}
                           {% unless customer.tags contains "nao-verificado" %}
                             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
                           {% endunless %}
@@ -488,7 +488,7 @@
                           </h3>
                         </a>
 
-                        {% if customer %}
+                        {% if verified_customer %}
                           {% unless customer.tags contains "nao-verificado" %}
                             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
                           {% endunless %}
@@ -933,7 +933,7 @@
               <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
             {%- endif -%}
 
-            {% if customer %}
+            {% if verified_customer %}
               {% unless customer.tags contains "nao-verificado" %}
                 {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
               {% endunless %}

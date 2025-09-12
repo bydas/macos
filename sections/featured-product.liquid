@@ -115,7 +115,7 @@
                   </h2>
                 {%- when 'price' -%}
 
-                  {% if customer %}
+                  {% if verified_customer %}
                     <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                       {%- render 'price',
                         product: product,
@@ -482,7 +482,7 @@
   -%}
 
   {% comment %} 
-  {% if customer %}
+  {% if verified_customer %}
 
     <script type="application/ld+json">
       {{ product | structured_data }}
@@ -511,7 +511,7 @@
       "offers": {
         "@type":         "Offer",
         "priceCurrency": {{ shop.currency | json }},
-        {% if customer %}
+        {% if verified_customer %}
           "price":       {{ product.price | divided_by: 100.0 }},{% comment %}não esquecer a vírgula se price for incluído{% endcomment %}
         {% endif %}
         "availability":  "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
