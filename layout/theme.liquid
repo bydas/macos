@@ -26,7 +26,13 @@
       rel="stylesheet"
     >
 
-    {% assign verified_customer = customer and customer.tags contains "nao-verificado" %}
+      {% liquid 
+        if customer and customer.tags contains "nao-verificado"
+          assign verified_customer = false
+        else
+          assign verified_customer = true
+        endif
+      %}
 
     <script>
       {% if customer %}
