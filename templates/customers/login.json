@@ -11,11 +11,15 @@
   "sections": {
     "main": {
       "type": "main-login",
+      "custom_css": [
+        ".create_account_custom_text {margin-top: 1lh; color: gray;}"
+      ],
       "settings": {
         "color_scheme": "scheme-5",
         "enable_shop_login_button": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "create_account_custom_text": "<h4><em>É revendedor?</em></h4>"
       }
     }
   },
