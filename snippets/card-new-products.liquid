@@ -326,7 +326,7 @@
                       aria-haspopup="dialog"
                       aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                       data-product-url="{{ card_product.url }}"
-                      {% if not customer or customer.tags.contains "nao-verificado" %}
+                      {% if customer == nil or customer.tags.contains "nao-verificado" %}
                         disabled
                       {% endif %}
                     >
@@ -386,7 +386,7 @@
                         aria-live="polite"
                         data-sold-out-message="true"
                         {% if card_product.selected_or_first_available_variant.available == false 
-                          or not customer
+                          or customer == nil
                           or customer.tags contains "nao-verificado" 
                         %}
                           disabled
@@ -422,7 +422,7 @@
                   data-index="{{ card_product.selected_or_first_available_variant.id }}"
                 >
                   {% if card_product.selected_or_first_available_variant.available == false 
-                    or not customer
+                    or customer == nil
                     or customer.tags contains "nao-verificado" 
                   %}
                     <button
@@ -464,7 +464,7 @@
                       aria-haspopup="dialog"
                       aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                       data-product-url="{{ card_product.url }}"
-                      {% if not customer or customer.tags.contains "nao-verificado" %}
+                      {% if customer == nil or customer.tags.contains "nao-verificado" %}
                         disabled
                       {% endif %}
                     >
@@ -809,7 +809,7 @@
                         {% if card_product.selected_or_first_available_variant.available == false
                           or quantity_rule_soldout
                           or card_product.selected_or_first_available_variant == null
-                          or not customer
+                          or customer == nil
                           or customer.tags contains "nao-verificado"
                         %}
                           disabled
