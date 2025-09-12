@@ -1,3 +1,11 @@
+{% liquid 
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
+%}
+
 <product-info
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
