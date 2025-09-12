@@ -314,7 +314,7 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(3)"
-                      {% if customer.tags contains "nao-verificado" %}
+                      {% if customer == nil or customer.tags contains "nao-verificado" %}
                         disabled
                       {% endif %}
                     >
