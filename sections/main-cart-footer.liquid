@@ -59,10 +59,12 @@
                 </div>
 
                 {% if customer %}
-                  <div class="totals">
+                  {% unless customer.tags contains "nao-verificado" %}
+                    <div class="totals">
                     <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
                     <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
                   </div>
+                  {% endunless %}
                 {% endif %}
 
                 <small class="tax-note caption-large rte">
