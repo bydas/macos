@@ -35,7 +35,7 @@
       %}
 
     <script>
-      {% if customer and customer.tags contains "nao-verificado" %}
+      {% if customer == nil or customer and customer.tags contains "nao-verificado" %}
         window.customerLoggedIn = false;
       {% else %}
         window.customerLoggedIn = true;
