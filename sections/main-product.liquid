@@ -118,7 +118,6 @@
                 </div>
               {%- when 'price' -%}
                 {% if verified_customer %}
-                  {% unless customer.tags contains "nao-verificado" %}
                     <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                       {%- render 'price',
                         product: product,
@@ -154,7 +153,6 @@
                         {{ form | payment_terms }}
                       {%- endform -%}
                     </div>
-                  {% endunless %}
                 {% else %}
                   {% render 'see-price-info', popover_placement: 'right', main_product_page: true %}
                 {% endif %}
