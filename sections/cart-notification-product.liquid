@@ -18,6 +18,9 @@
         {%- endif -%}
         <h3 class="cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
         <dl>
+
+          {% comment %}
+
           {%- unless item.product.has_only_default_variant -%}
             {%- for option in item.options_with_values -%}
               <div class="product-option">
@@ -26,6 +29,10 @@
               </div>
             {%- endfor -%}
           {%- endunless -%}
+
+          {% endcomment %}
+
+          
           {%- for property in item.properties -%}
             {%- assign property_first_char = property.first | slice: 0 -%}
             {%- if property.last != blank and property_first_char != '_' -%}
