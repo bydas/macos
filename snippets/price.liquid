@@ -12,8 +12,9 @@
   Usage:
   {% render 'price', product: product %}
 {% endcomment %}
-{%- liquid
 
+{%- liquid
+  # BYDAS LIQUID
   # ----- Preço 1 vs Preço 2 -----
   if verified_customer and customer.tags contains "preco2"
     assign customer_has_preco2 = true
@@ -52,6 +53,14 @@
     endfor
   endif
 
+  if selected_variant_for_customer
+    assign target = selected_variant_for_customer
+  elsif placeholder
+    assign target = null
+  endif
+
+  # DAWN LIQUID
+  comment
 
   if use_variant
     assign target = product.selected_or_first_available_variant
@@ -60,6 +69,8 @@
   else
     assign target = product
   endif
+
+  endcomment
 
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
