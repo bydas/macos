@@ -24,7 +24,7 @@
 
   if tabela_index != nil
     for prod_variant in product.variants
-      assign tabela_value = product_variant.options[tabela_index]
+      assign tabela_value = prod_variant.options[tabela_index]
 
       if customer_has_preco2 and tabela_value == "2"
       
