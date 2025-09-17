@@ -98,7 +98,7 @@
                       class="product-form__add-button button button--primary button-configurador"
                       data-variant-id=""
                       onclick="handleBuy(event)"
-                      {% if customer == nil or customer.tags contains "nao-verificado" %}
+                      {% if verified_customer == false %}
                         disabled
                       {% endif %}
                     >
