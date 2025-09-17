@@ -852,17 +852,17 @@
                 <input
                   type="hidden"
                   name="id"
-                  value="{{ card_product.selected_or_first_available_variant.id }}"
+                  {% comment %} value="{{ card_product.selected_or_first_available_variant.id }}"
                   {% if card_product.selected_or_first_available_variant.available == false
                     or quantity_rule_soldout
                     or card_product.selected_or_first_available_variant == null
-                  %}
-                  {% comment %} value="{{ selected_variant_for_customer.id }}"
+                  %} {% endcomment %}
+                  value="{{ selected_variant_for_customer.id }}"
                   {% if selected_variant_for_customer.available == false 
                     or quantity_rule_soldout
                     or selected_variant_for_customer == null
                     or verified_customer == false
-                  %} {% endcomment %}
+                  %}
                     disabled
                   {% endif %}
                   class="product-variant-id"
