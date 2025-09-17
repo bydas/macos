@@ -852,10 +852,15 @@
                 <input
                   type="hidden"
                   name="id"
-                  value="{{ card_product.selected_or_first_available_variant.id }}"
+                  value="{{ selected_variant_for_customer.id }}"
+                  {% comment %} value="{{ card_product.selected_or_first_available_variant.id }}"
                   {% if card_product.selected_or_first_available_variant.available == false
                     or quantity_rule_soldout
                     or card_product.selected_or_first_available_variant == null
+                  %} {% endcomment %}
+                  {% if selected_variant_for_customer.available == false 
+                    or quantity_rule_soldout
+                    or selected_variant_for_customer == null
                   %}
                     disabled
                   {% endif %}
