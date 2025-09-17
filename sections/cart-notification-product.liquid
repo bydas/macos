@@ -21,6 +21,8 @@
 
           {% comment %}
 
+          {% comment %} EXIBIR VARIANTE SELECIONADA {% endcomment %}
+
           {%- unless item.product.has_only_default_variant -%}
             {%- for option in item.options_with_values -%}
               <div class="product-option">
