@@ -22,6 +22,7 @@
     endif
   endfor
 
+  # Atribuir variante ao cliente
   if tabela_index != nil
     for prod_variant in product.variants
       assign tabela_value = prod_variant.options[tabela_index]
