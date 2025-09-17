@@ -149,7 +149,7 @@
 
             <!-- PRICE -->
             {% if verified_customer %}
-                {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+                {% render 'price', product: card_product, price_class: '', show_compare_at_price: true, verified_customer: verified_customer %}
                 {%- if card_product.quantity_price_breaks_configured? -%}
                   {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                     {% liquid
