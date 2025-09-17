@@ -1,3 +1,12 @@
+{% liquid
+  # Verificação de cliente para ver preços e adicionar ao carrinho
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
+%}
+
 {% style %}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top }}px;
