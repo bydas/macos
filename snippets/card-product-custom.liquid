@@ -861,6 +861,7 @@
                   {% if selected_variant_for_customer.available == false 
                     or quantity_rule_soldout
                     or selected_variant_for_customer == null
+                    or verified_customer == false
                   %}
                     disabled
                   {% endif %}
