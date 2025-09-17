@@ -13,6 +13,9 @@
     assign customer_has_preco2 = false
   endif
 
+  # Decalarada inicialmente antes de qualquer verificação para ter um valor atribuído caso um produto não tenha variante
+  assign selected_variant_for_customer = product.selected_or_first_available_variant
+
   # Verificar em que posição do array de variantes está "Tabela"
   assign tabela_index = nil
 
