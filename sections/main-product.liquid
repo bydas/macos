@@ -37,9 +37,6 @@
         assign selected_variant_for_customer = prod_variant
         break
 
-      else
-        assign selected_variant_for_customer = product.selected_or_first_available_variant
-
       endif
     endfor
   endif
