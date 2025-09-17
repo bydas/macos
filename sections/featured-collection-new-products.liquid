@@ -39,13 +39,6 @@
 {%- endstyle -%}
 
 {%- liquid
-  # Verificação de cliente para poder ver preços e adicionar produtos ao carrinho
-  if customer == nil or customer and customer.tags contains "nao-verificado"
-    assign verified_customer = false
-  else
-    assign verified_customer = true
-  endif
-
   assign products_to_display = section.settings.collection.all_products_count
 
   if section.settings.collection.all_products_count > section.settings.products_to_show
@@ -123,8 +116,7 @@
                   show_rating: section.settings.show_rating,
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
-                  quick_add: section.settings.quick_add,
-                  verified_customer: verified_customer
+                  quick_add: section.settings.quick_add
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
