@@ -46,16 +46,16 @@
         <input
           type="hidden"
           name="id"
-          {% comment %} value="{{ selected_variant_for_customer.id }}"
+          value="{{ selected_variant_for_customer.id }}"
           {% if selected_variant_for_customer.available == false
             or quantity_rule_soldout
             or selected_variant_for_customer == null
-          %} {% endcomment %}
-          value="{{ product.selected_or_first_available_variant.id }}" 
+          %}
+          {% comment %} value="{{ product.selected_or_first_available_variant.id }}" 
           {% if product.selected_or_first_available_variant.available == false
             or quantity_rule_soldout
             or product.selected_or_first_available_variant == null
-          %}
+          %} {% endcomment %}
             disabled
           {% endif %}
           class="product-variant-id"
