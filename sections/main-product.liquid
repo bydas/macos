@@ -4,6 +4,13 @@
   else
     assign verified_customer = true
   endif
+
+  if verified_customer and customer.tags contains "preco2"
+    assign preco2 = true
+  else
+    assign preco2 = false
+  endif
+
 %}
 
 <product-info
