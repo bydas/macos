@@ -341,10 +341,12 @@
                     type="hidden"
                     name="id"
                     class="product-variant-id"
-                    value="{{ card_product.selected_or_first_available_variant.id }}"
+                    value="{{ selected_variant_for_customer.id }}"
+                    {% comment %} value="{{ card_product.selected_or_first_available_variant.id }}" 
                     {% if card_product.selected_or_first_available_variant.available == false 
                       or customer == nil
-                      or customer.tags contains "nao-verificado" %}
+                      or customer.tags contains "nao-verificado" %} {% endcomment %}
+                    {% if selected_variant_for_customer.available == false or verified_customer == false %}
                       disabled
                     {% endif %}
                   >
