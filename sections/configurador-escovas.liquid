@@ -132,7 +132,7 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(0)"
-                      {% if verified_customer %}
+                      {% if verified_customer == false %}
                         disabled
                       {% endif %}
                     >
@@ -196,7 +196,7 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(1)"
-                      {% if verified_customer %}
+                      {% if verified_customer == false %}
                         disabled
                       {% endif %}
                     >
@@ -263,7 +263,7 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(2)"
-                      {% if verified_customer %}
+                      {% if verified_customer == false %}
                         disabled
                       {% endif %}
                     >
@@ -323,7 +323,7 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(3)"
-                      {% if customer == nil or customer.tags contains "nao-verificado" %}
+                      {% if verified_customer == false %}
                         disabled
                       {% endif %}
                     >
