@@ -26,14 +26,6 @@
       rel="stylesheet"
     >
 
-    {% liquid 
-      if customer == nil or customer and customer.tags contains "nao-verificado"
-        assign verified_customer = false
-      else
-        assign verified_customer = true
-      endif
-    %}
-
     <script>
       {% if customer == nil or customer and customer.tags contains "nao-verificado" %}
         window.customerLoggedIn = false;
