@@ -1,4 +1,9 @@
 {% liquid
+  ###############################################
+  ######### VERIFICAÇÕES DE CLIENTE #############
+  ### (Cliente verificado e Preço1 vs Preço2) ###
+  ###############################################
+
   # Cliente verificado para poder ver preços e adicionar ao carrinho
   if customer == nil or customer and customer.tags contains "nao-verificado"
     assign verified_customer = false
