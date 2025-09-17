@@ -263,7 +263,7 @@
                       data-action="add-to-cart"
                       style="height:50px; font-size:14px;"
                       onclick="handleBuy(2)"
-                      {% if customer == nil or customer.tags contains "nao-verificado" %}
+                      {% if verified_customer %}
                         disabled
                       {% endif %}
                     >
