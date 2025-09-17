@@ -43,14 +43,14 @@
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
-      {% comment %} {% assign variant_to_submit = selected_variant_for_customer | default: selected_or_first_available_variant  %} {% endcomment %}
+      {% assign variant_to_submit = selected_variant_for_customer | default: selected_or_first_available_variant  %}
         <input
           type="hidden"
           name="id"
-          value="{{ selected_variant_for_customer.id }}"
-          {% if selected_variant_for_customer.available == false
+          value="{{ variant_to_submit.id }}"
+          {% if variant_to_submit.available == false
             or quantity_rule_soldout
-            or selected_variant_for_customer == null
+            or variant_to_submit == null
           %}
           {% comment %} 
           value="{{ product.selected_or_first_available_variant.id }}" 
