@@ -100,11 +100,13 @@
 
         <div class="field">
           <input
-            type="number"
+            type="text"
+            inputmode="numeric"
+            pattern="^5/d{8}$"
+            maxlength="9"
             name="customer[company_nif]"
             id="RegisterForm-CompanyNif"
             placeholder="{{ 'customer.register.company_nif' | t }}"
-            min="0"
             required
           >
           <label for="RegisterForm-CompanyNif">
