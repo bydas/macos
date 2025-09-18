@@ -22,7 +22,7 @@
     // Versão legível em texto (multi-linha)
     const noteReadable =
       'Dados de registo:\n' +
-      '<b>Empresa</b>: ' + (company || '-') + '\n' +
+      'Empresa: ' + (company || '-') + '\n' +
       'NIF: ' + (companyVat || '-') + '\n' +
       'Área de atividade: ' + (businessActivity || '-') + '\n' +
       'Morada: ' + (companyAddress || '-') + '\n' +
