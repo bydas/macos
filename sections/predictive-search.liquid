@@ -46,18 +46,26 @@
             </li>
           {%- endfor -%}
           {%- for collection in predictive_search.resources.collections -%}
-            <li
-              id="predictive-search-option-collection-{{ forloop.index }}"
-              class="predictive-search__list-item"
-              role="option"
-              aria-selected="false"
-            >
-              <a href="{{ collection.url }}" class="predictive-search__item link link--text" tabindex="-1">
-                <div class="predictive-search__item-content predictive-search__item-content--centered">
-                  <p class="predictive-search__item-heading h5">{{ collection.title | escape }}</p>
-                </div>
-              </a>
-            </li>
+
+            {% comment %} Esconder coleções fantasma (criadas para secção "Product Categories") {% endcomment %}
+            {% unless collection.handle == "configurador-auto-paraventos"
+                or collection.handle == "configurador-barras-de-tejadilho"
+                or collection.handle == "configurador-escovas-limpa-vidros" 
+            %}
+              <li
+                id="predictive-search-option-collection-{{ forloop.index }}"
+                class="predictive-search__list-item"
+                role="option"
+                aria-selected="false"
+              >
+                <a href="{{ collection.url }}" class="predictive-search__item link link--text" tabindex="-1">
+                  <div class="predictive-search__item-content predictive-search__item-content--centered">
+                    <p class="predictive-search__item-heading h5">{{ collection.title | escape }}</p>
+                  </div>
+                </a>
+              </li>
+            {% endunless %}
+
           {%- endfor -%}
         </ul>
       </div>
