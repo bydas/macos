@@ -193,7 +193,7 @@ button::after {
 }
 
 .product__info-container .product-form {
-  margin: 0 !important;
+  margin: 1rem 0 !important;
 }
 
 .main-product-buy-button {
