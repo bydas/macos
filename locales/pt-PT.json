@@ -121,7 +121,7 @@
       "on_sale": "Em promoção",
       "product_variants": "Variantes de produtos",
       "quantity": {
-        "label": "Quantidade",
+        "label": "Quantidade unitária",
         "input_label": "Quantidade de {{ product }}",
         "increase": "Aumentar a quantidade de {{ product }}",
         "decrease": "Diminuir a quantidade de {{ product }}",
