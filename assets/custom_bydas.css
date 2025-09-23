@@ -1348,6 +1348,9 @@ img.btoptioni {
 
 @media all and (max-width: 577px) {
 
+  .section-top-menu a {
+    font-size: 1.75rem;
+  }
   .section-product-categories .category-card {
     min-height: 170px;
     line-height: 2.2rem;
