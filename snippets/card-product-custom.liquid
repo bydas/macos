@@ -114,9 +114,9 @@
         {% if horizontal_class %} card--horizontal{% endif %}
       "
       {% if card_product.featured_media %}
-        style="--ratio-percent: 100%;"
+        style="--ratio-percent: 80%;"
       {% else %}
-        style="--ratio-percent: 100%;"
+        style="--ratio-percent: 80%;"
       {% endif %}
     >
       <div class="card__content">
@@ -583,9 +583,9 @@
       <div
         class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
         {% if card_product.featured_media %}
-          style="--ratio-percent: 100%;"
+          style="--ratio-percent: 80%;"
         {% else %}
-          style="--ratio-percent: 100%;"
+          style="--ratio-percent: 80%;"
         {% endif %}
       >
         {%- if card_product.featured_media -%}
@@ -952,9 +952,9 @@
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
       "
       {% if card_product.featured_media %}
-        style="--ratio-percent: 100%;"
+        style="--ratio-percent: 80%;"
       {% else %}
-        style="--ratio-percent: 100%;"
+        style="--ratio-percent: 80%;"
       {% endif %}
     >
       <div
