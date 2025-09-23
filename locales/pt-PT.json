@@ -305,7 +305,7 @@
         "product": "Produto",
         "price": "Preço",
         "total": "Total",
-        "quantity": "Quantidade",
+        "quantity": "Quantidade unitária",
         "image": "Imagem de produto"
       },
       "update": "Atualizar",
