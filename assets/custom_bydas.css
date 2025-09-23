@@ -192,6 +192,10 @@ button::after {
   transition-duration: 0.2s;
 }
 
+.product__info-container .product-form {
+  margin: 0 !important;
+}
+
 .main-product-buy-button {
   background: linear-gradient(135deg, rgb(255, 160, 0), rgb(255, 120, 0));
   color: white;
