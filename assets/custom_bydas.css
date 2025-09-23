@@ -1348,6 +1348,9 @@ img.btoptioni {
 
 @media all and (max-width: 577px) {
 
+  .section-top-menu nav {
+    padding: .1rem 1rem !important;
+  }
   .section-top-menu a {
     font-size: 1.05rem !important;
   }
