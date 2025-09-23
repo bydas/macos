@@ -212,7 +212,9 @@
                 </p>
               {%- when 'description' -%}
                 {% if product.metafields.custom.quantidade_por_caixa != blank %}
-                  <p>{{ product.metafields.custom.quantidade_por_caixa }}</p>
+                  <p>
+                    <strong>Quantidade por caixa: </strong>{{ product.metafields.custom.quantidade_por_caixa }}
+                  </p>
                 {% endif %}
 
                 {%- if product.description != blank -%}
