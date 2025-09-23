@@ -211,6 +211,10 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
+                {% if product.metafields.custom.quantidade_por_caixa != blank %}
+                  <p>{{ product.metafields.custom.quantidade_por_caixa }}</p>
+                {% endif %}
+
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
