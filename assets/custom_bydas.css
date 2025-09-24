@@ -134,23 +134,16 @@ textarea:focus {
 }
 
 /* view password */
-input[type="password"] {
+.input-password-wrapper {
   position: relative;
 }
-input[type="password"]::after {
-  content: "";
-  background-image: url('https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306');
+.input-password-wrapper .pw-visible-toggle {
+  border: none;
+  background-color: none;
+  width: 25px;
+  height: auto;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   right: 1rem;
-  /* color: #FF9800; */
-  width: 20px;
-  z-index: 9999999;
-}
-
-.password-hide::after {
-
 }
 
 /* --- BUTTONS --- */
