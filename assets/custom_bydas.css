@@ -151,6 +151,11 @@ textarea:focus {
   transform: translateY(-50%);
   opacity: .8;
 }
+.password_wrapper button svg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 /* .password_wrapper::after {
   content: "";
   background-image: url("https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306");
