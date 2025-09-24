@@ -133,6 +133,22 @@ textarea:focus {
   content: none !important;
 }
 
+/* view password */
+input[type="password"] {
+  position: relative;
+}
+input[type="password"]::after {
+  content: "f06e";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1rem;
+}
+
+.password-hide::after {
+
+}
+
 /* --- BUTTONS --- */
 
 /* submit buttons */
