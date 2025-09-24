@@ -363,10 +363,10 @@ document.addEventListener("DOMContentLoaded", () => {
   passwordWrapper.forEach(wrapper => {
 
     const passwordInput = wrapper.querySelector("input[type='password']");
-    const passwordViewBtn = wrapper.querySelector(".view-password-btn");
+    const seePasswordBtn = wrapper.querySelector(".view-password-btn");
     // if (!pwViewButton) continue;
     
-    passwordViewBtn.addEventListener("click", (e) => {
+    seePasswordBtn.addEventListener("click", (e) => {
 
       if (e) e.preventDefault();
 
