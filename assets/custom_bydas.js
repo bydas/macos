@@ -366,7 +366,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordViewBtn = wrapper.querySelector(".pw-visible-toggle");
     // if (!pwViewButton) continue;
     
-    passwordViewBtn.addEventListener("click", () => {
+    passwordViewBtn.addEventListener("click", (e) => {
+
+      if (e) e.preventDefault();
 
       console.log(wrapper)
 
