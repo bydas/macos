@@ -145,6 +145,8 @@ input[type="password"]::after {
   transform: translateY(-50%);
   right: 1rem;
   /* color: #FF9800; */
+  width: 20px;
+  z-index: 9999999;
 }
 
 .password-hide::after {
