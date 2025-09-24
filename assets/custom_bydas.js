@@ -364,13 +364,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const passwordInput = wrapper.querySelector("input[type='password']");
     const seePasswordBtn = wrapper.querySelector(".view-password-btn");
-    // if (!pwViewButton) continue;
+    const svgShow = seePasswordBtn.getElementById("showPassword");
+    const svgHide = seePasswordBtn.getElementById("hidePassword");
     
     seePasswordBtn.addEventListener("click", (e) => {
 
       if (e) { e.preventDefault(); }
 
-      console.log(wrapper)
+      
 
     });
   });
