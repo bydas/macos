@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordWrapper = document.querySelectorAll(".password_wrapper");
   if (!passwordWrapper) return;
 
-  if (passwordWrapper) console_log(passwordWrapper);
+  if (passwordWrapper) console.log(passwordWrapper);
 
   passwordWrapper.forEach(wrapper => {
 
