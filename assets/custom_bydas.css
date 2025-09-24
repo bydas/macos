@@ -160,20 +160,6 @@ textarea:focus {
   width: 100%;
   object-fit: contain;
 }
-/* .password_wrapper::after {
-  content: "";
-  background-image: url("https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: .8;
-  cursor: pointer;
-} */
 
 /* --- BUTTONS --- */
 
