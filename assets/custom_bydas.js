@@ -368,10 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     seePasswordBtn.addEventListener("click", (e) => {
 
-      if (e) {
-        e.preventDefault();
-        e.preventPropagation();
-      }
+      if (e) { e.preventDefault(); }
 
       console.log(wrapper)
 
