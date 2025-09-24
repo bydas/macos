@@ -36,14 +36,13 @@
   });
 })();
 
-
-
 // ------------------------- ########### -------------------------
-
 
 // Bootstrap Popover Initialization
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]') ?? null;
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
+// ------------------------- ########### -------------------------
 
 /* ----- Flickity Carousel - CATEGORIES ----- */
 $(document).ready(function () {
@@ -115,6 +114,8 @@ $(document).ready(function () {
     setTimeout(updateNavButtons, 100);
   });
 });
+
+// ------------------------- ########### -------------------------
 
 // ### SUBCATEGORIES DROPDOWN ###
 document.addEventListener('DOMContentLoaded', function() {
@@ -222,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 });
 
+// ------------------------- ########### -------------------------
 
 /* ----- Flickity Carousel - HIGHLIGHTS SLIDESHOW ----- */
 $('#highlights-slideshow').flickity({
@@ -276,7 +278,7 @@ $carousel.on('mouseleave', function() {
   isPaused = false;
 });
 
-
+// ------------------------- ########### -------------------------
 
 /* ----- FEATURED COLLECTION (desktop)----- */
 function setupFeaturedCollection() {
@@ -350,8 +352,25 @@ function setupFeaturedCollection() {
 document.addEventListener("DOMContentLoaded", setupFeaturedCollection);
 window.addEventListener("resize", setupFeaturedCollection);
   
+// ------------------------- ########### -------------------------
+
+// BOTÃO VISUALIZAR PASSWORD
+document.addEventListener("DOMContentLoaded", () => {
+
+  pwWrapper = document.querySelectorAll(".input-password-wrapper");
+  if (!$pwInput) return;
+
+  pwWrapper.forEach(wrapper => {
+
+    pwInput = wrapper.querySelector("input[type='password']");
+    pwViewButton = wrapper.querySelector(".pw-visible-toggle");
+    if (!pwViewButton) continue;
+
+  });
 
 
+
+});
 
 
 
