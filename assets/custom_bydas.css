@@ -138,11 +138,13 @@ input[type="password"] {
   position: relative;
 }
 input[type="password"]::after {
-  content: "f06e";
+  content: "";
+  background-image: url('https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306');
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;
+  /* color: #FF9800; */
 }
 
 .password-hide::after {
