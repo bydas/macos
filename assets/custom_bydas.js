@@ -357,18 +357,18 @@ window.addEventListener("resize", setupFeaturedCollection);
 // BOTÃO VISUALIZAR PASSWORD
 document.addEventListener("DOMContentLoaded", () => {
 
-  passwordWrapper = document.querySelectorAll(".input-password-wrapper");
+  const passwordWrapper = document.querySelectorAll(".input-password-wrapper");
   if (!$passwordWrapper) return;
 
   passwordWrapper.forEach(wrapper => {
 
-    passwordWrapper = wrapper.querySelector("input[type='password']");
-    pwViewButton = wrapper.querySelector(".pw-visible-toggle");
+    const passwordWrapper = wrapper.querySelector("input[type='password']");
+    const pwViewButton = wrapper.querySelector(".pw-visible-toggle");
     if (!pwViewButton) continue;
     
     pwViewButton.addEventListener("click", () => {
 
-
+      console.log(wrapper)
 
     });
   });
