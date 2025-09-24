@@ -139,6 +139,7 @@ textarea:focus {
   position: relative;
 }
 .password_wrapper .view-password-btn {
+  display: inline-flex;
   border: none;
   background: none;
   margin: 0 !important;
