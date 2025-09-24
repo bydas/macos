@@ -154,7 +154,7 @@ textarea:focus {
   opacity: .8;
 }
 .password_wrapper .view-password-btn svg {
-  height: 20px;
+  height: 100%;
   width: 100%;
   object-fit: contain;
 }
