@@ -159,7 +159,7 @@ textarea:focus {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  color: #ff9800;
+  fill: #FF9800;
 }
 
 /* --- BUTTONS --- */
