@@ -150,6 +150,7 @@ textarea:focus {
   top: 50%;
   transform: translateY(-50%);
   opacity: .75;
+  cursor: pointer;
 }
 
 /* --- BUTTONS --- */
