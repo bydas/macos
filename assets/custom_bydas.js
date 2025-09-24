@@ -369,9 +369,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
     seePasswordBtn.addEventListener("click", (e) => {
 
-      if (e) { e.preventDefault(); }
+      if (e) e.preventDefault(); 
 
-      
+      passwordInput.type = "text";
+      svgShow.classList.toggle("d-none");
+      svgHide.classList.toggle("d-none");
 
     });
   });
