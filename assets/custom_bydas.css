@@ -136,6 +136,7 @@ textarea:focus {
 /* view password */
 .input-password-wrapper {
   position: relative;
+  flex: 1;
 }
 .input-password-wrapper .pw-visible-toggle {
   border: none;
@@ -145,7 +146,7 @@ textarea:focus {
   position: absolute;
   right: 1rem;
 }
-.input-password-wrapper .pw-visible-toggle::after{
+.input-password-wrapper .pw-visible-toggle::before{
   content: "";
   background-image: url("https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306");
   background-size: cover;
