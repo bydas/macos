@@ -371,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (e) e.preventDefault(); 
 
-      passwordInput.type = "text";
+      passwordInput.type = (passwordInput.type === "password") ? "text" : "password";
       svgShow.classList.toggle("d-none");
       svgHide.classList.toggle("d-none");
 
