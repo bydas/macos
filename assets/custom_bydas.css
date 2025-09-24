@@ -155,7 +155,7 @@ textarea:focus {
   opacity: .8;
   cursor: pointer;
 }
-.password_wrapper .view-password-btn svg {
+.password_wrapper .view-password-btn svg path {
   height: 100%;
   width: 100%;
   object-fit: contain;
