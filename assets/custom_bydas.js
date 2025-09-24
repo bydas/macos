@@ -358,7 +358,7 @@ window.addEventListener("resize", setupFeaturedCollection);
 document.addEventListener("DOMContentLoaded", () => {
 
   const passwordWrapper = document.querySelectorAll(".password-wrapper");
-  if (!$passwordWrapper) return;
+  if (!passwordWrapper) return;
 
   passwordWrapper.forEach(wrapper => {
 
