@@ -141,6 +141,8 @@ textarea:focus {
 .password_wrapper button {
   border: none;
   background: none;
+  margin: 0;
+  padding: 0;
   width: 20px;
   height: 20px;
   position: absolute;
