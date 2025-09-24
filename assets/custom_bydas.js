@@ -363,7 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
   passwordWrapper.forEach(wrapper => {
 
     const passwordInput = wrapper.querySelector("input[type='password']");
-    const passwordViewBtn = wrapper.querySelector(".pw-visible-toggle");
+    const passwordViewBtn = wrapper.querySelector(".view-password-btn");
     // if (!pwViewButton) continue;
     
     passwordViewBtn.addEventListener("click", (e) => {
