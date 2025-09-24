@@ -364,8 +364,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const passwordInput = wrapper.querySelector("input[type='password']");
     const seePasswordBtn = wrapper.querySelector(".view-password-btn");
-    const svgShow = seePasswordBtn.querySelector(".show-password");
-    const svgHide = seePasswordBtn.querySelector(".hide-password");
+    const svgShow = seePasswordBtn.querySelector(".password-visible");
+    const svgHide = seePasswordBtn.querySelector(".password-hidden");
     
     seePasswordBtn.addEventListener("click", (e) => {
 
