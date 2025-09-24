@@ -134,8 +134,9 @@ textarea:focus {
 }
 
 /* view password */
-.password_wrapper {
+.password_wrapper:not(:first-of-type) {
   margin: 2rem 0;
+  position: relative;
 }
 .password_wrapper::after {
   content: "";
