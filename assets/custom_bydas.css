@@ -146,8 +146,8 @@ textarea:focus {
   padding: 0;
   min-width: unset;
   min-height: unset;
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   position: absolute;
   right: 2rem;
   top: 50%;
