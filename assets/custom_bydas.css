@@ -137,7 +137,7 @@ textarea:focus {
 .password_wrapper {
   margin: 2rem 0;
 }
-.field_password::after {
+.password_wrapper::after {
   content: "";
   background-image: url("https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306");
   background-size: cover;
