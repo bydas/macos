@@ -124,21 +124,23 @@
         </div>
   
         {%- if form.password_needed -%}
-          <div class="field field_password">
-            <input
-              type="password"
-              value=""
-              name="customer[password]"
-              id="CustomerPassword"
-              autocomplete="current-password"
-              {% if form.errors contains 'form' %}
-                aria-invalid="true"
-              {% endif %}
-              placeholder="{{ 'customer.login_page.password' | t }}"
-            >
-            <label for="CustomerPassword">
-              {{ 'customer.login_page.password' | t }}
-            </label>
+          <div class="password_wrapper">
+            <div class="field field_password">
+              <input
+                type="password"
+                value=""
+                name="customer[password]"
+                id="CustomerPassword"
+                autocomplete="current-password"
+                {% if form.errors contains 'form' %}
+                  aria-invalid="true"
+                {% endif %}
+                placeholder="{{ 'customer.login_page.password' | t }}"
+              >
+              <label for="CustomerPassword">
+                {{ 'customer.login_page.password' | t }}
+              </label>
+            </div>
           </div>
   
           <a href="#recover">
