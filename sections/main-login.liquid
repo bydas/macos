@@ -124,8 +124,7 @@
         </div>
   
         {%- if form.password_needed -%}
-          <div class="field">
-            {% comment %} <div class="input-password-wrapper">  {% endcomment %}
+          <div class="field field_password">
               <input
                 type="password"
                 value=""
@@ -137,7 +136,6 @@
                 {% endif %}
                 placeholder="{{ 'customer.login_page.password' | t }}"
               >
-            {% comment %} </div> {% endcomment %}
             <label for="CustomerPassword">
               {{ 'customer.login_page.password' | t }}
             </label>
