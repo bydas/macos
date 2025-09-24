@@ -145,6 +145,13 @@ textarea:focus {
   position: absolute;
   right: 1rem;
 }
+.input-password-wrapper .pw-visible-toggle::after{
+  content: "";
+  background-image: url("https://cdn.shopify.com/s/files/1/0914/4015/2907/files/eye-light-full.svg?v=1758712306");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 25px;
+}
 
 /* --- BUTTONS --- */
 
