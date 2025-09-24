@@ -357,7 +357,7 @@ window.addEventListener("resize", setupFeaturedCollection);
 // BOTÃO VISUALIZAR PASSWORD
 document.addEventListener("DOMContentLoaded", () => {
 
-  const passwordWrapper = document.querySelectorAll(".input-password-wrapper");
+  const passwordWrapper = document.querySelectorAll(".password-wrapper");
   if (!$passwordWrapper) return;
 
   passwordWrapper.forEach(wrapper => {
