@@ -348,15 +348,6 @@
 </div>
 
 <script>
-  {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
-  const priceIndex = 0;
-
-  {% if verified_customer and customer.tags contains "preco2" %}
-    
-    const priceIndex = 1;
-
-  {% endif %}
-
   const infoNoProducts = document.querySelector("#no-products-found");
   infoNoProducts.style.display = "none";
 
