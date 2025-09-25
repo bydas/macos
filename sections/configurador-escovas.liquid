@@ -348,6 +348,12 @@
 </div>
 
 <script>
+
+  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
+  console.log(priceIndex);
+
+
+
   const infoNoProducts = document.querySelector("#no-products-found");
   infoNoProducts.style.display = "none";
 
