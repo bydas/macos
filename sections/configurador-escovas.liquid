@@ -549,7 +549,7 @@
         classicPage = classicPage
           .replace('img0102', classicProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
           .replace('nome1', classicProducts.secondary.title)
-          .replace(/skuskusku1/g, vari[0].sku)
+          .replace(/skuskusku1/g, vari[priceIndex].sku)
           .replace('price1231231', priceReplacement);
 
         if (!classicProducts.secondary.available) {
