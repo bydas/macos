@@ -521,7 +521,7 @@
         const vari = classicProducts.primary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn ?
           priceInfoPopoverHTML :
-          (Number(classicProducts.primary.price) / 100).toFixed(2) + '€';
+          (Number(vari.price) / 100).toFixed(2) + '€';
 
         classicPage = classicPage
           .replace('img0101', classicProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -544,7 +544,7 @@
         const vari = classicProducts.secondary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn ?
           priceInfoPopoverHTML :
-          (Number(price.price) / 100).toFixed(2) + '€';
+          (Number(vari.price) / 100).toFixed(2) + '€';
 
         classicPage = classicPage
           .replace('img0102', classicProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
