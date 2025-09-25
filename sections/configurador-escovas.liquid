@@ -572,7 +572,7 @@
     if (hasFlatProducts) {
       // Lado do condutor (primary)
       if (flatProducts.primary) {
-        const vari = flatProducts.primary.variants[0];
+        const vari = flatProducts.primary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn ?
           priceInfoPopoverHTML :
           (Number(flatProducts.primary.price) / 100).toFixed(2) + '€';
@@ -603,7 +603,7 @@
 
       // Lado do passageiro (secondary)
       if (flatProducts.secondary) {
-        const vari = flatProducts.secondary.variants[0];
+        const vari = flatProducts.secondary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn ?
           priceInfoPopoverHTML :
           (Number(flatProducts.secondary.price) / 100).toFixed(2) + '€';
