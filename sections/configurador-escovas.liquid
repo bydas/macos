@@ -603,10 +603,10 @@
 
       // Lado do passageiro (secondary)
       if (flatProducts.secondary) {
-        const vari = flatProducts.secondary.variants[0];
+        const vari = flatProducts.secondary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn ?
           priceInfoPopoverHTML :
-          (Number(flatProducts.secondary.price) / 100).toFixed(2) + '€';
+          (Number(vari.price) / 100).toFixed(2) + '€';
 
         flatPage = flatPage
           .replace('img0102', flatProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
