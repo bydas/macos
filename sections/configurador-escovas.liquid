@@ -575,7 +575,7 @@
         const vari = flatProducts.primary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn ?
           priceInfoPopoverHTML :
-          (Number(flatProducts.primary.price) / 100).toFixed(2) + '€';
+          (Number(vari.price) / 100).toFixed(2) + '€';
 
         flatPage = flatPage
           .replace('img0101', flatProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
