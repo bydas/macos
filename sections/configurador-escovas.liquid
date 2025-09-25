@@ -526,7 +526,7 @@
         classicPage = classicPage
           .replace('img0101', classicProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
           .replace('nome0', classicProducts.primary.title)
-          .replace(/skuskusku0/g, vari[0].sku)
+          .replace(/skuskusku0/g, vari.sku)
           .replace('price1231230', priceReplacement);
 
         if (!classicProducts.primary.available) {
@@ -534,7 +534,7 @@
         } else {
           classicPage = classicPage.replace('BUY1', 'ADICIONAR');
         }
-        opts[0] = vari[0].id;
+        opts[0] = vari.id;
       } else {
         classicPage = classicPage.replace('id="opt1"', 'style="display:none;" id="opt1"');
       }
@@ -549,7 +549,7 @@
         classicPage = classicPage
           .replace('img0102', classicProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
           .replace('nome1', classicProducts.secondary.title)
-          .replace(/skuskusku1/g, vari[0].sku)
+          .replace(/skuskusku1/g, vari.sku)
           .replace('price1231231', priceReplacement);
 
         if (!classicProducts.secondary.available) {
@@ -557,7 +557,7 @@
         } else {
           classicPage = classicPage.replace('BUY2', 'ADICIONAR');
         }
-        opts[1] = vari[0].id;
+        opts[1] = vari.id;
       } else {
         classicPage = classicPage.replace('id="opt2"', 'style="display:none;" id="opt2"');
       }
