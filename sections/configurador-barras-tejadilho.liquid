@@ -284,7 +284,10 @@
         for (const s of solutions) {
           
           const variant = s.variants?.[priceIndex] ?? s.variants?.[0];
-          if (!variant) continue;
+          if (!variant) {
+            console.log("Não existe variante.");
+            continue;
+          } 
 
           s.id = variant.id;
           s.price = variant.id;
