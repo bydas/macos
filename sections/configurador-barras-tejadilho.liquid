@@ -279,6 +279,21 @@
         
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
+        for (const s of solutions) {
+          
+          const variant = s.variants?.[priceIndex] ?? s.variants.[0];
+          if (!v) continue;
+
+          s.id = variant.id;
+          s.price = variant.id;
+          s.compareAtPrice = variant.compareAtPrice ?? null;
+          s.availableForSale = variant.availableForSale ?? null;
+          s.handle = variant.product?.handle ?? s.handle ?? null;
+          s.title = variant.product?.title ?? s.title ?? null;
+          s.image = variant.image ?? s.image ?? null;
+        }
+
+
         const solutionOptions = {};
 
         for (const solution of solutions) {
