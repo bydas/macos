@@ -388,6 +388,9 @@
             solutionsElement.appendChild(blockElement);
             
             return value.map((s) => {
+            console.log("Resposta: ". s);
+
+
               const component = document.createElement("li");
 
               const titleContainer = document.createElement("div");
@@ -467,9 +470,7 @@
 
           spinnerConfig.style.display = "none";
         }
-
-        console.log("Resposta: ". solutionOptions);
-
+        
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
 
