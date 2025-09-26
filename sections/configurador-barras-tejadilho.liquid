@@ -36,6 +36,16 @@
   }
 {% endstyle %}
 
+{% liquid
+  # Verificação de cliente para ver preços e adicionar ao carrinho
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
+%}
+
+
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="section-{{ section.id }}-padding">
     <div class="container" id="configurador">
@@ -83,6 +93,9 @@
 </div>
 
 <script>
+  {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
+  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
+
   document.addEventListener("DOMContentLoaded", async function () {
     const endpoint = "https://macos.apps.bydas.com/";
     
