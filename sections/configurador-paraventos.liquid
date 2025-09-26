@@ -120,7 +120,7 @@
 
 <script>
   {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
-  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %}
+  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
 
   var cars = {}, selectedBrand, selectedModel, selectedYear, initialParaventos;
   var brandToId, idToBrand, modelToId, idToModel, yearToId, idToYear;
