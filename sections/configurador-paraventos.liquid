@@ -190,7 +190,7 @@
         const prod = (await resp.json()).data.product;
         if (!prod) return;
 
-        console.log(prod);
+        console.log("Resposta: ", prod);
 
         const v = prod.variants.edges[0].node;
 
