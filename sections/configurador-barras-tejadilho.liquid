@@ -288,8 +288,6 @@
           }
         }
 
-        console.log("Resposta: ". solutionOptions);
-
         if (solutionsElement) {          
           Object.entries(solutionOptions).map(([key, value], index) => {
             const blockElement = document.createElement("div");
@@ -469,6 +467,9 @@
 
           spinnerConfig.style.display = "none";
         }
+
+        console.log("Resposta: ". solutionOptions);
+
       } else {
         const solutionsElements = solutionsElement.querySelectorAll("div");
 
