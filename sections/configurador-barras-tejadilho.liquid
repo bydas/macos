@@ -279,6 +279,8 @@
         
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
+        console.log("Solutions: ", solutions);
+
         for (const s of solutions) {
           
           const variant = s.variants?.[priceIndex] ?? s.variants?.[0];
