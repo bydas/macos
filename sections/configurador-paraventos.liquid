@@ -190,6 +190,8 @@
         const prod = (await resp.json()).data.product;
         if (!prod) return;
 
+        console.log(prod);
+
         const v = prod.variants.edges[0].node;
 
         const priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
