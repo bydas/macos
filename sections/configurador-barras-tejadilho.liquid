@@ -141,6 +141,7 @@
             }
 
             const value = actionData[request];
+            console.log(value);
             
             if (Array.isArray(value)) {
               data.push(...value);
@@ -388,9 +389,6 @@
             solutionsElement.appendChild(blockElement);
             
             return value.map((s) => {
-            console.log("Resposta: ". s);
-
-
               const component = document.createElement("li");
 
               const titleContainer = document.createElement("div");
