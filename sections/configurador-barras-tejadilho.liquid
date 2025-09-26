@@ -282,7 +282,7 @@
         for (const s of solutions) {
           
           const variant = s.variants?.[priceIndex] ?? s.variants?.[0];
-          if (!v) continue;
+          if (!variant) continue;
 
           s.id = variant.id;
           s.price = variant.id;
