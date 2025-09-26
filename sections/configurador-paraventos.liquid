@@ -172,7 +172,7 @@
         product(handle:"${handle}") {
           title availableForSale
           featuredImage { url altText }
-          variants(first:1) { edges { node { id sku priceV2{amount} availableForSale } } }
+          variants(first:250) { edges { node { id sku priceV2{amount} availableForSale } } }
         }
       }`;
       try {
