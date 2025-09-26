@@ -141,7 +141,6 @@
             }
 
             const value = actionData[request];
-            console.log(value);
             
             if (Array.isArray(value)) {
               data.push(...value);
@@ -151,6 +150,8 @@
               data.push(...objectsArray);
             }
           }
+
+          console.log(actionData);
         })
         .catch((error) => console.error(error))
     }
