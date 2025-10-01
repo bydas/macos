@@ -55,16 +55,16 @@
             "image": "shopify://shop_images/destaque0_24dc0c64-293b-4e48-a725-09df2ce80217.jpg"
           }
         },
+        "slide_jn3EL9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/PREPARE_O_SEU_CARRO_PARA_O_OUTONO_4196_x_1616_px_1200_x_719_px.jpg"
+          }
+        },
         "slide_wTwQqh": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/destaque1.jpg"
-          }
-        },
-        "slide_jn3EL9": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaque3.jpg"
           }
         },
         "slide_4Rkt8c": {
@@ -75,6 +75,7 @@
         },
         "slide_kHJ4pr": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/destaques_19a05439-5095-4878-b3e5-d1b9804a4297.jpg"
           }
@@ -108,8 +109,8 @@
       },
       "block_order": [
         "slide_gY6H8W",
-        "slide_wTwQqh",
         "slide_jn3EL9",
+        "slide_wTwQqh",
         "slide_4Rkt8c",
         "slide_kHJ4pr",
         "slide_9Ujttz",
