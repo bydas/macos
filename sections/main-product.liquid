@@ -220,17 +220,18 @@
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
+
+                    {% if product.metafields.custom.ficha_de_seguranca != blank %}
+                      {% assign ficheiro = product.metafields.custom.ficha_de_seguranca %}
+
+                      <p class="fs-4 mb-0">
+                        {% comment %} <strong>Ficha de segurança: </strong> {% endcomment %}
+                        <a href="{{ ficheiro.url }}" target="_blank" rel="noopener">Descarregar ficha de segurança</a>
+                      </p>
+                    {% endif %}
                   </div>
                 {%- endif -%}
 
-                {% if product.metafields.custom.ficha_de_seguranca != blank %}
-                  {% assign ficheiro = product.metafields.custom.ficha_de_seguranca %}
-
-                  {% comment %} <p class="fs-4 mb-0">
-                    <strong>Ficha de segurança: </strong>
-                    <a href="{{ ficheiro.url }}">Descarregar ficha de segurança</a>
-                  </p> {% endcomment %}
-                {% endif %}
               {%- when 'sku' -%}
                 <p
                   class="fs-4 product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
