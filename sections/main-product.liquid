@@ -225,8 +225,9 @@
                       {% assign ficheiro = product.metafields.custom.ficha_de_seguranca %}
 
                       <p class="fs-4 mb-0">
-                        {% comment %} Ficha de segurança:  {% endcomment %}
-                        <a href="{{ ficheiro.url }}" target="_blank" rel="noopener" class="mt-2"><strong>Transferir ficha de segurança</strong></a>
+                        <a href="{{ ficheiro.url }}" target="_blank" rel="noopener" class="mt-2">
+                          <strong>Transferir ficha de segurança</strong>
+                        </a>
                       </p>
                     {% endif %}
                   </div>
