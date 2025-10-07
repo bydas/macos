@@ -224,8 +224,8 @@
                     {% if product.metafields.custom.ficha_de_seguranca != blank %}
                       {% assign ficheiro = product.metafields.custom.ficha_de_seguranca %}
 
-                      <p class="fs-4 text-decoration-underline">
-                        <a href="{{ ficheiro.url }}" target="_blank" rel="noopener">
+                      <p class="fs-4">
+                        <a href="{{ ficheiro.url }}" target="_blank" rel="noopener" class="text-decoration-underline link-underline-secondary">
                           <strong>Transferir ficha de segurança</strong>
                         </a>
                       </p>
