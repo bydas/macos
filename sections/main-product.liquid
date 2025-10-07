@@ -222,7 +222,7 @@
                     {{ product.description }}
 
                     {% if verified_customer and product.metafields.custom.ficha_de_seguranca != blank %}
-                      <p class="fs-4 text-decoration-underline">
+                      <p class="text-decoration-underline">
                         <a href="{{ product.metafields.custom.ficha_de_seguranca | file_url }}" target="_blank" rel="noopener">
                           Transferir ficha de segurança
                         </a>
