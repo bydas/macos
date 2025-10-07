@@ -224,8 +224,11 @@
                 {%- endif -%}
 
                 {% if product.metafields.custom.ficha_de_seguranca != blank %}
+                  {% assign ficheiro = product.metafields.custom.ficha_de_seguranca %}
+
                   <p class="fs-4 mb-0">
-                    {% comment %} <strong>Ficha de segurança: </strong>{{ product.metafields.custom.ficha_de_seguranca | metafield_tag }}  {% endcomment %}
+                    <strong>Ficha de segurança: </strong>
+                    <a href="{{ ficheiro.url }}">Descarregar ficha de segurança</a>
                   </p>
                 {% endif %}
               {%- when 'sku' -%}
