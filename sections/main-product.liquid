@@ -224,9 +224,9 @@
                 {%- endif -%}
 
                 {% if product.metafields.custom.ficha_de_seguranca != blank %}
-                  <p class="fs-4 mb-0">
+                  {% comment %} <p class="fs-4 mb-0">
                     <strong>Ficha de segurança: </strong>{{ product.metafields.custom.ficha_de_seguranca }} 
-                  </p>
+                  </p> {% endcomment %}
                 {% endif %}
               {%- when 'sku' -%}
                 <p
