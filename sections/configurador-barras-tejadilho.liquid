@@ -124,7 +124,9 @@
   
           return res.json();
         })
-        .then((actionData) => {                  
+        .then((actionData) => {
+          console.log(actionData);
+                            
           if (actionData && actionData[request]) {
             if (request === "brands") {
               brands.length = 0;
