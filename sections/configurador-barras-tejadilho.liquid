@@ -113,7 +113,7 @@
     let solutions = [];
     
     const getData = async (action, data, request) => {
-      await fetch(`${endpoint}?action=${action}`, {
+      await fetch(`${endpoint}?action=${encodeURIComponent(action)}`, {
         headers: { "Content-Type": "application/json" }
       })
         .then((res) => {
@@ -126,7 +126,7 @@
         })
         .then((actionData) => {
           console.log(actionData);
-                            
+
           if (actionData && actionData[request]) {
             if (request === "brands") {
               brands.length = 0;
