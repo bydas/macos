@@ -225,6 +225,7 @@
     modelsInput.addEventListener("change", async function (e) {
       const brandId = brandsInput.value;
       const modelId = encodeURIComponent(e.target.value);
+      console.log(modelId);
       
       if (brandId && modelId) {
         await getData(`cruz_bodies&IdBrand=${brandId}&Model=${modelId}`, bodies, "bodies"); 
