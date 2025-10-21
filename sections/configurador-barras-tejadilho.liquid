@@ -125,7 +125,7 @@
           return res.json();
         })
         .then((actionData) => {
-          console.log(actionData);
+          {% comment %} console.log(actionData); {% endcomment %}
                             
           if (actionData && actionData[request]) {
             if (request === "brands") {
