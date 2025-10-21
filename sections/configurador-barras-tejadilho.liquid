@@ -172,7 +172,7 @@
       const brandId = e.target.value;
       
       if (brandId) {
-        await getData(`cruz_models&IdBrand=${brandId}`, encodeURIComponent(models), "models"); 
+        await getData(`cruz_models&IdBrand=${brandId}`, models, "models"); 
 
         if (modelsInput) {
           const bodyOptions = bodiesInput.querySelectorAll("option");
