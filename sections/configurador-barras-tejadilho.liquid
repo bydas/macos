@@ -279,7 +279,7 @@
         
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
-        console.log("Solutions: ", solutions);
+        {% comment %} console.log("Solutions: ", solutions); {% endcomment %}
 
         for (const s of solutions) {
           
