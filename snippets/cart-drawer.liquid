@@ -571,7 +571,7 @@
             class="cart__checkout-button button"
             name="checkout"
             form="CartDrawer-Form"
-            {% if cart == empty %}
+            {% if cart == empty or verified_customer != true %}
               disabled
             {% endif %}
           >
