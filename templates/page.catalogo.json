@@ -38,11 +38,21 @@
             "title_alignment_mobile": "start",
             "catalog_url": "https://designrr.page/?id=366776&token=1129655975&type=FP&h=3380"
           }
+        },
+        "catalog_GXK6tW": {
+          "type": "catalog",
+          "settings": {
+            "title": "",
+            "title_alignment_desktop": "start",
+            "title_alignment_mobile": "start",
+            "catalog_url": "https://designrr.page/?id=466961&token=768160330&type=FP&h=3668"
+          }
         }
       },
       "block_order": [
         "catalog_7XmDcG",
-        "catalog_TJxWQc"
+        "catalog_TJxWQc",
+        "catalog_GXK6tW"
       ],
       "settings": {
         "full-width": false
