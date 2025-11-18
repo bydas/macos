@@ -61,6 +61,12 @@
             "image": "shopify://shop_images/PREPARE_O_SEU_CARRO_PARA_O_OUTONO_4196_x_1616_px_1200_x_719_px_1.jpg"
           }
         },
+        "slide_Tr34Px": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/PILHAS_KODAK_NATAL_1.jpg"
+          }
+        },
         "slide_wTwQqh": {
           "type": "slide",
           "settings": {
@@ -110,6 +116,7 @@
       "block_order": [
         "slide_gY6H8W",
         "slide_jn3EL9",
+        "slide_Tr34Px",
         "slide_wTwQqh",
         "slide_4Rkt8c",
         "slide_kHJ4pr",
