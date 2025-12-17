@@ -49,6 +49,12 @@
     "slideshow_custom_8Vipmk": {
       "type": "slideshow_custom",
       "blocks": {
+        "slide_P8MdyJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Natal_PC.png"
+          }
+        },
         "slide_gY6H8W": {
           "type": "slide",
           "settings": {
@@ -114,6 +120,7 @@
         }
       },
       "block_order": [
+        "slide_P8MdyJ",
         "slide_gY6H8W",
         "slide_jn3EL9",
         "slide_Tr34Px",
