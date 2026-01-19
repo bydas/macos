@@ -49,12 +49,6 @@
     "slideshow_custom_8Vipmk": {
       "type": "slideshow_custom",
       "blocks": {
-        "slide_pTdKeG": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/WINTER_2a809e63-5727-4890-80da-53d9f200b896.jpg"
-          }
-        },
         "slide_P8MdyJ": {
           "type": "slide",
           "disabled": true,
@@ -68,8 +62,15 @@
             "image": "shopify://shop_images/destaque0_24dc0c64-293b-4e48-a725-09df2ce80217.jpg"
           }
         },
+        "slide_pTdKeG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/WINTER_2a809e63-5727-4890-80da-53d9f200b896.jpg"
+          }
+        },
         "slide_jn3EL9": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/PREPARE_O_SEU_CARRO_PARA_O_OUTONO_4196_x_1616_px_1200_x_719_px_1.jpg"
           }
@@ -128,9 +129,9 @@
         }
       },
       "block_order": [
-        "slide_pTdKeG",
         "slide_P8MdyJ",
         "slide_gY6H8W",
+        "slide_pTdKeG",
         "slide_jn3EL9",
         "slide_Tr34Px",
         "slide_wTwQqh",
