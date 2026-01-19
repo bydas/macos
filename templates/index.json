@@ -49,6 +49,12 @@
     "slideshow_custom_8Vipmk": {
       "type": "slideshow_custom",
       "blocks": {
+        "slide_pTdKeG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/WINTER_2a809e63-5727-4890-80da-53d9f200b896.jpg"
+          }
+        },
         "slide_P8MdyJ": {
           "type": "slide",
           "disabled": true,
@@ -122,6 +128,7 @@
         }
       },
       "block_order": [
+        "slide_pTdKeG",
         "slide_P8MdyJ",
         "slide_gY6H8W",
         "slide_jn3EL9",
