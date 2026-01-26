@@ -83,11 +83,23 @@
                 assign parent_collection = category
                 assign child_collections = ''
 
-                for collection in collections
-                  if collection.metafields.custom.parent.value.handle == parent_collection.handle
-                    assign child_collections = child_collections | append: collection.handle | append: ','
-                  endif
-                endfor
+                if parent_collection.handle == "configuradores"
+                  
+                  for page in pages
+                    if page.handle contains "configurador"
+                      assign child_collections = child_collections | append: page.handle | append: ","
+                    endif
+                  endfor
+                
+                else
+
+                  for collection in collections
+                    if collection.metafields.custom.parent.value.handle == parent_collection.handle
+                      assign child_collections = child_collections | append: collection.handle | append: ','
+                    endif
+                  endfor
+
+                endif
 
                 assign child_handles = child_collections | split: ',' | uniq
               %}
