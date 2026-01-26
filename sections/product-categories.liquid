@@ -82,6 +82,7 @@
               {% liquid
                 assign parent_collection = category
                 assign child_collections = ''
+                assign child_pages = ""
 
                 for collection in collections
 
@@ -90,7 +91,7 @@
                   endcomment
                   if collection.metafields.custom.child_pages.value != blank
                     for page in collection.metafields.custom.child_pages.value
-                      assign child_collections = child_collections | append: page.handle | append: ","
+                      assign child_pages = child_pages | append: page.handle | append: ","
                     endfor
                   endif
 
@@ -100,11 +101,17 @@
 
                 endfor
 
-                assign child_handles = child_collections | split: ',' | uniq
+                assign child_handles = child_collections | append: child_pages | split: ',' | uniq
               %}
 
               {% for handle in child_handles %}
-                {% assign subcollection = collections[handle] %}
+                {% liquid 
+                  assign subcollection = collections[handle]
+                  if subcollection == blank
+                    assign subcollection = pages[handle]
+                  endif
+                %}
+                
 
                 {% if subcollection != blank %}
                   {% if subcollection.handle == 'configurador-de-escovas-limpa-vidros' %}
