@@ -68,7 +68,16 @@
             </a>
 
             <div class="category-title text-center mt-2">
-              <a href="{% if category.handle == 'configurador-auto-paraventos' %}/pages/auto-paraventos-configurador{% else %}{{ category.url }}{% endif %}">
+              <a 
+                href="
+                {% if category.handle == 'configurador-auto-paraventos' %}
+                  /pages/auto-paraventos-configurador
+                {% elsif category.handle == 'configuradores' %}
+                  #
+                {% else %}
+                  {{ category.url }}
+                {% endif %}"
+              >
                 {% if category.handle == 'configurador-auto-paraventos' -%}
                   Auto-paraventos
                 {%- else -%}
