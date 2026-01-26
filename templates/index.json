@@ -24,6 +24,7 @@
           "ambientadores",
           "chapas-de-matricula",
           "coberturas",
+          "configuradores",
           "correntes-de-neve",
           "diversos",
           "eletricidade-auto",
@@ -36,8 +37,7 @@
           "sinalizacao",
           "tapetes-automovel",
           "viagem-e-transporte",
-          "wd-40",
-          "configuradores"
+          "wd-40"
         ],
         "margin_bottom": 1
       }
