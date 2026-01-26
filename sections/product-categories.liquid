@@ -96,13 +96,15 @@
                   --- ---
                 endcomment
 
-                for collection in collections
+                if collection.metafields.custom.parent.value != blank
+                  for collection in collections
+                    if collection.metafields.custom.parent.value.handle == parent_collection.handle
+                      assign child_collections = child_collections | append: collection.handle | append: ','
+                    endif
+                  endfor
+                endif
 
-                  if collection.metafields.custom.parent.value.handle == parent_collection.handle
-                    assign child_collections = child_collections | append: collection.handle | append: ','
-                  endif
-
-                endfor
+                
 
                 assign child_handles = child_collections | append: child_pages | split: ',' | uniq
               %}
