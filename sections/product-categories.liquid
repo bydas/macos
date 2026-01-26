@@ -88,7 +88,7 @@
                   comment
                     Feito posteriormente para incluir nova coleção "Configuradores" apenas com páginas de configuradores
                   endcomment
-                  if collection.metafields.custom.child_pages != blank
+                  if collection.metafields.custom.child_pages.value != blank
                     for page in collection.metafields.custom.child_pages.value
                       assign child_collections = child_collections | append: page.handle | append: ","
                     endfor
