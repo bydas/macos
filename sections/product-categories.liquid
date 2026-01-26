@@ -89,13 +89,7 @@
                 endcomment
 
                 if parent_collection.metafields.custom.child_pages.value != blank
-                  for page in pages
-                    
-                    for page in collection.metafields.custom.child_pages.value
-                      assign child_pages = child_pages | append: page.handle | append: ","
-                    endfor
-                    
-                  endfor
+                  assign child_pages = parent_collection.metafields.custom.child_pages.value | map: "handle" | join: ","
                 endif
                 
                 comment
