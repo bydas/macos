@@ -210,7 +210,7 @@
                       {%- endform -%}
                     </div>
                 {% else %}
-                  {% render 'see-price-info', popover_placement: 'right', main_product_page: true, has_price_2: selected_variant_for_customer %}
+                  {% render 'see-price-info', popover_placement: 'right', main_product_page: true, trigger: popover_trigger %}
                 {% endif %}
 
               {%- when 'inventory' -%}
