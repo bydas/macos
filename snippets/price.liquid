@@ -43,7 +43,7 @@
         assign selected_variant_for_customer = prod_variant
         break
 
-      # Se cliente tem tag "preco2" e o produto TEM variante "Tabela" mas sem preco2 definido (não verá preço)
+      # Se cliente tem tag preco2 e o produto TEM variante "Tabela" mas sem preco2 definido (não verá preço)
       elsif customer_has_preco2 and tabela_value != "2"
         assign selected_variant_for_customer = null
         # break (NÃO PODE QUEBRAR O LOOP AQUI senão nunca correrá o array todo para confirmar se realmente existe "2")
@@ -55,7 +55,7 @@
       endif
     endfor
 
-  # CASO "TABELA" NÃO EXISTA: Se cliente tem tag "preco2" mas o produto não tem variante "Tabela" (não verá preço)
+  # CASO "TABELA" NÃO EXISTA: Se cliente tem tag preco2 mas o produto não tem variante "Tabela" (não verá preço)
   elsif tabela_index == nil and customer_has_preco2
     assign selected_variant_for_customer = null
 
