@@ -520,9 +520,10 @@
 
     if (hasClassicProducts) {
 
-      priceIndex = checkProductHasPreco2(hasClassicProducts) ? 1 : 0;
-
-      console.log(checkProductHasPreco2(hasClassicProducts));
+      if (checkProductHasPreco2(hasClassicProducts)) {
+        priceIndex = 1;
+        productHasPreco2 = true;
+      }
 
       // Lado do condutor (primary)
       if (classicProducts.primary) {
