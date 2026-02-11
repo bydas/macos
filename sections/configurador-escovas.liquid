@@ -512,7 +512,6 @@
     let flatPage = initialFlat;
     opts = [];
 
-
     let priceIndex = 0; // Inicial / Sem preco2
     let productHasPreco2 = null;
 
@@ -531,11 +530,6 @@
           return;
         }
       });
-
-      console.log(priceIndex);
-      console.log(productHasPreco2);
-
-
 
       // Lado do condutor (primary)
       if (classicProducts.primary) {
@@ -824,6 +818,14 @@
     const a = document.getElementById(first);
     const parent2 = a.parentNode;
     parent2.insertBefore(a, parent2.firstChild);
+  }
+  function checkProductHasPreco2(product) {
+    product.options.forEach(opt => {
+      if (opt.name == "Tabela") {
+        return true;
+      }
+    });
+    return false;
   }
 </script>
 
