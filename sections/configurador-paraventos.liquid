@@ -208,12 +208,7 @@
         const prod = (await resp.json()).data.product;
         if (!prod) return;
 
-
-
-
-
-        console.log(prod);
-
+        {% comment %} ESCONDER PREÇO SE O CLIENTE TIVER TAG PRECO2 E O PRODUTO NÃO TIVER PRECO2 {% endcomment %}
         let productHasPreco2 = null;
 
         if (customerHasPreco2) {
@@ -232,10 +227,6 @@
             }
           }
         }
-
-        console.log(productHasPreco2);
-
-
 
         const v = prod.variants.edges[priceIndex].node;
 
