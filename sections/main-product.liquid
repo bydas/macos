@@ -53,12 +53,11 @@
   endif
 
   # MENSAGEM QUANDO PREÇO NÃO É VISÍVEL
-  assign msg_trigger = nil
+  assign popover_trigger = nil
   if verified_customer != true
-    assign msg_trigger = "customer"
-
+    assign popover_trigger = "customer"
   elsif selected_variant_for_customer == nil
-    assign price_msg_trigger = "preco2"
+    assign popover_trigger = "preco2"
   endif
 %}
 
