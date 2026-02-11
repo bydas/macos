@@ -132,6 +132,7 @@
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
+              or selected_variant_for_customer == null
               or customer == nil
               or customer.tags contains "nao-verificado"
             %}
