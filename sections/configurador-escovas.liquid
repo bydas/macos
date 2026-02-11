@@ -523,6 +523,8 @@
       productHasPreco2 = checkProductHasPreco2(hasClassicProducts);
       priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
 
+      console.log(classicProducts)
+
       // Lado do condutor (primary)
       if (classicProducts.primary) {
         const vari = classicProducts.primary.variants[priceIndex];
