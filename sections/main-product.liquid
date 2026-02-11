@@ -56,8 +56,8 @@
   assign popover_trigger = nil
   if verified_customer != true
     assign popover_trigger = "customer"
-  elsif customer_has_preco2 and selected_variant_for_customer == null
-    assign popover_trigger = "preco2"
+  else
+    assign popover_trigger = "other"
   endif
 %}
 
