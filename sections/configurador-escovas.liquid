@@ -575,6 +575,12 @@
     const hasFlatProducts = flatProducts.primary || flatProducts.secondary;
 
     if (hasFlatProducts) {
+
+      if (checkProductHasPreco2(hasFlatProducts)) {
+        priceIndex = 1;
+        productHasPreco2 = true;
+      }
+
       // Lado do condutor (primary)
       if (flatProducts.primary) {
         const vari = flatProducts.primary.variants[priceIndex];
