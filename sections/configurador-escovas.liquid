@@ -814,11 +814,13 @@
   }
   function checkProductHasPreco2(product) {
     console.log(product);
-    product.options.forEach(opt => {
-      if (opt.name == "Tabela") {
-        return true;
-      }
-    });
+    if (Array.isArray(product.options)) {
+      product.options.forEach(opt => {
+        if (opt.name == "Tabela") {
+          return true;
+        }
+      });
+    }
     return false;
   }
 </script>
