@@ -121,7 +121,6 @@
 <script>
   {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
   const customerHasPreco2 = {% if verified_customer and customer.tags contains "preco2" %} true {% else %} false {% endif %};
-  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
 
   var cars = {}, selectedBrand, selectedModel, selectedYear, initialParaventos;
   var brandToId, idToBrand, modelToId, idToModel, yearToId, idToYear;
@@ -210,25 +209,33 @@
 
         console.log(prod);
 
-        {% comment %} ESCONDER PREÇO SE O CLIENTE TIVER TAG PRECO2 E O PRODUTO NÃO TIVER PRECO2 {% endcomment %}
+        {% comment %} PRECO1 VS PRECO2 {% endcomment %}
+
+        let priceIndex = 0; // initial
         let productHasPreco2 = null;
 
         if (customerHasPreco2) {
           
-          for (let edge of prod.variants.edges) {
-            const selectedOptions = edge.node?.selectedOptions;
+          for (let [i, value] of prod.variants.edges.entries()) {
+            
+            const selectedOptions = value.node?.selectedOptions;
 
             if (selectedOptions && selectedOptions.length > 0) {
               selectedOptions.forEach(opt => {
                 if (opt.name == "Tabela" && opt.value == "2") {
                   productHasPreco2 = true;
+                  priceIndex = i;
                   return;
                 }
               });
+              
               if (productHasPreco2) break;
             }
           }
         }
+
+        console.log(productHasPreco2);
+        console.log(priceIndex);
 
         const v = prod.variants.edges[priceIndex].node;
 
