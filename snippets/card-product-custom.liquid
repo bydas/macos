@@ -21,7 +21,14 @@
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
-{% liquid
+{% liquid 
+  # Verificação de cliente para ver preços e adicionar produtos ao carrinho
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
+
   # ----- Preço 1 vs Preço 2 -----
   if verified_customer and customer.tags contains "preco2"
     assign customer_has_preco2 = true
