@@ -520,10 +520,8 @@
 
     if (hasClassicProducts) {
 
-      if (checkProductHasPreco2(hasClassicProducts)) {
-        priceIndex = 1;
-        productHasPreco2 = true;
-      }
+      productHasPreco2 = checkProductHasPreco2(hasClassicProducts);
+      priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
 
       // Lado do condutor (primary)
       if (classicProducts.primary) {
@@ -576,10 +574,8 @@
 
     if (hasFlatProducts) {
 
-      if (checkProductHasPreco2(hasFlatProducts)) {
-        priceIndex = 1;
-        productHasPreco2 = true;
-      }
+      productHasPreco2 = checkProductHasPreco2(hasFlatProducts);
+      priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
 
       // Lado do condutor (primary)
       if (flatProducts.primary) {
