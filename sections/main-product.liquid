@@ -164,7 +164,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-                {% if verified_customer %}
+                {% if verified_customer and selected_variant_for_customer != null %}
                     <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                       {%- render 'price',
                         product: product,
