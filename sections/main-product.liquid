@@ -6,6 +6,13 @@
     assign verified_customer = true
   endif
 
+  # ----- Preço 1 vs Preço 2 -----
+  if verified_customer and customer.tags contains "preco2"
+    assign customer_has_preco2 = true
+  else
+    assign customer_has_preco2 = false
+  endif
+
   # Decalarada antes de qualquer verificação para ter um valor atribuído caso um produto não tenha variante
   assign selected_variant_for_customer = product.selected_or_first_available_variant
 
