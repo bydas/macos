@@ -521,10 +521,13 @@
 
     if (hasClassicProducts) {
 
+      const classicArray = [...hasClassicProducts];
+
+      console.log(classicArray);
       console.log(classicProducts);
       console.log(priceIndex);
 
-      for (let item in hasClassicProducts) {
+      {% comment %} for (let item in hasClassicProducts) {
       
         {% comment %} if (Array.isArray(item.options)) { {% endcomment %}
 
@@ -537,7 +540,7 @@
           }
         {% comment %} } {% endcomment %}
 
-      }
+      } {% endcomment %}
 
       console.log(priceIndex);
       console.log(productHasPreco2);
