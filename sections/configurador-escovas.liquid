@@ -551,6 +551,10 @@
 
       // Lado do passageiro (secondary)
       if (classicProducts.secondary) {
+
+        productHasPreco2 = checkProductHasPreco2(classicProducts.secondary);
+        priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
+
         const vari = classicProducts.secondary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
@@ -582,11 +586,12 @@
     const hasFlatProducts = flatProducts.primary || flatProducts.secondary;
     if (hasFlatProducts) {
 
-      productHasPreco2 = checkProductHasPreco2(hasFlatProducts);
-      priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
-
       // Lado do condutor (primary)
       if (flatProducts.primary) {
+
+        productHasPreco2 = checkProductHasPreco2(flatProducts.primary);
+        priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
+        
         const vari = flatProducts.primary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
@@ -595,6 +600,10 @@
           .replace('nome0', flatProducts.primary.title)
           .replace(/skuskusku0/g, vari.sku)
           .replace('price1231230', priceReplacement);
+
+        if (customerHasPreco2 && !productHasPreco2) {
+          flatPage = flatPage.replace('onclick="handleBuy(2)"', 'onclick="handleBuy(2)" disabled');
+        }
 
         // Encontrar a imagem correspondente nos requests
         const primaryFlatImageIndex = requests.whatIs.findIndex(([type, pos]) => type === 'flat' && pos === 'primary');
@@ -616,6 +625,10 @@
 
       // Lado do passageiro (secondary)
       if (flatProducts.secondary) {
+
+        productHasPreco2 = checkProductHasPreco2(flatProducts.secondary);
+        priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
+
         const vari = flatProducts.secondary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
@@ -624,6 +637,10 @@
           .replace('nome1', flatProducts.secondary.title)
           .replace(/skuskusku1/g, vari.sku)
           .replace('price1231231', priceReplacement);
+
+        if (customerHasPreco2 && !productHasPreco2) {
+          flatPage = flatPage.replace('onclick="handleBuy(3)"', 'onclick="handleBuy(3)" disabled');
+        }
 
         // Encontrar a imagem correspondente nos requests
         const secondaryFlatImageIndex = requests.whatIs.findIndex(([type, pos]) => type === 'flat' && pos === 'secondary');
