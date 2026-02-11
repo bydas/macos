@@ -527,13 +527,14 @@
       for (let item in hasClassicProducts) {
       
         {% comment %} if (Array.isArray(item.options)) { {% endcomment %}
-          item.options.forEach(opt => {
+
+          for (let opt in item.options) {
             if (opt.name == "Tabela") {
               productHasPreco2 = true;
               priceIndex = 1;
               return;
             }
-          });
+          }
         {% comment %} } {% endcomment %}
 
       }
