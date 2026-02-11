@@ -222,15 +222,12 @@
             const selectedOptions = edge.node?.selectedOptions;
 
             if (selectedOptions && selectedOptions.length > 0) {
-
               selectedOptions.forEach(opt => {
-
                 if (opt.name == "Tabela" && opt.value == "2") {
                   productHasPreco2 = true;
                   return;
                 }
               });
-
               if (productHasPreco2) break;
             }
           }
