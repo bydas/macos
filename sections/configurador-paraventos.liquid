@@ -119,6 +119,10 @@
 </div>
 
 <script>
+  {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
+  const customerHasPreco2 = {% if verified_customer and customer.tags contains "preco2" %} true {% else %} false {% endif %};
+  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
+
   var cars = {}, selectedBrand, selectedModel, selectedYear, initialParaventos;
   var brandToId, idToBrand, modelToId, idToModel, yearToId, idToYear;
 
@@ -204,9 +208,7 @@
         const prod = (await resp.json()).data.product;
         if (!prod) return;
 
-        {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
-        const customerHasPreco2 = {% if verified_customer and customer.tags contains "preco2" %} true {% else %} false {% endif %};
-        const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
+        console.log(prod);
 
         {% comment %} ESCONDER PREÇO SE O CLIENTE TIVER TAG PRECO2 E O PRODUTO NÃO TIVER PRECO2 {% endcomment %}
         let productHasPreco2 = null;
