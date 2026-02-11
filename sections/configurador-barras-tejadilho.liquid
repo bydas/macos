@@ -280,7 +280,7 @@
         
         await getData(`cruz_solutions&IdVeh=${bodyId}`, solutions, "vehicles"); 
 
-        console.log("Solutions: ", solutions);
+        {% comment %} console.log("Solutions: ", solutions); {% endcomment %}
 
         for (const s of solutions) {
           
@@ -368,8 +368,6 @@
             buyBtn.classList.add("button-configurador");
             buyBtn.innerText = "Adicionar";
             buyBtn.setAttribute("id", `btn-${key}`);
-
-            console.log(value);
             
             const customerVerified = document.getElementById("see-price-info").dataset.verified === "true";
             if (!customerVerified || (customerHasPreco2 && !value[0].hasPreco2)) {
