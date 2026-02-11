@@ -473,9 +473,7 @@
                 buyBtn.setAttribute("data-products-id", productsId.join(","));
               };
 
-              if (window.customerLoggedIn) {
-                totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
-              } else {
+              if (!window.customerLoggedIn || (customerHasPreco2 && !s.hasPreco2)) {
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
                 totalPriceElement.innerHTML = priceInfoPopoverHTML;
                 
@@ -484,6 +482,9 @@
                 popoverTriggerList.forEach(function (popoverTriggerEl) {
                   new bootstrap.Popover(popoverTriggerEl);
                 });
+
+              } else {
+                totalPriceElement.innerText = `${totalPrice.toFixed(2)} €`;
               }
               
               blockComponents.appendChild(component);
