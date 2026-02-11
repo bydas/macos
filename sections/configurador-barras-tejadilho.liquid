@@ -370,7 +370,7 @@
             buyBtn.setAttribute("id", `btn-${key}`);
             
             const customerVerified = document.getElementById("see-price-info").dataset.verified === "true";
-            if (!customerVerified) {
+            if (!customerVerified || (customerHasPreco2 && !value[0].hasPreco2)) {
               buyBtn.disabled = true;
             }
 
