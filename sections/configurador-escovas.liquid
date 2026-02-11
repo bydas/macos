@@ -533,6 +533,20 @@
           .replace(/skuskusku0/g, vari.sku)
           .replace('price1231230', priceReplacement);
 
+
+        let buyBtn = document.getElementById("opt1");
+        if (buyBtn) {
+          console.log(buyBtn)
+        }
+{% comment %} 
+        if (customerHasPreco2 && !productHasPreco2) {
+          classicPage = classicPage.replace(/<button\b/g, '<button disabled');
+        } {% endcomment %}
+
+
+
+
+
         if (!classicProducts.primary.available) {
           classicPage = classicPage.replace('BUY1', 'ESGOTADO');
         } else {
