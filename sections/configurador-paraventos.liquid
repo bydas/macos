@@ -204,13 +204,12 @@
             body: JSON.stringify({query})
           }
         );
-        const json = await resp.json();
-        const prod = json.data.product;
+        const prod = (await resp.json()).data.product;
         if (!prod) return;
 
 
 
-        console.log(json);
+        console.log(prod);
 
         
 
