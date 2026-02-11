@@ -679,9 +679,9 @@
 
     // Calcular preços e ordenar
     const classicTotalPrice = (classicProducts.primary ? Number(classicProducts.primary.price) : 0) +
-                             (classicProducts.secondary ? Number(classicProducts.secondary.price) : 0);
+                              (classicProducts.secondary ? Number(classicProducts.secondary.price) : 0);
     const flatTotalPrice = (flatProducts.primary ? Number(flatProducts.primary.price) : 0) +
-                          (flatProducts.secondary ? Number(flatProducts.secondary.price) : 0);
+                           (flatProducts.secondary ? Number(flatProducts.secondary.price) : 0);
 
     // Só ordenar se ambos os tipos existirem
     if (hasClassicProducts && hasFlatProducts) {
