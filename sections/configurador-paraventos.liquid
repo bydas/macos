@@ -241,6 +241,10 @@
           .replace('data-variant-id=""', `data-variant-id="${v.id.split('/').pop()}"`)
           .replace('hidden', '');
 
+        if (customerHasPreco2 && !productHasPreco2) {
+          card = card.replace(/<button\b/g, '<button disabled');
+        }
+
         // CÓDIGO COMENTADO PARA PERMITIR COMPRA SEM STOCK | PRODUTOS SEMPRE SUJEITOS A ENCOMENDA
         // if (!v.availableForSale) {
         //   card = card
