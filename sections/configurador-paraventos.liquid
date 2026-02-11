@@ -214,8 +214,9 @@
 
         console.log(prod);
 
+        let productHasPreco2 = null;
+
         if (customerHasPreco2) {
-          let productHasPreco2 = null;
           
           for (let edge of prod.variants.edges) {
             const selectedOptions = edge.node?.selectedOptions;
