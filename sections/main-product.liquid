@@ -171,7 +171,7 @@
                         use_variant: true,
                         show_badges: true,
                         price_class: 'price--large',
-                        verified_customer: verified_customer
+                        verified_customer: verified_customer,
                       -%}
                     </div>
 
@@ -202,7 +202,7 @@
                       {%- endform -%}
                     </div>
                 {% else %}
-                  {% render 'see-price-info', popover_placement: 'right', main_product_page: true %}
+                  {% render 'see-price-info', popover_placement: 'right', main_product_page: true, has_price_2: selected_variant_for_customer %}
                 {% endif %}
 
               {%- when 'inventory' -%}
