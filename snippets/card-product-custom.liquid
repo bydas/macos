@@ -30,12 +30,12 @@
   endif
 
   # Decalarada antes de qualquer verificação para ter um valor atribuído caso um produto não tenha variante
-  assign selected_variant_for_customer = product.selected_or_first_available_variant
+  assign selected_variant_for_customer = card_product.selected_or_first_available_variant
 
   # Verificar em que posição do array de variantes está "Tabela"
   assign tabela_index = nil
 
-  for option in product.options_with_values
+  for option in card_product.options_with_values
     if option.name == 'Tabela'
       assign tabela_index = forloop.index0
     endif
@@ -43,7 +43,7 @@
 
   # CASO "TABELA" EXISTA: Atribuir variante ao cliente
   if tabela_index != nil
-    for prod_variant in product.variants
+    for prod_variant in card_product.variants
       assign tabela_value = prod_variant.options[tabela_index]
 
       if customer_has_preco2 and tabela_value == "2"
