@@ -524,7 +524,8 @@
       console.log(classicProducts);
       console.log(priceIndex);
 
-      hasClassicProducts.forEach((item, i) => {
+      for (let [i, item] of hasClassicProducts.entries()) {
+      
         if (Array.isArray(item.options)) {
           item.options.forEach(opt => {
             if (opt.name == "Tabela") {
@@ -534,7 +535,8 @@
             }
           });
         }
-      });
+
+      }
 
       console.log(priceIndex);
       console.log(productHasPreco2);
