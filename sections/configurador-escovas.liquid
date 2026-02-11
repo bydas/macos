@@ -557,7 +557,7 @@
 
       
       {% comment %} if (customerHasPreco2 && !productHasPreco2) { {% endcomment %}
-        classicPage = classicPage.replace('id="opt1"', 'disabled id="opt1"');
+        classicPage = classicPage.replace('onclick="handleBuy(0)"', 'onclick="handleBuy(0)" disabled');
       {% comment %} } {% endcomment %}
 
       // Lado do passageiro (secondary)
