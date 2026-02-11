@@ -524,17 +524,7 @@
       console.log(hasClassicProducts);
       console.log(priceIndex);
 
-      Object.values(hasClassicProducts).forEach((item) => {
-        if (item.options.length > 0) {
-          item.options.forEach(opt => {
-            if (opt.name == "Tabela") {
-              productHasPreco2 = true;
-              priceIndex = 1;
-              return;
-            }
-          });
-        }
-      });
+      
 
       console.log(priceIndex);
       console.log(productHasPreco2);
