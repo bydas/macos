@@ -515,9 +515,20 @@
     // Processar escovas clássicas
     const hasClassicProducts = classicProducts.primary || classicProducts.secondary;
 
-    console.log(classicProducts);
-
     if (hasClassicProducts) {
+
+
+      console.log(classicProducts);
+      console.log(priceIndex);
+
+      hasClassicProducts.forEach(item => {
+      
+        
+
+      });
+
+
+
       // Lado do condutor (primary)
       if (classicProducts.primary) {
         const vari = classicProducts.primary.variants[priceIndex];
