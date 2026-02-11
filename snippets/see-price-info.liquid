@@ -2,13 +2,9 @@
   assign placement = popover_placement | default: 'left' 
 
   if trigger == "customer"
-
     assign popover_msg = "Inicie sessão com uma conta aprovada para ver os preços e adicionar produtos ao carrinho."
-
   else
-
     assign popover_msg = "O produto não está disponível."
-    
   endif
 %}
 
