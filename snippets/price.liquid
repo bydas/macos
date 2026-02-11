@@ -34,7 +34,7 @@
     endif
   endfor
 
-  # Atribuir variante ao cliente
+  # CASO "TABELA" EXISTA: Atribuir variante ao cliente
   if tabela_index != nil
     for prod_variant in product.variants
       assign tabela_value = prod_variant.options[tabela_index]
@@ -55,8 +55,8 @@
       endif
     endfor
 
+  # CASO "TABELA" NÃO EXISTA: Se cliente tem tag "preco2" mas o produto não tem variante "Tabela" (não verá preço)
   elsif tabela_index == nil and customer_has_preco2
-
     assign selected_variant_for_customer = null
 
   endif
