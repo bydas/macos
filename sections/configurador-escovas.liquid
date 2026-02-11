@@ -537,7 +537,7 @@
 
         buyBtn = document.querySelector("#opt1 button[type='submit']");
         if (buyBtn) {
-          buyBtn.disabled = true;
+          buyBtn.setAttribute("disabled", true)
         }
 {% comment %} 
         if (customerHasPreco2 && !productHasPreco2) {
