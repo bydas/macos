@@ -544,6 +544,22 @@
         classicPage = classicPage.replace('id="opt1"', 'style="display:none;" id="opt1"');
       }
 
+
+{% comment %} 
+
+      buyBtn = document.querySelector("#opt1 button[type='submit']");
+      if (buyBtn) {
+        console.log(buyBtn);
+        buyBtn.setAttribute("disabled", "")
+      }
+ {% endcomment %}
+
+
+      
+      {% comment %} if (customerHasPreco2 && !productHasPreco2) { {% endcomment %}
+        classicPage = classicPage.replace(/<button\b/g, '<button disabled');
+      {% comment %} } {% endcomment %}
+
       // Lado do passageiro (secondary)
       if (classicProducts.secondary) {
         const vari = classicProducts.secondary.variants[priceIndex];
