@@ -534,21 +534,6 @@
           .replace(/skuskusku0/g, vari.sku)
           .replace('price1231230', priceReplacement);
 
-
-        buyBtn = document.querySelector("#opt1 button[type='submit']");
-        if (buyBtn) {
-          console.log(buyBtn);
-          buyBtn.setAttribute("disabled", "")
-        }
-{% comment %} 
-        if (customerHasPreco2 && !productHasPreco2) {
-          classicPage = classicPage.replace(/<button\b/g, '<button disabled');
-        } {% endcomment %}
-
-
-
-
-
         if (!classicProducts.primary.available) {
           classicPage = classicPage.replace('BUY1', 'ESGOTADO');
         } else {
@@ -558,6 +543,16 @@
       } else {
         classicPage = classicPage.replace('id="opt1"', 'style="display:none;" id="opt1"');
       }
+
+      buyBtn = document.querySelector("#opt1 button[type='submit']");
+        if (buyBtn) {
+          console.log(buyBtn);
+          buyBtn.setAttribute("disabled", "")
+        }
+        {% comment %} 
+        if (customerHasPreco2 && !productHasPreco2) {
+          classicPage = classicPage.replace(/<button\b/g, '<button disabled');
+        } {% endcomment %}
 
       // Lado do passageiro (secondary)
       if (classicProducts.secondary) {
