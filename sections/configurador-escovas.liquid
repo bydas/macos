@@ -525,7 +525,7 @@
       // Lado do condutor (primary)
       if (classicProducts.primary) {
         const vari = classicProducts.primary.variants[priceIndex];
-        const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
+        const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
         classicPage = classicPage
           .replace('img0101', classicProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -546,7 +546,7 @@
       // Lado do passageiro (secondary)
       if (classicProducts.secondary) {
         const vari = classicProducts.secondary.variants[priceIndex];
-        const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
+        const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
         classicPage = classicPage
           .replace('img0102', classicProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -578,7 +578,7 @@
       // Lado do condutor (primary)
       if (flatProducts.primary) {
         const vari = flatProducts.primary.variants[priceIndex];
-        const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
+        const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
         flatPage = flatPage
           .replace('img0101', flatProducts.primary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
@@ -607,9 +607,7 @@
       // Lado do passageiro (secondary)
       if (flatProducts.secondary) {
         const vari = flatProducts.secondary.variants[priceIndex];
-        const priceReplacement = !window.customerLoggedIn ?
-          priceInfoPopoverHTML :
-          (Number(vari.price) / 100).toFixed(2) + '€';
+        const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
         flatPage = flatPage
           .replace('img0102', flatProducts.secondary.featured_image || 'https://macos-auto.myshopify.com/cdn/shop/files/logo.png?v=1741088326&width=300')
