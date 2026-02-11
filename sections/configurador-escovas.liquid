@@ -525,8 +525,8 @@
       console.log(priceIndex);
 
       Object.values(hasClassicProducts).forEach((item) => {
-        if (Object.entries(item.options)) {
-          item.options.forEach(opt => {
+        if (Object.values(item.options)) {
+          Object.values(item.options).forEach(opt => {
             if (opt.name == "Tabela") {
               productHasPreco2 = true;
               priceIndex = 1;
