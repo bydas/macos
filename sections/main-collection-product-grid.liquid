@@ -36,6 +36,15 @@
   }
 {%- endstyle -%}
 
+{% liquid
+  # Verificação de cliente para ver preços e adicionar produtos ao carrinho
+  if customer == nil or customer and customer.tags contains "nao-verificado"
+    assign verified_customer = false
+  else
+    assign verified_customer = true
+  endif
+%}
+
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
@@ -175,7 +184,8 @@
                     lazy_load: lazy_load,
                     skip_styles: skip_card_product_styles,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    verified_customer: verified_customer
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
