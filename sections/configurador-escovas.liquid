@@ -813,7 +813,6 @@
     parent2.insertBefore(a, parent2.firstChild);
   }
   function checkProductHasPreco2(product) {
-    {% comment %} console.log(product); {% endcomment %}
     if (Array.isArray(product.options)) {
       for (let opt of product.options) {
         if (opt.name == "Tabela") {
