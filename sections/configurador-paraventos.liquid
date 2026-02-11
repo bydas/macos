@@ -120,6 +120,7 @@
 
 <script>
   {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
+  const customerHasPreco2 = {% if verified_customer and customer.tags contains "preco2" %} true {% else %} false {% endif %};
   const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
 
   var cars = {}, selectedBrand, selectedModel, selectedYear, initialParaventos;
@@ -209,17 +210,35 @@
 
 
 
+
+
         console.log(prod);
 
-        
+        if (customerHasPreco2) {
+          let productHasPreco2 = null;
+          
+          for (let edge of prod.variants.edges) {
+            const selectedOptions = edge.node?.selectedOptions;
 
+            if (selectedOptions && selectedOptions.length > 0) {
+              selectedOptions.forEach(opt => {
+
+                if (opt.name == "Tabela" && opt.value == "2") {
+                  productHasPreco2 = true;
+                }
+              });
+            }
+          }
+        }
+
+        
 
 
 
         const v = prod.variants.edges[priceIndex].node;
 
         const priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
-        const priceReplacement = !window.customerLoggedIn ? priceInfoPopoverHTML : parseFloat(v.priceV2.amount).toFixed(2)+'€';
+        const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : parseFloat(v.priceV2.amount).toFixed(2)+'€';
         
         let card = initialParaventos
           .replace(/img0101/g, prod.featuredImage?.url||'')
