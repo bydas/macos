@@ -520,16 +520,7 @@
 
     if (hasClassicProducts) {
 
-      console.log(hasClassicProducts);
-      console.log(priceIndex);
-
-      hasClassicProducts.options.forEach(opt => {
-        if (opt.name == "Tabela") {
-          productHasPreco2 = true;
-          priceIndex = 1;
-          return;
-        }
-      });
+      priceIndex = checkProductHasPreco2(hasClassicProducts) ? 1 : 0;
 
       // Lado do condutor (primary)
       if (classicProducts.primary) {
