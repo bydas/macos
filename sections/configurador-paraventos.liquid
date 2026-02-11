@@ -171,8 +171,25 @@
       const query = `{
         product(handle:"${handle}") {
           title availableForSale
-          featuredImage { url altText }
-          variants(first:250) { edges { node { id sku priceV2{amount} availableForSale } } }
+          featuredImage { 
+            url altText 
+          }
+          variants(first:250) { 
+            edges { 
+              node { 
+                id 
+                sku 
+                priceV2 {
+                  amount
+                } 
+                availableForSale 
+                selectedOptions {
+                  name
+                  value
+                }
+              } 
+            } 
+          }
         }
       }`;
       try {
@@ -194,8 +211,10 @@
 
         console.log(prod);
 
+        if 
 
-        
+
+
 
         const v = prod.variants.edges[priceIndex].node;
 
