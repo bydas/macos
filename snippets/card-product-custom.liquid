@@ -23,13 +23,6 @@
 
 {% liquid 
   # Verificação de cliente para ver preços e adicionar produtos ao carrinho
-  if customer == nil or customer and customer.tags contains "nao-verificado"
-    assign verified_customer = false
-  else
-    assign verified_customer = true
-  endif
-
-  # ----- Preço 1 vs Preço 2 -----
   if verified_customer and customer.tags contains "preco2"
     assign customer_has_preco2 = true
   else
@@ -37,34 +30,42 @@
   endif
 
   # Decalarada antes de qualquer verificação para ter um valor atribuído caso um produto não tenha variante
-  assign selected_variant_for_customer = card_product.selected_or_first_available_variant
+  assign selected_variant_for_customer = product.selected_or_first_available_variant
 
   # Verificar em que posição do array de variantes está "Tabela"
   assign tabela_index = nil
 
-  for option in card_product.options_with_values
+  for option in product.options_with_values
     if option.name == 'Tabela'
       assign tabela_index = forloop.index0
     endif
   endfor
 
-  # Atribuir variante ao cliente
+  # CASO "TABELA" EXISTA: Atribuir variante ao cliente
   if tabela_index != nil
-    for prod_variant in card_product.variants
+    for prod_variant in product.variants
       assign tabela_value = prod_variant.options[tabela_index]
 
       if customer_has_preco2 and tabela_value == "2"
-      
         assign selected_variant_for_customer = prod_variant
         break
 
-      elsif customer_has_preco2 == false and tabela_value == "1"
+      # Se cliente tem tag preco2 e o produto TEM variante "Tabela" mas sem preco2 definido (não verá preço)
+      elsif customer_has_preco2 and tabela_value != "2"
+        assign selected_variant_for_customer = null
+        # break (NÃO PODE QUEBRAR O LOOP AQUI senão nunca correrá o array todo para confirmar se realmente existe "2")
 
+      elsif customer_has_preco2 == false and tabela_value == "1"
         assign selected_variant_for_customer = prod_variant
         break
 
       endif
     endfor
+
+  # CASO "TABELA" NÃO EXISTA: Se cliente tem tag preco2 mas o produto não tem variante "Tabela" (não verá preço)
+  elsif tabela_index == nil and customer_has_preco2
+    assign selected_variant_for_customer = null
+
   endif
 %}
 
