@@ -524,7 +524,7 @@
       console.log(classicProducts);
       console.log(priceIndex);
 
-      for (let item of hasClassicProducts) {
+      for (let item in hasClassicProducts) {
       
         if (Array.isArray(item.options)) {
           item.options.forEach(opt => {
