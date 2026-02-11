@@ -520,13 +520,12 @@
     const hasClassicProducts = classicProducts.primary || classicProducts.secondary;
     if (hasClassicProducts) {
 
-      productHasPreco2 = checkProductHasPreco2(hasClassicProducts);
-      priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
-
-      console.log(classicProducts)
-
       // Lado do condutor (primary)
       if (classicProducts.primary) {
+
+        productHasPreco2 = checkProductHasPreco2(classicProducts.primary);
+        priceIndex = customerHasPreco2 && productHasPreco2 ? 1 : 0;
+
         const vari = classicProducts.primary.variants[priceIndex];
         const priceReplacement = !window.customerLoggedIn || (customerHasPreco2 && !productHasPreco2) ? priceInfoPopoverHTML : (Number(vari.price) / 100).toFixed(2) + '€';
 
