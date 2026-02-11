@@ -349,7 +349,7 @@
 
 <script>
   {% comment %} ÍNDICE DA VARIANTE PARA PREÇO 1 OU PREÇO 2 {% endcomment %}
-  const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
+  const customerHasPreco2 = {% if verified_customer and customer.tags contains "preco2" %} true {% else %} false {% endif %};
 
   const infoNoProducts = document.querySelector("#no-products-found");
   infoNoProducts.style.display = "none";
@@ -512,20 +512,35 @@
     let flatPage = initialFlat;
     opts = [];
 
+
+    let priceIndex = 0; // Inicial / Sem preco2
+    let productHasPreco2 = null;
+
     // Processar escovas clássicas
     const hasClassicProducts = classicProducts.primary || classicProducts.secondary;
 
     if (hasClassicProducts) {
 
-
       console.log(classicProducts);
       console.log(priceIndex);
 
-      {% comment %} hasClassicProducts.forEach(item => {
+      hasClassicProducts.forEach((item, i) => {
       
-        
+        if (Array.isArray(item.options)) {
+          
+          item.options.forEach(opt => {
+          
+            if (opt.name == "Tabela") {
+            
+              productHasPreco2 = true;
+              priceIndex = 1;
+            }
 
-      }); {% endcomment %}
+          });
+
+        }
+
+      });
 
 
 
