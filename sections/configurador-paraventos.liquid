@@ -204,7 +204,8 @@
             body: JSON.stringify({query})
           }
         );
-        const prod = (await resp.json()).data.product;
+        const json = await resp.json();
+        const prod = json.data.product;
         if (!prod) return;
 
 
