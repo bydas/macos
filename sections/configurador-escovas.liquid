@@ -514,6 +514,7 @@
 
     let priceIndex = 0; // Inicial / Sem preco2
     let productHasPreco2 = null;
+    let buyBtn = null;
 
     // Processar escovas clássicas
     const hasClassicProducts = classicProducts.primary || classicProducts.secondary;
@@ -534,9 +535,9 @@
           .replace('price1231230', priceReplacement);
 
 
-        let buyBtn = document.querySelector("#opt1 button[type='submit']");
+        buyBtn = document.querySelector("#opt1 button[type='submit']");
         if (buyBtn) {
-          console.log(buyBtn)
+          buyBtn.disabled = true;
         }
 {% comment %} 
         if (customerHasPreco2 && !productHasPreco2) {
