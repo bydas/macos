@@ -521,26 +521,20 @@
 
     if (hasClassicProducts) {
 
-      const classicArray = [hasClassicProducts];
-
-      console.log(classicArray);
       console.log(classicProducts);
       console.log(priceIndex);
 
-      {% comment %} for (let item in hasClassicProducts) {
-      
-        {% comment %} if (Array.isArray(item.options)) { {% endcomment %}
-
-          for (let opt in item.options) {
+      Object.values(hasClassicProducts).forEach((item) => {
+        if (Object.entries(item.options)) {
+          item.options.forEach(opt => {
             if (opt.name == "Tabela") {
               productHasPreco2 = true;
               priceIndex = 1;
               return;
             }
-          }
-        {% comment %} } {% endcomment %}
-
-      } {% endcomment %}
+          });
+        }
+      });
 
       console.log(priceIndex);
       console.log(productHasPreco2);
