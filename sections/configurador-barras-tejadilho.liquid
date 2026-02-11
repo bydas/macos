@@ -94,6 +94,7 @@
 
 <script>
   {% comment %} PREÇO 1 VS PREÇO 2 {% endcomment %}
+  const customerHasPreco2 = {% if verified_customer and customer.tags contains "preco2" %} true {% else %} false {% endif %}
   const priceIndex = {% if verified_customer and customer.tags contains "preco2" %} 1 {% else %} 0 {% endif %};
 
   document.addEventListener("DOMContentLoaded", async function () {
@@ -296,6 +297,7 @@
           s.handle = variant.product?.handle ?? s.handle ?? null;
           s.title = variant.product?.title ?? s.title ?? null;
           s.image = variant.image ?? s.image ?? null;
+          s.hasPreco2 = s.variants?.[1] ? true : false
         }
 
 
@@ -438,9 +440,7 @@
               
               const price = document.createElement("span");
 
-              if (window.customerLoggedIn) {
-                price.innerText = s.price + "€";
-              } else {
+              if (!window.customerLoggedIn || (customerHasPreco2 && !s.hasPreco2)) {
                 priceInfoPopoverHTML = document.getElementById("see-price-info").innerHTML;
                 price.innerHTML = priceInfoPopoverHTML;
                 
@@ -449,6 +449,9 @@
                 popoverTriggerList.forEach(function (popoverTriggerEl) {
                   new bootstrap.Popover(popoverTriggerEl);
                 });
+
+              } else {
+                price.innerText = s.price + "€";
               }
 
               const optional = document.createElement("input");
