@@ -58,12 +58,6 @@
             "image": "shopify://shop_images/Natal_PC_bb70bcea-956d-44ab-b736-392450fcfb85.png"
           }
         },
-        "slide_gY6H8W": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/destaque0_24dc0c64-293b-4e48-a725-09df2ce80217.jpg"
-          }
-        },
         "slide_pTdKeG": {
           "type": "slide",
           "settings": {
@@ -121,12 +115,17 @@
           "settings": {
             "image": "shopify://shop_images/destaque_imao.jpg"
           }
+        },
+        "slide_gY6H8W": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/destaque0_24dc0c64-293b-4e48-a725-09df2ce80217.jpg"
+          }
         }
       },
       "block_order": [
         "slide_4jz66h",
         "slide_P8MdyJ",
-        "slide_gY6H8W",
         "slide_pTdKeG",
         "slide_jn3EL9",
         "slide_Tr34Px",
@@ -135,7 +134,8 @@
         "slide_kHJ4pr",
         "slide_9Ujttz",
         "slide_faxTFP",
-        "slide_mkzXXT"
+        "slide_mkzXXT",
+        "slide_gY6H8W"
       ],
       "settings": {
         "top-image": "shopify://shop_images/entrega_96838d91-40e2-4f86-9d74-b0394ad85df7.webp",
