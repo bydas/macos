@@ -30,15 +30,6 @@
             "catalog_url": "https://designrr.page/?id=500224&token=3743281039&type=FP&h=2306"
           }
         },
-        "catalog_TJxWQc": {
-          "type": "catalog",
-          "settings": {
-            "title": "",
-            "title_alignment_desktop": "start",
-            "title_alignment_mobile": "start",
-            "catalog_url": "https://designrr.page/?id=500224&token=3743281039&type=FP&h=2306"
-          }
-        },
         "catalog_GXK6tW": {
           "type": "catalog",
           "settings": {
@@ -51,7 +42,6 @@
       },
       "block_order": [
         "catalog_7XmDcG",
-        "catalog_TJxWQc",
         "catalog_GXK6tW"
       ],
       "settings": {
