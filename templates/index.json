@@ -66,6 +66,7 @@
         },
         "slide_pTdKeG": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/WINTER_2a809e63-5727-4890-80da-53d9f200b896.jpg"
           }
@@ -86,6 +87,7 @@
         },
         "slide_wTwQqh": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/destaque1.jpg"
           }
