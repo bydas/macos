@@ -51,6 +51,12 @@
             "image": "shopify://shop_images/SLIDESHOW_MACOS.png"
           }
         },
+        "slide_iamyN3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/GIFMACOS1-ezgif.com-video-to-gif-converter_1.gif"
+          }
+        },
         "slide_P8MdyJ": {
           "type": "slide",
           "disabled": true,
@@ -125,6 +131,7 @@
       },
       "block_order": [
         "slide_4jz66h",
+        "slide_iamyN3",
         "slide_P8MdyJ",
         "slide_pTdKeG",
         "slide_jn3EL9",
